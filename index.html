@@ -1,0 +1,3006 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Afeef Ummer | Data Analyst Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      :root {
+        --black: #000000;
+        --white: #ffffff;
+        --gray: #6f6f6f;
+        --surface: #f5f5f3;
+        --border: rgba(0, 0, 0, 0.08);
+        --ease: cubic-bezier(0.16, 1, 0.3, 1);
+        --serif: "Instrument Serif", Georgia, serif;
+        --sans: "Inter", system-ui, sans-serif;
+      }
+
+      body {
+        font-family: var(--sans);
+        background: var(--white);
+        color: var(--black);
+        line-height: 1.7;
+        overflow-x: hidden;
+      }
+
+      @keyframes fadeRise {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .a1 {
+        animation: fadeRise 0.9s 0s var(--ease) both;
+      }
+      .a2 {
+        animation: fadeRise 0.9s 0.2s var(--ease) both;
+      }
+      .a3 {
+        animation: fadeRise 0.9s 0.4s var(--ease) both;
+      }
+
+      /* HERO WRAPPER */
+      .hero-wrap {
+        position: relative;
+        min-height: 100vh;
+        width: 100%;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      #heroVideo {
+        position: absolute;
+        inset: auto 0 0 0;
+        top: 280px;
+        width: 100%;
+        height: calc(100% - 280px);
+        object-fit: cover;
+        z-index: 0;
+        opacity: 0;
+      }
+
+      .grad-top {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, #fff 0%, transparent 40%);
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .grad-bot {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, #fff 0%, transparent 40%);
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      /* NAVBAR */
+      nav.bar {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 24px 40px;
+        max-width: 1340px;
+        margin: 0 auto;
+      }
+
+      .logo {
+        font-family: var(--serif);
+        font-size: 2rem;
+        letter-spacing: -0.03em;
+        color: var(--black);
+        text-decoration: none;
+      }
+      .logo sup {
+        font-size: 0.5em;
+        font-family: var(--sans);
+        vertical-align: super;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 32px;
+        list-style: none;
+      }
+      .nav-links a {
+        font-size: 0.875rem;
+        color: var(--gray);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--black);
+      }
+
+      .nav-cta {
+        background: var(--black);
+        color: var(--white);
+        padding: 10px 24px;
+        border-radius: 999px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition:
+          transform 0.2s var(--ease),
+          box-shadow 0.2s;
+      }
+      .nav-cta:hover {
+        transform: scale(1.04);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+      }
+      .nav-premium {
+        background: linear-gradient(135deg, #c8951a, #f5c53a);
+        color: #1a0800 !important;
+        border-radius: 999px;
+        padding: 3px 11px 4px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        text-decoration: none !important;
+        box-shadow: 0 0 8px rgba(200,149,26,0.3);
+        transition: box-shadow 0.2s, transform 0.15s;
+        white-space: nowrap;
+      }
+      .nav-premium:hover {
+        box-shadow: 0 0 18px rgba(200,149,26,0.55) !important;
+        transform: translateY(-1px);
+        color: #1a0800 !important;
+      }
+
+      /* HERO CONTENT */
+      .hero-content {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: calc(6rem - 75px) 24px 12rem;
+      }
+
+      .hero-title {
+        font-family: var(--serif);
+        font-size: clamp(2.8rem, 8vw, 6rem);
+        font-weight: 400;
+        line-height: 1.05;
+        letter-spacing: -0.05em;
+        max-width: 1100px;
+      }
+      .tagline-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-end;
+        gap: 0;
+      }
+      @keyframes oceanWave {
+        0%, 100% { transform: translateY(0); }
+        50%       { transform: translateY(-12px); }
+      }
+      @keyframes ripple {
+        0%   { text-shadow: 0 0 5px currentColor; }
+        50%  { text-shadow: 0 0 20px currentColor, 0 0 40px currentColor; }
+        100% { text-shadow: 0 0 5px currentColor; }
+      }
+        100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
+      }
+      .nl {
+        display: inline-block;
+        animation: oceanWave 2s ease-in-out infinite, ripple 3s ease-in-out infinite;
+        cursor: default;
+        transition: transform 0.2s;
+        line-height: 1.15;
+      }
+      .nl:hover {
+        transform: scale(1.5) translateY(-8px) !important;
+        animation-play-state: paused;
+        text-shadow: 0 0 30px currentColor, 0 0 60px currentColor !important;
+      }
+      .nl-space { display: inline-block; width: 0.28em; }
+
+      .hero-sub { display: none; }
+
+      /* ── HERO TAGLINE BLOCK ── */
+      @keyframes subRise {
+        from { opacity: 0; transform: translateY(20px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .hero-sub-block {
+        position: relative;
+        max-width: 42rem;
+        margin-top: 1.8rem;
+        margin-bottom: 0;
+        padding: 18px 22px;
+        border-radius: 16px;
+        text-align: center;
+        isolation: isolate;
+      }
+      .hero-sub-block::before {
+        content: '';
+        position: absolute; inset: 0;
+        border-radius: 16px;
+        background: radial-gradient(circle at 50% 50%, rgba(37,99,235,0.08), transparent 70%);
+        pointer-events: none; z-index: 0;
+      }
+      .sub-l1, .sub-l2 {
+        position: relative; z-index: 1;
+        font-family: 'Inter', 'Poppins', system-ui, sans-serif;
+        letter-spacing: 0.3px;
+        line-height: 1.7;
+        opacity: 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+      .sub-l1 {
+        font-size: clamp(1rem, 2vw, 1.15rem);
+        font-weight: 650;
+        color: #0f172a;
+        margin-bottom: 4px;
+        animation: subRise 0.6s ease 0.35s both;
+      }
+      .sub-l2 {
+        font-size: clamp(0.92rem, 1.8vw, 1.05rem);
+        font-weight: 450;
+        color: #334155;
+        animation: subRise 0.6s ease 0.65s both;
+      }
+      .hero-sub-block:hover .sub-l1,
+      .hero-sub-block:hover .sub-l2 {
+        transform: scale(1.02);
+      }
+      .hkw {
+        background: linear-gradient(90deg, #2563eb, #7c3aed);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: 700;
+        transition: filter 0.3s;
+      }
+      .hero-sub-block:hover .hkw {
+        filter: drop-shadow(0 0 6px rgba(37,99,235,0.45));
+      }
+
+      .hero-btns {
+        display: flex;
+        gap: 12px;
+        margin-top: 2.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      /* BUTTONS */
+      .btn {
+        display: inline-block;
+        padding: 11px 24px;
+        background: var(--black);
+        color: var(--white);
+        border-radius: 999px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition:
+          transform 0.2s var(--ease),
+          box-shadow 0.2s;
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      hr {
+        border: none;
+        border-top: 1px solid var(--border);
+      }
+
+      /* PROJECT NAV */
+      .proj-nav {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 40px 24px 0;
+      }
+      .proj-nav h1 {
+        font-family: var(--serif);
+        font-size: 1.4rem;
+        font-weight: 400;
+        margin-bottom: 14px;
+      }
+      .proj-nav ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .proj-nav a {
+        font-size: 0.875rem;
+        color: var(--gray);
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+      }
+      .proj-nav a:hover {
+        color: var(--black);
+        border-color: var(--black);
+      }
+
+      /* OFFER CARDS */
+      .offer-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+      }
+      .offer-icon {
+        font-size: 2rem;
+        line-height: 1;
+        flex-shrink: 0;
+        margin-top: 4px;
+      }
+      .offer-body {
+        flex: 1;
+      }
+      .offer-btn {
+        display: inline-block;
+        margin-top: 18px;
+      }
+      @media (max-width: 520px) {
+        .offer-card { flex-direction: column; gap: 12px; }
+      }
+
+      /* SECTIONS */
+      .section {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 80px 24px;
+      }
+      .section h2 {
+        font-family: var(--serif);
+        font-size: 2.2rem;
+        font-weight: 400;
+        letter-spacing: -0.03em;
+        margin-bottom: 32px;
+        color: var(--black);
+      }
+
+      /* CARDS */
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 30px;
+        margin-bottom: 24px;
+        transition:
+          transform 0.3s var(--ease),
+          box-shadow 0.3s;
+      }
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.07);
+      }
+      .card h3 {
+        font-family: var(--serif);
+        font-size: 1.4rem;
+        font-weight: 400;
+        letter-spacing: -0.01em;
+        margin-bottom: 16px;
+      }
+      .card p {
+        color: #333;
+        font-size: 0.95rem;
+      }
+      .card b {
+        color: var(--black);
+        font-weight: 600;
+      }
+      .card ul {
+        margin-left: 20px;
+        margin-top: 10px;
+      }
+      .card ul li {
+        font-size: 0.9rem;
+        color: #444;
+        margin-bottom: 6px;
+      }
+
+      /* SKILLS */
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .skill {
+        background: var(--white);
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        padding: 9px 18px;
+        border-radius: 999px;
+        font-size: 0.875rem;
+        transition:
+          background 0.2s,
+          color 0.2s,
+          transform 0.2s,
+          border-color 0.2s;
+        cursor: pointer;
+        user-select: none;
+      }
+      .skill:hover {
+        background: var(--black);
+        color: var(--white);
+        transform: translateY(-2px);
+      }
+      .skill.sk-active {
+        background: var(--black);
+        color: var(--white);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
+      }
+
+      /* SKILL DETAIL PANEL */
+      .skill-panel {
+        display: none;
+        margin-top: 18px;
+        background: var(--white);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 18px;
+        padding: 26px 30px;
+        animation: sdSlide 0.22s ease both;
+      }
+      .skill-panel.sp-open {
+        display: block;
+      }
+      @keyframes sdSlide {
+        from {
+          opacity: 0;
+          transform: translateY(-8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .sp-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 14px;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .sp-head h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--black);
+        letter-spacing: -0.02em;
+      }
+      .sp-close {
+        background: none;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        border-radius: 999px;
+        padding: 4px 12px;
+        font-size: 0.75rem;
+        cursor: pointer;
+        color: var(--gray);
+        font-family: var(--sans);
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .sp-close:hover {
+        background: var(--black);
+        color: var(--white);
+        border-color: var(--black);
+      }
+      .sp-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .sp-list li {
+        font-size: 0.875rem;
+        color: #444;
+        padding-left: 18px;
+        position: relative;
+        line-height: 1.65;
+      }
+      .sp-list li::before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: #aaa;
+        font-size: 0.78rem;
+        top: 3px;
+      }
+
+      .contact-card {
+        font-size: 1rem;
+        line-height: 2.4;
+        color: #333;
+      }
+
+      /* DETAILS */
+      details {
+        margin-top: 16px;
+      }
+      summary {
+        cursor: pointer;
+        font-size: 0.875rem;
+        color: var(--gray);
+        padding: 8px 0;
+        user-select: none;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: color 0.2s;
+      }
+      summary::before {
+        content: "▶";
+        font-size: 0.6rem;
+        transition: transform 0.2s;
+      }
+      details[open] summary::before {
+        transform: rotate(90deg);
+      }
+      summary:hover {
+        color: var(--black);
+      }
+      summary mark {
+        background: none;
+        color: var(--black);
+        font-weight: 600;
+      }
+      details img {
+        width: 100%;
+        max-width: 860px;
+        border-radius: 12px;
+        margin-top: 14px;
+        display: block;
+        border: 1px solid var(--border);
+      }
+      figcaption {
+        font-size: 0.8rem;
+        color: var(--gray);
+        margin-top: 8px;
+        font-style: italic;
+      }
+
+      /* CHATBOT */
+      .chat-wrap {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 999;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 10px;
+      }
+      .chat-toggle {
+        background: var(--black);
+        color: var(--white);
+        border: none;
+        padding: 14px 22px;
+        border-radius: 999px;
+        cursor: pointer;
+        font-family: var(--sans);
+        font-size: 0.875rem;
+        font-weight: 500;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+        transition: transform 0.2s var(--ease);
+      }
+      .chat-toggle:hover {
+        transform: scale(1.05);
+      }
+      .chat-box {
+        width: 340px;
+        height: 460px;
+        background: var(--white);
+        border-radius: 20px;
+        overflow: hidden;
+        display: none;
+        flex-direction: column;
+        border: 1px solid var(--border);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.13);
+      }
+      .chat-head {
+        background: var(--black);
+        padding: 16px 20px;
+        color: var(--white);
+        text-align: center;
+        font-family: var(--serif);
+        font-size: 1.1rem;
+        font-weight: 400;
+      }
+      .chat-msgs {
+        flex: 1;
+        padding: 16px;
+        overflow-y: auto;
+        background: var(--surface);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .bot-msg,
+      .user-msg {
+        padding: 10px 14px;
+        border-radius: 14px;
+        max-width: 85%;
+        font-size: 0.875rem;
+        line-height: 1.5;
+      }
+      .bot-msg {
+        background: var(--white);
+        border: 1px solid var(--border);
+        color: var(--black);
+        align-self: flex-start;
+      }
+      .user-msg {
+        background: var(--black);
+        color: var(--white);
+        align-self: flex-end;
+      }
+      .chat-input {
+        display: flex;
+        border-top: 1px solid var(--border);
+        background: var(--white);
+      }
+      .chat-input input {
+        flex: 1;
+        padding: 12px 16px;
+        border: none;
+        outline: none;
+        font-family: var(--sans);
+        font-size: 0.875rem;
+        background: transparent;
+      }
+      .chat-input button {
+        background: var(--black);
+        color: var(--white);
+        border: none;
+        padding: 12px 18px;
+        cursor: pointer;
+        font-family: var(--sans);
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+
+      /* FOOTER */
+      footer {
+        text-align: center;
+        padding: 40px 20px;
+        color: var(--gray);
+        font-size: 0.875rem;
+        border-top: 1px solid var(--border);
+      }
+      footer a {
+        color: var(--black);
+        text-decoration: none;
+        font-weight: 500;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 768px) {
+        nav.bar {
+          padding: 18px 20px;
+        }
+        .nav-links {
+          display: none;
+        }
+        .hero-title {
+          font-size: 2.75rem;
+        }
+        .hero-content {
+          padding-top: 2rem;
+          padding-bottom: 6rem;
+        }
+        .chat-box {
+          width: 300px;
+        }
+        .ai-tools-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .ai-slide {
+          width: 100% !important;
+          max-width: 100% !important;
+          border-radius: 20px 20px 0 0 !important;
+          bottom: 0 !important;
+          top: auto !important;
+          right: 0 !important;
+          height: 72vh !important;
+        }
+      }
+
+      /* AI TOOLS */
+      .ai-tools-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin-top: 4px;
+      }
+      .ai-tool-chip {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 20px 18px;
+        cursor: pointer;
+        text-align: left;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s,
+          border-color 0.2s;
+        font-family: var(--sans);
+      }
+      .ai-tool-chip:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+        border-color: rgba(0, 0, 0, 0.14);
+      }
+      .ai-tool-chip .tc-icon {
+        font-size: 1.5rem;
+      }
+      .ai-tool-chip .tc-name {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--black);
+      }
+      .ai-tool-chip .tc-hint {
+        font-size: 0.75rem;
+        color: var(--gray);
+      }
+
+      /* AI SLIDE PANEL */
+      .ai-slide-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 8000;
+        background: rgba(0, 0, 0, 0.35);
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+      }
+      .ai-slide-overlay.open {
+        display: block;
+      }
+      .ai-slide {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 420px;
+        height: 100vh;
+        background: #fff;
+        border-left: 1px solid var(--border);
+        box-shadow: -12px 0 60px rgba(0, 0, 0, 0.12);
+        z-index: 8001;
+        display: flex;
+        flex-direction: column;
+        transform: translateX(100%);
+        transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+        overflow: hidden;
+      }
+      .ai-slide.open {
+        transform: translateX(0);
+      }
+      .ai-slide-hdr {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 24px 24px 18px;
+        border-bottom: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+      .ai-slide-hdr-icon {
+        font-size: 2rem;
+      }
+      .ai-slide-hdr-info {
+        flex: 1;
+      }
+      .ai-slide-hdr-name {
+        font-family: var(--serif);
+        font-size: 1.25rem;
+        font-weight: 400;
+        color: var(--black);
+        letter-spacing: -0.02em;
+      }
+      .ai-slide-hdr-sub {
+        font-size: 0.75rem;
+        color: var(--gray);
+        margin-top: 2px;
+      }
+      .ai-slide-close {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 0.9rem;
+        color: var(--gray);
+        flex-shrink: 0;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .ai-slide-close:hover {
+        background: #000;
+        color: #fff;
+      }
+      .ai-slide-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 24px;
+      }
+      .ai-slide-desc {
+        font-size: 0.875rem;
+        color: var(--gray);
+        line-height: 1.75;
+        margin-bottom: 24px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--border);
+      }
+      .ai-steps-label {
+        font-size: 0.68rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #aaa;
+        font-weight: 600;
+        margin-bottom: 14px;
+      }
+      .ai-step {
+        display: flex;
+        gap: 14px;
+        margin-bottom: 18px;
+        align-items: flex-start;
+      }
+      .ai-step-num {
+        width: 26px;
+        height: 26px;
+        background: var(--black);
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.72rem;
+        font-weight: 700;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+      .ai-step-title {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--black);
+        margin-bottom: 3px;
+      }
+      .ai-step-desc {
+        font-size: 0.8rem;
+        color: var(--gray);
+        line-height: 1.65;
+      }
+      .ai-slide-footer {
+        padding: 16px 24px;
+        border-top: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+      .ai-try-btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+        background: var(--black);
+        color: #fff;
+        border-radius: 999px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition:
+          box-shadow 0.2s,
+          transform 0.2s;
+      }
+      .ai-try-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HERO -->
+    <div class="hero-wrap">
+      <video
+        id="heroVideo"
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_083109_283f3553-e28f-428b-a723-d639c617eb2b.mp4"
+        muted
+        playsinline
+        preload="auto"
+      ></video>
+      <div class="grad-top"></div>
+      <div class="grad-bot"></div>
+
+      <nav class="bar">
+        <a href="#" class="logo">Afeef <sup>®</sup></a>
+        <ul class="nav-links">
+          
+            <a
+              href="LERN.html"
+              style="
+                color: var(--black);
+                font-weight: 600;
+                border-bottom: 1.5px solid var(--black);
+                padding-bottom: 1px;
+              "
+              >Free Notes</a
+            >
+          </li>
+          <li>
+            <a
+              href="practice.html"
+              style="
+                color: var(--black);
+                font-weight: 600;
+                border-bottom: 1.5px solid var(--black);
+                padding-bottom: 1px;
+              "
+              >Practice Lab</a
+            >
+          </li>
+          <li>
+            <a
+              href="about.html"
+              style="
+                color: var(--black);
+                font-weight: 600;
+                border-bottom: 1.5px solid var(--black);
+                padding-bottom: 1px;
+              "
+              >About Me</a
+            >
+          </li>
+          <li>
+            <a href="contact.html" style="background:linear-gradient(135deg,#0ea5e9,#1e5fad);color:#fff;border-radius:999px;padding:3px 11px 4px;font-size:0.78rem;font-weight:700;letter-spacing:0.02em;text-decoration:none;white-space:nowrap;box-shadow:0 0 10px rgba(14,165,233,0.35);transition:box-shadow 0.2s,transform 0.15s;">✦ Services</a>
+          </li>
+          <li>
+            <a href="paid.html" class="nav-premium">✦ Premium Notes</a>
+          </li>
+          <li>
+            <a href="tum.html" style="background:linear-gradient(135deg,#0f0f23,#2d2d6b,#0f0f23);color:#a8b8ff;border-radius:999px;padding:3px 12px 4px;font-size:0.78rem;font-weight:700;letter-spacing:0.02em;text-decoration:none;white-space:nowrap;box-shadow:0 0 8px rgba(100,120,255,0.25);transition:box-shadow 0.2s,transform 0.15s;">⬡ Templates</a>
+          </li>
+        </ul>
+        <br>
+      </nav>
+
+      <div class="hero-content">
+        <h1 class="hero-title a1">
+          <span class="tagline-wrap" id="heroTagline"></span>
+        </h1>
+        <div class="hero-sub-block">
+          <p class="sub-l1"><span class="hkw">Data Science</span> and <span class="hkw">Full-Stack</span> Developer skilled in transforming data into insights and building modern web applications.</p>
+          <p class="sub-l2">Experienced in Analytics, <span class="hkw">Python</span>, SQL, Power BI, and <span class="hkw">MERN Stack</span> with a focus on creating smart, scalable digital solutions.</p>
+        </div>
+        
+        
+        <div class="hero-btns a3">
+<a class="btn" href="contact.html#contact" style="background:linear-gradient(135deg,#0a0a0a,#1a1a2e,#16213e);color:#e0e0ff;box-shadow:0 0 16px rgba(80,80,255,0.18);border:1px solid rgba(255,255,255,0.08);letter-spacing:0.02em;">ORDER CV OR Websites</a>          <a class="btn" href="paid.html" style="background:linear-gradient(135deg,#1a0a00,#2e1a00,#3d2200);color:#ffd580;box-shadow:0 0 16px rgba(255,180,0,0.18);border:1px solid rgba(255,200,80,0.15);letter-spacing:0.02em;">📚 Premium Notes</a>
+          <a class="btn" href="about.html">About Me</a>
+          <a class="btn" href="tum.html" style="background:linear-gradient(135deg,#0f0f23,#2d2d6b,#0f0f23);color:#a8b8ff;box-shadow:0 0 12px rgba(100,120,255,0.2);">⬡ Templates</a>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+    
+
+    <!-- OFFERINGS -->
+    <div class="section" id="about">
+      <h2>What I Offer</h2>
+
+      <!-- Premium Notes -->
+      <div class="card offer-card">
+        <div class="offer-icon">📚</div>
+        <div class="offer-body">
+          <h3>Premium Study Notes</h3>
+          <p>
+            Structured, exam-ready PDF notes covering Data Analytics, Data
+            Science, Machine Learning, and more. Each set is written for clarity
+            — pick your subject, pay once, and download instantly.
+          </p>
+          <a href="paid.html" class="btn offer-btn">Browse Notes →</a>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div class="card offer-card">
+        <div class="offer-icon">⚙️</div>
+        <div class="offer-body">
+          <h3>Data &amp; Web Services</h3>
+          <p>
+            Need a dashboard, data analysis, report, or a custom website? I take
+            on freelance projects end-to-end — from requirement to delivery.
+            Clear pricing, fast turnaround, and direct communication.
+          </p>
+          <a href="contact.html" class="btn offer-btn">Request a Service →</a>
+        </div>
+      </div>
+
+      <!-- Templates -->
+      <div class="card offer-card">
+        <div class="offer-icon">🎨</div>
+        <div class="offer-body">
+          <h3>Landing Page Templates</h3>
+          <p>
+            Premium, production-ready landing page templates built with React,
+            Tailwind, and modern UI effects. Drop in your content and ship
+            something beautiful in minutes — free starters and paid full kits.
+          </p>
+          <a href="tum.html" class="btn offer-btn">Explore Templates →</a>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="proj-nav">
+      <h1>Projects</h1>
+      <ul>
+        <li><a href="#CUSTOMER">Customer Shopping Behaviour Analysis</a></li>
+
+        <li>
+          <a href="#GLOBAL"
+            >Global Sales &amp; Profitability Analysis Dashboard</a
+          >
+        </li>
+      </ul>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="section" id="projects">
+      <h2>Projects</h2>
+
+      <div id="CUSTOMER" class="card">
+        <h3>Customer Shopping Behaviour Analysis</h3>
+        <p>
+          <b>Business Problem:</b> Understand customer buying patterns and
+          purchasing behaviour.
+        </p>
+        <br />
+        <p>
+          <b>What I Did:</b> Cleaned dataset using Python, performed exploratory
+          data analysis, and executed SQL queries for business insights.
+        </p>
+        <br />
+        <p><b>Tools Used:</b> Python, SQL, Power BI</p>
+        <br />
+        <p><b>Key Insights</b></p>
+        <ul>
+          <li>
+            Most customers belong to the young and middle-aged groups — the main
+            target segments.
+          </li>
+          <li>
+            Customers show different spending patterns, indicating variations in
+            buying power.
+          </li>
+          <li>
+            Customers with previous purchase history tend to spend more, showing
+            strong loyalty.
+          </li>
+          <li>Product preferences differ across age groups.</li>
+        </ul>
+        <br />
+        <p>
+          <b>Impact:</b> Identified high-value customers and customer trends for
+          better targeting.
+        </p>
+        <details>
+          <summary>
+            View Power BI dashboard — <mark>Customer Shopping Behaviour</mark>
+          </summary>
+          <img
+            src="img/customer.png"
+            alt="Customer shopping behaviour dashboard"
+            loading="lazy"
+          />
+          <figcaption>Shopping behaviour dashboard</figcaption>
+        </details>
+        <br />
+        <a
+          class="btn"
+          href="https://github.com/afeefbinummer-hub/Customer-Behavior-Analysis-Sales-Optimization"
+          target="_blank"
+          >GitHub</a
+        >
+      </div>
+
+      <div id="GLOBAL" class="card">
+        <h3>Global Sales &amp; Profitability Analysis Dashboard</h3>
+        <p>
+          <b>Business Problem:</b> Analyze global sales performance, product
+          profitability, and discount impact across countries.
+        </p>
+        <br />
+        <p>
+          <b>What I Did:</b> Built end-to-end analytics project using MySQL and
+          Power BI. Created SQL queries, KPI analysis, and interactive
+          dashboards.
+        </p>
+        <br />
+        <p><b>Tools Used:</b> MySQL, Power BI, Excel</p>
+        <p><b>Key Insights:</b></p>
+        <ul>
+          <li>Highest revenue product: Paseo</li>
+          <li>Most efficient product: Amarilla</li>
+          <li>Medium discount strategy delivered best margins</li>
+          <li>USA generated highest sales revenue</li>
+        </ul>
+        <br />
+        <details>
+          <summary>
+            View Power BI dashboard —
+            <mark>Business Intelligence Overview</mark>
+          </summary>
+          <img
+            src="img/bussiness inteligence.png"
+            alt="Business intelligence dashboard"
+            loading="lazy"
+          />
+          <figcaption>Business intelligence dashboard</figcaption>
+        </details>
+        <details>
+          <summary>
+            View Power BI dashboard — <mark>Country-wise Analysis</mark>
+          </summary>
+          <img
+            src="img/contry wise analysis.png"
+            alt="Country wise analysis"
+            loading="lazy"
+          />
+          <figcaption>Country-wise analysis dashboard</figcaption>
+        </details>
+        <details>
+          <summary>
+            View Power BI dashboard — <mark>Product-wise Analysis</mark>
+          </summary>
+          <img
+            src="img/product analysis.png"
+            alt="Product wise analysis"
+            loading="lazy"
+          />
+          <figcaption>Product-wise analysis dashboard</figcaption>
+        </details>
+        <br />
+
+        <h1>Analytics Overview</h1>
+        <br />
+        <!-- ═══ VISUALISATIONS ═══ -->
+        <div style="margin-top: 64px">
+          <!-- ANIMATED STAT COUNTERS -->
+          <p
+            style="
+              font-size: 11px;
+              letter-spacing: 0.1em;
+              text-transform: uppercase;
+              color: rgba(225, 224, 204, 0.4);
+              margin-bottom: 40px;
+            "
+          >
+            Analytics overview
+          </p>
+          <div
+            id="visStats"
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+              gap: 12px;
+              margin-bottom: 48px;
+            "
+          >
+            <div
+              style="
+                background: #101010;
+                border: 1px solid rgba(225, 224, 204, 0.08);
+                border-radius: 16px;
+                padding: 24px 20px;
+              "
+            >
+              <div class="stat-num" data-target="3900" data-suffix="+">0</div>
+              <div
+                style="
+                  font-size: 0.85rem;
+                  font-weight: 300;
+                  color: rgba(225, 224, 204, 0.5);
+                  margin-top: 6px;
+                "
+              >
+                Records analysed
+              </div>
+              <div
+                style="
+                  font-size: 11px;
+                  color: rgba(225, 224, 204, 0.3);
+                  margin-top: 4px;
+                "
+              >
+                Customer behaviour project
+              </div>
+            </div>
+            <div
+              style="
+                background: #101010;
+                border: 1px solid rgba(225, 224, 204, 0.08);
+                border-radius: 16px;
+                padding: 24px 20px;
+              "
+            >
+              <div
+                class="stat-num"
+                data-prefix="$"
+                data-target="110"
+                data-suffix="M"
+              >
+                0
+              </div>
+              <div
+                style="
+                  font-size: 0.85rem;
+                  font-weight: 300;
+                  color: rgba(225, 224, 204, 0.5);
+                  margin-top: 6px;
+                "
+              >
+                Revenue modelled
+              </div>
+              <div
+                style="
+                  font-size: 11px;
+                  color: rgba(225, 224, 204, 0.3);
+                  margin-top: 4px;
+                "
+              >
+                Global sales dashboard
+              </div>
+            </div>
+            <div
+              style="
+                background: #101010;
+                border: 1px solid rgba(225, 224, 204, 0.08);
+                border-radius: 16px;
+                padding: 24px 20px;
+              "
+            >
+              <div
+                class="stat-num"
+                data-target="13.68"
+                data-suffix="%"
+                data-decimals="2"
+              >
+                0
+              </div>
+              <div
+                style="
+                  font-size: 0.85rem;
+                  font-weight: 300;
+                  color: rgba(225, 224, 204, 0.5);
+                  margin-top: 6px;
+                "
+              >
+                Profit margin found
+              </div>
+              <div
+                style="
+                  font-size: 11px;
+                  color: rgba(225, 224, 204, 0.3);
+                  margin-top: 4px;
+                "
+              >
+                MySQL + Power BI analysis
+              </div>
+            </div>
+            <div
+              style="
+                background: #101010;
+                border: 1px solid rgba(225, 224, 204, 0.08);
+                border-radius: 16px;
+                padding: 24px 20px;
+              "
+            >
+              <div class="stat-num" data-target="40" data-suffix="%">0</div>
+              <div
+                style="
+                  font-size: 0.85rem;
+                  font-weight: 300;
+                  color: rgba(225, 224, 204, 0.5);
+                  margin-top: 6px;
+                "
+              >
+                More likely to subscribe
+              </div>
+              <div
+                style="
+                  font-size: 11px;
+                  color: rgba(225, 224, 204, 0.3);
+                  margin-top: 4px;
+                "
+              >
+                Loyal customer insight
+              </div>
+            </div>
+          </div>
+
+          <!-- SKILL BARS + DONUT -->
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 12px;
+              margin-bottom: 48px;
+            "
+          >
+            <div
+              style="
+                background: #101010;
+                border: 1px solid rgba(225, 224, 204, 0.08);
+                border-radius: 16px;
+                padding: 28px 24px;
+              "
+            >
+              <p
+                style="
+                  font-size: 11px;
+                  text-transform: uppercase;
+                  letter-spacing: 0.06em;
+                  color: rgba(225, 224, 204, 0.4);
+                  margin-bottom: 20px;
+                "
+              >
+                Skill proficiency
+              </p>
+              <div
+                id="skillBars"
+                style="display: flex; flex-direction: column; gap: 14px"
+              >
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      font-size: 12px;
+                      color: rgba(225, 224, 204, 0.55);
+                      margin-bottom: 5px;
+                    "
+                  >
+                    <span>Power BI</span><span>92%</span>
+                  </div>
+                  <div
+                    style="
+                      height: 5px;
+                      background: rgba(225, 224, 204, 0.08);
+                      border-radius: 99px;
+                      overflow: hidden;
+                    "
+                  >
+                    <div
+                      class="bar-fill"
+                      style="
+                        height: 100%;
+                        border-radius: 99px;
+                        background: #e1e0cc;
+                        width: 0;
+                        transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+                      "
+                      data-w="92"
+                    ></div>
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      font-size: 12px;
+                      color: rgba(225, 224, 204, 0.55);
+                      margin-bottom: 5px;
+                    "
+                  >
+                    <span>SQL / MySQL</span><span>88%</span>
+                  </div>
+                  <div
+                    style="
+                      height: 5px;
+                      background: rgba(225, 224, 204, 0.08);
+                      border-radius: 99px;
+                      overflow: hidden;
+                    "
+                  >
+                    <div
+                      class="bar-fill"
+                      style="
+                        height: 100%;
+                        border-radius: 99px;
+                        background: #e1e0cc;
+                        width: 0;
+                        transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+                      "
+                      data-w="88"
+                    ></div>
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      font-size: 12px;
+                      color: rgba(225, 224, 204, 0.55);
+                      margin-bottom: 5px;
+                    "
+                  >
+                    <span>Python</span><span>82%</span>
+                  </div>
+                  <div
+                    style="
+                      height: 5px;
+                      background: rgba(225, 224, 204, 0.08);
+                      border-radius: 99px;
+                      overflow: hidden;
+                    "
+                  >
+                    <div
+                      class="bar-fill"
+                      style="
+                        height: 100%;
+                        border-radius: 99px;
+                        background: #e1e0cc;
+                        width: 0;
+                        transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+                      "
+                      data-w="82"
+                    ></div>
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      font-size: 12px;
+                      color: rgba(225, 224, 204, 0.55);
+                      margin-bottom: 5px;
+                    "
+                  >
+                    <span>Excel</span><span>90%</span>
+                  </div>
+                  <div
+                    style="
+                      height: 5px;
+                      background: rgba(225, 224, 204, 0.08);
+                      border-radius: 99px;
+                      overflow: hidden;
+                    "
+                  >
+                    <div
+                      class="bar-fill"
+                      style="
+                        height: 100%;
+                        border-radius: 99px;
+                        background: #e1e0cc;
+                        width: 0;
+                        transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+                      "
+                      data-w="90"
+                    ></div>
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      font-size: 12px;
+                      color: rgba(225, 224, 204, 0.55);
+                      margin-bottom: 5px;
+                    "
+                  >
+                    <span>Data Visualisation</span><span>85%</span>
+                  </div>
+                  <div
+                    style="
+                      height: 5px;
+                      background: rgba(225, 224, 204, 0.08);
+                      border-radius: 99px;
+                      overflow: hidden;
+                    "
+                  >
+                    <div
+                      class="bar-fill"
+                      style="
+                        height: 100%;
+                        border-radius: 99px;
+                        background: #e1e0cc;
+                        width: 0;
+                        transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+                      "
+                      data-w="85"
+                    ></div>
+                  </div>
+                </div>
+                <div> 
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      font-size: 12px;
+                      color: rgba(225, 224, 204, 0.55);
+                      margin-bottom: 5px;
+                    "
+                  >
+                    <span>EDA</span><span>80%</span>
+                  </div>
+                  <div
+                    style="
+                      height: 5px;
+                      background: rgba(225, 224, 204, 0.08);
+                      border-radius: 99px;
+                      overflow: hidden;
+                    "
+                  >
+                    <div
+                      class="bar-fill"
+                      style="
+                        height: 100%;
+                        border-radius: 99px;
+                        background: #e1e0cc;
+                        width: 0;
+                        transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+                      "
+                      data-w="80"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                background: #101010;
+                border: 1px solid rgba(225, 224, 204, 0.08);
+                border-radius: 16px;
+                padding: 28px 24px;
+              "
+            >
+              <p
+                style="
+                  font-size: 11px;
+                  text-transform: uppercase;
+                  letter-spacing: 0.06em;
+                  color: rgba(225, 224, 204, 0.4);
+                  margin-bottom: 12px;
+                "
+              >
+                Tools usage breakdown
+              </p>
+              <div
+                style="
+                  display: flex;
+                  flex-wrap: wrap;
+                  gap: 10px;
+                  margin-bottom: 16px;
+                  font-size: 12px;
+                  color: rgba(225, 224, 204, 0.5);
+                "
+              >
+                <span
+                  ><span
+                    style="
+                      display: inline-block;
+                      width: 9px;
+                      height: 9px;
+                      border-radius: 2px;
+                      background: #e1e0cc;
+                      margin-right: 5px;
+                      vertical-align: middle;
+                    "
+                  ></span
+                  >Power BI 28%</span
+                >
+                <span
+                  ><span
+                    style="
+                      display: inline-block;
+                      width: 9px;
+                      height: 9px;
+                      border-radius: 2px;
+                      background: #888780;
+                      margin-right: 5px;
+                      vertical-align: middle;
+                    "
+                  ></span
+                  >SQL 24%</span
+                >
+                <span
+                  ><span
+                    style="
+                      display: inline-block;
+                      width: 9px;
+                      height: 9px;
+                      border-radius: 2px;
+                      background: #5f5e5a;
+                      margin-right: 5px;
+                      vertical-align: middle;
+                    "
+                  ></span
+                  >Python 20%</span
+                >
+                <span
+                  ><span
+                    style="
+                      display: inline-block;
+                      width: 9px;
+                      height: 9px;
+                      border-radius: 2px;
+                      background: #444441;
+                      margin-right: 5px;
+                      vertical-align: middle;
+                    "
+                  ></span
+                  >Excel 18%</span
+                >
+                <span
+                  ><span
+                    style="
+                      display: inline-block;
+                      width: 9px;
+                      height: 9px;
+                      border-radius: 2px;
+                      background: #2c2c2a;
+                      margin-right: 5px;
+                      vertical-align: middle;
+                    "
+                  ></span
+                  >Other 10%</span
+                >
+              </div>
+              <div style="position: relative; width: 100%; height: 200px">
+                <canvas
+                  id="donutChart"
+                  role="img"
+                  aria-label="Donut chart: Power BI 28%, SQL 24%, Python 20%, Excel 18%, Other 10%"
+                  >Power BI 28%, SQL 24%, Python 20%, Excel 18%, Other
+                  10%</canvas
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- INTERACTIVE PROJECT CHART -->
+          <div
+            style="
+              background: #101010;
+              border: 1px solid rgba(225, 224, 204, 0.08);
+              border-radius: 16px;
+              padding: 28px 24px;
+            "
+          >
+            <p
+              style="
+                font-size: 11px;
+                text-transform: uppercase;
+                letter-spacing: 0.06em;
+                color: rgba(225, 224, 204, 0.4);
+                margin-bottom: 16px;
+              "
+            >
+              Project data snapshot
+            </p>
+            <div
+              style="
+                display: flex;
+                gap: 8px;
+                margin-bottom: 20px;
+                flex-wrap: wrap;
+              "
+            >
+              <button
+                class="vis-tab active"
+                onclick="switchTab(this, 'revenue')"
+              >
+                Revenue analysis
+              </button>
+              <button class="vis-tab" onclick="switchTab(this, 'segment')">
+                Customer segments
+              </button>
+              <button class="vis-tab" onclick="switchTab(this, 'discount')">
+                Discount impact
+              </button>
+            </div>
+            <div style="position: relative; width: 100%; height: 240px">
+              <canvas
+                id="mainChart"
+                role="img"
+                aria-label="Interactive bar chart for project data"
+              ></canvas>
+            </div>
+          </div>
+        </div>
+
+        <style>
+          .stat-num {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #e1e0cc;
+            line-height: 1;
+          }
+          .vis-tab {
+            background: rgba(225, 224, 204, 0.06);
+            border: 1px solid rgba(225, 224, 204, 0.1);
+            border-radius: 99px;
+            padding: 6px 16px;
+            font-size: 12px;
+            color: rgba(225, 224, 204, 0.5);
+            cursor: pointer;
+            font-family: "Almarai", sans-serif;
+            transition: all 0.2s;
+          }
+          .vis-tab.active,
+          .vis-tab:hover {
+            background: rgba(225, 224, 204, 0.12);
+            border-color: rgba(225, 224, 204, 0.3);
+            color: #e1e0cc;
+          }
+          @media (max-width: 640px) {
+            #skillBars + div,
+            div[style*="grid-template-columns:1fr 1fr"] {
+              grid-template-columns: 1fr !important;
+            }
+          }
+        </style>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+        <script>
+          (function () {
+            const cream = "#E1E0CC",
+              cream50 = "rgba(225,224,204,0.5)",
+              cream20 = "rgba(225,224,204,0.2)",
+              gridC = "rgba(225,224,204,0.07)";
+            Chart.defaults.color = cream50;
+            Chart.defaults.font.family = "'Almarai',sans-serif";
+            Chart.defaults.font.size = 12;
+
+            new Chart(document.getElementById("donutChart"), {
+              type: "doughnut",
+              data: {
+                labels: ["Power BI", "SQL", "Python", "Excel", "Other"],
+                datasets: [
+                  {
+                    data: [28, 24, 20, 18, 10],
+                    backgroundColor: [
+                      "#E1E0CC",
+                      "#888780",
+                      "#5F5E5A",
+                      "#444441",
+                      "#2C2C2A",
+                    ],
+                    borderColor: "#101010",
+                    borderWidth: 3,
+                    hoverOffset: 6,
+                  },
+                ],
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: "70%",
+                plugins: { legend: { display: false } },
+                animation: { duration: 1200 },
+              },
+            });
+
+            const dsets = {
+              revenue: {
+                labels: ["USA", "France", "Germany", "Canada", "Mexico"],
+                data: [34, 22, 19, 15, 10],
+                label: "Revenue ($M)",
+              },
+              segment: {
+                labels: ["New", "Returning", "Loyal"],
+                data: [1200, 1500, 1200],
+                label: "Customer count",
+              },
+              discount: {
+                labels: ["No discount", "Low", "Medium", "High"],
+                data: [8.2, 11.4, 14.8, 9.1],
+                label: "Profit margin (%)",
+              },
+            };
+            let mc = new Chart(
+              document.getElementById("mainChart"),
+              cfg("revenue"),
+            );
+
+            function cfg(k) {
+              const d = dsets[k];
+              return {
+                type: "bar",
+                data: {
+                  labels: d.labels,
+                  datasets: [
+                    {
+                      label: d.label,
+                      data: d.data,
+                      backgroundColor: d.data.map((_, i) =>
+                        i === 0 ? cream : cream20,
+                      ),
+                      borderColor: d.data.map((_, i) =>
+                        i === 0 ? cream : cream50,
+                      ),
+                      borderWidth: 1,
+                      borderRadius: 6,
+                      borderSkipped: false,
+                    },
+                  ],
+                },
+                options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  plugins: { legend: { display: false } },
+                  scales: {
+                    x: { grid: { color: gridC }, ticks: { color: cream50 } },
+                    y: {
+                      grid: { color: gridC },
+                      ticks: { color: cream50 },
+                      beginAtZero: true,
+                    },
+                  },
+                  animation: { duration: 700 },
+                },
+              };
+            }
+
+            window.switchTab = function (btn, key) {
+              document
+                .querySelectorAll(".vis-tab")
+                .forEach((b) => b.classList.remove("active"));
+              btn.classList.add("active");
+              mc.destroy();
+              mc = new Chart(document.getElementById("mainChart"), cfg(key));
+            };
+
+            const obs = new IntersectionObserver(
+              (entries) => {
+                entries.forEach((e) => {
+                  if (!e.isIntersecting) return;
+                  document.querySelectorAll(".stat-num").forEach((el) => {
+                    const tgt = parseFloat(el.dataset.target),
+                      dec = parseInt(el.dataset.decimals || 0),
+                      pre = el.dataset.prefix || "",
+                      suf = el.dataset.suffix || "";
+                    let s = null;
+                    const dur = 1800;
+                    function step(ts) {
+                      if (!s) s = ts;
+                      const p = Math.min((ts - s) / dur, 1),
+                        ease = 1 - Math.pow(1 - p, 4),
+                        v = ease * tgt;
+                      el.textContent =
+                        pre + (dec ? v.toFixed(dec) : Math.round(v)) + suf;
+                      if (p < 1) requestAnimationFrame(step);
+                    }
+                    requestAnimationFrame(step);
+                  });
+                  document.querySelectorAll(".bar-fill").forEach((b, i) => {
+                    setTimeout(() => {
+                      b.style.width = b.dataset.w + "%";
+                    }, i * 80);
+                  });
+                  obs.disconnect();
+                });
+              },
+              { threshold: 0.2 },
+            );
+            obs.observe(document.getElementById("visStats"));
+          })();
+        </script>
+        <br />
+        <a
+          class="btn"
+          href="https://github.com/afeefbinummer-hub/Global-Sales-Profitability-Analysis-Dashboard"
+          target="_blank"
+          >GitHub</a
+        >
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="section" id="skills">
+      <h2>Skills</h2>
+      <p style="font-size: 0.8rem; color: var(--gray); margin-bottom: 14px">
+        Click any skill to see what I can do with it.
+      </p>
+      <div class="skills">
+        <div class="skill" data-sk="python">Python</div>
+        <div class="skill" data-sk="sql">SQL</div>
+        <div class="skill" data-sk="powerbi">Power BI</div>
+        <div class="skill" data-sk="excel">Excel</div>
+        <div class="skill" data-sk="cleaning">Data Cleaning</div>
+        <div class="skill" data-sk="viz">Data Visualization</div>
+        <div class="skill" data-sk="mysql">MySQL</div>
+        <div class="skill" data-sk="eda">EDA</div>
+        <div class="skill" data-sk="htmlcss">HTML &amp; CSS</div>
+        <div class="skill" data-sk="pres">Presentation &amp; Report Making</div>
+      </div>
+      <!-- SKILL DETAIL PANEL (populated by JS) -->
+      <div class="skill-panel" id="skill-panel"></div>
+    </div>
+
+    <!-- AI TOOLS -->
+    <div class="section" id="ai-tools">
+      <h2>AI Tools</h2>
+      <div class="ai-tools-grid">
+        <button class="ai-tool-chip" onclick="openAISlide('chatgpt')">
+          <span class="tc-icon">🤖</span>
+          <span class="tc-name">ChatGPT</span>
+          <span class="tc-hint">Tap to see how I use it</span>
+        </button>
+        <button class="ai-tool-chip" onclick="openAISlide('gamma')">
+          <span class="tc-icon">✨</span>
+          <span class="tc-name">Gamma AI</span>
+          <span class="tc-hint">Tap to see how I use it</span>
+        </button>
+        <button class="ai-tool-chip" onclick="openAISlide('copilot')">
+          <span class="tc-icon">💻</span>
+          <span class="tc-name">GitHub Copilot</span>
+          <span class="tc-hint">Tap to see how I use it</span>
+        </button>
+        <button class="ai-tool-chip" onclick="openAISlide('powerbi')">
+          <span class="tc-icon">📊</span>
+          <span class="tc-name">Power BI AI Visuals</span>
+          <span class="tc-hint">Tap to see how I use it</span>
+        </button>
+        <button class="ai-tool-chip" onclick="openAISlide('aianalytics')">
+          <span class="tc-icon">🧠</span>
+          <span class="tc-name">AI-assisted Analytics</span>
+          <span class="tc-hint">Tap to see how I use it</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- AI SLIDE PANEL -->
+    <div
+      class="ai-slide-overlay"
+      id="ai-overlay"
+      onclick="closeAISlide()"
+    ></div>
+    <div class="ai-slide" id="ai-slide">
+      <div class="ai-slide-hdr">
+        <span class="ai-slide-hdr-icon" id="ai-icon"></span>
+        <div class="ai-slide-hdr-info">
+          <div class="ai-slide-hdr-name" id="ai-name"></div>
+          <div class="ai-slide-hdr-sub" id="ai-sub"></div>
+        </div>
+        <button class="ai-slide-close" onclick="closeAISlide()">
+          &#10005;
+        </button>
+      </div>
+      <div class="ai-slide-body">
+        <p class="ai-slide-desc" id="ai-desc"></p>
+        <div class="ai-steps-label">Step-by-step guide</div>
+        <div id="ai-steps"></div>
+      </div>
+      <div class="ai-slide-footer">
+        <a id="ai-try-btn" href="practice.html" class="ai-try-btn"
+          >Try it in Practice Lab &#8594;</a
+        >
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="section" id="contact">
+      <h2>Contact</h2>
+      <div class="card contact-card">
+        📧 &nbsp;<a
+          href="mailto:afeefbinummer@gmail.com?subject=Inquiry%20from%20Your%20Portfolio&body=Hi%20Afeef%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect.%0A%0APlease%20let%20me%20know%20your%20availability.%0A%0ABest%20regards%2C"
+          style="color: #000; font-weight: 500"
+          >afeefbinummer@gmail.com</a
+        ><br />
+
+        💼 &nbsp;<a
+          href="https://www.linkedin.com/in/afeefbinummer"
+          target="_blank"
+          style="color: #000; font-weight: 500"
+          >linkedin.com/in/afeefbinummer</a
+        ><br />
+
+        🔗 &nbsp;<a
+          href="https://github.com/afeefbinummer-hub"
+          target="_blank"
+          style="color: #000; font-weight: 500"
+          >github.com/afeefbinummer-hub</a
+        >
+      </div>
+    </div>
+
+    <!-- CHATBOT -->
+    <div class="chat-wrap">
+      <div class="chat-box" id="chatBox">
+        <div class="chat-head">AI Assistant</div>
+        <div class="chat-msgs" id="chatMsgs">
+          <div class="bot-msg">
+            Hello 👋<br />Ask me anything about Data Analytics, Data Science,
+            Machine Learning, Data Engineering, or Afeef's portfolio!
+          </div>
+        </div>
+        <div class="chat-input">
+          <input type="text" id="userInput" placeholder="Ask something…" />
+          <button onclick="send()">Send</button>
+        </div>
+      </div>
+      <button class="chat-toggle" onclick="toggleChat()">💬 AI Chat</button>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>
+        © 2026 Afeef Ummer | Data Analyst Portfolio &nbsp;·&nbsp;
+        <a href="#">Back to top ↑</a>
+      </p>
+    </footer>
+
+    <script>
+      /* SKILL PANEL */
+      var _skData = {
+        python: {
+          title: "Python",
+          items: [
+            "Data cleaning and transformation with Pandas — handling nulls, merging datasets, groupby aggregations",
+            "Statistical computing and array operations with NumPy",
+            "Data visualization with Matplotlib and Seaborn — bar charts, scatter plots, heatmaps, boxplots",
+            "End-to-end Exploratory Data Analysis (EDA) pipelines from raw CSV to insight",
+            "Automating repetitive data tasks and building reusable analysis scripts",
+            "Web scraping with BeautifulSoup and Requests for data collection",
+          ],
+        },
+        sql: {
+          title: "SQL",
+          items: [
+            "Complex queries using SELECT, WHERE, GROUP BY, HAVING, ORDER BY, and LIMIT",
+            "Multi-table JOINs — INNER, LEFT, RIGHT, and FULL OUTER for combining datasets",
+            "Window functions — ROW_NUMBER, RANK, DENSE_RANK, LAG, LEAD, SUM OVER PARTITION BY",
+            "Common Table Expressions (CTEs) with the WITH clause for clean, modular queries",
+            "Subqueries and nested SELECT statements for advanced data extraction",
+            "KPI and business reporting directly from raw relational databases",
+            "Database work in both MySQL and PostgreSQL",
+          ],
+        },
+        powerbi: {
+          title: "Power BI",
+          items: [
+            "Interactive dashboards with slicers, drill-through pages, and cross-report filtering",
+            "DAX formulas — CALCULATE, SUMX, DIVIDE, RANKX, SAMEPERIODLASTYEAR, RELATED",
+            "Power Query (M language) for ETL: cleaning, reshaping, and merging data sources",
+            "Data modeling — star schema design, relationships, calculated columns, and measures",
+            "KPI cards, waterfall charts, gauge visuals, and custom tooltip pages",
+            "Publishing reports and setting up scheduled refresh on Power BI Service",
+          ],
+        },
+        excel: {
+          title: "Excel",
+          items: [
+            "Pivot Tables and Pivot Charts for dynamic summaries and trend analysis",
+            "XLOOKUP, VLOOKUP, INDEX-MATCH for lookups across large datasets",
+            "Advanced formulas — SUMIF, COUNTIF, IFERROR, nested IF, AVERAGEIFS",
+            "Power Query for automated data cleaning and transformation without code",
+            "Conditional formatting to visually highlight KPIs and anomalies",
+            "Dynamic dashboards and charts for monthly business performance reporting",
+            "Financial modeling and budget vs. actuals variance analysis",
+          ],
+        },
+        cleaning: {
+          title: "Data Cleaning",
+          items: [
+            "Identifying and handling missing values — imputation with mean/median or strategic removal",
+            "Removing duplicates and resolving conflicting records across datasets",
+            "Correcting data types — parsing dates, converting strings to numerics, fixing categoricals",
+            "Outlier detection using IQR fences and Z-score methods",
+            "Text normalization — strip whitespace, standardize casing, regex replacements",
+            "Validating data integrity and cross-checking before any analysis or reporting",
+          ],
+        },
+        viz: {
+          title: "Data Visualization",
+          items: [
+            "Choosing the right chart type for every data story — bar, line, scatter, pie, heat map",
+            "Building executive dashboards in Power BI with KPI tiles and trend visuals",
+            "Python charts with Matplotlib and Seaborn — publication-quality plots",
+            "Correlation heatmaps, pair plots, and distribution histograms for EDA",
+            "Storytelling with data — guiding the viewer to the single key takeaway",
+            "Applying color theory and clean layout principles for professional reports",
+          ],
+        },
+        mysql: {
+          title: "MySQL",
+          items: [
+            "Database design — creating tables with correct data types, constraints, and indexes",
+            "Full CRUD operations: INSERT, UPDATE, DELETE, and SELECT statements",
+            "Complex queries with multi-table JOINs, subqueries, and aggregations",
+            "Index creation for query performance optimization on large tables",
+            "Stored procedures and views for reusable query logic",
+            "Data extraction pipelines feeding analytics dashboards and reports",
+          ],
+        },
+        eda: {
+          title: "Exploratory Data Analysis (EDA)",
+          items: [
+            "Dataset overview — shape, dtypes, describe(), missing value counts, value_counts()",
+            "Univariate analysis — histograms, boxplots, frequency distributions for each feature",
+            "Bivariate analysis — scatter plots, correlation matrices, crosstabs between variables",
+            "Identifying outliers, skewness, and data imbalances before modeling",
+            "Uncovering patterns, trends, and anomalies that guide business decisions",
+            "Producing structured EDA reports with annotated findings for stakeholders",
+          ],
+        },
+        htmlcss: {
+          title: "HTML & CSS",
+          items: [
+            "Semantic HTML5 structure — nav, section, article, header, footer for clean markup",
+            "CSS Flexbox and Grid layouts for responsive, multi-column page designs",
+            "Smooth animations and transitions — keyframes, hover effects, scroll reveals",
+            "Glassmorphism / liquid glass effects using backdrop-filter and mask compositing",
+            "Building full portfolio pages and interactive web interfaces from scratch",
+            "Mobile-first responsive design with media queries for all screen sizes",
+          ],
+        },
+        pres: {
+          title: "Presentation & Report Making",
+          items: [
+            "Executive-level PowerPoint decks that tell a clear data story slide by slide",
+            "Business reports summarizing KPIs, findings, and actionable recommendations",
+            "Translating complex data insights into plain language for non-technical audiences",
+            "Accelerating content creation with Gamma AI and ChatGPT",
+            "Visual hierarchy and slide design — fonts, color, spacing for maximum impact",
+            "Monthly and quarterly performance reports drawn from real financial and CRM data",
+          ],
+        },
+      };
+
+      document.querySelectorAll(".skill[data-sk]").forEach(function (el) {
+        el.addEventListener("click", function () {
+          var key = el.getAttribute("data-sk");
+          var panel = document.getElementById("skill-panel");
+          var isOpen = panel.classList.contains("sp-open");
+          var cur = panel.getAttribute("data-cur");
+
+          document.querySelectorAll(".skill").forEach(function (s) {
+            s.classList.remove("sk-active");
+          });
+
+          if (isOpen && cur === key) {
+            panel.classList.remove("sp-open");
+            panel.removeAttribute("data-cur");
+            return;
+          }
+
+          var d = _skData[key];
+          if (!d) return;
+
+          var li = d.items
+            .map(function (i) {
+              return "<li>" + i + "</li>";
+            })
+            .join("");
+          panel.innerHTML =
+            '<div class="sp-head"><h3>' +
+            d.title +
+            "</h3>" +
+            '<button class="sp-close" onclick="closeSkPanel()">&#10005; Close</button></div>' +
+            '<ul class="sp-list">' +
+            li +
+            "</ul>";
+
+          panel.setAttribute("data-cur", key);
+          panel.classList.remove("sp-open");
+          void panel.offsetWidth; /* restart animation */
+          panel.classList.add("sp-open");
+          el.classList.add("sk-active");
+          setTimeout(function () {
+            panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          }, 30);
+        });
+      });
+
+      function closeSkPanel() {
+        var panel = document.getElementById("skill-panel");
+        panel.classList.remove("sp-open");
+        panel.removeAttribute("data-cur");
+        document.querySelectorAll(".skill").forEach(function (s) {
+          s.classList.remove("sk-active");
+        });
+      }
+
+      /* VIDEO FADE LOOP */
+      const vid = document.getElementById("heroVideo");
+      let raf;
+      function tick() {
+        const t = vid.currentTime,
+          d = vid.duration;
+        if (d && !isNaN(d)) {
+          if (t < 0.5) vid.style.opacity = t / 0.5;
+          else if (t > d - 0.5) vid.style.opacity = (d - t) / 0.5;
+          else vid.style.opacity = 1;
+        }
+        raf = requestAnimationFrame(tick);
+      }
+      vid.addEventListener("canplay", () => {
+        vid.style.opacity = 0;
+        vid.play().catch(() => {});
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(tick);
+      });
+      vid.addEventListener("ended", () => {
+        vid.style.opacity = 0;
+        setTimeout(() => {
+          vid.currentTime = 0;
+          vid.play().catch(() => {});
+        }, 100);
+      });
+
+      /* CHATBOT */
+      function toggleChat() {
+        const b = document.getElementById("chatBox");
+        b.style.display = b.style.display === "flex" ? "none" : "flex";
+      }
+
+      function getResponse(t) {
+        const kb = [
+          // ── PORTFOLIO / ABOUT ──────────────────────────────
+          {
+            k: ["who is afeef", "about afeef", "tell me about", "introduce"],
+            r: "Afeef Ummer is a Data Analyst and Commerce graduate with hands-on experience in data analytics, business reporting, and client performance analysis. Currently working in financial services in Oman and pursuing M.Com.",
+          },
+          {
+            k: ["skill", "tool", "tech stack", "proficient", "know how"],
+            r: "Afeef's core skills: Python (Pandas, NumPy, Seaborn), SQL (MySQL, PostgreSQL), Power BI (DAX, Power Query), Excel, EDA, and Data Visualization.",
+          },
+          {
+            k: ["contact", "email", "phone", "reach", "hire", "get in touch"],
+            r: "Reach Afeef at afeefbinummer@gmail.com or call +91 9656830071 / +968 78081447.",
+          },
+          {
+            k: ["project", "portfolio", "work done", "built"],
+            r: "Afeef's key projects: (1) Customer Shopping Behaviour Analysis — 3,900 records, Python + SQL + Power BI. (2) Global Sales & Profitability Dashboard — $110M revenue, MySQL + Power BI.",
+          },
+          {
+            k: ["shopping", "behav", "customer", "loyal", "segment"],
+            r: "Customer Behaviour project: Cleaned 3,900 records with Python, ran SQL queries for insights. Finding: loyal customers were 40% more likely to use subscriptions.",
+          },
+          {
+            k: ["global sales", "paseo", "amarilla"],
+            r: "Global Sales project: Analysed $110M revenue across 5 countries. Highest revenue: Paseo. Best margin: Amarilla. Medium discounts gave best profitability. Built with MySQL + Power BI.",
+          },
+          {
+            k: ["power bi", "dashboard", "dax", "power query", "bi report"],
+            r: "Afeef builds Power BI dashboards with DAX measures, Power Query transformations, and interactive KPI snapshots. Used in both major portfolio projects.",
+          },
+          {
+            k: ["github", "code", "repo", "repository"],
+            r: "All project code is on GitHub: github.com/afeefbinummer-hub",
+          },
+          {
+            k: [
+              "education",
+              "degree",
+              "mcom",
+              "commerce",
+              "study",
+              "qualification",
+            ],
+            r: "Afeef holds a B.Com degree and is currently pursuing M.Com (Master of Commerce), strengthening his foundation in business, finance, and analytics.",
+          },
+
+          // ── DATA ANALYTICS ────────────────────────────────
+          {
+            k: [
+              "what is data analytics",
+              "define data analytics",
+              "data analytics mean",
+            ],
+            r: "Data Analytics examines raw data to draw conclusions. 4 types: Descriptive (what happened), Diagnostic (why it happened), Predictive (what will happen), and Prescriptive (what to do about it).",
+          },
+          {
+            k: [
+              "excel",
+              "pivot table",
+              "vlookup",
+              "xlookup",
+              "spreadsheet",
+              "pivot",
+            ],
+            r: "Excel essentials: VLOOKUP/XLOOKUP, Pivot Tables, Power Query, conditional formatting, INDEX/MATCH, and VBA macros. Still the most widely used analytics tool in business.",
+          },
+          {
+            k: [
+              "data clean",
+              "cleaning",
+              "missing value",
+              "null",
+              "duplicate",
+              "preprocess",
+            ],
+            r: "Data cleaning steps: remove duplicates, handle missing values (drop/impute), fix data types, standardize formats, remove outliers. In Python: pandas .dropna(), .fillna(), .astype().",
+          },
+          {
+            k: ["eda", "exploratory", "exploratory data"],
+            r: "EDA (Exploratory Data Analysis): understand your data's shape, distributions, and correlations before modelling. Key tools: .describe(), .info(), histograms, box plots, heatmaps, and scatter plots using Pandas + Seaborn.",
+          },
+          {
+            k: [
+              "visualization",
+              "chart",
+              "graph",
+              "plot",
+              "seaborn",
+              "matplotlib",
+            ],
+            r: "Data viz tools: Matplotlib (basic plots), Seaborn (statistical charts), Power BI (interactive dashboards), Plotly (web-ready charts). Key chart types: bar, line, scatter, histogram, heatmap, box plot.",
+          },
+          {
+            k: ["kpi", "metric", "business intelligence", "reporting"],
+            r: "KPIs measure business performance. BI tools like Power BI create dashboards tracking revenue, margins, conversion rates, and churn. DAX formulas power calculated measures and time-intelligence functions.",
+          },
+          {
+            k: ["tableau", "looker"],
+            r: "Tableau and Looker are popular BI tools alongside Power BI. Tableau: drag-and-drop, great for storytelling. Looker: SQL-based, built for embedded analytics. Power BI integrates best with the Microsoft/Azure ecosystem.",
+          },
+          {
+            k: [
+              "sql",
+              "mysql",
+              "postgresql",
+              "query",
+              "select",
+              "join",
+              "window function",
+              "cte",
+            ],
+            r: "SQL essentials: SELECT/WHERE/GROUP BY/HAVING, JOINs (INNER/LEFT/RIGHT/FULL), subqueries, CTEs (WITH clause), and Window Functions (ROW_NUMBER, RANK, LAG/LEAD, SUM OVER). Core skill for every data role.",
+          },
+          {
+            k: ["python", "pandas", "numpy"],
+            r: "Python for data: Pandas (.read_csv, .groupby, .merge, .pivot_table), NumPy (arrays, math), Seaborn/Matplotlib (visualization). Afeef uses Python in both portfolio projects for cleaning and EDA.",
+          },
+
+          // ── DATA SCIENCE ──────────────────────────────────
+          {
+            k: [
+              "what is data science",
+              "define data science",
+              "data science mean",
+              "data scientist",
+            ],
+            r: "Data Science combines statistics, programming, and domain knowledge to extract insights and build predictive models. Data Scientists go beyond analytics — they build ML models and experiment with algorithms.",
+          },
+          {
+            k: [
+              "statistics",
+              "statistical",
+              "mean",
+              "median",
+              "mode",
+              "standard deviation",
+              "variance",
+            ],
+            r: "Key stats: Mean (average), Median (middle value), Mode (most frequent), Standard Deviation (spread), Variance (spread²). Descriptive stats summarize data; inferential stats draw conclusions about populations from samples.",
+          },
+          {
+            k: [
+              "probability",
+              "distribution",
+              "normal distribution",
+              "gaussian",
+              "bell curve",
+              "binomial",
+              "poisson",
+            ],
+            r: "Probability distributions: Normal (bell curve — most common), Binomial (yes/no events), Poisson (rare event counts). Central Limit Theorem: sample means approach normal distribution regardless of the original shape.",
+          },
+          {
+            k: [
+              "hypothesis",
+              "p-value",
+              "t-test",
+              "chi square",
+              "anova",
+              "significance",
+            ],
+            r: "Hypothesis testing: H0 (null) vs H1 (alternative). p-value < 0.05 → reject H0. Common tests: t-test (compare two means), Chi-square (categorical data independence), ANOVA (compare 3+ groups).",
+          },
+          {
+            k: ["correlation", "pearson", "spearman", "covariance"],
+            r: "Correlation measures relationship strength between variables (-1 to +1). Pearson: linear. Spearman: rank-based (handles non-linear). Important: Correlation ≠ Causation!",
+          },
+          {
+            k: [
+              "feature engineer",
+              "feature select",
+              "feature importance",
+              "feature",
+            ],
+            r: "Feature engineering: create useful variables (log transform, binning, one-hot encoding). Feature selection: keep only relevant features via correlation analysis, variance threshold, or model-based methods (feature_importances_).",
+          },
+          {
+            k: ["scikit", "sklearn"],
+            r: "Scikit-learn is Python's main ML library. Key modules: preprocessing, model_selection (train_test_split, cross_val_score), linear_model, tree, ensemble, cluster, metrics. Consistent .fit()/.predict() API across all models.",
+          },
+          {
+            k: ["jupyter", "notebook", "colab", "ipynb"],
+            r: "Jupyter Notebooks are interactive Python environments ideal for data science. Google Colab is a free cloud version with free GPU access. Perfect for EDA, visualization, and sharing reproducible analysis.",
+          },
+
+          // ── MACHINE LEARNING ──────────────────────────────
+          {
+            k: [
+              "what is machine learning",
+              "define machine learning",
+              "what is ml",
+              "ml mean",
+              "machine learning definition",
+            ],
+            r: "Machine Learning is AI where algorithms learn patterns from data without being explicitly programmed. Three types: Supervised (labeled data), Unsupervised (unlabeled data), Reinforcement (reward-based learning).",
+          },
+          {
+            k: ["supervised learning", "supervised"],
+            r: "Supervised Learning: train on labeled data (input → output pairs). Two tasks: Classification (spam/not spam, disease/no disease) and Regression (predict price, sales). Algorithms: Linear Regression, Decision Tree, Random Forest, SVM, KNN.",
+          },
+          {
+            k: ["unsupervised learning", "unsupervised"],
+            r: "Unsupervised Learning: find hidden patterns in unlabeled data. Clustering: K-Means, DBSCAN, Hierarchical Clustering. Dimensionality reduction: PCA, t-SNE, UMAP. Also used for anomaly detection.",
+          },
+          {
+            k: [
+              "reinforcement learning",
+              "reinforcement",
+              "reward",
+              "agent environment",
+            ],
+            r: "Reinforcement Learning: an agent learns by taking actions to maximize cumulative reward. Used in game AI (AlphaGo, chess engines), robotics, and personalized recommendation systems.",
+          },
+          {
+            k: ["linear regression", "regression predict"],
+            r: "Linear Regression: predicts continuous output (y = mx + b). Assumptions: linearity, independence, homoscedasticity. Metrics: R², MAE, RMSE. Regularization: Ridge (L2 penalty), Lasso (L1 penalty) to prevent overfitting.",
+          },
+          {
+            k: ["logistic regression", "logistic"],
+            r: "Logistic Regression: binary classification using a sigmoid function (outputs 0–1 probability). Despite the name, it's a classifier. Evaluate with: accuracy, precision, recall, F1-score, ROC-AUC curve.",
+          },
+          {
+            k: ["decision tree", "decision tree algorithm"],
+            r: "Decision Trees: split data on feature thresholds at each node. Highly interpretable — you can visualize the rules. Prone to overfitting on its own. Used as base learners in Random Forest and Gradient Boosting ensembles.",
+          },
+          {
+            k: ["random forest", "bagging", "ensemble method"],
+            r: "Random Forest: builds many decision trees on random data/feature subsets (bagging). Averages their predictions — reduces overfitting dramatically vs a single tree. Also provides feature_importances_ for variable ranking.",
+          },
+          {
+            k: ["svm", "support vector machine", "support vector"],
+            r: "Support Vector Machine (SVM): finds the maximum-margin hyperplane separating classes. Kernel trick (RBF, polynomial) enables non-linear boundaries. Great for high-dimensional data but slow on large datasets.",
+          },
+          {
+            k: ["knn", "k-nearest", "k nearest neighbor"],
+            r: "K-Nearest Neighbors (KNN): classifies by majority vote of k closest training points. Simple and intuitive but slow at prediction time. k is a hyperparameter — small k overfits, large k underfits. Normalize features first!",
+          },
+          {
+            k: ["neural network", "deep learning", "ann", "artificial neural"],
+            r: "Neural Networks are layers of connected neurons that learn complex patterns. Deep Learning = many hidden layers. Frameworks: TensorFlow, Keras, PyTorch. Applications: image recognition, NLP, speech, time-series forecasting.",
+          },
+          {
+            k: [
+              "gradient boosting",
+              "xgboost",
+              "lightgbm",
+              "catboost",
+              "boosting",
+            ],
+            r: "Gradient Boosting: builds trees sequentially — each corrects previous errors. XGBoost and LightGBM consistently win Kaggle competitions. Key hyperparams: n_estimators, learning_rate, max_depth, subsample.",
+          },
+          {
+            k: ["overfitting", "underfitting", "overfit", "generalization"],
+            r: "Overfitting: model memorizes training data, fails on new data (high variance). Underfitting: model too simple (high bias). Solutions: regularization, dropout, more data, pruning, early stopping, cross-validation.",
+          },
+          {
+            k: [
+              "bias variance",
+              "bias-variance",
+              "tradeoff",
+              "bias vs variance",
+            ],
+            r: "Bias-Variance Tradeoff: High bias = underfitting (too simple). High variance = overfitting (too complex). Goal: balance both. More training data reduces variance. Regularization controls the tradeoff.",
+          },
+          {
+            k: [
+              "cross validation",
+              "k-fold",
+              "train test split",
+              "validation set",
+            ],
+            r: "Cross-validation: split data into k folds, train on k-1, test on 1, repeat k times. Gives a reliable performance estimate. 5-fold and 10-fold are most common. sklearn: cross_val_score(model, X, y, cv=5).",
+          },
+          {
+            k: [
+              "confusion matrix",
+              "precision",
+              "recall",
+              "f1",
+              "accuracy",
+              "roc auc",
+              "roc-auc",
+            ],
+            r: "Classification metrics: Accuracy (overall), Precision (how many predicted positives were correct), Recall (how many actual positives were caught), F1-score (harmonic mean of precision+recall), ROC-AUC (threshold-independent).",
+          },
+          {
+            k: ["clustering", "k-means", "dbscan", "hierarchical cluster"],
+            r: "Clustering: K-Means (centroid-based, fast, use elbow method to pick k), DBSCAN (density-based, handles noise and irregular shapes), Hierarchical (dendrogram, no need to predefine k). Evaluate with silhouette score.",
+          },
+          {
+            k: [
+              "pca",
+              "principal component",
+              "dimensionality reduction",
+              "dimension reduction",
+            ],
+            r: "PCA (Principal Component Analysis): rotates data to maximize variance in fewer dimensions. Reduces noise, speeds up training, enables 2D/3D visualization. explained_variance_ratio_ tells you how much info each component keeps.",
+          },
+          {
+            k: [
+              "nlp",
+              "natural language",
+              "text analysis",
+              "sentiment",
+              "tokenize",
+              "bert",
+              "text classification",
+            ],
+            r: "NLP (Natural Language Processing): Steps: tokenization → stopword removal → stemming/lemmatization → TF-IDF or embeddings → model. Modern approach: pre-trained transformers (BERT, GPT). Libraries: NLTK, spaCy, HuggingFace.",
+          },
+          {
+            k: [
+              "computer vision",
+              "cnn",
+              "convolutional",
+              "image recognition",
+              "object detection",
+            ],
+            r: "Computer Vision uses CNNs (Convolutional Neural Networks) for image tasks. Applications: classification, object detection (YOLO, Faster R-CNN), segmentation. Transfer learning with ResNet/VGG/EfficientNet is the standard starting point.",
+          },
+          {
+            k: [
+              "hyperparameter",
+              "tuning",
+              "gridsearch",
+              "grid search",
+              "random search",
+            ],
+            r: "Hyperparameter tuning: find optimal model settings not learned during training. Methods: GridSearchCV (exhaustive), RandomizedSearchCV (faster), Bayesian optimization (smartest). Always tune on validation set, not test set.",
+          },
+          {
+            k: [
+              "model deployment",
+              "deploy model",
+              "mlops",
+              "production",
+              "flask api",
+            ],
+            r: "Model deployment: save model (joblib/pickle), build an API (Flask or FastAPI), containerize with Docker, deploy to cloud (AWS/Azure/GCP). MLOps practices: versioning (MLflow), monitoring drift, automated retraining.",
+          },
+
+          // ── DATA ENGINEERING ──────────────────────────────
+          {
+            k: [
+              "what is data engineering",
+              "data engineer role",
+              "data engineering mean",
+            ],
+            r: "Data Engineering builds infrastructure for collecting, storing, and processing data at scale. Data Engineers create and maintain pipelines that deliver clean, reliable data to analysts and data scientists.",
+          },
+          {
+            k: [
+              "etl",
+              "extract transform load",
+              "elt",
+              "data pipeline",
+              "pipeline",
+            ],
+            r: "ETL (Extract, Transform, Load): extract data from sources → transform (clean, aggregate, join) → load into a data warehouse. ELT loads raw data first, then transforms inside the DW. Tools: dbt, Spark, Airflow, Fivetran, Talend.",
+          },
+          {
+            k: ["apache spark", "pyspark", "spark job"],
+            r: "Apache Spark: distributed computing engine for large-scale data processing. PySpark is the Python API. Much faster than Hadoop MapReduce (in-memory). Supports batch processing and streaming. Core abstractions: RDD, DataFrame, Dataset.",
+          },
+          {
+            k: ["hadoop", "mapreduce", "hdfs"],
+            r: "Hadoop: the original big data framework. HDFS (distributed file system) + MapReduce (parallel processing). Largely replaced by Spark for processing speed, but HDFS remains common for storage in legacy big data architectures.",
+          },
+          {
+            k: [
+              "airflow",
+              "orchestration",
+              "workflow",
+              "dag scheduling",
+              "workflow schedule",
+            ],
+            r: "Apache Airflow: schedule and monitor data pipelines as DAGs (Directed Acyclic Graphs) — Python code defines tasks and dependencies. Web UI for monitoring. Industry standard for workflow orchestration alongside Prefect and Dagster.",
+          },
+          {
+            k: [
+              "kafka",
+              "streaming",
+              "real-time",
+              "real time data",
+              "event streaming",
+            ],
+            r: "Apache Kafka: distributed event streaming platform. Producers publish events to topics; Consumers read them. Key concepts: topics, partitions, consumer groups, offsets. Pairs with Spark Streaming for real-time analytics pipelines.",
+          },
+          {
+            k: [
+              "data warehouse",
+              "snowflake",
+              "redshift",
+              "bigquery",
+              "dwh",
+              "olap",
+            ],
+            r: "Data Warehouses store structured historical data for analytics (OLAP). Modern cloud options: Snowflake (most flexible), AWS Redshift, Google BigQuery (serverless). Use columnar storage for fast analytical queries. vs OLTP (transactional DBs).",
+          },
+          {
+            k: ["dbt", "data build tool", "transformation"],
+            r: "dbt (data build tool): write SQL transformations in .sql files with Jinja templating. Adds software engineering practices — version control, testing, documentation, lineage. Works with Snowflake, BigQuery, Redshift, and PostgreSQL.",
+          },
+          {
+            k: [
+              "cloud data",
+              "aws data",
+              "azure data",
+              "gcp data",
+              "cloud platform",
+            ],
+            r: "Cloud data platforms: AWS (S3, Redshift, Glue, Lambda, Kinesis), Azure (Data Factory, Synapse Analytics, Blob Storage), GCP (BigQuery, Dataflow, Cloud Storage, Pub/Sub). All offer serverless and managed data services.",
+          },
+          {
+            k: ["docker", "kubernetes", "container", "k8s"],
+            r: "Docker: packages code + dependencies into portable containers. Kubernetes (K8s): orchestrates containers at scale — auto-scaling, load balancing, self-healing. Essential for deploying ML models and data pipelines in production.",
+          },
+          {
+            k: [
+              "nosql",
+              "mongodb",
+              "cassandra",
+              "redis",
+              "dynamodb",
+              "document store",
+            ],
+            r: "NoSQL databases handle unstructured/semi-structured data. Types: Document (MongoDB), Key-Value (Redis — ultra fast caching), Column-family (Cassandra — time-series), Graph (Neo4j). Use when you need schema flexibility or horizontal scaling.",
+          },
+          {
+            k: ["data lake", "lake house", "lakehouse", "delta lake"],
+            r: "Data Lake: stores raw data in any format (structured, semi-structured, unstructured) at low cost (S3, ADLS). Lakehouse combines data lake storage with data warehouse query performance. Delta Lake (Databricks) adds ACID transactions to data lakes.",
+          },
+          {
+            k: [
+              "batch processing",
+              "streaming processing",
+              "lambda architecture",
+              "kappa",
+            ],
+            r: "Batch processing: process data in scheduled chunks (daily/hourly). Stream processing: process data continuously as it arrives. Lambda architecture uses both. Kappa architecture: stream-only. Spark handles both; Kafka handles streams.",
+          },
+        ];
+
+        for (const entry of kb) {
+          if (entry.k.some((kw) => t.includes(kw))) return entry.r;
+        }
+
+        if (t.includes("profit") || t.includes("sales") || t.includes("global"))
+          return "The Global Sales project covered $110M in revenue across multiple countries, built with MySQL and Power BI. Ask me about specific data topics too!";
+        if (t.includes("sql") || t.includes("mysql"))
+          return "Afeef writes complex MySQL queries including Window Functions and CTEs. I can also explain SQL concepts like JOINs, subqueries, and aggregations — just ask!";
+
+        return "Great question! I can answer about Data Analytics, Data Science, Machine Learning, Data Engineering, or Afeef's portfolio. Try: 'what is EDA', 'explain random forest', 'what is Kafka', or 'what are Afeef's skills'.";
+      }
+
+      function send() {
+        const inp = document.getElementById("userInput");
+        const msgs = document.getElementById("chatMsgs");
+        const txt = inp.value.trim();
+        if (!txt) return;
+        const um = document.createElement("div");
+        um.className = "user-msg";
+        um.innerText = txt;
+        msgs.appendChild(um);
+        inp.value = "";
+        msgs.scrollTop = msgs.scrollHeight;
+        const t = txt.toLowerCase();
+        setTimeout(() => {
+          const bm = document.createElement("div");
+          bm.className = "bot-msg";
+          bm.innerText = getResponse(t);
+          msgs.appendChild(bm);
+          msgs.scrollTop = msgs.scrollHeight;
+        }, 480);
+      }
+      document.getElementById("userInput").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") send();
+      });
+    </script>
+
+    <script>
+      const _aiData = {
+        chatgpt: {
+          icon: "🤖",
+          name: "ChatGPT",
+          sub: "OpenAI · Natural Language AI",
+          desc: "I use ChatGPT to accelerate every stage of a data analytics project — from writing SQL queries and Python scripts to interpreting results and drafting business reports.",
+          link: "https://chat.openai.com",
+          steps: [
+            {
+              title: "Define your problem",
+              desc: 'Start by telling ChatGPT your business question: "I have sales data with columns: date, product, region, revenue. What analysis should I do?"',
+            },
+            {
+              title: "Generate SQL queries",
+              desc: 'Describe your table and ask: "Write a SQL query to find top 5 products by revenue each month using window functions."',
+            },
+            {
+              title: "Write Python code",
+              desc: 'Ask for pandas/matplotlib code: "Write Python to clean null values, remove duplicates, and plot a bar chart of monthly revenue."',
+            },
+            {
+              title: "Debug errors fast",
+              desc: 'Paste your error message and say: "I got this error in Python, here is my code — what is wrong?" ChatGPT explains and fixes it.',
+            },
+            {
+              title: "Interpret your results",
+              desc: 'Paste output numbers or a table and ask: "What business insights can I draw from this data?" to get analyst-level commentary.',
+            },
+            {
+              title: "Write the report",
+              desc: 'Ask: "Summarize these findings in 3 bullet points for a non-technical manager." Turns raw data into executive-ready language.',
+            },
+          ],
+        },
+        gamma: {
+          icon: "✨",
+          name: "Gamma AI",
+          sub: "gamma.app · AI Presentations",
+          desc: "I use Gamma AI to turn my data analysis findings into polished presentations in minutes — no slide design skills needed.",
+          link: "https://gamma.app",
+          steps: [
+            {
+              title: "Sign up and create new",
+              desc: 'Go to gamma.app, sign up free, then click "New" → "Generate" to start from a text prompt.',
+            },
+            {
+              title: "Describe your project",
+              desc: 'Type your topic: "Data Analytics project on customer shopping behaviour — insights, charts, and recommendations." Gamma generates a full deck.',
+            },
+            {
+              title: "Pick a theme",
+              desc: "Choose a clean, professional theme. Dark themes work well for data dashboards. Avoid overly colorful ones for business reports.",
+            },
+            {
+              title: "Edit and add your charts",
+              desc: "Replace placeholder content with your actual charts from Power BI or Python. Click any block to edit text, add images, or embed links.",
+            },
+            {
+              title: "Add data callouts",
+              desc: 'Use Gamma\'s card blocks to highlight key numbers: "Revenue up 23%" or "Top segment: Age 25–34." These stand out visually.',
+            },
+            {
+              title: "Export and share",
+              desc: "Export as PDF for email or use the shareable link for live presentations. The link auto-updates if you make changes later.",
+            },
+          ],
+        },
+        copilot: {
+          icon: "💻",
+          name: "GitHub Copilot",
+          sub: "GitHub · AI Code Assistant",
+          desc: "I use GitHub Copilot inside VS Code to write data cleaning, analysis, and visualization code faster — it suggests entire functions from a single comment.",
+          link: "https://github.com/features/copilot",
+          steps: [
+            {
+              title: "Install the extension",
+              desc: 'In VS Code, go to Extensions (Ctrl+Shift+X), search "GitHub Copilot", install it, and sign in with your GitHub account.',
+            },
+            {
+              title: "Write a comment as instruction",
+              desc: 'In your Python file, type: "# Load CSV, clean nulls, and show summary statistics" then press Enter. Copilot writes the code for you.',
+            },
+            {
+              title: "Accept suggestions with Tab",
+              desc: "Copilot shows grey ghost text as you type. Press Tab to accept. Press Escape to dismiss. Cycle options with Alt+] / Alt+[.",
+            },
+            {
+              title: "Use inline chat (Ctrl+I)",
+              desc: 'Select messy code and press Ctrl+I, then type: "Refactor this to be more readable" or "Add error handling." Copilot rewrites it.',
+            },
+            {
+              title: "Generate EDA automatically",
+              desc: 'Comment: "# Perform full exploratory data analysis on df and plot distributions for all numeric columns." Copilot generates the entire block.',
+            },
+            {
+              title: "Explain unfamiliar code",
+              desc: 'Highlight any code, open Copilot Chat, and ask "Explain this line by line." Great for learning new pandas or SQL syntax.',
+            },
+          ],
+        },
+        powerbi: {
+          icon: "📊",
+          name: "Power BI AI Visuals",
+          sub: "Microsoft · Business Intelligence",
+          desc: "I use Power BI's built-in AI features to find patterns, explain trends, and answer business questions automatically — without writing any extra code.",
+          link: "https://powerbi.microsoft.com",
+          steps: [
+            {
+              title: "Load your dataset",
+              desc: "Open Power BI Desktop → Get Data → choose Excel, CSV, or SQL. Load your cleaned dataset and define relationships in Model view.",
+            },
+            {
+              title: "Use Q&A Visual",
+              desc: 'Add a Q&A visual to your report. Type natural language: "Show monthly revenue by region as a line chart." Power BI draws it instantly.',
+            },
+            {
+              title: "Add Smart Narrative",
+              desc: "Insert a Smart Narrative visual. It auto-writes a paragraph explaining your data: trends, peaks, dips — updated live as you filter.",
+            },
+            {
+              title: "Enable Key Influencers",
+              desc: 'Add the Key Influencers visual, set "Analyze" to your target metric (e.g. revenue) and "Explain by" to your dimensions. AI shows what drives the metric.',
+            },
+            {
+              title: "Detect Anomalies",
+              desc: 'On a line chart, click "Analytics" pane → turn on Anomaly Detection. Power BI highlights unusual spikes or drops automatically.',
+            },
+            {
+              title: "Get Auto Insights",
+              desc: 'Right-click any chart → "Analyze" → "Find where this distribution is different." Power BI generates a page of AI-driven insights in seconds.',
+            },
+          ],
+        },
+        aianalytics: {
+          icon: "🧠",
+          name: "AI-assisted Analytics",
+          sub: "Workflow · Best Practices",
+          desc: "This is my end-to-end workflow for combining multiple AI tools to complete a full data analytics project — from raw data to final presentation.",
+          link: "practice.html",
+          steps: [
+            {
+              title: "Define the business question",
+              desc: 'Before opening any tool, write 1–2 sentences: "Why are Q3 sales down in the North region?" Clear questions get better AI answers.',
+            },
+            {
+              title: "Clean data with AI help",
+              desc: "Use ChatGPT or Copilot to generate a Python script that handles nulls, duplicates, outliers, and type conversions on your raw CSV.",
+            },
+            {
+              title: "Run EDA with AI suggestions",
+              desc: 'Ask ChatGPT: "What EDA should I run on this dataset?" Then use Copilot to code the correlation matrix, histograms, and boxplots.',
+            },
+            {
+              title: "Build the dashboard",
+              desc: "Load the clean data into Power BI. Use Q&A, Key Influencers, and Smart Narrative to let the AI surface insights you might miss manually.",
+            },
+            {
+              title: "Write the story with AI",
+              desc: 'Paste your key numbers into ChatGPT: "Write an executive summary of these findings with 3 recommendations." Edit to add your own context.',
+            },
+            {
+              title: "Present using Gamma",
+              desc: "Take the ChatGPT summary + Power BI screenshot exports and paste them into Gamma. Generate a deck, refine it, and share the link.",
+            },
+          ],
+        },
+      };
+
+      function openAISlide(key) {
+        var d = _aiData[key];
+        if (!d) return;
+        document.getElementById("ai-icon").textContent = d.icon;
+        document.getElementById("ai-name").textContent = d.name;
+        document.getElementById("ai-sub").textContent = d.sub;
+        document.getElementById("ai-desc").textContent = d.desc;
+        document.getElementById("ai-try-btn").href = d.link;
+        document.getElementById("ai-try-btn").textContent =
+          key === "aianalytics"
+            ? "Try in Practice Lab →"
+            : "Open " + d.name + " →";
+        document.getElementById("ai-steps").innerHTML = d.steps
+          .map(function (s, i) {
+            return (
+              '<div class="ai-step">' +
+              '<div class="ai-step-num">' +
+              (i + 1) +
+              "</div>" +
+              '<div><div class="ai-step-title">' +
+              s.title +
+              "</div>" +
+              '<div class="ai-step-desc">' +
+              s.desc +
+              "</div></div>" +
+              "</div>"
+            );
+          })
+          .join("");
+        document.getElementById("ai-overlay").classList.add("open");
+        document.getElementById("ai-slide").classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeAISlide() {
+        document.getElementById("ai-overlay").classList.remove("open");
+        document.getElementById("ai-slide").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeAISlide();
+      });
+    </script>
+
+    <script>
+      /* ── Ocean wave hero title ── */
+      (function() {
+        const text = "Turn Numbers into Knowledge.";
+        const ocean = [
+          "#caf0f8","#90e0ef","#48cae4","#00b4d8",
+          "#0096c7","#0077b6","#023e8a","#ade8f4",
+          "#00b4d8","#48cae4","#90e0ef","#caf0f8"
+        ];
+        const wrap = document.getElementById('heroTagline');
+        let ci = 0;
+        [...text].forEach((char, i) => {
+          if (char === ' ') {
+            const sp = document.createElement('span');
+            sp.className = 'nl-space';
+            wrap.appendChild(sp);
+          } else {
+            const el = document.createElement('span');
+            el.className = 'nl';
+            el.textContent = char;
+            el.style.color = ocean[ci % ocean.length];
+            el.style.animationDelay = (i * 0.07).toFixed(2) + 's';
+            ci++;
+            wrap.appendChild(el);
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
