@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Velorah — Cinematic Hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: hsl(201 100% 13%);
+    --fg: hsl(0 0% 100%);
+    --muted: hsl(240 4% 66%);
+    --border: hsl(0 0% 18%);
+    --font-display: 'Instrument Serif', serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+
+  /* ── Liquid Glass ── */
+  .liquid-glass {
+    background: rgba(255,255,255,0.01);
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: none;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  .liquid-glass::before {
+    content: '';
+    position: absolute; inset: 0;
+    border-radius: inherit;
+    padding: 1.4px;
+    background: linear-gradient(180deg,
+      rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%,
+      rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
+      rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.45) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* ── Video ── */
+  .video-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  /* ── Navbar ── */
+  .nav {
+    position: relative;
+    z-index: 10;
+    padding: 1.5rem 2rem;
+    max-width: 80rem;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    letter-spacing: -0.03em;
+    color: var(--fg);
+    text-decoration: none;
+  }
+  .nav-logo sup { font-size: 0.75rem; }
+  .nav-links {
+    display: none;
+    gap: 2rem;
+    list-style: none;
+  }
+  @media(min-width:768px){ .nav-links { display: flex; } }
+  .nav-links a {
+    font-size: 0.875rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--fg); }
+  .nav-cta {
+    border-radius: 9999px;
+    padding: 0.625rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--fg);
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.85; transform: scale(1.03); }
+
+  /* ── Hero content ── */
+  .hero-body {
+    position: relative;
+    z-index: 10;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1.5rem 5rem;
+  }
+
+  .hero-h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 8vw, 5rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+    max-width: 80rem;
+    margin-bottom: 2rem;
+    animation: fadeRise 0.8s ease-out both;
+  }
+  .hero-h1 em {
+    font-style: normal;
+    color: var(--muted);
+  }
+
+  .hero-sub {
+    color: var(--muted);
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
+    max-width: 40rem;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+    animation: fadeRise 0.8s 0.2s ease-out both;
+  }
+
+  .hero-btn {
+    border-radius: 9999px;
+    padding: 1.25rem 3.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--fg);
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+    animation: fadeRise 0.8s 0.4s ease-out both;
+  }
+  .hero-btn:hover { transform: scale(1.03); }
+
+  /* ── Animations ── */
+  @keyframes fadeRise {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  /* ── Mobile nav ── */
+  .hamburger-btn {
+    display: none;
+    flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; background: none; border: none; cursor: pointer;
+    padding: 4px; min-height: 44px; min-width: 44px;
+  }
+  @media(max-width:767px){ .hamburger-btn { display: flex; } }
+  @media(max-width:767px){ .nav-cta { display: none; } }
+  .hamburger-btn span {
+    display: block; width: 22px; height: 2px;
+    background: rgba(255,255,255,0.9); border-radius: 2px;
+  }
+  .mobile-nav {
+    display: none; position: fixed;
+    top: 0; left: 0; right: 0; z-index: 200;
+    background: rgba(0,15,30,0.97);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .mobile-nav.open { display: block; }
+  .mobile-nav-hdr {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1.25rem;
+  }
+  .mobile-nav-brand {
+    font-family: var(--font-display);
+    font-size: 1.75rem; letter-spacing: -0.03em; color: var(--fg);
+  }
+  .mobile-nav-close {
+    background: none; border: none;
+    color: var(--muted); font-size: 1.4rem; cursor: pointer;
+  }
+  .mobile-nav-links { list-style: none; }
+  .mobile-nav-links a {
+    display: block; padding: 13px 0;
+    color: var(--muted); text-decoration: none;
+    font-size: 0.9375rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    transition: color 0.2s;
+  }
+  .mobile-nav-links a:hover { color: var(--fg); }
+  .mobile-nav-links li:last-child a { border-bottom: none; }
+  img { max-width: 100%; height: auto; }
+</style>
+</head>
+<body>
+<a href="tum.html" style="position:fixed;top:14px;left:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:rgba(0,0,0,0.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.18);border-radius:999px;color:#fff;font-family:system-ui,sans-serif;font-size:0.75rem;font-weight:600;text-decoration:none;letter-spacing:0.02em;transition:background 0.2s;" onmouseover="this.style.background='rgba(0,0,0,0.85)'" onmouseout="this.style.background='rgba(0,0,0,0.6)'"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>Templates</a>
+<div class="hero">
+
+  <video class="video-bg" autoplay loop muted playsinline
+    src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4">
+  </video>
+
+  <nav class="nav">
+    <a class="nav-logo" href="#">Velorah<sup>®</sup></a>
+    <ul class="nav-links">
+      <li><a href="#" class="active">Home</a></li>
+      <li><a href="#">Studio</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Journal</a></li>
+      <li><a href="#">Reach Us</a></li>
+    </ul>
+    <button class="hamburger-btn" onclick="openMobileNav()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <button class="nav-cta liquid-glass">Begin Journey</button>
+  </nav>
+
+  <div class="hero-body">
+    <h1 class="hero-h1">
+      Where <em>dreams</em> rise<br>
+      <em>through the silence.</em>
+    </h1>
+    <p class="hero-sub">
+      We're designing tools for deep thinkers, bold creators, and quiet rebels.
+      Amid the chaos, we build digital spaces for sharp focus and inspired work.
+    </p>
+    <button class="hero-btn liquid-glass">Begin Journey</button>
+  </div>
+
+</div>
+
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-hdr">
+    <span class="mobile-nav-brand">Velorah®</span>
+    <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
+  </div>
+  <ul class="mobile-nav-links">
+    <li><a href="#" onclick="closeMobileNav()">Home</a></li>
+    <li><a href="#" onclick="closeMobileNav()">Studio</a></li>
+    <li><a href="#" onclick="closeMobileNav()">About</a></li>
+    <li><a href="#" onclick="closeMobileNav()">Journal</a></li>
+    <li><a href="#" onclick="closeMobileNav()">Reach Us</a></li>
+  </ul>
+</div>
+<script>
+  function openMobileNav() { document.getElementById('mobileNav').classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); document.body.style.overflow=''; }
+</script>
+</body>
+</html>

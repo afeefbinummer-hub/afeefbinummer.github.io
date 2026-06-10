@@ -1,0 +1,2888 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About — Afeef K | Data Analyst</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      :root {
+        --bg: #060606;
+        --surface: #0e0e0e;
+        --surface-2: #141414;
+        --border: rgba(255, 255, 255, 0.07);
+        --text: #f0ede4;
+        --muted: rgba(240, 237, 228, 0.45);
+        --dim: rgba(240, 237, 228, 0.22);
+        --accent: #e1e0cc;
+        --serif: "Instrument Serif", Georgia, serif;
+        --sans: "Inter", system-ui, sans-serif;
+        --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      body {
+        font-family: var(--sans);
+        background: #f8fafc;
+        color: var(--text);
+        line-height: 1.7;
+        overflow-x: hidden;
+      }
+
+      /* LIQUID GLASS */
+      .lg {
+        background: rgba(255, 255, 255, 0.01);
+        background-blend-mode: luminosity;
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        border: none;
+        box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+      .lg::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        padding: 1.4px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.45) 0%,
+          rgba(255, 255, 255, 0.15) 20%,
+          rgba(255, 255, 255, 0) 40%,
+          rgba(255, 255, 255, 0) 60%,
+          rgba(255, 255, 255, 0.15) 80%,
+          rgba(255, 255, 255, 0.45) 100%
+        );
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+      }
+
+      /* ── HERO ── */
+      .hero-wrap {
+        position: relative;
+        min-height: 100vh;
+        background: #000;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      #aboutVideo {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        z-index: 0;
+      }
+      /* dark gradient so text is always legible */
+      .hero-wrap::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.35) 0%,
+          rgba(0, 0, 0, 0.2) 50%,
+          rgba(6, 6, 6, 0.85) 100%
+        );
+      }
+
+      /* ── NAV ── */
+      nav.anav {
+        position: relative;
+        z-index: 20;
+        padding: 24px 40px;
+      }
+      .anav-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+      .logo {
+        font-family: var(--serif);
+        font-size: 1.8rem;
+        color: var(--text);
+        text-decoration: none;
+        letter-spacing: -0.03em;
+      }
+      .logo sup {
+        font-size: 0.5em;
+        font-family: var(--sans);
+        vertical-align: super;
+      }
+      .nav-links {
+        display: flex;
+        gap: 28px;
+        list-style: none;
+      }
+      .nav-links a {
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.55);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--text);
+      }
+      .nav-premium {
+        background: linear-gradient(135deg, #c8951a, #f5c53a);
+        color: #1a0800 !important;
+        border-radius: 999px;
+        padding: 3px 11px 4px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        text-decoration: none !important;
+        box-shadow: 0 0 10px rgba(240, 185, 42, 0.28);
+        transition:
+          box-shadow 0.2s,
+          transform 0.15s;
+        white-space: nowrap;
+      }
+      .nav-premium:hover {
+        box-shadow: 0 0 20px rgba(240, 185, 42, 0.55) !important;
+        transform: translateY(-1px);
+        color: #1a0800 !important;
+      }
+      .nav-cta {
+        border-radius: 999px;
+        padding: 9px 22px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-decoration: none;
+        color: var(--text);
+        transition:
+          transform 0.2s var(--ease),
+          background 0.2s;
+        white-space: nowrap;
+      }
+      .nav-cta:hover {
+        background: rgba(255, 255, 255, 0.05);
+        transform: scale(1.03);
+      }
+
+      /* ── HERO CONTENT ── */
+      .hero-content {
+        position: relative;
+        z-index: 10;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 40px 24px 130px;
+        transform: translateY(-5%);
+      }
+      .hero-tagline {
+        font-size: 0.76rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: var(--muted);
+        margin-bottom: 1.6rem;
+      }
+      .hero-name {
+        font-family: var(--serif);
+        font-size: clamp(4rem, 11vw, 7.5rem);
+        font-weight: 400;
+        line-height: 0.88;
+        letter-spacing: -0.04em;
+        color: var(--text);
+        margin-bottom: 2rem;
+      }
+      .hero-name em {
+        font-style: italic;
+        color: var(--muted);
+      }
+      .hero-sub {
+        font-size: clamp(0.88rem, 1.8vw, 1rem);
+        color: var(--muted);
+        max-width: 38rem;
+        line-height: 1.85;
+        margin-bottom: 2.6rem;
+      }
+
+      /* ── BIO LINES ── */
+      @keyframes bioRise {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .hero-bio {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        max-width: 700px;
+        margin-bottom: 2.6rem;
+        text-align: left;
+      }
+      .bio-line {
+        font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+        color: rgba(255, 255, 255, 0.55);
+        line-height: 1.8;
+        opacity: 0;
+        animation: bioRise 0.6s ease both;
+        animation-delay: calc(0.4s + var(--i) * 0.18s);
+        transition: color 0.3s;
+      }
+      .bio-line:hover {
+        color: rgba(255, 255, 255, 0.75);
+      }
+      .kw {
+        background: linear-gradient(90deg, #2563eb, #7c3aed);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: 600;
+        transition: filter 0.3s;
+      }
+      .bio-line:hover .kw {
+        filter: drop-shadow(0 0 8px rgba(124, 58, 237, 0.6));
+      }
+
+      .hero-btns {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .btn-p {
+        border-radius: 999px;
+        padding: 13px 30px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        background: var(--accent);
+        color: #000;
+        text-decoration: none;
+        transition:
+          transform 0.2s var(--ease),
+          box-shadow 0.2s;
+      }
+      .btn-p:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(225, 224, 204, 0.22);
+      }
+      .btn-s {
+        border-radius: 999px;
+        padding: 12px 26px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--text);
+        text-decoration: none;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+      }
+      .btn-s:hover {
+        border-color: rgba(255, 255, 255, 0.35);
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      @keyframes fadeRise {
+        from {
+          opacity: 0;
+          transform: translateY(22px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .a1 {
+        animation: fadeRise 0.9s 0s var(--ease) both;
+      }
+      .a2 {
+        animation: fadeRise 0.9s 0.18s var(--ease) both;
+      }
+      .a3 {
+        animation: fadeRise 0.9s 0.36s var(--ease) both;
+      }
+      .a4 {
+        animation: fadeRise 0.9s 0.54s var(--ease) both;
+      }
+
+      /* ── CONTENT ── */
+      .content-area {
+        background: var(--bg);
+        padding: 80px 24px 0;
+      }
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .section {
+        margin-bottom: 80px;
+      }
+      .sec-title {
+        font-family: var(--serif);
+        font-size: clamp(1.4rem, 3.5vw, 2.5rem);
+        font-weight: 400;
+        letter-spacing: -0.03em;
+        color: var(--text);
+        margin-bottom: 6px;
+      }
+      .sec-sub {
+        font-size: 0.875rem;
+        color: var(--muted);
+        margin-bottom: 32px;
+      }
+
+      /* ── SUMMARY ── */
+      .summary-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        padding: 34px 38px;
+      }
+      .summary-text {
+        font-size: 1rem;
+        color: var(--muted);
+        line-height: 1.9;
+        max-width: 76ch;
+      }
+      .contact-row {
+        display: flex;
+        gap: 10px;
+        margin-top: 28px;
+        flex-wrap: wrap;
+      }
+      .contact-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 0.77rem;
+        color: var(--muted);
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        text-decoration: none;
+        transition:
+          border-color 0.2s,
+          color 0.2s;
+      }
+      .contact-chip:hover {
+        border-color: rgba(255, 255, 255, 0.18);
+        color: var(--text);
+      }
+
+      /* ── SKILLS ── */
+      .skills-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .skill-box {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 28px;
+      }
+      .skill-box h3 {
+        font-family: var(--serif);
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: var(--text);
+        margin-bottom: 20px;
+      }
+      .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .skill-tag {
+        font-size: 0.75rem;
+        color: var(--muted);
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        transition:
+          border-color 0.2s,
+          color 0.2s;
+      }
+      .skill-tag:hover {
+        border-color: rgba(255, 255, 255, 0.18);
+        color: var(--text);
+      }
+      .tech-rows {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .tech-row {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .tech-label {
+        font-size: 0.76rem;
+        color: var(--dim);
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        font-weight: 500;
+      }
+      .tech-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .tech-tag {
+        font-size: 0.73rem;
+        color: var(--accent);
+        padding: 3px 10px;
+        border-radius: 6px;
+        background: rgba(225, 224, 204, 0.07);
+        border: 1px solid rgba(225, 224, 204, 0.14);
+      }
+
+      /* ── EXPERIENCE ── */
+      .exp-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        padding: 32px 36px;
+      }
+      .exp-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 22px;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .exp-left {
+        display: flex;
+        flex-direction: column;
+      }
+      .exp-role {
+        font-family: var(--serif);
+        font-size: 1.3rem;
+        font-weight: 400;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .exp-co {
+        font-size: 0.83rem;
+        color: var(--muted);
+        margin-bottom: 3px;
+      }
+      .exp-period {
+        font-size: 0.76rem;
+        color: var(--dim);
+        font-style: italic;
+      }
+      .exp-badge {
+        font-size: 0.7rem;
+        padding: 6px 16px;
+        border-radius: 999px;
+        font-weight: 600;
+        background: rgba(110, 231, 183, 0.08);
+        color: #6ee7b7;
+        border: 1px solid rgba(110, 231, 183, 0.18);
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .exp-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+      }
+      .exp-list li {
+        font-size: 0.875rem;
+        color: var(--muted);
+        padding-left: 18px;
+        position: relative;
+        line-height: 1.7;
+      }
+      .exp-list li::before {
+        content: "↳";
+        position: absolute;
+        left: 0;
+        color: var(--dim);
+        font-size: 0.78rem;
+        top: 2px;
+      }
+
+      /* ── EDUCATION ── */
+      .edu-list {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .edu-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 22px 28px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .edu-deg {
+        font-family: var(--serif);
+        font-size: 1rem;
+        font-weight: 400;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .edu-inst {
+        font-size: 0.78rem;
+        color: var(--muted);
+      }
+      .edu-right {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        flex-shrink: 0;
+      }
+      .edu-year {
+        font-size: 0.72rem;
+        color: var(--dim);
+        padding: 4px 13px;
+        border-radius: 999px;
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        white-space: nowrap;
+      }
+      .edu-status {
+        font-size: 0.68rem;
+        font-weight: 600;
+        color: #93c5fd;
+        background: rgba(147, 197, 253, 0.08);
+        border: 1px solid rgba(147, 197, 253, 0.2);
+        padding: 3px 10px;
+        border-radius: 999px;
+      }
+
+      /* ── CERTIFICATES ── */
+      .cert-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 18px;
+      }
+      .cert-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 28px;
+        transition:
+          border-color 0.2s,
+          transform 0.2s var(--ease);
+      }
+      .cert-card:hover {
+        border-color: rgba(255, 255, 255, 0.15);
+        transform: translateY(-3px);
+      }
+      .cert-icon-wrap {
+        width: 46px;
+        height: 46px;
+        border-radius: 13px;
+        background: rgba(225, 224, 204, 0.07);
+        border: 1px solid rgba(225, 224, 204, 0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+        margin-bottom: 18px;
+      }
+      .cert-name {
+        font-family: var(--serif);
+        font-size: 1.05rem;
+        font-weight: 400;
+        color: var(--text);
+        margin-bottom: 5px;
+        line-height: 1.4;
+      }
+      .cert-issuer {
+        font-size: 0.77rem;
+        color: var(--muted);
+        margin-bottom: 3px;
+      }
+      .cert-date {
+        font-size: 0.72rem;
+        color: var(--dim);
+        margin-bottom: 14px;
+      }
+      .cert-grade {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: #6ee7b7;
+        background: rgba(110, 231, 183, 0.08);
+        border: 1px solid rgba(110, 231, 183, 0.2);
+        padding: 3px 10px;
+        border-radius: 999px;
+        margin-bottom: 18px;
+      }
+      .cert-btns {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .cert-view-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.77rem;
+        font-weight: 500;
+        padding: 7px 15px;
+        border-radius: 9px;
+        cursor: pointer;
+        background: rgba(225, 224, 204, 0.07);
+        color: var(--muted);
+        border: 1px solid rgba(225, 224, 204, 0.12);
+        font-family: var(--sans);
+        transition: all 0.2s;
+      }
+      .cert-view-btn:hover {
+        background: rgba(225, 224, 204, 0.13);
+        color: var(--text);
+        border-color: rgba(225, 224, 204, 0.22);
+      }
+      .cert-dl-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.77rem;
+        font-weight: 500;
+        padding: 7px 15px;
+        border-radius: 9px;
+        background: transparent;
+        color: var(--dim);
+        border: 1px solid var(--border);
+        text-decoration: none;
+        transition: all 0.2s;
+      }
+      .cert-dl-btn:hover {
+        color: var(--muted);
+        border-color: rgba(255, 255, 255, 0.14);
+      }
+      .cert-verify-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.77rem;
+        font-weight: 500;
+        padding: 7px 15px;
+        border-radius: 9px;
+        background: rgba(110, 231, 183, 0.07);
+        color: #6ee7b7;
+        border: 1px solid rgba(110, 231, 183, 0.18);
+        text-decoration: none;
+        transition: all 0.2s;
+      }
+      .cert-verify-btn:hover {
+        background: rgba(110, 231, 183, 0.13);
+      }
+
+      /* ── CERT MODAL ── */
+      #cert-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 9000;
+        background: rgba(0, 0, 0, 0.92);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      #cert-modal.open {
+        display: flex;
+      }
+      .cert-modal-box {
+        width: 100%;
+        max-width: 860px;
+        height: 90vh;
+        background: #0a0a0a;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: 0 40px 100px rgba(0, 0, 0, 0.95);
+        display: flex;
+        flex-direction: column;
+        animation: modalIn 0.28s var(--ease) both;
+      }
+      @keyframes modalIn {
+        from {
+          opacity: 0;
+          transform: scale(0.93) translateY(18px);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+      .cert-modal-hdr {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 13px 18px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        flex-shrink: 0;
+      }
+      .cert-modal-dot {
+        width: 8px;
+        height: 8px;
+        background: #ff5f57;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      #cert-modal-title {
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: var(--muted);
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .cert-modal-close {
+        background: rgba(255, 255, 255, 0.07);
+        border: none;
+        color: var(--muted);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .cert-modal-close:hover {
+        background: rgba(255, 255, 255, 0.14);
+        color: var(--text);
+      }
+      #cert-iframe {
+        flex: 1;
+        border: none;
+        width: 100%;
+      }
+
+      /* ── PERSONAL ── */
+      .personal-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+      .personal-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 18px 20px;
+      }
+      .personal-label {
+        font-size: 0.68rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--dim);
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+      .personal-val {
+        font-size: 0.875rem;
+        color: var(--text);
+        line-height: 1.65;
+      }
+
+      /* ── FOOTER ── */
+      .site-footer {
+        padding: 20px 24px 40px;
+      }
+      .footer-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .footer-glass {
+        border-radius: 28px !important;
+        padding: 44px 52px 30px;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 5fr 7fr;
+        gap: 52px;
+        margin-bottom: 36px;
+        align-items: start;
+      }
+      .footer-brand-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+      .footer-brand-desc {
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.38);
+        line-height: 1.75;
+        max-width: 280px;
+      }
+      .footer-links-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .fl-col h4 {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: rgba(255, 255, 255, 0.75);
+        font-weight: 600;
+        margin-bottom: 14px;
+      }
+      .fl-col ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+      .fl-col ul li a {
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.38);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .fl-col ul li a:hover {
+        color: rgba(255, 255, 255, 0.8);
+      }
+      .footer-bottom {
+        padding-top: 22px;
+        border-top: 1px solid rgba(255, 255, 255, 0.07);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .footer-copy {
+        font-size: 0.67rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: rgba(255, 255, 255, 0.25);
+      }
+      .footer-socials {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+      }
+      .footer-socials a {
+        color: rgba(255, 255, 255, 0.38);
+        transition: color 0.2s;
+        display: flex;
+        align-items: center;
+      }
+      .footer-socials a:hover {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      /* ══════════════════════════════════════
+       LIGHT CONTENT THEME
+    ══════════════════════════════════════ */
+      .content-area {
+        background: #f8fafc;
+        padding: 80px 24px 0;
+      }
+
+      /* Section headings */
+      .content-area .sec-title {
+        color: #0f172a;
+        position: relative;
+        display: inline-block;
+      }
+      .content-area .sec-title::after {
+        content: "";
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 0;
+        height: 2.5px;
+        background: linear-gradient(90deg, #1d4ed8, #7c3aed);
+        border-radius: 2px;
+        transition: width 0.45s ease;
+      }
+      .content-area .section:hover .sec-title::after {
+        width: 100%;
+      }
+      .content-area .sec-sub {
+        color: #64748b;
+      }
+
+      /* Cards */
+      .content-area .summary-card,
+      .content-area .skill-box,
+      .content-area .exp-card,
+      .content-area .personal-card {
+        background: #ffffff;
+        border-color: #e2e8f0;
+        box-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.05),
+          0 6px 20px rgba(0, 0, 0, 0.04);
+        transition:
+          box-shadow 0.3s,
+          transform 0.3s;
+      }
+      .content-area .summary-card:hover,
+      .content-area .exp-card:hover {
+        box-shadow: 0 4px 24px rgba(29, 78, 216, 0.1);
+        transform: translateY(-2px);
+      }
+      .content-area .edu-card {
+        background: #ffffff;
+        border-color: #e2e8f0;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        transition: box-shadow 0.3s;
+      }
+      .content-area .edu-card:hover {
+        box-shadow: 0 4px 18px rgba(29, 78, 216, 0.08);
+      }
+      .content-area .cert-card {
+        background: #ffffff;
+        border-color: #e2e8f0;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      }
+      .content-area .cert-card:hover {
+        border-color: #1d4ed8;
+        box-shadow: 0 8px 32px rgba(29, 78, 216, 0.12);
+        transform: translateY(-3px);
+      }
+
+      /* Text */
+      .content-area .summary-text {
+        color: #334155;
+      }
+      .content-area .skill-box h3 {
+        color: #0f172a;
+      }
+      .content-area .tech-label {
+        color: #64748b;
+      }
+      .content-area .exp-role {
+        color: #0f172a;
+      }
+      .content-area .exp-co {
+        color: #475569;
+      }
+      .content-area .exp-period {
+        color: #94a3b8;
+      }
+      .content-area .exp-list li {
+        color: #475569;
+      }
+      .content-area .exp-list li::before {
+        color: #1d4ed8;
+        content: "↳";
+      }
+      .content-area .edu-deg {
+        color: #0f172a;
+      }
+      .content-area .edu-inst {
+        color: #64748b;
+      }
+      .content-area .cert-name {
+        color: #0f172a;
+      }
+      .content-area .cert-issuer {
+        color: #475569;
+      }
+      .content-area .cert-date {
+        color: #94a3b8;
+      }
+      .content-area .personal-label {
+        color: #94a3b8;
+      }
+      .content-area .personal-val {
+        color: #0f172a;
+      }
+
+      /* Tags & chips */
+      .content-area .skill-tag {
+        background: #f1f5f9;
+        border-color: #e2e8f0;
+        color: #475569;
+        font-family: var(--sans);
+      }
+      .content-area .skill-tag:hover {
+        background: #eff6ff;
+        border-color: #1d4ed8;
+        color: #1d4ed8;
+      }
+      .content-area .tech-tag {
+        background: #eff6ff;
+        border-color: #bfdbfe;
+        color: #1d4ed8;
+        font-family: var(--sans);
+      }
+      .content-area .tech-tag:hover {
+        background: #dbeafe;
+      }
+      .content-area .contact-chip {
+        background: #f8fafc;
+        border-color: #e2e8f0;
+        color: #64748b;
+      }
+      .content-area .contact-chip:hover {
+        background: #eff6ff;
+        border-color: #1d4ed8;
+        color: #1d4ed8;
+      }
+      .content-area .edu-year {
+        background: #f1f5f9;
+        border-color: #e2e8f0;
+        color: #64748b;
+      }
+      .content-area .edu-status {
+        background: #eff6ff;
+        border-color: #bfdbfe;
+        color: #1d4ed8;
+      }
+      .content-area .exp-badge {
+        background: #f0fdf4;
+        border-color: #bbf7d0;
+        color: #16a34a;
+      }
+      .content-area .cert-grade {
+        background: #f0fdf4;
+        border-color: #bbf7d0;
+        color: #16a34a;
+      }
+      .content-area .cert-icon-wrap {
+        background: #eff6ff;
+        border-color: #bfdbfe;
+      }
+
+      /* Cert buttons */
+      .content-area .cert-view-btn {
+        background: #f8fafc;
+        border-color: #e2e8f0;
+        color: #475569;
+      }
+      .content-area .cert-view-btn:hover {
+        background: #eff6ff;
+        border-color: #1d4ed8;
+        color: #1d4ed8;
+      }
+      .content-area .cert-dl-btn {
+        color: #94a3b8;
+        border-color: #e2e8f0;
+      }
+      .content-area .cert-dl-btn:hover {
+        color: #475569;
+        border-color: #cbd5e1;
+      }
+      .content-area .cert-verify-btn {
+        background: #f0fdf4;
+        border-color: #bbf7d0;
+        color: #16a34a;
+      }
+      .content-area .cert-verify-btn:hover {
+        background: #dcfce7;
+      }
+
+      /* ── STATS STRIP ── */
+      .stats-strip {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: #e2e8f0;
+        border: 1px solid #e2e8f0;
+        border-radius: 20px;
+        overflow: hidden;
+        margin-bottom: 80px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+      }
+      .stat-item {
+        background: #fff;
+        padding: 28px 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+      .stat-num {
+        font-family: var(--serif);
+        font-size: 2.4rem;
+        font-weight: 600;
+        color: #1d4ed8;
+        line-height: 1;
+      }
+      .stat-label {
+        font-size: 0.78rem;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-weight: 500;
+      }
+      .stat-note {
+        font-size: 0.7rem;
+        color: #94a3b8;
+      }
+
+      /* ── SCROLL REVEAL ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.65s ease,
+          transform 0.65s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── SKILL MODAL ── */
+      #skill-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 9500;
+        background: rgba(0, 0, 0, 0.88);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      #skill-modal.open {
+        display: flex;
+      }
+      .sm-box {
+        width: 100%;
+        max-width: 480px;
+        background: #0d0d0d;
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 40px 100px rgba(0, 0, 0, 0.9);
+        animation: modalIn 0.25s var(--ease) both;
+      }
+      .sm-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 22px 14px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .sm-badge {
+        font-size: 0.62rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--dim);
+        font-weight: 600;
+      }
+      .sm-close {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.06);
+        border: none;
+        color: var(--muted);
+        cursor: pointer;
+        font-size: 0.85rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .sm-close:hover {
+        background: rgba(255, 255, 255, 0.12);
+        color: var(--text);
+      }
+      .sm-body {
+        padding: 26px 26px 30px;
+      }
+      .sm-skill-name {
+        font-family: var(--serif);
+        font-size: 1.55rem;
+        font-weight: 400;
+        color: var(--text);
+        margin-bottom: 22px;
+        line-height: 1.2;
+      }
+      .sm-section {
+        margin-bottom: 18px;
+      }
+      .sm-section-label {
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--dim);
+        font-weight: 600;
+        margin-bottom: 7px;
+      }
+      .sm-section-text {
+        font-size: 0.875rem;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+      .sm-example {
+        margin-top: 20px;
+        padding: 14px 16px;
+        border-radius: 12px;
+        background: rgba(225, 224, 204, 0.04);
+        border: 1px solid rgba(225, 224, 204, 0.08);
+      }
+      .sm-example-label {
+        font-size: 0.62rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--accent);
+        font-weight: 600;
+        margin-bottom: 6px;
+        opacity: 0.7;
+      }
+      .sm-example-text {
+        font-size: 0.82rem;
+        color: var(--muted);
+        line-height: 1.65;
+        font-style: italic;
+      }
+      .skill-tag {
+        cursor: pointer;
+      }
+      .tech-tag {
+        cursor: pointer;
+      }
+      .skill-tag:hover {
+        border-color: rgba(255, 255, 255, 0.28);
+        color: var(--text);
+      }
+      .tech-tag:hover {
+        background: rgba(225, 224, 204, 0.14);
+        border-color: rgba(225, 224, 204, 0.28);
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 900px) {
+        .skills-wrap {
+          grid-template-columns: 1fr;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .footer-glass {
+          padding: 32px 28px 22px;
+        }
+      }
+      @media (max-width: 768px) {
+        nav.anav {
+          padding: 18px 20px;
+        }
+        .nav-links {
+          display: none;
+        }
+        .cert-grid {
+          grid-template-columns: 1fr;
+        }
+        .personal-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .footer-links-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 500px) {
+        .personal-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ══════════════════════════════════════
+         MOBILE RESPONSIVE ADDITIONS
+      ══════════════════════════════════════ */
+
+      /* All images responsive */
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* ── HAMBURGER MENU ── */
+      .hamburger-btn {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 40px;
+        height: 40px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+        z-index: 30;
+        flex-shrink: 0;
+      }
+      .hamburger-btn span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: #FFD700;
+        border-radius: 2px;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        transform-origin: center;
+      }
+      .hamburger-btn.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .hamburger-btn.open span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      .hamburger-btn.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      /* Mobile dropdown nav */
+      .mobile-nav-dropdown {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 25;
+        background: rgba(6, 6, 6, 0.97);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(255, 215, 0, 0.12);
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+        opacity: 0;
+      }
+      .mobile-nav-dropdown.open {
+        display: block;
+        max-height: 480px;
+        opacity: 1;
+      }
+      .mobile-nav-dropdown ul {
+        list-style: none;
+        padding: 8px 0 16px;
+      }
+      .mobile-nav-dropdown ul li a,
+      .mobile-nav-dropdown ul li button {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 16px 24px;
+        font-size: 0.95rem;
+        font-family: var(--sans);
+        color: #FFD700;
+        text-decoration: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+        box-sizing: border-box;
+      }
+      .mobile-nav-dropdown ul li a:hover,
+      .mobile-nav-dropdown ul li button:hover {
+        background: rgba(255, 215, 0, 0.07);
+        color: #fff;
+      }
+      .mobile-nav-dropdown .mob-templates {
+        color: #a8b8ff !important;
+      }
+      .mobile-nav-dropdown .mob-services {
+        color: #7dd3fc !important;
+      }
+      .mobile-nav-dropdown .mob-premium {
+        color: #f5c53a !important;
+      }
+      .mobile-nav-dropdown .mob-cta {
+        color: #FFD700 !important;
+        font-weight: 600;
+        border-top: 1px solid rgba(255, 215, 0, 0.1);
+        margin-top: 4px;
+        padding-top: 18px;
+      }
+
+      /* ── 1024px BREAKPOINT ── */
+      @media (max-width: 1024px) {
+        .stats-strip {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .personal-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .footer-links-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      /* ── 768px BREAKPOINT ── */
+      @media (max-width: 768px) {
+        /* Show hamburger, hide desktop nav CTA */
+        .hamburger-btn {
+          display: flex;
+        }
+        .nav-cta {
+          display: none;
+        }
+
+        /* Fluid typography */
+        body {
+          font-size: 16px;
+          line-height: 1.6;
+        }
+
+        /* 1-column layouts */
+        .stats-strip {
+          grid-template-columns: 1fr;
+          gap: 1px;
+        }
+        .personal-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        /* Card padding reduction */
+        .summary-card {
+          padding: 22px 20px;
+        }
+        .skill-box {
+          padding: 20px;
+        }
+        .exp-card {
+          padding: 22px 20px;
+        }
+        .cert-card {
+          padding: 20px;
+        }
+        .personal-card {
+          padding: 14px 16px;
+        }
+
+        /* Content area padding */
+        .content-area {
+          padding: 48px 16px 0;
+        }
+
+        /* Hero content padding */
+        .hero-content {
+          padding: 32px 16px 100px;
+        }
+
+        /* Buttons min-height */
+        .btn-p,
+        .btn-s,
+        .cert-view-btn,
+        .cert-dl-btn,
+        .cert-verify-btn {
+          min-height: 44px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        /* Hero bio width fix */
+        .hero-bio {
+          max-width: 100%;
+          padding: 0 4px;
+        }
+      }
+
+      /* ── 480px BREAKPOINT ── */
+      @media (max-width: 480px) {
+        /* Single column everywhere */
+        .stats-strip {
+          grid-template-columns: 1fr;
+        }
+        .personal-grid {
+          grid-template-columns: 1fr;
+        }
+        .skills-wrap {
+          grid-template-columns: 1fr;
+        }
+        .cert-grid {
+          grid-template-columns: 1fr;
+        }
+        .footer-links-grid {
+          grid-template-columns: 1fr;
+        }
+
+        /* Reduced side padding */
+        .content-area {
+          padding: 40px 20px 0;
+        }
+        nav.anav {
+          padding: 14px 20px;
+        }
+        .hero-content {
+          padding: 24px 20px 80px;
+        }
+
+        /* Font scaling */
+        .hero-name {
+          font-size: clamp(2.4rem, 10vw, 4rem) !important;
+        }
+        .stat-num {
+          font-size: 2rem;
+        }
+
+        /* Card padding mobile-small */
+        .summary-card {
+          padding: 16px;
+        }
+        .skill-box {
+          padding: 16px;
+        }
+        .exp-card {
+          padding: 16px;
+        }
+        .cert-card {
+          padding: 16px;
+        }
+        .edu-card {
+          padding: 16px 18px;
+        }
+        .personal-card {
+          padding: 12px 14px;
+        }
+
+        /* Primary CTA full width on small mobile */
+        .btn-p {
+          width: 100%;
+          text-align: center;
+        }
+        .hero-btns {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 10px;
+          width: 100%;
+          max-width: 320px;
+        }
+        .hero-btns .btn-s {
+          width: 100%;
+          text-align: center;
+        }
+
+        /* Cert buttons wrap */
+        .cert-btns {
+          flex-wrap: wrap;
+          gap: 6px;
+        }
+
+        /* Footer layout */
+        footer {
+          padding: 20px !important;
+          flex-direction: column !important;
+          align-items: flex-start !important;
+          gap: 16px !important;
+        }
+
+        /* Stats strip single col */
+        .stat-item {
+          padding: 22px 20px;
+        }
+
+        /* Edu card stack on small */
+        .edu-card {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .edu-right {
+          flex-shrink: unset;
+        }
+
+        /* Exp card adjustments */
+        .exp-top {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        /* Section margin */
+        .section {
+          margin-bottom: 52px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HERO -->
+    <div class="hero-wrap">
+      <video
+        id="aboutVideo"
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260429_114316_1c7889ad-2885-410e-b493-98119fee0ddb.mp4"
+        muted
+        playsinline
+        preload="auto"
+      ></video>
+
+      <nav class="anav lg" style="border-radius: 0">
+        <div class="anav-inner">
+          <a href="index.html" class="logo">Afeef <sup>&#174;</sup></a>
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="LERN.html">Free Notes</a></li>
+            <li><a href="practice.html">Practice Lab</a></li>
+
+            <li>
+              <a
+                href="tum.html"
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    #0f0f23,
+                    #2d2d6b,
+                    #0f0f23
+                  );
+                  color: #a8b8ff;
+                  border-radius: 999px;
+                  padding: 3px 12px 4px;
+                  font-size: 0.78rem;
+                  font-weight: 700;
+                  letter-spacing: 0.02em;
+                  text-decoration: none;
+                  white-space: nowrap;
+                  box-shadow: 0 0 8px rgba(100, 120, 255, 0.25);
+                  transition:
+                    box-shadow 0.2s,
+                    transform 0.15s;
+                "
+                >&#x2B21; Templates</a
+              >
+            </li>
+            <li>
+              <a
+                href="contact.html"
+                style="
+                  background: linear-gradient(135deg, #0ea5e9, #1e5fad);
+                  color: #fff;
+                  border-radius: 999px;
+                  padding: 3px 11px 4px;
+                  font-size: 0.78rem;
+                  font-weight: 700;
+                  letter-spacing: 0.02em;
+                  text-decoration: none;
+                  white-space: nowrap;
+                  box-shadow: 0 0 10px rgba(14, 165, 233, 0.35);
+                  transition:
+                    box-shadow 0.2s,
+                    transform 0.15s;
+                "
+                >&#x2726; Services</a
+              >
+            </li>
+            <li><a href="paid.html" class="nav-premium">&#x2726; Premium Notes</a></li>
+          </ul>
+          <!-- Hamburger button (mobile only) -->
+          <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <a
+            href="mailto:afeefbinummer@gmail.com"
+            class="nav-cta lg"
+            style="border-radius: 999px"
+            >Get in Touch</a
+          >
+        </div>
+        <!-- Mobile dropdown nav -->
+        <div class="mobile-nav-dropdown" id="mobile-nav-dropdown">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="LERN.html">Free Notes</a></li>
+            <li><a href="practice.html">Practice Lab</a></li>
+            <li><a href="tum.html" class="mob-templates">&#x2B21; Templates</a></li>
+            <li><a href="contact.html" class="mob-services">&#x2726; Services</a></li>
+            <li><a href="paid.html" class="mob-premium">&#x2726; Premium Notes</a></li>
+            <li><a href="mailto:afeefbinummer@gmail.com" class="mob-cta">Get in Touch</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="hero-content">
+        <p class="hero-tagline a1">Data Analyst &middot; Muscat, Oman</p>
+        <h1 class="hero-name a2">Afeef <em>K.</em></h1>
+        <div class="hero-bio">
+          <p class="bio-line" style="--i: 0">
+            &#x1F4BC; Commerce graduate with experience in
+            <span class="kw">Data Analytics</span>, Business Reporting, and
+            Financial Services.
+          </p>
+          <p class="bio-line" style="--i: 1">
+            &#x1F4CD; Currently working in Oman and pursuing an M.Com.
+          </p>
+          <p class="bio-line" style="--i: 2">
+            &#x1F4CA; Skilled in <span class="kw">SQL</span>, Excel,
+            <span class="kw">Python</span>, and
+            <span class="kw">Power BI</span> for data analysis and business
+            insights.
+          </p>
+          <p class="bio-line" style="--i: 3">
+            &#x1F4BB; Also proficient in <span class="kw">MERN Stack</span>, Java,
+            HTML, CSS, and JavaScript for web development.
+          </p>
+          <p class="bio-line" style="--i: 4">
+            &#x1F680; Passionate about combining business, data analytics, and software
+            development to create effective digital solutions.
+          </p>
+        </div>
+        <div class="hero-btns a4">
+          <a href="#experience" class="btn-p">View Experience</a>
+          <a href="#certificates" class="btn-s lg" style="border-radius: 999px"
+            >Certificates</a
+          >
+          <a
+            href="https://github.com/afeefbinummer-hub"
+            class="btn-s lg"
+            style="border-radius: 999px"
+            >GitHub</a
+          >
+          <a
+            href="https://www.linkedin.com/in/afeefbinummer"
+            class="btn-s lg"
+            style="border-radius: 999px"
+            target="_blank"
+            rel="noopener"
+            >LinkedIn</a
+          >
+          <a
+            href="resume.pdf"
+            download
+            class="btn-s lg"
+            style="border-radius: 999px"
+            >&#8595; Download CV</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="content-area" id="about-content">
+      <div class="container">
+        <!-- STATS -->
+        <div class="stats-strip reveal">
+          <div class="stat-item">
+            <div class="stat-num" data-target="1000">0</div>
+            <div class="stat-label">Accounts Analyzed</div>
+            <div class="stat-note">at AJX Exchange</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num" data-target="2">0</div>
+            <div class="stat-label">Years Experience</div>
+            <div class="stat-note">financial services, Oman</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num" data-target="8">0</div>
+            <div class="stat-label">Tools &amp; Languages</div>
+            <div class="stat-note">SQL &middot; Python &middot; Power BI &middot; Excel&hellip;</div>
+          </div>
+        </div>
+
+        <!-- SUMMARY -->
+        <section class="section reveal" id="summary">
+          <h2 class="sec-title">Summary</h2>
+          <p class="sec-sub">Who I am and what I bring to the table.</p>
+          <div class="summary-card">
+            <p class="summary-text">
+              Commerce graduate with hands-on experience in Data Analytics,
+              Business Reporting, and Client Performance Analysis. Strong skills
+              in SQL, Excel, Python, and Power BI to analyze financial and
+              operational data, generate insights, and support data-driven
+              business decisions. Currently working in the financial services
+              sector in Oman and pursuing M.Com.
+            </p>
+            <div class="contact-row">
+              <a href="mailto:afeefbinummer@gmail.com" class="contact-chip">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  />
+                  <polyline points="22,6 12,12 2,6" />
+                </svg>
+                afeefbinummer@gmail.com
+              </a>
+              <a
+                href="https://www.linkedin.com/in/afeefbinummer"
+                target="_blank"
+                class="contact-chip"
+              >
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                  />
+                </svg>
+                linkedin.com/in/afeefbinummer
+              </a>
+              <a
+                href="https://github.com/afeefbinummer-hub"
+                target="_blank"
+                class="contact-chip"
+              >
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                  />
+                </svg>
+                github.com/afeefbinummer-hub
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section class="section reveal" id="skills">
+          <h2 class="sec-title">Skills</h2>
+          <p class="sec-sub">Professional and technical capabilities.</p>
+          <div class="skills-wrap">
+            <div class="skill-box">
+              <h3>Professional Skills</h3>
+              <div class="skill-tags">
+                <button
+                  class="skill-tag"
+                  onclick="openSkill('Business & Financial Analysis')"
+                >
+                  Business &amp; Financial Analysis
+                </button>
+                <button
+                  class="skill-tag"
+                  onclick="openSkill('Data Interpretation & Insights')"
+                >
+                  Data Interpretation &amp; Insights
+                </button>
+                <button
+                  class="skill-tag"
+                  onclick="openSkill('KPI Tracking & Reporting')"
+                >
+                  KPI Tracking &amp; Reporting
+                </button>
+                <button
+                  class="skill-tag"
+                  onclick="openSkill('Dashboard & Management Reporting')"
+                >
+                  Dashboard &amp; Management Reporting
+                </button>
+                <button
+                  class="skill-tag"
+                  onclick="openSkill('Client & Stakeholder Analysis')"
+                >
+                  Client &amp; Stakeholder Analysis
+                </button>
+                <button
+                  class="skill-tag"
+                  onclick="openSkill('Market & Competitive Analysis')"
+                >
+                  Market &amp; Competitive Analysis
+                </button>
+                <button
+                  class="skill-tag"
+                  onclick="openSkill('Process Improvement')"
+                >
+                  Process Improvement
+                </button>
+                <button
+                  class="skill-tag"
+                  onclick="openSkill('Data-Driven Decision Making')"
+                >
+                  Data-Driven Decision Making
+                </button>
+              </div>
+            </div>
+            <div class="skill-box">
+              <h3>Technical Skills</h3>
+              <div class="tech-rows">
+                <div class="tech-row">
+                  <span class="tech-label">Data Analysis &amp; Reporting</span>
+                  <div class="tech-tags">
+                    <button class="tech-tag" onclick="openSkill('SQL')">
+                      SQL
+                    </button>
+                    <button class="tech-tag" onclick="openSkill('PostgreSQL')">
+                      PostgreSQL
+                    </button>
+                    <button class="tech-tag" onclick="openSkill('MySQL')">
+                      MySQL
+                    </button>
+                    <button class="tech-tag" onclick="openSkill('Excel')">
+                      Excel
+                    </button>
+                    <button
+                      class="tech-tag"
+                      onclick="openSkill('Pivot Tables')"
+                    >
+                      Pivot Tables
+                    </button>
+                    <button class="tech-tag" onclick="openSkill('XLOOKUP')">
+                      XLOOKUP
+                    </button>
+                    <button class="tech-tag" onclick="openSkill('Python')">
+                      Python
+                    </button>
+                    <button class="tech-tag" onclick="openSkill('Pandas')">
+                      Pandas
+                    </button>
+                    <button class="tech-tag" onclick="openSkill('NumPy')">
+                      NumPy
+                    </button>
+                  </div>
+                </div>
+                <div class="tech-row">
+                  <span class="tech-label">Data Visualization</span>
+                  <div class="tech-tags">
+                    <button class="tech-tag" onclick="openSkill('Power BI')">
+                      Power BI
+                    </button>
+                    <button class="tech-tag" onclick="openSkill('Tableau')">
+                      Tableau
+                    </button>
+                    <button class="tech-tag" onclick="openSkill('DAX')">
+                      DAX
+                    </button>
+                  </div>
+                </div>
+                <div class="tech-row">
+                  <span class="tech-label">Statistics</span>
+                  <div class="tech-tags">
+                    <button class="tech-tag" onclick="openSkill('A/B Testing')">
+                      A/B Testing
+                    </button>
+                    <button
+                      class="tech-tag"
+                      onclick="openSkill('Regression Analysis')"
+                    >
+                      Regression Analysis
+                    </button>
+                    <button
+                      class="tech-tag"
+                      onclick="openSkill('Time Series Analysis')"
+                    >
+                      Time Series Analysis
+                    </button>
+                  </div>
+                </div>
+                <div class="tech-row">
+                  <span class="tech-label">Databases &amp; Tools</span>
+                  <div class="tech-tags">
+                    <button class="tech-tag" onclick="openSkill('AWS S3')">
+                      AWS S3
+                    </button>
+                    <button
+                      class="tech-tag"
+                      onclick="openSkill('AWS Redshift')"
+                    >
+                      AWS Redshift
+                    </button>
+                    <button class="tech-tag" onclick="openSkill('HubSpot CRM')">
+                      HubSpot CRM
+                    </button>
+                    <button class="tech-tag" onclick="openSkill('Tally')">
+                      Tally
+                    </button>
+                    <button class="tech-tag" onclick="openSkill('PowerPoint')">
+                      PowerPoint
+                    </button>
+                  </div>
+                </div>
+                <div class="tech-row">
+                  <span class="tech-label">Coding &amp; Development</span>
+                  <div class="tech-tags">
+                    <button class="tech-tag" onclick="openSkill('Java')">
+                      Java
+                    </button>
+                    <button class="tech-tag" onclick="openSkill('Python')">
+                      Python
+                    </button>
+                    <button class="tech-tag" onclick="openSkill('HTML')">
+                      HTML
+                    </button>
+                    <button class="tech-tag" onclick="openSkill('CSS')">
+                      CSS
+                    </button>
+                    <button class="tech-tag" onclick="openSkill('REST APIs')">
+                      REST APIs
+                    </button>
+                    <button
+                      class="tech-tag"
+                      onclick="openSkill('Web Development')"
+                    >
+                      Web Dev
+                    </button>
+                    <button class="tech-tag" onclick="openSkill('MERN Stack')">
+                      MERN Stack
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section class="section reveal" id="experience">
+          <h2 class="sec-title">Experience</h2>
+          <p class="sec-sub">Professional track record.</p>
+          <div class="exp-card">
+            <div class="exp-top">
+              <div class="exp-left">
+                <div class="exp-role">Business Development Officer</div>
+                <div class="exp-co">AJX Exchange &mdash; Muscat, Oman</div>
+                <div class="exp-period">2024 &ndash; 2026</div>
+              </div>
+              <span class="exp-badge">Financial Services</span>
+            </div>
+            <ul class="exp-list">
+              <li>
+                Analyzed transaction volume, revenue, and client behavior across
+                1,000+ accounts to identify high-value segments and support
+                targeted business development strategies.
+              </li>
+              <li>
+                Prepared monthly performance dashboards and reports using Excel
+                and CRM data to track KPIs and forecast client profitability.
+              </li>
+              <li>
+                Collaborated with Finance and Operations teams to identify and
+                correct data discrepancies, improving reporting accuracy.
+              </li>
+              <li>
+                Evaluated client usage patterns and feedback to identify service
+                gaps, contributing to improved client satisfaction and reduced
+                complaints.
+              </li>
+              <li>
+                Used HubSpot data to segment clients and assess the impact of
+                new service offerings on revenue and retention.
+              </li>
+              <li>
+                Conducted market and competitor analysis to support strategic
+                expansion and pricing decisions.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- EDUCATION -->
+        <section class="section reveal" id="education">
+          <h2 class="sec-title">Education</h2>
+          <p class="sec-sub">Academic background.</p>
+          <div class="edu-list">
+            <div class="edu-card">
+              <div>
+                <div class="edu-deg">Master of Commerce (M.Com)</div>
+                <div class="edu-inst">
+                  Sree Narayana Guru Open University, Kerala
+                </div>
+              </div>
+              <div class="edu-right">
+                <span class="edu-year">2024 &ndash; 2026</span>
+                <span class="edu-status">Pursuing</span>
+              </div>
+            </div>
+            <div class="edu-card">
+              <div>
+                <div class="edu-deg">
+                  Bachelor of Commerce &mdash; Co-operation Specialization
+                </div>
+                <div class="edu-inst">Calicut University, Kerala</div>
+              </div>
+              <div class="edu-right">
+                <span class="edu-year">2021 &ndash; 2024</span>
+              </div>
+            </div>
+            <div class="edu-card">
+              <div>
+                <div class="edu-deg">
+                  Higher Secondary Education &mdash; Commerce (Mathematics)
+                </div>
+                <div class="edu-inst">
+                  Government Higher Secondary School, Chalissery
+                </div>
+              </div>
+              <div class="edu-right">
+                <span class="edu-year">2019 &ndash; 2021</span>
+              </div>
+            </div>
+            <div class="edu-card">
+              <div>
+                <div class="edu-deg">Secondary Education (SSLC)</div>
+                <div class="edu-inst">
+                  Government Higher Secondary School, Chalissery
+                </div>
+              </div>
+              <div class="edu-right">
+                <span class="edu-year">2017</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CERTIFICATES -->
+        <section class="section reveal" id="certificates">
+          <h2 class="sec-title">Certificates</h2>
+          <p class="sec-sub">
+            Credentials and qualifications. Click any card to view the
+            certificate.
+          </p>
+          <div class="cert-grid">
+            <!-- 1. Illinois Tech -->
+            <div class="cert-card">
+              <div class="cert-icon-wrap">&#127891;</div>
+              <div class="cert-name">Data Analytics Certified User</div>
+              <div class="cert-issuer">
+                Illinois Institute of Technology &middot; ENTRI elevate
+              </div>
+              <div class="cert-date">Issued: 15 May 2026</div>
+              <div class="cert-grade">&#10003;&nbsp;Certified</div>
+              <div class="cert-btns">
+                <button
+                  class="cert-view-btn"
+                  onclick="
+                    openCert(
+                      'DataAnalytics.pdf',
+                      'Data Analytics Certified User — Illinois Institute of Technology',
+                    )
+                  "
+                >
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                  View
+                </button>
+                <a
+                  href="https://www.credly.com/go/E3SD735Z"
+                  target="_blank"
+                  class="cert-verify-btn"
+                >
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polyline points="9 11 12 14 22 4" />
+                    <path
+                      d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"
+                    />
+                  </svg>
+                  Verify
+                </a>
+              </div>
+            </div>
+
+            <!-- 2. NSDC / Entri -->
+            <div class="cert-card">
+              <div class="cert-icon-wrap">&#127941;</div>
+              <div class="cert-name">Program in Data Analytics</div>
+              <div class="cert-issuer">
+                ENTRI Software Pvt. Ltd. &middot; Skill India / NSDC
+              </div>
+              <div class="cert-date">
+                Issued: 21 May 2026 &middot; ID: CAN_40363554
+              </div>
+              <div class="cert-grade">A+ Grade</div>
+              <div class="cert-btns">
+                <button
+                  class="cert-view-btn"
+                  onclick="
+                    openCert(
+                      'NSDC_3791554_CAN_40363554.pdf',
+                      'Program in Data Analytics — ENTRI / Skill India / NSDC',
+                    )
+                  "
+                >
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                  View
+                </button>
+              </div>
+            </div>
+
+            <!-- 3. Tally -->
+            <div class="cert-card">
+              <div class="cert-icon-wrap">&#128202;</div>
+              <div class="cert-name">Tally Certification</div>
+              <div class="cert-issuer">IBS Commerce Institution</div>
+              <div class="cert-date">Accounting &amp; Financial Software</div>
+              <div class="cert-grade">&#10003;&nbsp;Certified</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PERSONAL -->
+        <section class="section reveal" id="personal">
+          <h2 class="sec-title">Personal</h2>
+          <p class="sec-sub">A bit more about me.</p>
+          <div class="personal-grid">
+            <div class="personal-card">
+              <div class="personal-label">Location</div>
+              <div class="personal-val">Muscat, Oman</div>
+            </div>
+            <div class="personal-card">
+              <div class="personal-label">Nationality</div>
+              <div class="personal-val">Indian</div>
+            </div>
+            <div class="personal-card">
+              <div class="personal-label">Age</div>
+              <div class="personal-val">23</div>
+            </div>
+            <div class="personal-card">
+              <div class="personal-label">Languages</div>
+              <div class="personal-val">
+                English &middot; Hindi &middot; Malayalam &middot; Tamil
+                &middot; Arabic &middot; Urdu
+              </div>
+            </div>
+
+            <div class="personal-card">
+              <div class="personal-label">Email</div>
+              <div class="personal-val">afeefbinummer@gmail.com</div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <!-- /container -->
+    </div>
+    <!-- /content-area -->
+
+    <!-- SKILL MODAL -->
+    <div id="skill-modal" onclick="handleSkillBg(event)">
+      <div class="sm-box">
+        <div class="sm-header">
+          <span class="sm-badge" id="sm-type">Skill</span>
+          <button class="sm-close" onclick="closeSkill()">&#10005;</button>
+        </div>
+        <div class="sm-body">
+          <div class="sm-skill-name" id="sm-name"></div>
+          <div class="sm-section">
+            <div class="sm-section-label">What it is</div>
+            <div class="sm-section-text" id="sm-what"></div>
+          </div>
+          <div class="sm-section">
+            <div class="sm-section-label">How I use it</div>
+            <div class="sm-section-text" id="sm-how"></div>
+          </div>
+          <div class="sm-example">
+            <div class="sm-example-label">Real Example</div>
+            <div class="sm-example-text" id="sm-example"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CERTIFICATE MODAL -->
+    <div id="cert-modal" onclick="handleCertBg(event)">
+      <div class="cert-modal-box">
+        <div class="cert-modal-hdr">
+          <span class="cert-modal-dot"></span>
+          <span id="cert-modal-title">Certificate</span>
+          <button class="cert-modal-close" onclick="closeCert()">
+            &#10005;
+          </button>
+        </div>
+        <iframe id="cert-iframe" title="Certificate viewer"></iframe>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer
+      style="
+        background: #ffffff;
+        border-top: 1px solid #e2e8f0;
+        padding: 24px 32px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+        width: 100%;
+      "
+    >
+      <p
+        style="
+          font-size: 0.72rem;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          color: #94a3b8;
+        "
+      >
+        &#169; 2026 Afeef K &nbsp;&middot;&nbsp; Made with purpose in Muscat,
+        Oman
+      </p>
+      <div style="display: flex; gap: 16px; align-items: center">
+        <a
+          href="https://www.linkedin.com/in/afeefbinummer"
+          target="_blank"
+          title="LinkedIn"
+          style="color: #94a3b8; transition: color 0.2s"
+          onmouseover="this.style.color = '#1d4ed8'"
+          onmouseout="this.style.color = '#94a3b8'"
+        >
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+            />
+          </svg>
+        </a>
+        <a
+          href="https://github.com/afeefbinummer-hub"
+          target="_blank"
+          title="GitHub"
+          style="color: #94a3b8; transition: color 0.2s"
+          onmouseover="this.style.color = '#0f172a'"
+          onmouseout="this.style.color = '#94a3b8'"
+        >
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+            />
+          </svg>
+        </a>
+        <a
+          href="mailto:afeefbinummer@gmail.com"
+          title="Email"
+          style="color: #94a3b8; transition: color 0.2s"
+          onmouseover="this.style.color = '#1d4ed8'"
+          onmouseout="this.style.color = '#94a3b8'"
+        >
+          <svg
+            width="17"
+            height="17"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            />
+            <polyline points="22,6 12,12 2,6" />
+          </svg>
+        </a>
+      </div>
+    </footer>
+
+    <script>
+      /* VIDEO FADE */
+      const vid = document.getElementById("aboutVideo");
+      let raf = null,
+        fading = false;
+      function stopFade() {
+        if (raf) {
+          cancelAnimationFrame(raf);
+          raf = null;
+        }
+      }
+      function fadeIn() {
+        stopFade();
+        fading = false;
+        const t0 = performance.now(),
+          from = parseFloat(vid.style.opacity) || 0;
+        (function step(now) {
+          const p = Math.min((now - t0) / 600, 1);
+          vid.style.opacity = from + (1 - from) * p;
+          if (p < 1) raf = requestAnimationFrame(step);
+          else raf = null;
+        })(t0);
+      }
+      function fadeOut() {
+        if (fading) return;
+        fading = true;
+        stopFade();
+        const t0 = performance.now(),
+          from = parseFloat(vid.style.opacity) || 1;
+        (function step(now) {
+          const p = Math.min((now - t0) / 500, 1);
+          vid.style.opacity = from * (1 - p);
+          if (p < 1) raf = requestAnimationFrame(step);
+          else {
+            raf = null;
+            fading = false;
+          }
+        })(t0);
+      }
+      vid.addEventListener("canplay", () => {
+        vid.style.opacity = 0;
+        fading = false;
+        vid.play().catch(() => {});
+        fadeIn();
+      });
+      vid.addEventListener("timeupdate", () => {
+        if (
+          !fading &&
+          vid.duration &&
+          !isNaN(vid.duration) &&
+          vid.duration - vid.currentTime <= 0.55
+        )
+          fadeOut();
+      });
+      vid.addEventListener("ended", () => {
+        vid.style.opacity = 0;
+        fading = false;
+        stopFade();
+        setTimeout(() => {
+          vid.currentTime = 0;
+          vid.play().catch(() => {});
+          fadeIn();
+        }, 100);
+      });
+
+      /* ── HAMBURGER MENU ── */
+      (function () {
+        var btn = document.getElementById("hamburger-btn");
+        var dropdown = document.getElementById("mobile-nav-dropdown");
+
+        function openMenu() {
+          btn.classList.add("open");
+          dropdown.classList.add("open");
+          btn.setAttribute("aria-expanded", "true");
+        }
+        function closeMenu() {
+          btn.classList.remove("open");
+          dropdown.classList.remove("open");
+          btn.setAttribute("aria-expanded", "false");
+        }
+        function toggleMenu() {
+          if (dropdown.classList.contains("open")) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+        }
+
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          toggleMenu();
+        });
+
+        // Close on link click
+        dropdown.querySelectorAll("a").forEach(function (link) {
+          link.addEventListener("click", closeMenu);
+        });
+
+        // Close on outside click
+        document.addEventListener("click", function (e) {
+          if (
+            dropdown.classList.contains("open") &&
+            !dropdown.contains(e.target) &&
+            e.target !== btn &&
+            !btn.contains(e.target)
+          ) {
+            closeMenu();
+          }
+        });
+      })();
+
+      /* SKILL MODAL */
+      const SKILLS = {
+        "Business & Financial Analysis": {
+          type: "Professional Skill",
+          what: "The ability to read financial statements, understand business operations, and identify trends that affect performance — revenue, costs, margins, and growth.",
+          how: "At AJX Exchange I analyze transaction volumes, revenue streams, and client profitability across 1,000+ accounts to identify high-value business opportunities and flag performance gaps.",
+          example:
+            "Built a monthly revenue breakdown by client segment that helped the team prioritize top-tier accounts contributing 60% of total revenue.",
+        },
+        "Data Interpretation & Insights": {
+          type: "Professional Skill",
+          what: "Transforming raw numbers into clear narratives — spotting patterns, anomalies, and trends that aren't obvious from the data alone.",
+          how: "I translate CRM exports, transaction logs, and operational reports into concise insights that help management make faster, better decisions.",
+          example:
+            "Identified a 23% drop in mid-tier client activity that turned out to be caused by a process change — caught it before it became a retention issue.",
+        },
+        "KPI Tracking & Reporting": {
+          type: "Professional Skill",
+          what: "Defining, monitoring, and reporting on Key Performance Indicators that matter to the business — the metrics that signal whether goals are being hit.",
+          how: "I build monthly KPI dashboards in Excel tracking transaction volume, client acquisition rate, revenue per client, and service utilization — shared with leadership every month.",
+          example:
+            "Designed a KPI tracker for the BDO team that reduced reporting prep time from 3 hours to 20 minutes per cycle.",
+        },
+        "Dashboard & Management Reporting": {
+          type: "Professional Skill",
+          what: "Creating visual, executive-ready reports that summarize complex data into at-a-glance summaries for leadership and stakeholders.",
+          how: "I use Excel and Power BI to build dashboards with slicers, conditional formatting, and charts. Reports go to senior management weekly and monthly.",
+          example:
+            "Built an interactive Excel dashboard with a one-click refresh that replaced a manually updated 40-tab spreadsheet.",
+        },
+        "Client & Stakeholder Analysis": {
+          type: "Professional Skill",
+          what: "Segmenting and studying clients or stakeholders to understand behavior, needs, value, and risk — then acting on those insights.",
+          how: "I analyze HubSpot CRM data to segment clients by transaction frequency, revenue contribution, and service usage, then identify which segments need attention.",
+          example:
+            "Segmented 1,000+ client accounts into 4 tiers by revenue value and designed targeted outreach strategies for each tier.",
+        },
+        "Market & Competitive Analysis": {
+          type: "Professional Skill",
+          what: "Researching market trends, competitor positioning, pricing, and customer preferences to inform strategic decisions.",
+          how: "I conduct periodic competitor benchmarking and market research to support pricing reviews and expansion planning at AJX Exchange.",
+          example:
+            "Delivered a competitor analysis comparing exchange rates and service fees across 6 competitors, which directly informed the company's revised fee structure.",
+        },
+        "Process Improvement": {
+          type: "Professional Skill",
+          what: "Identifying inefficiencies in workflows and reporting processes, then redesigning or automating them to save time and reduce errors.",
+          how: "I collaborate with Finance and Operations to spot data discrepancies and streamline reporting workflows. I also automate repetitive Excel tasks using formulas and macros.",
+          example:
+            "Fixed a recurring data mismatch between CRM and finance records by introducing a reconciliation formula — reduced manual correction time by 80%.",
+        },
+        "Data-Driven Decision Making": {
+          type: "Professional Skill",
+          what: "Using data, not intuition alone, to evaluate options and choose the best course of action in business situations.",
+          how: "I present data-backed recommendations to management using reports from HubSpot, Excel, and financial records — making the case with numbers, not opinions.",
+          example:
+            "Recommended discontinuing a low-margin service offering by showing it served only 3% of clients but consumed 18% of operational support time.",
+        },
+        SQL: {
+          type: "Technical Skill",
+          what: "Structured Query Language — the standard language for querying and managing relational databases. From basic SELECTs to complex JOINs and window functions.",
+          how: "I write SQL queries to extract, filter, aggregate, and join datasets for analysis. Used in analytics projects, practice labs, and data pipelines.",
+          example:
+            "Wrote multi-table JOIN queries to analyze customer shopping behavior across purchase, product, and customer tables — pulling insights on repeat buyers and basket size.",
+        },
+        PostgreSQL: {
+          type: "Technical Skill",
+          what: "An open-source relational database management system known for its advanced features and reliability for analytical workloads.",
+          how: "My primary database for analytics projects. I use it for data modeling, writing analytical queries, and working with larger datasets in practice environments.",
+          example:
+            "Used PostgreSQL in the Global Sales & Profitability project to query a 50,000+ row sales dataset and compute regional profit margins.",
+        },
+        MySQL: {
+          type: "Technical Skill",
+          what: "A widely-used open-source relational database, common in web applications and business data storage.",
+          how: "Used in web development projects and business data exercises. Comfortable with schema design, CRUD operations, and joins.",
+          example:
+            "Built a simple customer order database schema in MySQL to practice normalization and query optimization techniques.",
+        },
+        Excel: {
+          type: "Technical Skill",
+          what: "Microsoft Excel — far beyond spreadsheets. Power Query, pivot tables, XLOOKUP, dynamic arrays, conditional formatting, and chart automation.",
+          how: "My daily reporting tool at AJX Exchange. I use it for KPI dashboards, client reports, financial summaries, and data cleaning before loading into BI tools.",
+          example:
+            "Automated a 40-row monthly client performance report using dynamic XLOOKUP formulas and conditional formatting — reduced preparation time from 2 hours to 15 minutes.",
+        },
+        "Pivot Tables": {
+          type: "Technical Skill",
+          what: "Excel's most powerful summarization tool — instantly aggregates large datasets by any dimension without writing a single formula.",
+          how: "I use pivot tables to summarize client transaction data, group revenue by time period or service type, and create drillable summaries for management.",
+          example:
+            "Built a pivot table report breaking down 12 months of transactions by client, currency, and service type — used in the monthly executive review.",
+        },
+        XLOOKUP: {
+          type: "Technical Skill",
+          what: "Excel's modern lookup function that replaces VLOOKUP — searches any direction, returns arrays, and handles missing values cleanly.",
+          how: "I use XLOOKUP extensively in financial reports to cross-reference client IDs, match transaction records across sheets, and pull rates from reference tables.",
+          example:
+            "Used nested XLOOKUP to map 1,000+ client records across three data sources (CRM, finance, operations) into a single unified view.",
+        },
+        Python: {
+          type: "Technical Skill",
+          what: "A versatile programming language used for data analysis, automation, machine learning, and web development.",
+          how: "I write Python scripts for data cleaning, exploratory data analysis, statistical modeling, and automation. Primary environment: Jupyter Notebooks.",
+          example:
+            "Used Python to clean a messy retail dataset — handled nulls, outliers, and inconsistent categories — then ran EDA to surface buying patterns by customer segment.",
+        },
+        Pandas: {
+          type: "Technical Skill",
+          what: "Python's core data manipulation library — DataFrames, groupby, merge, reshape, and everything in between.",
+          how: "Pandas is my go-to for data cleaning, transformation, and aggregation in Python. I use it to wrangle raw CSVs into analysis-ready datasets.",
+          example:
+            "Used Pandas groupby and pivot_table to compute monthly revenue trends across 5 product categories and identify the top-performing quarter.",
+        },
+        NumPy: {
+          type: "Technical Skill",
+          what: "Python's numerical computing library — fast array operations, linear algebra, and statistical functions.",
+          how: "I use NumPy for mathematical computations in data science workflows — statistical calculations, array manipulations, and as the backbone of Pandas operations.",
+          example:
+            "Used NumPy to compute z-scores on a sales dataset to flag and remove statistical outliers before regression modeling.",
+        },
+        "Power BI": {
+          type: "Technical Skill",
+          what: "Microsoft's business intelligence tool for building interactive dashboards, reports, and data models with live refresh capabilities.",
+          how: "I build Power BI dashboards with DAX measures, drill-throughs, slicers, and visual storytelling. Used for management reporting and business performance tracking.",
+          example:
+            "Built a sales performance dashboard with month-over-month DAX calculations, geographic breakdowns, and top-10 product filters — deployed for weekly executive review.",
+        },
+        Tableau: {
+          type: "Technical Skill",
+          what: "A leading data visualization platform known for its drag-and-drop interface and powerful visual analytics.",
+          how: "I use Tableau for data storytelling and creating polished visual reports for stakeholder presentations and analytical projects.",
+          example:
+            "Created a Tableau dashboard visualizing customer segmentation clusters and purchase frequency across regions for a retail analytics case study.",
+        },
+        DAX: {
+          type: "Technical Skill",
+          what: "Data Analysis Expressions — the formula language used in Power BI (and Excel Power Pivot) for creating calculated columns, measures, and time intelligence.",
+          how: "I write DAX measures for KPIs, running totals, YoY comparisons, and ratio calculations in Power BI reports.",
+          example:
+            "Wrote a DAX measure for rolling 3-month revenue average and a YoY growth % that updated dynamically based on date slicer selection.",
+        },
+        "A/B Testing": {
+          type: "Statistical Skill",
+          what: "A controlled experiment comparing two versions (A and B) of something to determine which performs better, using statistical significance to validate results.",
+          how: "I design and analyze A/B tests to evaluate the impact of business or product changes — using hypothesis testing to determine if results are statistically significant.",
+          example:
+            "Analyzed a simulated A/B test on two outreach email strategies — used chi-square test to determine that version B had a statistically significant 14% higher response rate.",
+        },
+        "Regression Analysis": {
+          type: "Statistical Skill",
+          what: "A statistical method to model relationships between variables — predicting outcomes and understanding which factors drive them.",
+          how: "I apply linear and logistic regression to understand what drives business outcomes and build predictive models in Python using scikit-learn and statsmodels.",
+          example:
+            "Built a linear regression model to predict client transaction volume based on account age, service tier, and onboarding month — achieved R² of 0.78.",
+        },
+        "Time Series Analysis": {
+          type: "Statistical Skill",
+          what: "Analyzing data points ordered in time to identify trends, seasonality, and patterns — and forecasting future values.",
+          how: "I use time series techniques to analyze transaction trends, detect seasonality in revenue, and build simple forecasts using Python (Pandas, statsmodels).",
+          example:
+            "Decomposed 24 months of transaction data into trend and seasonal components — revealed a consistent Q4 spike that informed staffing and cash flow planning.",
+        },
+        "AWS S3": {
+          type: "Cloud & Tools",
+          what: "Amazon Simple Storage Service — scalable object storage used in data lakes, pipelines, and file hosting for analytics workflows.",
+          how: "I use AWS S3 as a data storage layer in analytics pipelines — storing raw CSVs, processed datasets, and output files for downstream use.",
+          example:
+            "Set up an S3 bucket as the data lake layer in a practice analytics pipeline, storing raw and cleaned datasets before loading into Redshift.",
+        },
+        "AWS Redshift": {
+          type: "Cloud & Tools",
+          what: "Amazon's cloud data warehouse — optimized for fast analytical queries on large datasets using columnar storage.",
+          how: "I use Redshift for running analytical SQL queries on large datasets in cloud-based data engineering workflows and practice projects.",
+          example:
+            "Loaded a 500,000-row sales dataset into Redshift and ran window function queries to compute rolling revenue and customer cohort retention.",
+        },
+        "HubSpot CRM": {
+          type: "Cloud & Tools",
+          what: "A customer relationship management platform for tracking client interactions, managing pipelines, and analyzing customer data.",
+          how: "My daily CRM at AJX Exchange. I use it to segment clients, track service usage, extract data exports for analysis, and evaluate the impact of service changes on revenue.",
+          example:
+            "Exported and analyzed HubSpot client data to segment accounts into 4 tiers by transaction value, enabling targeted business development outreach.",
+        },
+        Tally: {
+          type: "Cloud & Tools",
+          what: "An accounting and financial management software widely used in India and the Middle East for bookkeeping and financial reporting.",
+          how: "Certified Tally user. I use it for financial transaction recording, ledger management, and generating financial statements.",
+          example:
+            "Completed IBS Commerce Institution's Tally certification covering double-entry bookkeeping, GST filing, and financial statement generation.",
+        },
+        PowerPoint: {
+          type: "Cloud & Tools",
+          what: "Microsoft PowerPoint — for creating presentation decks that communicate data insights to non-technical stakeholders.",
+          how: "I build data-driven presentations for management reporting and project summaries. I design slides that make complex analysis easy to understand at a glance.",
+          example:
+            "Created a 12-slide executive summary presenting 6-month client performance trends, with charts exported from Excel and clear narrative captions.",
+        },
+        Java: {
+          type: "Coding & Development",
+          what: "A strongly-typed, object-oriented programming language widely used for backend development, desktop apps, and enterprise systems.",
+          how: "I use Java for OOP concepts, data structures, and backend logic. Comfortable with core Java — classes, interfaces, inheritance, collections, and exception handling.",
+          example:
+            "Built a student management system in Java using OOP principles — classes for Student, Course, and Enrollment with CRUD operations and file I/O.",
+        },
+        HTML: {
+          type: "Coding & Development",
+          what: "HyperText Markup Language — the standard structure layer of every web page. HTML5 adds semantic elements, multimedia, and accessibility features.",
+          how: "I write clean, semantic HTML5 for all my web projects — portfolio sites, landing pages, and templates. Focus on accessibility and proper document structure.",
+          example:
+            "Built this portfolio entirely in HTML — structured with semantic tags, proper heading hierarchy, and ARIA attributes for screen reader compatibility.",
+        },
+        CSS: {
+          type: "Coding & Development",
+          what: "Cascading Style Sheets — controls layout, typography, colors, animations, and responsive behavior of web pages.",
+          how: "I write custom CSS including Flexbox, Grid, animations, CSS variables, and media queries. I also use Tailwind CSS for utility-first styling in React projects.",
+          example:
+            "Designed the liquid glass morphism effect used across this portfolio using CSS backdrop-filter, pseudo-elements, and mask compositing.",
+        },
+        "REST APIs": {
+          type: "Coding & Development",
+          what: "REST (Representational State Transfer) APIs are the standard way web apps communicate — sending and receiving JSON data over HTTP.",
+          how: "I build and consume REST APIs in both Python (Flask/FastAPI) and JavaScript (Express/Node). Used for connecting frontends to backends and integrating third-party services.",
+          example:
+            "Built a REST API in Python that fetches exchange rate data from an external source, processes it, and returns formatted JSON to a frontend dashboard.",
+        },
+        "Web Development": {
+          type: "Coding & Development",
+          what: "The full practice of building websites and web apps — covering frontend (HTML/CSS/JS), backend (Node/Python), databases, and deployment.",
+          how: "I develop complete web projects from design to deployment. Comfortable with the full stack — React frontends, Node/Express backends, MongoDB/PostgreSQL databases, and Vercel/Netlify hosting.",
+          example:
+            "Built and deployed this personal portfolio — custom HTML/CSS/JS hero with video, interactive sections, a service request form with Formspree, and a premium notes store.",
+        },
+        "MERN Stack": {
+          type: "Coding & Development",
+          what: "MongoDB + Express + React + Node.js — a full-stack JavaScript framework for building modern, scalable web applications end to end.",
+          how: "I build full-stack apps using MERN — React for the UI, Node/Express for the API layer, and MongoDB for the database. Familiar with JWT auth, REST APIs, and component-based architecture.",
+          example:
+            "Built a notes marketplace app with React frontend, Express API, MongoDB database, and JWT authentication — supporting user sign-up, note upload, and purchase flow.",
+        },
+      };
+
+      function openSkill(name) {
+        const s = SKILLS[name];
+        if (!s) return;
+        document.getElementById("sm-name").textContent = name;
+        document.getElementById("sm-type").textContent = s.type;
+        document.getElementById("sm-what").textContent = s.what;
+        document.getElementById("sm-how").textContent = s.how;
+        document.getElementById("sm-example").textContent = s.example;
+        document.getElementById("skill-modal").classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeSkill() {
+        document.getElementById("skill-modal").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      function handleSkillBg(e) {
+        if (e.target === document.getElementById("skill-modal")) closeSkill();
+      }
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closeSkill();
+          closeCert();
+        }
+      });
+
+      /* CERTIFICATE MODAL */
+      function openCert(src, title) {
+        document.getElementById("cert-modal-title").textContent = title;
+        document.getElementById("cert-iframe").src = src;
+        document.getElementById("cert-modal").classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeCert() {
+        document.getElementById("cert-iframe").src = "";
+        document.getElementById("cert-modal").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      function handleCertBg(e) {
+        if (e.target === document.getElementById("cert-modal")) closeCert();
+      }
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeCert();
+      });
+
+      /* ── SCROLL REVEAL ── */
+      const revealObs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              revealObs.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => revealObs.observe(el));
+
+      /* ── NUMBER COUNTERS ── */
+      function animateCounter(el, target, suffix) {
+        const duration = 1400;
+        const start = performance.now();
+        function step(now) {
+          const p = Math.min((now - start) / duration, 1);
+          const ease = 1 - Math.pow(1 - p, 3);
+          const val = Math.round(ease * target);
+          el.textContent =
+            (val >= 1000 ? val.toLocaleString() : val) + (suffix || "");
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+      const counterObs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (!e.isIntersecting) return;
+            const el = e.target;
+            const target = parseInt(el.dataset.target);
+            const suffix = target >= 1000 ? "+" : target <= 10 ? "+" : "";
+            animateCounter(el, target, suffix);
+            counterObs.unobserve(el);
+          });
+        },
+        { threshold: 0.5 },
+      );
+      document
+        .querySelectorAll("[data-target]")
+        .forEach((el) => counterObs.observe(el));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkyElite — Private Jet Hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    background: #f9fafb;
+    color: #111827;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .video-bg {
+    position: absolute;
+    inset: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  /* ── Navbar ── */
+  .nav {
+    position: relative;
+    z-index: 10;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 80rem;
+    margin: 0 auto;
+    width: 100%;
+    animation: fadeDown 0.6s ease-out both;
+  }
+  @media(max-width:640px){ .nav { padding: 1.25rem; } }
+
+  .nav-brand {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #111827;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-links {
+    display: none;
+    gap: 2rem;
+    list-style: none;
+  }
+  @media(min-width:768px){ .nav-links { display: flex; } }
+  .nav-links a {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #374151;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: #111827; }
+
+  .hamburger-btn {
+    background: none; border: none;
+    cursor: pointer; padding: 0.25rem;
+    display: flex; flex-direction: column;
+    gap: 5px;
+  }
+  @media(min-width:768px){ .hamburger-btn { display: none; } }
+  .hamburger-btn span {
+    display: block; width: 22px; height: 2px;
+    background: #111827; border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  /* Mobile menu */
+  .mobile-menu {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-radius: 0 0 1rem 1rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    padding: 1.25rem;
+    display: none;
+  }
+  .mobile-menu.open { display: block; }
+  .mobile-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+  .mobile-close {
+    background: none; border: none;
+    font-size: 1.5rem; cursor: pointer; color: #111827;
+  }
+  .mobile-links {
+    display: flex; flex-direction: column; gap: 1rem; list-style: none;
+  }
+  .mobile-links a {
+    font-size: 1.125rem; font-weight: 500;
+    color: #111827; text-decoration: none;
+  }
+
+  /* ── Hero content ── */
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem;
+    margin-top: -5rem;
+  }
+
+  .hero-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #4b5563;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    animation: fadeUp 0.6s 0.1s ease-out both;
+  }
+
+  .hero-h1 {
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.5rem;
+  }
+  .line1 {
+    display: block;
+    font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 400;
+    color: #6b7280;
+    animation: fadeUp 0.6s 0.2s ease-out both;
+  }
+  .line2 {
+    display: block;
+    font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 400;
+    color: #202A36;
+    margin-top: -0.75rem;
+    animation: fadeUp 0.6s 0.3s ease-out both;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: #4b5563;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.4s ease-out both;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.5s ease-out both;
+  }
+
+  .btn-discover {
+    padding: 0.625rem 1.25rem;
+    border-radius: 9999px;
+    background: #d1d5db;
+    color: #1f2937;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    transition: background 0.15s;
+  }
+  .btn-discover:hover { background: #9ca3af; }
+
+  .btn-book {
+    padding: 0.625rem 1.25rem;
+    border-radius: 9999px;
+    background: #202A36;
+    color: #fff;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    transition: background 0.15s;
+  }
+  .btn-book:hover { background: #1a2229; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+<a href="tum.html" style="position:fixed;top:14px;left:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:rgba(0,0,0,0.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.18);border-radius:999px;color:#fff;font-family:system-ui,sans-serif;font-size:0.75rem;font-weight:600;text-decoration:none;letter-spacing:0.02em;transition:background 0.2s;" onmouseover="this.style.background='rgba(0,0,0,0.85)'" onmouseout="this.style.background='rgba(0,0,0,0.6)'"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>Templates</a>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-header">
+    <span style="font-size:1.25rem;font-weight:600;color:#111827">SkyElite</span>
+    <button class="mobile-close" onclick="closeMobile()">✕</button>
+  </div>
+  <ul class="mobile-links">
+    <li><a href="#">Start</a></li>
+    <li><a href="#">Story</a></li>
+    <li><a href="#">Rates</a></li>
+    <li><a href="#">Benefits</a></li>
+    <li><a href="#">FAQ</a></li>
+  </ul>
+</div>
+
+<div class="hero">
+
+  <video class="video-bg" autoplay loop muted playsinline
+    src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_091828_e240eb17-6edc-4129-ad9d-98678e3fd238.mp4">
+  </video>
+
+  <nav class="nav">
+    <span class="nav-brand">SkyElite</span>
+    <ul class="nav-links">
+      <li><a href="#">Start</a></li>
+      <li><a href="#">Story</a></li>
+      <li><a href="#">Rates</a></li>
+      <li><a href="#">Benefits</a></li>
+      <li><a href="#">FAQ</a></li>
+    </ul>
+    <button class="hamburger-btn" onclick="openMobile()">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="hero-content">
+    <p class="hero-label">Private Jets</p>
+    <h1 class="hero-h1">
+      <span class="line1">Premium.</span>
+      <span class="line2">Accessible.</span>
+    </h1>
+    <p class="hero-sub">Your dedication deserves recognition.</p>
+    <div class="cta-row">
+      <button class="btn-discover">Discover</button>
+      <button class="btn-book">Book Now</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function openMobile() { document.getElementById('mobileMenu').classList.add('open'); }
+  function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
+</script>
+</body>
+</html>

@@ -1,0 +1,1187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code Playground | Afeef Ummer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- CodeMirror -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --bg: #07070f;
+      --bg2: #0d0d1a;
+      --surface: rgba(255,255,255,0.04);
+      --surface2: rgba(255,255,255,0.07);
+      --border: rgba(255,255,255,0.09);
+      --text: #f0ede4;
+      --muted: rgba(240,237,228,0.5);
+      --dim: rgba(240,237,228,0.25);
+      --accent: #e1e0cc;
+      --green: #22c55e;
+      --purple: #a855f7;
+      --blue: #3b82f6;
+      --yellow: #facc15;
+      --orange: #f97316;
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+      --ease: cubic-bezier(0.16,1,0.3,1);
+    }
+
+    body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+
+    /* LIQUID GLASS */
+    .lg {
+      background: rgba(255,255,255,0.01);
+      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.1);
+      position: relative; overflow: hidden;
+    }
+    .lg::before {
+      content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1.4px;
+      background: linear-gradient(180deg, rgba(255,255,255,.45) 0%, rgba(255,255,255,.15) 20%, rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%, rgba(255,255,255,.15) 80%, rgba(255,255,255,.45) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
+    }
+
+    /* HERO */
+    .hero-wrap { position: relative; min-height: 100vh; background: hsl(241,30%,8%); overflow: hidden; display: flex; flex-direction: column; }
+    #practiceVideo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 0.12; }
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background: radial-gradient(ellipse 70% 55% at 15% 60%, rgba(124,58,237,0.2) 0%, transparent 65%),
+                  radial-gradient(ellipse 50% 40% at 85% 30%, rgba(34,197,94,0.1) 0%, transparent 55%),
+                  linear-gradient(to bottom, var(--bg) 0%, transparent 15%, transparent 85%, var(--bg) 100%);
+    }
+
+    /* NAV */
+    nav.pnav { position: relative; z-index: 10; padding: 22px 40px; }
+    .pnav-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .logo { font-family: var(--serif); font-size: 1.9rem; color: var(--text); text-decoration: none; letter-spacing: -0.03em; }
+    .logo sup { font-size: 0.45em; font-family: var(--sans); vertical-align: super; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 0.875rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-premium {
+      background: linear-gradient(135deg, #c8951a, #f5c53a);
+      color: #1a0800 !important;
+      border-radius: 999px;
+      padding: 3px 11px 4px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-decoration: none !important;
+      box-shadow: 0 0 10px rgba(240,185,42,0.28);
+      transition: box-shadow 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .nav-premium:hover {
+      box-shadow: 0 0 20px rgba(240,185,42,0.55) !important;
+      transform: translateY(-1px);
+      color: #1a0800 !important;
+    }
+    .nav-cta { border-radius: 999px; padding: 9px 22px; font-size: 0.875rem; font-weight: 500; text-decoration: none; color: var(--text); transition: transform 0.2s var(--ease); cursor: pointer; }
+    .nav-cta:hover { transform: scale(1.03); }
+
+    /* HERO CONTENT */
+    .hero-content { position: relative; z-index: 10; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 24px 120px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25);
+      border-radius: 100px; padding: 5px 14px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green);
+      margin-bottom: 24px;
+    }
+    .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: blink 1.8s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    .hero-h1 { font-family: var(--serif); font-size: clamp(3rem,8vw,5.8rem); font-weight: 400; line-height: 0.95; letter-spacing: -0.025em; max-width: 820px; margin-bottom: 28px; }
+    .hero-h1 em { font-style: italic; color: var(--muted); }
+    .hero-sub { font-size: clamp(0.9rem,1.8vw,1.05rem); color: var(--muted); max-width: 38rem; line-height: 1.8; margin-bottom: 40px; }
+
+    .lang-pills { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
+    .lang-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 7px 14px;
+      font-size: 0.8rem; font-weight: 600; color: var(--muted);
+    }
+    .lp-dot { width: 7px; height: 7px; border-radius: 50%; }
+    .lp-html .lp-dot { background: #f97316; }
+    .lp-css .lp-dot { background: #3b82f6; }
+    .lp-js .lp-dot { background: #facc15; }
+    .lp-sql .lp-dot { background: #a855f7; }
+    .lp-py .lp-dot { background: #22c55e; }
+
+    .hero-cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .cta-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, #7c3aed, #3b82f6);
+      color: #fff; border-radius: 10px; padding: 13px 28px;
+      font-size: 0.95rem; font-weight: 600; text-decoration: none;
+      transition: transform 0.2s var(--ease), box-shadow 0.2s;
+      box-shadow: 0 0 28px rgba(124,58,237,0.35);
+    }
+    .cta-primary:hover { transform: translateY(-2px); box-shadow: 0 0 48px rgba(124,58,237,0.5); }
+    .cta-sec {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); border-radius: 10px; padding: 13px 28px;
+      font-size: 0.95rem; font-weight: 500; text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .cta-sec:hover { background: var(--surface2); border-color: rgba(255,255,255,0.16); }
+
+    @keyframes fadeRise { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+    .a1 { animation: fadeRise 0.8s 0s var(--ease) both; }
+    .a2 { animation: fadeRise 0.8s 0.15s var(--ease) both; }
+    .a3 { animation: fadeRise 0.8s 0.3s var(--ease) both; }
+    .a4 { animation: fadeRise 0.8s 0.45s var(--ease) both; }
+
+    /* ── PLAYGROUND ── */
+    #playground { background: var(--bg); }
+    .pg-wrap { max-width: 1280px; margin: 0 auto; padding: 0 0 80px; }
+
+    /* Toolbar */
+    .pg-toolbar {
+      display: flex; align-items: center; gap: 10px;
+      padding: 14px 20px;
+      background: rgba(255,255,255,0.025);
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      position: sticky; top: 0; z-index: 20;
+    }
+    .lang-tabs { display: flex; gap: 3px; }
+    .lt {
+      display: flex; align-items: center; gap: 6px;
+      background: transparent; border: 1px solid transparent;
+      border-radius: 7px; padding: 6px 13px;
+      font-size: 0.8rem; font-weight: 600; color: var(--muted);
+      cursor: pointer; font-family: var(--sans);
+      transition: all 0.15s;
+    }
+    .lt:hover { background: var(--surface); color: var(--text); }
+    .lt.active { background: var(--surface2); border-color: var(--border); color: var(--text); }
+    .lt .dot { width: 7px; height: 7px; border-radius: 50%; }
+    .lt-html .dot { background: var(--orange); }
+    .lt-css .dot  { background: var(--blue); }
+    .lt-js .dot   { background: var(--yellow); }
+    .lt-sql .dot  { background: var(--purple); }
+    .lt-py .dot   { background: var(--green); }
+
+    .pg-divider { width: 1px; height: 22px; background: var(--border); margin: 0 4px; flex-shrink: 0; }
+
+    .starter-sel {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 7px;
+      padding: 6px 10px; font-size: 0.78rem; color: var(--muted);
+      cursor: pointer; font-family: var(--sans); outline: none; max-width: 210px;
+    }
+    .starter-sel option { background: #14141f; color: #e2e8f0; }
+
+    .run-btn { display: flex; align-items: center; gap: 6px; background: var(--green); color: #000; border: none; border-radius: 7px; padding: 8px 18px; font-size: 0.82rem; font-weight: 700; cursor: pointer; font-family: var(--sans); transition: background 0.2s, transform 0.15s; }
+    .run-btn:hover { background: #16a34a; transform: scale(1.03); }
+    .tb-btn { background: var(--surface); color: var(--muted); border: 1px solid var(--border); border-radius: 7px; padding: 7px 13px; font-size: 0.78rem; cursor: pointer; font-family: var(--sans); transition: all 0.15s; }
+    .tb-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+    .pg-hint { font-size: 0.72rem; color: var(--dim); margin-left: auto; }
+
+    /* Split Panel */
+    .pg-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 540px;
+      border: 1px solid var(--border);
+      border-top: none;
+    }
+
+    /* Editor side */
+    .ed-side { display: flex; flex-direction: column; border-right: 1px solid var(--border); overflow: hidden; }
+    .ed-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim); padding: 7px 14px; background: rgba(255,255,255,0.02); border-bottom: 1px solid var(--border); }
+
+    /* CodeMirror overrides */
+    .CodeMirror { height: 100%; font-family: 'Fira Code', 'Cascadia Code', 'Courier New', monospace; font-size: 0.85rem; line-height: 1.7; background: #0d0d1e; }
+    .CodeMirror-scroll { padding-bottom: 20px; }
+    .CodeMirror-gutters { background: #0d0d1e; border-right: 1px solid rgba(255,255,255,0.07); }
+    .cm-wrap { flex: 1; min-height: 0; overflow: hidden; }
+
+    /* Output side */
+    .out-side { display: flex; flex-direction: column; background: #fff; overflow: hidden; }
+    .out-side.dark-out { background: #0d1117; }
+    .out-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 7px 14px; background: #f1f5f9; border-bottom: 1px solid #e2e8f0;
+      flex-shrink: 0;
+    }
+    .out-side.dark-out .out-header { background: rgba(255,255,255,0.03); border-bottom-color: var(--border); }
+    .out-label { font-size: 0.78rem; color: #64748b; display: flex; align-items: center; gap: 6px; font-weight: 500; }
+    .out-side.dark-out .out-label { color: var(--muted); }
+    .out-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+    .full-btn { background: transparent; border: 1px solid #cbd5e1; border-radius: 5px; padding: 3px 9px; font-size: 0.72rem; cursor: pointer; color: #64748b; transition: all 0.15s; }
+    .full-btn:hover { background: #e2e8f0; }
+
+    #preview-frame { flex: 1; border: none; width: 100%; background: #fff; }
+
+    .output-panel {
+      flex: 1; overflow: auto; padding: 16px 18px;
+      font-family: 'Fira Code', 'Cascadia Code', 'Courier New', monospace;
+      font-size: 0.82rem; line-height: 1.75; color: #e2e8f0;
+      background: #0d1117; display: none;
+    }
+    .out-ok  { color: #86efac; display: block; margin: 0 0 4px; white-space: pre-wrap; }
+    .out-err { color: #f87171; display: block; margin: 0 0 4px; white-space: pre-wrap; }
+    .out-py  { color: #e2e8f0; display: block; white-space: pre-wrap; }
+    .sql-tbl { border-collapse: collapse; width: 100%; margin: 8px 0 16px; font-size: 0.78rem; }
+    .sql-tbl th { background: rgba(168,85,247,0.15); color: #c4b5fd; padding: 6px 12px; text-align: left; border: 1px solid rgba(255,255,255,0.09); font-weight: 600; }
+    .sql-tbl td { padding: 5px 12px; border: 1px solid rgba(255,255,255,0.06); color: #cbd5e1; }
+    .sql-tbl tr:hover td { background: rgba(255,255,255,0.04); }
+    .sql-null { color: #64748b; font-style: italic; }
+    .out-rows { color: #94a3b8; font-size: 0.75rem; margin: -8px 0 12px; display: block; }
+
+    /* ── CHALLENGES ── */
+    .challenges { background: var(--bg2); border-top: 1px solid var(--border); padding: 80px 40px 100px; }
+    .ch-inner { max-width: 1280px; margin: 0 auto; }
+    .ch-header { margin-bottom: 48px; }
+    .ch-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(168,85,247,0.08); border: 1px solid rgba(168,85,247,0.2);
+      border-radius: 100px; padding: 5px 14px;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--purple);
+      margin-bottom: 16px;
+    }
+    .ch-title { font-family: var(--serif); font-size: clamp(1.8rem,3vw,2.6rem); letter-spacing: -0.02em; margin-bottom: 10px; }
+    .ch-title em { font-style: italic; color: var(--purple); }
+    .ch-sub { color: var(--muted); font-size: 0.9rem; }
+
+    .ch-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; }
+
+    .ch-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 22px;
+      transition: transform 0.25s var(--ease), border-color 0.25s, box-shadow 0.25s;
+      cursor: pointer;
+    }
+    .ch-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.4); }
+    .ch-card[data-lang="html"]:hover { border-color: rgba(249,115,22,0.4); }
+    .ch-card[data-lang="js"]:hover   { border-color: rgba(250,204,21,0.4); }
+    .ch-card[data-lang="sql"]:hover  { border-color: rgba(168,85,247,0.4); }
+    .ch-card[data-lang="python"]:hover { border-color: rgba(34,197,94,0.4); }
+
+    .ch-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .ch-icon { font-size: 1.6rem; }
+    .diff-badge { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 9px; border-radius: 100px; }
+    .diff-easy { background: rgba(34,197,94,0.12); color: #22c55e; }
+    .diff-mid  { background: rgba(250,204,21,0.12); color: #facc15; }
+    .diff-hard { background: rgba(249,115,22,0.12); color: #f97316; }
+
+    .ch-name { font-family: var(--serif); font-size: 1rem; margin-bottom: 8px; }
+    .ch-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.6; margin-bottom: 18px; }
+    .ch-footer { display: flex; align-items: center; justify-content: space-between; }
+    .lang-tag { font-size: 0.7rem; font-weight: 700; padding: 3px 8px; border-radius: 5px; }
+    .tag-html { background: rgba(249,115,22,0.12); color: #f97316; }
+    .tag-js   { background: rgba(250,204,21,0.12); color: #facc15; }
+    .tag-sql  { background: rgba(168,85,247,0.12); color: #a855f7; }
+    .tag-py   { background: rgba(34,197,94,0.12); color: #22c55e; }
+    .solve-btn {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--muted); border-radius: 7px; padding: 5px 13px;
+      font-size: 0.78rem; font-weight: 600; cursor: pointer; font-family: var(--sans);
+      transition: all 0.15s;
+    }
+    .solve-btn:hover { background: var(--surface2); color: var(--text); border-color: rgba(255,255,255,0.2); }
+
+    /* FOOTER */
+    footer { background: var(--bg); border-top: 1px solid var(--border); padding: 36px 40px; text-align: center; color: var(--muted); font-size: 0.875rem; }
+    footer a { color: var(--accent); text-decoration: none; font-weight: 500; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── HAMBURGER BUTTON ── */
+    .ham-btn {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      z-index: 200;
+    }
+    .ham-btn span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: transform 0.3s var(--ease), opacity 0.3s;
+    }
+    .ham-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .ham-btn.open span:nth-child(2) { opacity: 0; }
+    .ham-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── MOBILE NAV DROPDOWN ── */
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      flex-direction: column;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.35s var(--ease);
+    }
+    .mobile-nav.open {
+      max-height: 600px;
+    }
+    .mobile-nav a {
+      display: block;
+      padding: 16px 24px;
+      font-size: 0.9rem;
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      font-weight: 500;
+      transition: background 0.15s;
+    }
+    .mobile-nav a:hover { background: var(--surface); }
+    .mobile-nav a:last-child { border-bottom: none; }
+
+    /* ── RESPONSIVE BREAKPOINTS ── */
+
+    /* 1024px: toolbar wrapping + ch-grid */
+    @media (max-width: 1024px) {
+      .ch-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 900px) {
+      nav.pnav { padding: 18px 20px; position: relative; }
+      .nav-links { display: none; }
+      .ham-btn { display: flex; }
+      .mobile-nav { display: flex; }
+      .pg-panel { grid-template-columns: 1fr; height: auto; }
+      .ed-side { height: 360px; border-right: none; border-bottom: 1px solid var(--border); }
+      .out-side { height: 280px; }
+      .ch-grid { grid-template-columns: repeat(2,1fr); }
+      .challenges { padding: 60px 20px 80px; }
+      .pg-toolbar { padding: 12px 16px; }
+      .hero-h1 { font-size: clamp(1.8rem, 5vw, 3.5rem); }
+      .cta-primary, .cta-sec {
+        min-height: 44px;
+        padding: 12px 22px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-h1 { font-size: clamp(1.8rem, 5vw, 3.5rem); }
+      .lang-slide { width: 100% !important; max-width: 100% !important; border-radius: 20px 20px 0 0 !important; top: auto !important; bottom: 0 !important; height: 78vh !important; }
+      .ch-card { padding: 16px; }
+    }
+
+    @media (max-width: 520px) {
+      .ch-grid { grid-template-columns: 1fr; }
+      .lang-slide { width: 100% !important; max-width: 100% !important; border-radius: 20px 20px 0 0 !important; top: auto !important; bottom: 0 !important; height: 78vh !important; }
+      .pg-toolbar { flex-wrap: wrap; gap: 8px; }
+      .pg-hint { display: none; }
+      .lang-pills { gap: 8px; }
+      .hero-cta-row { flex-direction: column; align-items: stretch; }
+      .cta-primary, .cta-sec {
+        width: 100%;
+        justify-content: center;
+        min-height: 44px;
+      }
+      body { font-size: 16px; }
+    }
+
+    @media (max-width: 480px) {
+      nav.pnav { padding: 14px 16px; }
+      .logo { font-size: 1.6rem; }
+      .hero-content { padding: 30px 20px 80px; }
+      .hero-h1 { font-size: clamp(1.8rem, 7vw, 2.4rem); }
+      .challenges { padding: 40px 16px 60px; }
+      .ch-card { padding: 16px; }
+      footer { padding: 24px 20px; }
+    }
+
+    /* LANG PILL BUTTON */
+    .lang-pill {
+      cursor: pointer;
+      transition: transform 0.18s var(--ease), border-color 0.18s, background 0.18s;
+    }
+    .lang-pill:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.2); background: var(--surface-2); }
+    .lp-html:hover { border-color: rgba(249,115,22,0.5); }
+    .lp-css:hover  { border-color: rgba(59,130,246,0.5); }
+    .lp-js:hover   { border-color: rgba(250,204,21,0.5); }
+    .lp-sql:hover  { border-color: rgba(168,85,247,0.5); }
+    .lp-py:hover   { border-color: rgba(34,197,94,0.5); }
+
+    /* LANG SLIDE OVERLAY */
+    .lang-overlay { display: none; position: fixed; inset: 0; z-index: 8000; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+    .lang-overlay.open { display: block; }
+
+    /* LANG SLIDE PANEL */
+    .lang-slide {
+      position: fixed; top: 0; right: 0;
+      width: 440px; height: 100vh;
+      background: #0a0a0a; border-left: 1px solid rgba(255,255,255,0.08);
+      box-shadow: -16px 0 60px rgba(0,0,0,0.6);
+      z-index: 8001; display: flex; flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.38s cubic-bezier(0.16,1,0.3,1);
+      overflow: hidden;
+    }
+    .lang-slide.open { transform: translateX(0); }
+
+    .ls-hdr {
+      padding: 26px 26px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      flex-shrink: 0;
+      position: relative;
+    }
+    .ls-accent-bar { height: 3px; border-radius: 99px; width: 48px; margin-bottom: 20px; }
+    .ls-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .ls-icon { font-size: 2.2rem; line-height: 1; }
+    .ls-close {
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50%; width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 0.85rem; color: var(--muted);
+      transition: background 0.2s, color 0.2s; flex-shrink: 0;
+    }
+    .ls-close:hover { background: rgba(255,255,255,0.14); color: var(--text); }
+    .ls-lang-name { font-family: var(--serif); font-size: 1.8rem; font-weight: 400; letter-spacing: -0.03em; color: var(--text); margin-top: 10px; line-height: 1; }
+    .ls-lang-name em { font-style: italic; color: var(--muted); }
+    .ls-tagline { font-size: 0.8rem; color: var(--muted); margin-top: 6px; }
+
+    .ls-body { flex: 1; overflow-y: auto; padding: 24px 26px; display: flex; flex-direction: column; gap: 26px; }
+
+    .ls-block-label {
+      font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.12em;
+      font-weight: 700; color: rgba(255,255,255,0.28); margin-bottom: 8px;
+    }
+    .ls-block-text { font-size: 0.875rem; color: var(--muted); line-height: 1.8; }
+
+    .ls-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .ls-fact {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px; padding: 14px;
+    }
+    .ls-fact-label { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.28); margin-bottom: 4px; }
+    .ls-fact-val { font-size: 0.84rem; color: var(--text); font-weight: 500; }
+
+    .ls-why-list { display: flex; flex-direction: column; gap: 10px; }
+    .ls-why-item { display: flex; gap: 12px; align-items: flex-start; }
+    .ls-why-dot { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; flex-shrink: 0; margin-top: 1px; }
+    .ls-why-text { font-size: 0.84rem; color: var(--muted); line-height: 1.65; }
+    .ls-why-text strong { color: var(--text); font-weight: 600; }
+
+    .ls-footer { padding: 16px 26px 24px; border-top: 1px solid rgba(255,255,255,0.07); flex-shrink: 0; }
+    .ls-cta {
+      display: block; width: 100%; text-align: center;
+      padding: 13px; border-radius: 10px;
+      font-size: 0.875rem; font-weight: 600;
+      text-decoration: none; color: #000;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .ls-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+  </style>
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.2/sql-wasm.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/sql/sql.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+<script src="https://skulpt.org/js/skulpt.min.js" type="text/javascript"></script>
+<script src="https://skulpt.org/js/skulpt-stdlib.js" type="text/javascript"></script>
+<body>
+
+<!-- HERO -->
+<div class="hero-wrap">
+  <video id="practiceVideo" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4" autoplay loop muted playsinline></video>
+  <div class="hero-overlay"></div>
+
+  <nav class="pnav lg" style="border-radius:0;">
+    <div class="pnav-inner">
+      <a href="index.html" class="logo">Afeef <sup>&#174;</sup></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="LERN.html">Free Notes</a></li>
+        <li><a href="#" class="active">Practice Lab</a></li>
+        <li><a href="about.html">About Me</a></li>
+        <li><a href="tum.html" style="background:linear-gradient(135deg,#0f0f23,#2d2d6b,#0f0f23);color:#a8b8ff;border-radius:999px;padding:3px 12px 4px;font-size:0.78rem;font-weight:700;letter-spacing:0.02em;text-decoration:none;white-space:nowrap;box-shadow:0 0 8px rgba(100,120,255,0.25);transition:box-shadow 0.2s,transform 0.15s;">⬡ Templates</a></li>
+        <li><a href="contact.html" style="background:linear-gradient(135deg,#0ea5e9,#1e5fad);color:#fff;border-radius:999px;padding:3px 11px 4px;font-size:0.78rem;font-weight:700;letter-spacing:0.02em;text-decoration:none;white-space:nowrap;box-shadow:0 0 10px rgba(14,165,233,0.35);transition:box-shadow 0.2s,transform 0.15s;">✦ Services</a></li>
+        <li><a href="paid.html" class="nav-premium">✦ Premium Notes</a></li>
+      </ul>
+      <a href="#playground" class="nav-cta lg" style="border-radius:999px;">Start Coding</a>
+      <button class="ham-btn" id="hamBtn" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <!-- Mobile nav dropdown -->
+    <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+      <a href="index.html" onclick="closeMobileNav()">Home</a>
+      <a href="LERN.html" onclick="closeMobileNav()">Free Notes</a>
+      <a href="#" onclick="closeMobileNav()">Practice Lab</a>
+      <a href="about.html" onclick="closeMobileNav()">About Me</a>
+      <a href="tum.html" onclick="closeMobileNav()">⬡ Templates</a>
+      <a href="contact.html" onclick="closeMobileNav()">✦ Services</a>
+      <a href="paid.html" onclick="closeMobileNav()">✦ Premium Notes</a>
+      <a href="#playground" onclick="closeMobileNav()">Start Coding</a>
+    </div>
+  </nav>
+
+  <div class="hero-content">
+    <div class="hero-badge a1">Live Code Editor</div>
+    <h1 class="hero-h1 a2">
+      Write code.<br><em>See results instantly.</em>
+    </h1>
+    <p class="hero-sub a3">A professional coding playground. Run SQL queries, execute Python, preview HTML/CSS/JS — all in the browser, no setup required.</p>
+    <div class="lang-pills a3">
+      <button class="lang-pill lp-html" onclick="openLangSlide('html')"><span class="lp-dot"></span>HTML</button>
+      <button class="lang-pill lp-css" onclick="openLangSlide('css')"><span class="lp-dot"></span>CSS</button>
+      <button class="lang-pill lp-js" onclick="openLangSlide('js')"><span class="lp-dot"></span>JavaScript</button>
+      <button class="lang-pill lp-sql" onclick="openLangSlide('sql')"><span class="lp-dot"></span>SQL</button>
+      <button class="lang-pill lp-py" onclick="openLangSlide('python')"><span class="lp-dot"></span>Python</button>
+    </div>
+    <div class="hero-cta-row a4">
+      <a href="#playground" class="cta-primary">&#9654;&nbsp; Open Playground</a>
+      <a href="LERN.html" class="cta-sec">&#128218;&nbsp; Free Notes</a>
+    </div>
+  </div>
+</div>
+
+<!-- PLAYGROUND -->
+<section id="playground">
+  <div class="pg-wrap">
+    <!-- TOOLBAR -->
+    <div class="pg-toolbar">
+      <div class="lang-tabs" id="langTabs">
+        <button class="lt lt-html active" data-lang="html" onclick="switchLang('html',this)"><span class="dot"></span>HTML</button>
+        <button class="lt lt-css" data-lang="css" onclick="switchLang('css',this)"><span class="dot"></span>CSS</button>
+        <button class="lt lt-js" data-lang="js" onclick="switchLang('js',this)"><span class="dot"></span>JS</button>
+        <button class="lt lt-sql" data-lang="sql" onclick="switchLang('sql',this)"><span class="dot"></span>SQL</button>
+        <button class="lt lt-py" data-lang="python" onclick="switchLang('python',this)"><span class="dot"></span>Python</button>
+      </div>
+      <div class="pg-divider"></div>
+      <select id="starterSel" class="starter-sel" onchange="loadStarter(this.value)">
+        <option value="">&#9654; Load Example...</option>
+        <optgroup label="HTML / CSS / JS">
+          <option value="hello">Hello World</option>
+          <option value="card">Card Component</option>
+          <option value="button">Animated Buttons</option>
+          <option value="counter">JS Counter App</option>
+          <option value="colorchange">Color Changer</option>
+          <option value="clock">Digital Clock</option>
+          <option value="todo">Mini Todo App</option>
+          <option value="form">Contact Form</option>
+        </optgroup>
+        <optgroup label="SQL">
+          <option value="sql_basics">SQL — SELECT Basics</option>
+          <option value="sql_filter">SQL — WHERE &amp; ORDER BY</option>
+          <option value="sql_join">SQL — JOIN Tables</option>
+          <option value="sql_agg">SQL — GROUP BY &amp; Aggregates</option>
+        </optgroup>
+        <optgroup label="Python">
+          <option value="py_hello">Python — Hello World</option>
+          <option value="py_loops">Python — Loops &amp; Functions</option>
+          <option value="py_dict">Python — Dictionaries</option>
+          <option value="py_class">Python — Classes &amp; OOP</option>
+        </optgroup>
+      </select>
+      <div class="pg-divider"></div>
+      <button class="run-btn" onclick="runCode()">&#9654;&nbsp; Run</button>
+      <button class="tb-btn" onclick="resetCode()">&#8635; Reset</button>
+      <button class="tb-btn" onclick="clearAll()">&#10005; Clear</button>
+      <span class="pg-hint">Ctrl + Enter to run</span>
+    </div>
+
+    <!-- SPLIT PANEL -->
+    <div class="pg-panel">
+      <!-- EDITOR -->
+      <div class="ed-side">
+        <div class="ed-label" id="edLabel">editor — html</div>
+        <div class="cm-wrap" id="cmWrap"></div>
+      </div>
+      <!-- OUTPUT / PREVIEW -->
+      <div class="out-side" id="outSide">
+        <div class="out-header">
+          <span class="out-label"><span class="out-dot" id="outDot"></span><span id="outTitle">Live Preview</span></span>
+          <button class="full-btn" id="fullBtn" onclick="openFull()">&#9974; Fullscreen</button>
+        </div>
+        <iframe id="preview-frame" sandbox="allow-scripts allow-forms allow-modals" title="Preview"></iframe>
+        <div id="output-panel" class="output-panel"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHALLENGES -->
+<section class="challenges">
+  <div class="ch-inner">
+    <div class="ch-header">
+      <div class="ch-label">Practice Challenges</div>
+      <h2 class="ch-title">Code. Think. <em>Solve.</em></h2>
+      <p class="ch-sub">Click any challenge to load it instantly into the playground above.</p>
+    </div>
+
+    <div class="ch-grid">
+
+      <!-- HTML -->
+      <div class="ch-card" data-lang="html" onclick="loadChallenge('ch_card_html')">
+        <div class="ch-top">
+          <span class="ch-icon">🎨</span>
+          <span class="diff-badge diff-easy">Easy</span>
+        </div>
+        <div class="ch-name">Product Card</div>
+        <p class="ch-desc">Build a stylish product card with image placeholder, title, price tag, and a "Buy Now" button. Use Flexbox for layout.</p>
+        <div class="ch-footer">
+          <span class="lang-tag tag-html">HTML/CSS</span>
+          <button class="solve-btn">Solve &#8594;</button>
+        </div>
+      </div>
+
+      <div class="ch-card" data-lang="html" onclick="loadChallenge('ch_spinner_html')">
+        <div class="ch-top">
+          <span class="ch-icon">⚙️</span>
+          <span class="diff-badge diff-mid">Medium</span>
+        </div>
+        <div class="ch-name">CSS Loading Spinner</div>
+        <p class="ch-desc">Create an animated loading spinner using only CSS — no JavaScript. Use @keyframes and border trick.</p>
+        <div class="ch-footer">
+          <span class="lang-tag tag-html">CSS</span>
+          <button class="solve-btn">Solve &#8594;</button>
+        </div>
+      </div>
+
+      <!-- JS -->
+      <div class="ch-card" data-lang="js" onclick="loadChallenge('ch_timer_js')">
+        <div class="ch-top">
+          <span class="ch-icon">⏱️</span>
+          <span class="diff-badge diff-easy">Easy</span>
+        </div>
+        <div class="ch-name">Countdown Timer</div>
+        <p class="ch-desc">Build a 60-second countdown timer with Start, Pause, and Reset buttons. Display MM:SS format.</p>
+        <div class="ch-footer">
+          <span class="lang-tag tag-js">JavaScript</span>
+          <button class="solve-btn">Solve &#8594;</button>
+        </div>
+      </div>
+
+      <div class="ch-card" data-lang="js" onclick="loadChallenge('ch_dupes_js')">
+        <div class="ch-top">
+          <span class="ch-icon">🔍</span>
+          <span class="diff-badge diff-mid">Medium</span>
+        </div>
+        <div class="ch-name">Find Duplicates</div>
+        <p class="ch-desc">Write a function that takes an array and returns all duplicate values. Handle edge cases like empty arrays.</p>
+        <div class="ch-footer">
+          <span class="lang-tag tag-js">JavaScript</span>
+          <button class="solve-btn">Solve &#8594;</button>
+        </div>
+      </div>
+
+      <!-- SQL -->
+      <div class="ch-card" data-lang="sql" onclick="loadChallenge('ch_sql_orders')">
+        <div class="ch-top">
+          <span class="ch-icon">🗄️</span>
+          <span class="diff-badge diff-easy">Easy</span>
+        </div>
+        <div class="ch-name">Top Customers</div>
+        <p class="ch-desc">Write a SQL query to find all customers who placed more than 2 orders, sorted by order count descending.</p>
+        <div class="ch-footer">
+          <span class="lang-tag tag-sql">SQL</span>
+          <button class="solve-btn">Solve &#8594;</button>
+        </div>
+      </div>
+
+      <div class="ch-card" data-lang="sql" onclick="loadChallenge('ch_sql_growth')">
+        <div class="ch-top">
+          <span class="ch-icon">📈</span>
+          <span class="diff-badge diff-hard">Hard</span>
+        </div>
+        <div class="ch-name">Revenue Growth</div>
+        <p class="ch-desc">Use window functions (LAG) to calculate month-over-month revenue growth percentage for a sales table.</p>
+        <div class="ch-footer">
+          <span class="lang-tag tag-sql">SQL</span>
+          <button class="solve-btn">Solve &#8594;</button>
+        </div>
+      </div>
+
+      <!-- Python -->
+      <div class="ch-card" data-lang="python" onclick="loadChallenge('ch_py_wordcount')">
+        <div class="ch-top">
+          <span class="ch-icon">🐍</span>
+          <span class="diff-badge diff-easy">Easy</span>
+        </div>
+        <div class="ch-name">Word Frequency</div>
+        <p class="ch-desc">Write a Python function that counts how many times each word appears in a string. Ignore case and punctuation.</p>
+        <div class="ch-footer">
+          <span class="lang-tag tag-py">Python</span>
+          <button class="solve-btn">Solve &#8594;</button>
+        </div>
+      </div>
+
+      <div class="ch-card" data-lang="python" onclick="loadChallenge('ch_py_stats')">
+        <div class="ch-top">
+          <span class="ch-icon">📊</span>
+          <span class="diff-badge diff-mid">Medium</span>
+        </div>
+        <div class="ch-name">Basic Data Stats</div>
+        <p class="ch-desc">Given a list of numbers, calculate mean, median, mode, and standard deviation without importing any libraries.</p>
+        <div class="ch-footer">
+          <span class="lang-tag tag-py">Python</span>
+          <button class="solve-btn">Solve &#8594;</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>
+    Made with purpose by <strong style="color:var(--accent);">Afeef Ummer</strong>
+    &nbsp;&middot;&nbsp;
+    <a href="index.html">&#8592; Portfolio</a>
+    &nbsp;&middot;&nbsp;
+    <a href="LERN.html">Free Notes</a>
+    &nbsp;&middot;&nbsp;
+    <a href="paid.html">Notes Store</a>
+    &nbsp;&middot;&nbsp;
+    <a href="#playground">Back to top &#8593;</a>
+  </p>
+</footer>
+
+<script src="starters-data.js"></script>
+<script>
+/* ── STATE ── */
+var _activeLang = 'html';
+var _SQL = null;
+var _store = { html: '', css: '', js: '', sql: '', python: '' };
+
+/* ── CODEMIRROR SETUP ── */
+var _editor = CodeMirror(document.getElementById('cmWrap'), {
+  value: '',
+  mode: 'htmlmixed',
+  theme: 'dracula',
+  lineNumbers: true,
+  tabSize: 2,
+  indentWithTabs: false,
+  autofocus: false,
+  matchBrackets: true,
+  autoCloseBrackets: true,
+  lineWrapping: false,
+  extraKeys: {
+    'Ctrl-Enter': function() { runCode(); },
+    'Tab': function(cm) {
+      if (cm.somethingSelected()) { cm.indentSelection('add'); }
+      else { cm.replaceSelection('  '); }
+    }
+  }
+});
+_editor.setSize('100%', '100%');
+
+/* ── INIT ── */
+window.addEventListener('load', function() {
+  if (typeof initSqlJs !== 'undefined') {
+    initSqlJs({ locateFile: function(f){ return 'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.2/' + f; }})
+      .then(function(S){ _SQL = S; })
+      .catch(function(){});
+  }
+  if (typeof starters !== 'undefined') { loadStarter('hello'); }
+});
+
+/* ── LANGUAGE SWITCH ── */
+var _modes = { html: 'htmlmixed', css: 'css', js: 'javascript', sql: 'text/x-sql', python: 'python' };
+var _modeLabels = { html: 'editor — html', css: 'editor — css', js: 'editor — javascript', sql: 'editor — sql', python: 'editor — python' };
+
+function switchLang(lang, btn) {
+  _store[_activeLang] = _editor.getValue();
+  _activeLang = lang;
+  document.querySelectorAll('.lt').forEach(function(b){ b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  _editor.setValue(_store[lang]);
+  _editor.setOption('mode', _modes[lang]);
+  document.getElementById('edLabel').textContent = _modeLabels[lang];
+  var isCode = (lang === 'sql' || lang === 'python');
+  var outSide = document.getElementById('outSide');
+  document.getElementById('preview-frame').style.display = isCode ? 'none' : 'block';
+  document.getElementById('output-panel').style.display = isCode ? 'block' : 'none';
+  document.getElementById('fullBtn').style.display = isCode ? 'none' : '';
+  outSide.classList.toggle('dark-out', isCode);
+  document.getElementById('outDot').style.background = isCode ? (lang === 'sql' ? '#a855f7' : '#22c55e') : '#22c55e';
+  document.getElementById('outTitle').textContent = isCode ? (lang === 'sql' ? 'SQL Output' : 'Python Output') : 'Live Preview';
+  setTimeout(function(){ _editor.refresh(); }, 10);
+}
+
+/* ── ESCAPE HELPER ── */
+function _esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+/* ── SQL RUNNER ── */
+function _runSQL(code) {
+  var out = document.getElementById('output-panel');
+  if (!_SQL) { out.innerHTML = '<span class="out-err">SQL engine loading… try again in a moment.</span>'; return; }
+  var html = '';
+  try {
+    var db = new _SQL.Database();
+    var results = db.exec(code);
+    if (!results || results.length === 0) {
+      html = '<span class="out-ok">&#10003; Query executed successfully. No rows returned.</span>';
+    } else {
+      results.forEach(function(res){
+        html += '<table class="sql-tbl"><thead><tr>';
+        res.columns.forEach(function(c){ html += '<th>' + _esc(c) + '</th>'; });
+        html += '</tr></thead><tbody>';
+        res.values.forEach(function(row){
+          html += '<tr>';
+          row.forEach(function(v){ html += '<td>' + (v === null ? '<span class="sql-null">NULL</span>' : _esc(v)) + '</td>'; });
+          html += '</tr>';
+        });
+        html += '</tbody></table>';
+        html += '<span class="out-rows">' + res.values.length + ' row' + (res.values.length !== 1 ? 's' : '') + '</span>';
+      });
+    }
+    db.close();
+  } catch(e) {
+    html = '<span class="out-err">&#10007; Error: ' + _esc(e.message) + '</span>';
+  }
+  out.innerHTML = html;
+}
+
+/* ── PYTHON RUNNER ── */
+function _runPython(code) {
+  var out = document.getElementById('output-panel');
+  if (typeof Sk === 'undefined') { out.innerHTML = '<span class="out-err">Python engine not loaded. Check internet connection.</span>'; return; }
+  var buf = '';
+  Sk.configure({
+    output: function(t){ buf += t; },
+    read: function(x){
+      if (Sk.builtinFiles && Sk.builtinFiles.files[x]) return Sk.builtinFiles.files[x];
+      throw "File not found: '" + x + "'";
+    },
+    execLimit: 10000
+  });
+  out.innerHTML = '<span class="out-ok">Running…</span>';
+  Sk.misceval.asyncToPromise(function(){
+    return Sk.importMainWithBody('<stdin>', false, code, true);
+  }).then(function(){
+    out.innerHTML = buf ? '<span class="out-py">' + _esc(buf) + '</span>'
+                        : '<span class="out-ok">&#10003; Code ran successfully (no output).</span>';
+  }).catch(function(err){
+    var msg = err.toString ? err.toString() : String(err);
+    out.innerHTML = (buf ? '<span class="out-py">' + _esc(buf) + '</span>' : '') +
+                    '<span class="out-err">&#10007; ' + _esc(msg) + '</span>';
+  });
+}
+
+/* ── RUN CODE ── */
+function runCode() {
+  _store[_activeLang] = _editor.getValue();
+  if (_activeLang === 'sql')    { _runSQL(_store.sql); return; }
+  if (_activeLang === 'python') { _runPython(_store.python); return; }
+  var doc = '<!DOCTYPE html><html><head>' +
+    '<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">' +
+    '<style>' + _store.css + '<\/style><\/head><body>' + _store.html +
+    '<scr' + 'ipt>' + _store.js + '<\/scr' + 'ipt><\/body><\/html>';
+  document.getElementById('preview-frame').srcdoc = doc;
+}
+
+/* ── LOAD STARTER ── */
+function loadStarter(key) {
+  if (!key || typeof starters === 'undefined' || !starters[key]) return;
+  document.getElementById('starterSel').value = key;
+  var s = starters[key];
+  if (key.startsWith('sql_')) {
+    var btn = document.querySelector('.lt[data-lang="sql"]');
+    switchLang('sql', btn);
+    _store.sql = s.sql || '';
+    _editor.setValue(_store.sql);
+  } else if (key.startsWith('py_')) {
+    var btn = document.querySelector('.lt[data-lang="python"]');
+    switchLang('python', btn);
+    _store.python = s.python || '';
+    _editor.setValue(_store.python);
+  } else {
+    var btn = document.querySelector('.lt[data-lang="html"]');
+    switchLang('html', btn);
+    _store.html = s.html || '';
+    _store.css  = s.css  || '';
+    _store.js   = s.js   || '';
+    _editor.setValue(_store.html);
+    setTimeout(function(){ runCode(); }, 80);
+  }
+}
+
+/* ── RESET / CLEAR ── */
+function resetCode() {
+  var sel = document.getElementById('starterSel');
+  if (sel.value) { loadStarter(sel.value); return; }
+  if (_activeLang === 'sql')    { loadStarter('sql_basics'); return; }
+  if (_activeLang === 'python') { loadStarter('py_hello');   return; }
+  loadStarter('hello');
+}
+
+function clearAll() {
+  _store = { html:'', css:'', js:'', sql:'', python:'' };
+  _editor.setValue('');
+  document.getElementById('preview-frame').srcdoc = 'about:blank';
+  document.getElementById('output-panel').innerHTML = '';
+  document.getElementById('starterSel').value = '';
+}
+
+/* ── FULLSCREEN ── */
+function openFull() {
+  var f = document.getElementById('preview-frame');
+  if (f.requestFullscreen) f.requestFullscreen();
+  else if (f.webkitRequestFullscreen) f.webkitRequestFullscreen();
+}
+
+/* ── CHALLENGES ── */
+var _challenges = {
+  ch_card_html: {
+    lang: 'html',
+    html: `<div class="card">\n  <div class="card-img">📦</div>\n  <div class="card-body">\n    <h2>Premium Headphones</h2>\n    <p>Noise-cancelling, 30hr battery life</p>\n    <div class="price">₹4,999</div>\n    <button class="buy-btn">Buy Now</button>\n  </div>\n</div>`,
+    css: `* { box-sizing: border-box; margin: 0; padding: 0; }\nbody { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #f0f4f8; font-family: system-ui, sans-serif; }\n.card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.12); width: 280px; }\n.card-img { background: linear-gradient(135deg, #667eea, #764ba2); height: 180px; display: flex; align-items: center; justify-content: center; font-size: 4rem; }\n.card-body { padding: 20px; }\nh2 { font-size: 1.1rem; margin-bottom: 6px; }\np { color: #64748b; font-size: 0.85rem; margin-bottom: 12px; }\n.price { font-size: 1.4rem; font-weight: 700; color: #7c3aed; margin-bottom: 14px; }\n.buy-btn { width: 100%; padding: 10px; background: #7c3aed; color: white; border: none; border-radius: 8px; font-size: 0.9rem; cursor: pointer; transition: background 0.2s; }\n.buy-btn:hover { background: #6d28d9; }`,
+    js: ''
+  },
+  ch_spinner_html: {
+    lang: 'html',
+    html: `<div class="center">\n  <div class="spinner"></div>\n  <p>Loading...</p>\n</div>`,
+    css: `* { box-sizing: border-box; margin: 0; padding: 0; }\nbody { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #0f0f1a; font-family: system-ui, sans-serif; }\n.center { text-align: center; }\n.spinner {\n  width: 60px;\n  height: 60px;\n  border: 5px solid rgba(255,255,255,0.1);\n  border-top-color: #a855f7;\n  border-radius: 50%;\n  animation: spin 0.8s linear infinite;\n  margin: 0 auto 16px;\n}\np { color: rgba(255,255,255,0.5); font-size: 0.875rem; }\n@keyframes spin {\n  to { transform: rotate(360deg); }\n}`,
+    js: ''
+  },
+  ch_timer_js: {
+    lang: 'html',
+    html: `<div class="timer-box">\n  <div class="display" id="display">01:00</div>\n  <div class="btns">\n    <button onclick="startTimer()">Start</button>\n    <button onclick="pauseTimer()">Pause</button>\n    <button onclick="resetTimer()">Reset</button>\n  </div>\n</div>`,
+    css: `* { box-sizing: border-box; margin: 0; padding: 0; }\nbody { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #0f0f1a; font-family: system-ui, sans-serif; }\n.timer-box { text-align: center; }\n.display { font-size: 5rem; font-weight: 700; color: #22c55e; font-variant-numeric: tabular-nums; margin-bottom: 24px; }\n.btns { display: flex; gap: 12px; justify-content: center; }\nbutton { padding: 10px 22px; border: none; border-radius: 8px; font-size: 0.9rem; cursor: pointer; background: rgba(255,255,255,0.1); color: #fff; transition: background 0.2s; }\nbutton:hover { background: rgba(255,255,255,0.2); }`,
+    js: `// TODO: implement startTimer(), pauseTimer(), resetTimer()\nvar seconds = 60;\nvar interval = null;\n\nfunction updateDisplay() {\n  var m = Math.floor(seconds / 60);\n  var s = seconds % 60;\n  document.getElementById('display').textContent =\n    String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');\n}\n\nfunction startTimer() {\n  if (interval) return;\n  // Your code here\n}\n\nfunction pauseTimer() {\n  // Your code here\n}\n\nfunction resetTimer() {\n  // Your code here\n}`
+  },
+  ch_dupes_js: {
+    lang: 'html',
+    html: `<pre id="out"></pre>`,
+    css: `body { background: #0f0f1a; color: #e2e8f0; font-family: monospace; padding: 24px; }`,
+    js: `// Find all duplicate values in an array\nfunction findDuplicates(arr) {\n  // Your code here\n  return [];\n}\n\n// Test cases\nvar tests = [\n  [1, 2, 3, 2, 4, 3, 5],\n  ['apple', 'banana', 'apple', 'cherry'],\n  [1, 1, 1],\n  []\n];\n\nvar result = '';\ntests.forEach(function(t) {\n  result += 'Input:  ' + JSON.stringify(t) + '\\n';\n  result += 'Dupes:  ' + JSON.stringify(findDuplicates(t)) + '\\n\\n';\n});\ndocument.getElementById('out').textContent = result;`
+  },
+  ch_sql_orders: {
+    lang: 'sql',
+    sql: `-- Challenge: Find customers who placed more than 2 orders\n-- Expected: customer name + order count, sorted by count DESC\n\n-- Setup: create sample tables\nCREATE TABLE customers (\n  id INTEGER PRIMARY KEY,\n  name TEXT NOT NULL\n);\nCREATE TABLE orders (\n  id INTEGER PRIMARY KEY,\n  customer_id INTEGER,\n  amount REAL,\n  order_date TEXT\n);\nINSERT INTO customers VALUES\n  (1, 'Alice'), (2, 'Bob'), (3, 'Carol'), (4, 'David');\nINSERT INTO orders VALUES\n  (1,1,250,'2026-01-05'), (2,1,180,'2026-01-12'),\n  (3,1,320,'2026-02-01'), (4,2,450,'2026-01-08'),\n  (5,3,90,'2026-01-20'),  (6,3,210,'2026-02-05'),\n  (7,3,175,'2026-02-15'), (8,4,680,'2026-01-15');\n\n-- Write your query below:\nSELECT\n  -- your SELECT here\nFROM orders o\nJOIN customers c ON o.customer_id = c.id\n-- GROUP BY and HAVING here\n;`
+  },
+  ch_sql_growth: {
+    lang: 'sql',
+    sql: `-- Challenge: Month-over-month revenue growth using LAG()\n-- Show: month, revenue, prev_month_revenue, growth_pct\n\nCREATE TABLE monthly_revenue (\n  month TEXT,\n  revenue REAL\n);\nINSERT INTO monthly_revenue VALUES\n  ('2026-01', 45000),\n  ('2026-02', 52000),\n  ('2026-03', 48000),\n  ('2026-04', 61000),\n  ('2026-05', 71500);\n\n-- Hint: SQLite supports window functions\n-- LAG(revenue, 1) OVER (ORDER BY month) gives previous month revenue\n-- growth_pct = ROUND(100.0 * (revenue - prev) / prev, 2)\n\nSELECT\n  month,\n  revenue,\n  -- add your window function columns here\nFROM monthly_revenue\nORDER BY month;`
+  },
+  ch_py_wordcount: {
+    lang: 'python',
+    python: `# Challenge: Count word frequencies\n# Words should be lowercased, punctuation removed\n\ndef word_frequency(text):\n    # Your code here\n    pass\n\n# Tests\ntext1 = "Hello world hello Python world world"\ntext2 = "To be or not to be that is the question"\n\nprint("Test 1:", word_frequency(text1))\nprint("Expected: {'hello': 2, 'world': 3, 'python': 1}")\nprint()\nprint("Test 2:", word_frequency(text2))\n`
+  },
+  ch_py_stats: {
+    lang: 'python',
+    python: `# Challenge: Calculate basic statistics without importing libraries\n# Implement mean, median, mode, std_dev\n\ndef mean(nums):\n    # Your code here\n    pass\n\ndef median(nums):\n    # Your code here\n    pass\n\ndef mode(nums):\n    # Return most frequent value\n    # Your code here\n    pass\n\ndef std_dev(nums):\n    # Standard deviation\n    # Your code here\n    pass\n\n# Test\ndata = [4, 8, 6, 5, 3, 2, 8, 9, 2, 5]\nprint("Data:    ", data)\nprint("Mean:    ", mean(data))\nprint("Median:  ", median(data))\nprint("Mode:    ", mode(data))\nprint("Std Dev: ", std_dev(data))\n`
+  }
+};
+
+function loadChallenge(key) {
+  var ch = _challenges[key];
+  if (!ch) return;
+  var lang = ch.lang;
+  if (lang === 'sql') {
+    var btn = document.querySelector('.lt[data-lang="sql"]');
+    switchLang('sql', btn);
+    _store.sql = ch.sql;
+    _editor.setValue(_store.sql);
+  } else if (lang === 'python') {
+    var btn = document.querySelector('.lt[data-lang="python"]');
+    switchLang('python', btn);
+    _store.python = ch.python;
+    _editor.setValue(_store.python);
+  } else {
+    var btn = document.querySelector('.lt[data-lang="html"]');
+    switchLang('html', btn);
+    _store.html = ch.html || '';
+    _store.css  = ch.css  || '';
+    _store.js   = ch.js   || '';
+    _editor.setValue(_store.html);
+    setTimeout(function(){ runCode(); }, 80);
+  }
+  document.getElementById('playground').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.getElementById('starterSel').value = '';
+}
+</script>
+
+<!-- LANG INFO SLIDE -->
+<div class="lang-overlay" id="lang-overlay" onclick="closeLangSlide()"></div>
+<div class="lang-slide" id="lang-slide">
+  <div class="ls-hdr">
+    <div class="ls-accent-bar" id="ls-bar"></div>
+    <div class="ls-top">
+      <span class="ls-icon" id="ls-icon"></span>
+      <button class="ls-close" onclick="closeLangSlide()">&#10005;</button>
+    </div>
+    <div class="ls-lang-name" id="ls-name"></div>
+    <div class="ls-tagline" id="ls-tagline"></div>
+  </div>
+  <div class="ls-body">
+    <div class="ls-facts" id="ls-facts"></div>
+    <div>
+      <div class="ls-block-label">History</div>
+      <div class="ls-block-text" id="ls-history"></div>
+    </div>
+    <div>
+      <div class="ls-block-label">What it means</div>
+      <div class="ls-block-text" id="ls-meaning"></div>
+    </div>
+    <div>
+      <div class="ls-block-label">Why learn it</div>
+      <div class="ls-why-list" id="ls-why"></div>
+    </div>
+  </div>
+  <div class="ls-footer">
+    <a id="ls-cta" href="#playground" class="ls-cta" onclick="closeLangSlide()">Start coding in the Playground &#8594;</a>
+  </div>
+</div>
+
+<script>
+const _langData = {
+  html: {
+    icon: '🌐', name: 'HTML', tagline: 'HyperText Markup Language',
+    color: '#f97316', dot: 'rgba(249,115,22,0.15)',
+    facts: [{ l:'Created by', v:'Tim Berners-Lee' },{ l:'Year', v:'1991' },{ l:'Current version', v:'HTML5 (2014)' },{ l:'Maintained by', v:'W3C & WHATWG' }],
+    history: 'HTML was invented in 1991 by Tim Berners-Lee, a British scientist at CERN, while working on a way to share research documents across the internet. The first public version had just 18 tags. HTML 2.0 standardized it in 1995, HTML4 added stylesheets support in 1997, and HTML5 in 2014 brought audio, video, canvas, and semantic elements that power the modern web.',
+    meaning: 'HTML stands for HyperText Markup Language. "HyperText" means text that links to other text — what we call hyperlinks. "Markup" means you annotate content with tags that tell the browser what each piece is — a heading, a paragraph, a button, an image. It is the skeleton of every webpage on the internet.',
+    why: [
+      { icon:'🏗️', text:'<strong>Foundation of the web</strong> — every website, web app, and email template is built on HTML. You cannot build anything for the web without it.' },
+      { icon:'⚡', text:'<strong>Easiest language to start with</strong> — no setup, no compiler. Open Notepad, write a tag, open in browser. Results in seconds.' },
+      { icon:'💼', text:'<strong>Job requirement</strong> — every front-end developer, UI/UX designer, and digital marketer role lists HTML as a must-have skill.' },
+      { icon:'🔗', text:'<strong>Gateway skill</strong> — once you know HTML, learning CSS and JavaScript becomes natural because they all build on each other.' }
+    ]
+  },
+  css: {
+    icon:'🎨', name:'CSS', tagline:'Cascading Style Sheets',
+    color:'#3b82f6', dot:'rgba(59,130,246,0.15)',
+    facts:[{ l:'Created by', v:'Håkon Wium Lie' },{ l:'Year', v:'1996' },{ l:'Current version', v:'CSS3 (modules)' },{ l:'Maintained by', v:'W3C' }],
+    history: 'CSS was proposed in 1994 by Håkon Wium Lie while working with Tim Berners-Lee at CERN. Before CSS, all styling was done inside HTML tags — chaotic and hard to maintain. CSS1 was released in 1996 by the W3C, separating design from content. CSS2 added positioning and media types in 1998. CSS3, released as independent modules from 2011 onwards, introduced animations, flexbox, grid, and custom properties that make modern responsive design possible.',
+    meaning: 'CSS stands for Cascading Style Sheets. "Cascading" means rules flow from parent to child elements and multiple stylesheets can apply in priority order. "Style Sheets" are the documents that define visual presentation — colors, fonts, spacing, layout, and animation. CSS is what turns raw HTML structure into beautiful, usable design.',
+    why: [
+      { icon:'🎯', text:'<strong>Makes things look professional</strong> — without CSS, every website would look like a plain text document from 1995.' },
+      { icon:'📱', text:'<strong>Responsive design</strong> — CSS media queries let one codebase adapt to mobile, tablet, and desktop screen sizes automatically.' },
+      { icon:'🚀', text:'<strong>Modern animations & UI</strong> — CSS transitions, keyframes, and transforms create smooth interactions without any JavaScript.' },
+      { icon:'🧩', text:'<strong>Component-based thinking</strong> — understanding CSS deeply helps you work with every UI framework: React, Vue, Tailwind, Bootstrap.' }
+    ]
+  },
+  js: {
+    icon:'⚡', name:'JavaScript', tagline:'The Language of the Web',
+    color:'#facc15', dot:'rgba(250,204,21,0.12)',
+    facts:[{ l:'Created by', v:'Brendan Eich' },{ l:'Year', v:'1995' },{ l:'Current standard', v:'ES2024 (ES15)' },{ l:'Runs on', v:'Browser + Node.js' }],
+    history: 'JavaScript was created in just 10 days in 1995 by Brendan Eich at Netscape. Originally named Mocha, then LiveScript, it was renamed JavaScript as a marketing move to ride Java\'s popularity — despite having almost nothing in common with Java. Standardized as ECMAScript in 1997, it became the only programming language browsers natively understand. The 2009 release of Node.js brought JavaScript to servers. ES6 in 2015 modernized the language with classes, arrow functions, and modules.',
+    meaning: 'JavaScript is a high-level, interpreted scripting language that makes webpages interactive. Where HTML defines structure and CSS defines appearance, JavaScript defines behavior — what happens when you click a button, how a dropdown opens, how data fetches from a server without reloading the page. Today it runs everywhere: browsers, servers, mobile apps, and even machine learning.',
+    why: [
+      { icon:'🌍', text:'<strong>Only language browsers understand natively</strong> — if you want to build anything interactive on the web, JavaScript is not optional.' },
+      { icon:'🛠️', text:'<strong>Full-stack capability</strong> — with Node.js you can build both the frontend and backend in one language, reducing context switching.' },
+      { icon:'📈', text:'<strong>Most in-demand language</strong> — JavaScript has been the #1 most-used language on GitHub and Stack Overflow for over 10 years straight.' },
+      { icon:'🤖', text:'<strong>Powers modern AI tools</strong> — ChatGPT\'s interface, GitHub Copilot\'s editor plugin, and most web-based data dashboards are built in JS.' }
+    ]
+  },
+  sql: {
+    icon:'🗄️', name:'SQL', tagline:'Structured Query Language',
+    color:'#a855f7', dot:'rgba(168,85,247,0.15)',
+    facts:[{ l:'Created by', v:'Chamberlin & Boyce' },{ l:'Year', v:'1974 (IBM)' },{ l:'Standardized', v:'ANSI/ISO 1986' },{ l:'Used in', v:'Every major database' }],
+    history: 'SQL was developed at IBM in the early 1970s by Donald Chamberlin and Raymond Boyce, based on E.F. Codd\'s 1970 relational model theory. Originally called SEQUEL (Structured English Query Language), it was renamed SQL due to a trademark conflict. Oracle became the first commercial RDBMS using SQL in 1979. It was standardized by ANSI in 1986 and ISO in 1987. Today every major database — MySQL, PostgreSQL, SQLite, SQL Server, BigQuery — uses SQL as its query language.',
+    meaning: 'SQL stands for Structured Query Language. "Structured" means it follows rigid grammar rules. "Query Language" means it is designed specifically to ask questions of, and give instructions to, a database. It handles four core operations — SELECT (read), INSERT (create), UPDATE (modify), and DELETE (remove) — known together as CRUD. It is not a general programming language; it is a domain-specific language built entirely around data.',
+    why: [
+      { icon:'📊', text:'<strong>Core skill for every data role</strong> — Data Analyst, Data Scientist, Data Engineer, BI Developer — every single one requires SQL proficiency.' },
+      { icon:'💰', text:'<strong>Highest ROI skill to learn</strong> — SQL is one of the most learnable languages (days, not months) yet it appears in 60%+ of data job postings.' },
+      { icon:'🔍', text:'<strong>Where the data actually lives</strong> — 90% of business data sits in relational databases. SQL is the key to accessing it without depending on an engineer.' },
+      { icon:'🚀', text:'<strong>Scales to big data</strong> — SQL knowledge transfers directly to BigQuery, Redshift, Snowflake, Spark SQL — all billion-row cloud warehouses use it.' }
+    ]
+  },
+  python: {
+    icon:'🐍', name:'Python', tagline:'Simple. Powerful. Everywhere.',
+    color:'#22c55e', dot:'rgba(34,197,94,0.12)',
+    facts:[{ l:'Created by', v:'Guido van Rossum' },{ l:'Year', v:'1991' },{ l:'Current version', v:'Python 3.13 (2024)' },{ l:'Named after', v:'Monty Python\'s Flying Circus' }],
+    history: 'Python was created by Guido van Rossum, a Dutch programmer, and first released in 1991. Van Rossum began working on it in December 1989 during his Christmas holiday as a successor to the ABC language. He named it after Monty Python\'s Flying Circus because he wanted a name that was short, unique, and slightly mysterious. Python 2.0 in 2000 added garbage collection and list comprehensions. Python 3.0 in 2008 was a major redesign that broke backward compatibility to fix fundamental design flaws. Python 2 was officially retired in 2020.',
+    meaning: 'Python is a high-level, general-purpose programming language designed for readability and simplicity. Its philosophy — often called "Pythonic" — emphasizes that code should be readable like plain English. It uses indentation instead of brackets to define code blocks, making it visually clean. Python is "interpreted" meaning it runs line by line without needing to be compiled, making rapid experimentation and iteration natural.',
+    why: [
+      { icon:'🧬', text:'<strong>#1 language for data science & AI</strong> — pandas, NumPy, scikit-learn, TensorFlow, PyTorch — the entire data and ML ecosystem is Python-first.' },
+      { icon:'📖', text:'<strong>Easiest to learn after SQL</strong> — Python\'s syntax reads almost like English. "for item in list" does exactly what it says. Beginners progress fast.' },
+      { icon:'⚙️', text:'<strong>Automate everything</strong> — from scraping websites to scheduling reports to sending emails, Python lets you automate repetitive tasks in dozens of lines.' },
+      { icon:'🌐', text:'<strong>Most versatile language</strong> — web backends (Django/Flask), data pipelines, machine learning, scripting, APIs — Python is the one language that does it all.' }
+    ]
+  }
+};
+
+function openLangSlide(key) {
+  var d = _langData[key];
+  if (!d) return;
+  document.getElementById('ls-bar').style.background = d.color;
+  document.getElementById('ls-icon').textContent = d.icon;
+  document.getElementById('ls-name').innerHTML = d.name;
+  document.getElementById('ls-tagline').textContent = d.tagline;
+  document.getElementById('ls-history').textContent = d.history;
+  document.getElementById('ls-meaning').textContent = d.meaning;
+  document.getElementById('ls-facts').innerHTML = d.facts.map(function(f){
+    return '<div class="ls-fact" style="border-color:'+d.dot+'">' +
+      '<div class="ls-fact-label">'+f.l+'</div>' +
+      '<div class="ls-fact-val">'+f.v+'</div>' +
+    '</div>';
+  }).join('');
+  document.getElementById('ls-why').innerHTML = d.why.map(function(w){
+    return '<div class="ls-why-item">' +
+      '<div class="ls-why-dot" style="background:'+d.dot+';color:'+d.color+'">'+w.icon+'</div>' +
+      '<div class="ls-why-text">'+w.text+'</div>' +
+    '</div>';
+  }).join('');
+  document.getElementById('ls-cta').style.background = d.color;
+  document.getElementById('lang-overlay').classList.add('open');
+  document.getElementById('lang-slide').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLangSlide() {
+  document.getElementById('lang-overlay').classList.remove('open');
+  document.getElementById('lang-slide').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeLangSlide(); });
+</script>
+
+<!-- HAMBURGER MENU JS -->
+<script>
+(function() {
+  var btn = document.getElementById('hamBtn');
+  var nav = document.getElementById('mobileNav');
+  if (!btn || !nav) return;
+  btn.addEventListener('click', function() {
+    var isOpen = nav.classList.contains('open');
+    if (isOpen) {
+      nav.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      nav.setAttribute('aria-hidden', 'true');
+    } else {
+      nav.classList.add('open');
+      btn.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      nav.setAttribute('aria-hidden', 'false');
+    }
+  });
+})();
+function closeMobileNav() {
+  var btn = document.getElementById('hamBtn');
+  var nav = document.getElementById('mobileNav');
+  if (nav) { nav.classList.remove('open'); nav.setAttribute('aria-hidden', 'true'); }
+  if (btn) { btn.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }
+}
+</script>
+</body>
+</html>

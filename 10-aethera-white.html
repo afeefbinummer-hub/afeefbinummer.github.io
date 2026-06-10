@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aethera — Cinematic White Hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    background: #fff;
+    color: #000;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ── Animations ── */
+  @keyframes fade-rise {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .anim       { animation: fade-rise 0.8s ease-out both; }
+  .anim-d1    { animation: fade-rise 0.8s 0.2s ease-out both; }
+  .anim-d2    { animation: fade-rise 0.8s 0.4s ease-out both; }
+
+  /* ── Hero ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  /* ── Video ── */
+  .video-wrap {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .video-bg {
+    position: absolute;
+    top: 300px; left: 0; right: 0; bottom: 0;
+    width: 100%; height: calc(100% - 300px);
+    object-fit: cover;
+    opacity: 0;
+  }
+  .grad-top {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, #fff 0%, transparent 40%, #fff 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* ── Navbar ── */
+  .nav {
+    position: relative;
+    z-index: 20;
+    padding: 1.5rem 2rem;
+    max-width: 80rem;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    animation: fade-rise 0.6s ease-out both;
+  }
+  @media(max-width:640px){ .nav { padding: 1.25rem; } }
+
+  .nav-logo {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.875rem;
+    letter-spacing: -0.03em;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo sup { font-size: 0.75rem; font-style: normal; }
+
+  .nav-links {
+    display: none;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  @media(min-width:768px){ .nav-links { display: flex; } }
+  .nav-links a {
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a.active { color: #000; }
+  .nav-links a:not(.active) { color: #6f6f6f; }
+  .nav-links a:hover { color: #000; }
+
+  .nav-cta {
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 9999px;
+    padding: 0.625rem 1.5rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    font-family: inherit;
+    transition: transform 0.2s;
+  }
+  .nav-cta:hover { transform: scale(1.03); }
+
+  /* ── Hero content ── */
+  .hero-body {
+    position: relative;
+    z-index: 10;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 1.5rem 10rem;
+  }
+
+  .hero-h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+    max-width: 80rem;
+    color: #000;
+    margin-bottom: 2rem;
+  }
+  .hero-h1 em {
+    font-style: italic;
+    color: #6f6f6f;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    color: #6f6f6f;
+    max-width: 40rem;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+  }
+
+  .hero-btn {
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 9999px;
+    padding: 1.25rem 3.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: inherit;
+    transition: transform 0.2s;
+  }
+  .hero-btn:hover { transform: scale(1.03); }
+  /* ── Mobile nav ── */
+  .hamburger-btn {
+    display: none;
+    flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; background: none; border: none; cursor: pointer;
+    padding: 4px; min-height: 44px; min-width: 44px;
+  }
+  @media(max-width:767px){ .hamburger-btn { display: flex; } }
+  @media(max-width:767px){ .nav-cta { display: none; } }
+  .hamburger-btn span {
+    display: block; width: 22px; height: 2px;
+    background: #000; border-radius: 2px;
+  }
+  .mobile-nav {
+    display: none; position: fixed;
+    top: 0; left: 0; right: 0; z-index: 200;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .mobile-nav.open { display: block; }
+  .mobile-nav-hdr {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1.25rem;
+  }
+  .mobile-nav-brand {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.5rem; letter-spacing: -0.03em; color: #000;
+  }
+  .mobile-nav-close {
+    background: none; border: none;
+    color: rgba(0,0,0,0.5); font-size: 1.4rem; cursor: pointer;
+  }
+  .mobile-nav-links { list-style: none; }
+  .mobile-nav-links a {
+    display: block; padding: 13px 0;
+    color: #374151; text-decoration: none;
+    font-size: 0.9375rem; font-weight: 500;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+  }
+  .mobile-nav-links li:last-child a { border-bottom: none; }
+  img { max-width: 100%; height: auto; }
+</style>
+</head>
+<body>
+<div class="hero">
+
+  <div class="video-wrap">
+    <video class="video-bg" id="bgVid" autoplay muted playsinline preload="auto"
+      src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_083109_283f3553-e28f-428b-a723-d639c617eb2b.mp4">
+    </video>
+    <div class="grad-top"></div>
+  </div>
+
+  <nav class="nav">
+    <a class="nav-logo" href="#">Aethera<sup>®</sup></a>
+    <ul class="nav-links">
+      <li><a href="#" class="active">Home</a></li>
+      <li><a href="#">Studio</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Journal</a></li>
+      <li><a href="#">Reach Us</a></li>
+    </ul>
+    <button class="hamburger-btn" onclick="openMobileNav()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <button class="nav-cta">Begin Journey</button>
+  </nav>
+
+  <div class="hero-body">
+    <h1 class="hero-h1 anim">
+      Beyond silence,<br>we build <em>the eternal.</em>
+    </h1>
+    <p class="hero-sub anim-d1">
+      Building platforms for brilliant minds, fearless makers, and thoughtful souls.
+      Through the noise, we craft digital havens for deep work and pure flows.
+    </p>
+    <button class="hero-btn anim-d2">Begin Journey</button>
+  </div>
+
+</div>
+
+<script>
+  // ── Smooth fade loop for video ──
+  const vid = document.getElementById('bgVid');
+  let raf = 0, fadingOut = false;
+  const FADE = 500, LEAD = 0.55;
+
+  function fadeTo(target, ms) {
+    cancelAnimationFrame(raf);
+    const t0 = performance.now();
+    const from = parseFloat(vid.style.opacity) || 0;
+    function step(now) {
+      const p = Math.min((now - t0) / ms, 1);
+      vid.style.opacity = from + (target - from) * p;
+      if (p < 1) raf = requestAnimationFrame(step);
+    }
+    raf = requestAnimationFrame(step);
+  }
+
+  vid.addEventListener('loadeddata', () => {
+    vid.style.opacity = 0;
+    vid.play().catch(() => {});
+    fadeTo(1, FADE);
+  });
+  vid.addEventListener('timeupdate', () => {
+    if (!fadingOut && vid.duration && vid.duration - vid.currentTime <= LEAD) {
+      fadingOut = true; fadeTo(0, FADE);
+    }
+  });
+  vid.addEventListener('ended', () => {
+    vid.style.opacity = 0;
+    setTimeout(() => {
+      vid.currentTime = 0; vid.play().catch(() => {});
+      fadingOut = false; fadeTo(1, FADE);
+    }, 100);
+  });
+</script>
+
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-hdr">
+    <span class="mobile-nav-brand">Aethera®</span>
+    <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
+  </div>
+  <ul class="mobile-nav-links">
+    <li><a href="#" onclick="closeMobileNav()">Home</a></li>
+    <li><a href="#" onclick="closeMobileNav()">Studio</a></li>
+    <li><a href="#" onclick="closeMobileNav()">About</a></li>
+    <li><a href="#" onclick="closeMobileNav()">Journal</a></li>
+    <li><a href="#" onclick="closeMobileNav()">Reach Us</a></li>
+  </ul>
+</div>
+<script>
+  function openMobileNav() { document.getElementById('mobileNav').classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); document.body.style.overflow=''; }
+</script>
+</body>
+</html>

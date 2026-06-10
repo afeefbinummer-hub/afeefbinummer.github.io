@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asme — Liquid Glass Hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    background: #000;
+    color: #fff;
+    font-family: system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── Liquid Glass ── */
+  .liquid-glass {
+    background: rgba(255,255,255,0.01);
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: none;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  .liquid-glass::before {
+    content: '';
+    position: absolute; inset: 0;
+    border-radius: inherit;
+    padding: 1.4px;
+    background: linear-gradient(180deg,
+      rgba(255,255,255,0.45) 0%,
+      rgba(255,255,255,0.15) 20%,
+      rgba(255,255,255,0) 40%,
+      rgba(255,255,255,0) 60%,
+      rgba(255,255,255,0.15) 80%,
+      rgba(255,255,255,0.45) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* ── Hero wrapper ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* ── Video background ── */
+  .video-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transform: translateY(17%);
+    opacity: 0;
+    z-index: 0;
+  }
+
+  /* ── Navbar ── */
+  .nav {
+    position: relative;
+    z-index: 20;
+    padding: 1.5rem;
+  }
+  .nav-inner {
+    max-width: 64rem;
+    margin: 0 auto;
+    border-radius: 9999px;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 1.125rem;
+    color: #fff;
+  }
+  .nav-logo svg { width: 24px; height: 24px; }
+  .nav-links {
+    display: none;
+    gap: 2rem;
+    list-style: none;
+  }
+  @media(min-width:768px) { .nav-links { display: flex; } }
+  .nav-links a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: #fff; }
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .nav-signup {
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 500;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .nav-login {
+    border-radius: 9999px;
+    padding: 0.5rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+  }
+
+  /* ── Hero content ── */
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+    text-align: center;
+    transform: translateY(-20%);
+  }
+
+  .hero-heading {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    white-space: nowrap;
+    animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both;
+  }
+
+  /* ── Email bar ── */
+  .email-bar {
+    max-width: 36rem;
+    width: 100%;
+    border-radius: 9999px;
+    padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    animation: fadeUp 0.9s 0.15s cubic-bezier(0.16,1,0.3,1) both;
+  }
+  .email-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 1rem;
+    font-family: inherit;
+  }
+  .email-input::placeholder { color: rgba(255,255,255,0.4); }
+  .email-submit {
+    background: #fff;
+    border-radius: 9999px;
+    width: 2.75rem; height: 2.75rem;
+    display: flex; align-items: center; justify-content: center;
+    border: none; cursor: pointer;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+  .email-submit:hover { transform: scale(1.05); }
+  .email-submit svg { color: #000; width: 20px; height: 20px; }
+
+  /* ── Subtitle ── */
+  .hero-subtitle {
+    color: #fff;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    max-width: 28rem;
+    padding: 0 1rem;
+    opacity: 0.85;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.9s 0.25s cubic-bezier(0.16,1,0.3,1) both;
+  }
+
+  /* ── Manifesto button ── */
+  .manifesto-btn {
+    border-radius: 9999px;
+    padding: 0.75rem 2rem;
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s;
+    animation: fadeUp 0.9s 0.35s cubic-bezier(0.16,1,0.3,1) both;
+  }
+  .manifesto-btn:hover { background: rgba(255,255,255,0.05); }
+
+  /* ── Social footer ── */
+  .social-footer {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding-bottom: 3rem;
+    animation: fadeUp 0.9s 0.45s cubic-bezier(0.16,1,0.3,1) both;
+  }
+  .social-btn {
+    border-radius: 9999px;
+    padding: 1rem;
+    display: flex; align-items: center; justify-content: center;
+    border: none; cursor: pointer;
+    color: rgba(255,255,255,0.8);
+    transition: color 0.2s, background 0.2s;
+  }
+  .social-btn:hover { color: #fff; background: rgba(255,255,255,0.05); }
+  .social-btn svg { width: 20px; height: 20px; }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  /* ── Mobile nav ── */
+  .hamburger-btn {
+    display: none;
+    flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; background: none; border: none; cursor: pointer;
+    padding: 4px; min-height: 44px; min-width: 44px;
+  }
+  @media(max-width:767px){ .hamburger-btn { display: flex; } }
+  @media(max-width:767px){ .nav-signup, .nav-login { display: none; } }
+  @media(max-width:767px){ .hero-heading { white-space: normal; } }
+  .hamburger-btn span {
+    display: block; width: 22px; height: 2px;
+    background: rgba(255,255,255,0.9); border-radius: 2px;
+  }
+  .mobile-nav {
+    display: none; position: fixed;
+    top: 0; left: 0; right: 0; z-index: 200;
+    background: rgba(0,0,0,0.97);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .mobile-nav.open { display: block; }
+  .mobile-nav-hdr {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1.25rem;
+  }
+  .mobile-nav-brand { font-size: 1.125rem; font-weight: 600; color: #fff; }
+  .mobile-nav-close {
+    background: none; border: none;
+    color: rgba(255,255,255,0.6); font-size: 1.4rem; cursor: pointer;
+  }
+  .mobile-nav-links { list-style: none; }
+  .mobile-nav-links a {
+    display: block; padding: 13px 0;
+    color: rgba(255,255,255,0.85); text-decoration: none;
+    font-size: 0.9375rem; font-weight: 500;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .mobile-nav-links li:last-child a { border-bottom: none; }
+  img { max-width: 100%; height: auto; }
+</style>
+</head>
+<body>
+<a href="tum.html" style="position:fixed;top:14px;left:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:rgba(0,0,0,0.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.18);border-radius:999px;color:#fff;font-family:system-ui,sans-serif;font-size:0.75rem;font-weight:600;text-decoration:none;letter-spacing:0.02em;transition:background 0.2s;" onmouseover="this.style.background='rgba(0,0,0,0.85)'" onmouseout="this.style.background='rgba(0,0,0,0.6)'"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>Templates</a>
+<div class="hero">
+
+  <!-- Video background -->
+  <video class="video-bg" id="bgVideo" autoplay muted playsinline preload="auto"
+    src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_115001_bcdaa3b4-03de-47e7-ad63-ae3e392c32d4.mp4">
+  </video>
+
+  <!-- Navbar -->
+  <nav class="nav">
+    <div class="nav-inner liquid-glass">
+      <div class="nav-logo">
+        <!-- Globe icon -->
+        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+        Asme
+      </div>
+      <ul class="nav-links">
+        <li><a href="#">Features</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="nav-signup">Sign Up</button>
+        <button class="nav-login liquid-glass">Login</button>
+        <button class="hamburger-btn" onclick="openMobileNav()" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero content -->
+  <div class="hero-content">
+    <h1 class="hero-heading">Built for the curious</h1>
+
+    <!-- Email bar -->
+    <div class="email-bar liquid-glass">
+      <input class="email-input" type="email" placeholder="Enter your email">
+      <button class="email-submit">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
+
+    <p class="hero-subtitle">
+      Stay updated with the latest news and insights. Subscribe to our newsletter today and never miss out on exciting updates.
+    </p>
+
+    <button class="manifesto-btn liquid-glass">Read our manifesto</button>
+  </div>
+
+  <!-- Social icons -->
+  <div class="social-footer">
+    <!-- Instagram -->
+    <button class="social-btn liquid-glass" aria-label="Instagram">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+        <rect x="2" y="2" width="20" height="20" rx="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+      </svg>
+    </button>
+    <!-- Twitter/X -->
+    <button class="social-btn liquid-glass" aria-label="Twitter">
+      <svg fill="currentColor" viewBox="0 0 24 24">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+      </svg>
+    </button>
+    <!-- Globe -->
+    <button class="social-btn liquid-glass" aria-label="Website">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+      </svg>
+    </button>
+  </div>
+
+</div>
+
+<script>
+  // ── Custom JS fade loop (no CSS transitions) ──
+  const video = document.getElementById('bgVideo');
+  const FADE_MS = 500;
+  const FADE_OUT_LEAD = 0.55;
+  let rafId = 0;
+  let fadingOut = false;
+
+  function fadeTo(target, duration) {
+    cancelAnimationFrame(rafId);
+    const start = performance.now();
+    const from = parseFloat(video.style.opacity) || 0;
+    function step(now) {
+      const t = Math.min((now - start) / duration, 1);
+      video.style.opacity = from + (target - from) * t;
+      if (t < 1) rafId = requestAnimationFrame(step);
+    }
+    rafId = requestAnimationFrame(step);
+  }
+
+  video.addEventListener('loadeddata', () => {
+    video.style.opacity = 0;
+    video.play().catch(() => {});
+    fadeTo(1, FADE_MS);
+  });
+
+  video.addEventListener('timeupdate', () => {
+    if (!fadingOut && video.duration && (video.duration - video.currentTime) <= FADE_OUT_LEAD) {
+      fadingOut = true;
+      fadeTo(0, FADE_MS);
+    }
+  });
+
+  video.addEventListener('ended', () => {
+    video.style.opacity = 0;
+    setTimeout(() => {
+      video.currentTime = 0;
+      video.play().catch(() => {});
+      fadingOut = false;
+      fadeTo(1, FADE_MS);
+    }, 100);
+  });
+</script>
+
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-hdr">
+    <span class="mobile-nav-brand">Asme</span>
+    <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
+  </div>
+  <ul class="mobile-nav-links">
+    <li><a href="#" onclick="closeMobileNav()">Features</a></li>
+    <li><a href="#" onclick="closeMobileNav()">Pricing</a></li>
+    <li><a href="#" onclick="closeMobileNav()">About</a></li>
+  </ul>
+</div>
+<script>
+  function openMobileNav() { document.getElementById('mobileNav').classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); document.body.style.overflow=''; }
+</script>
+</body>
+</html>

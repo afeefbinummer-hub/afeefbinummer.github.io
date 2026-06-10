@@ -1,0 +1,3015 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Premium Notes — Afeef Ummer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      :root {
+        --bg: #07070f;
+        --bg2: #0e0e1a;
+        --glass: rgba(255, 255, 255, 0.04);
+        --glass-border: rgba(255, 255, 255, 0.08);
+        --purple: #a855f7;
+        --purple-dim: #7c3aed;
+        --blue: #3b82f6;
+        --cyan: #06b6d4;
+        --white: #ffffff;
+        --muted: rgba(255, 255, 255, 0.5);
+        --dim: rgba(255, 255, 255, 0.25);
+        --serif: "Instrument Serif", Georgia, serif;
+        --sans: "Inter", system-ui, sans-serif;
+        --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      body {
+        font-family: var(--sans);
+        background: var(--bg);
+        color: var(--white);
+        line-height: 1.7;
+        overflow-x: hidden;
+      }
+
+      /* ── NAVBAR ── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 48px;
+        background: rgba(7, 7, 15, 0.75);
+        backdrop-filter: blur(18px);
+        border-bottom: 1px solid var(--glass-border);
+      }
+      .nav-logo {
+        font-family: var(--serif);
+        font-size: 1.5rem;
+        color: var(--white);
+        text-decoration: none;
+        letter-spacing: -0.02em;
+      }
+      .nav-logo span {
+        color: var(--purple);
+      }
+      .nav-links {
+        display: flex;
+        gap: 28px;
+        list-style: none;
+      }
+      .nav-links a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--white);
+      }
+      .nav-links a.active {
+        color: var(--purple);
+      }
+      .nav-premium {
+        background: linear-gradient(135deg, #c8951a, #f5c53a);
+        color: #1a0800 !important;
+        border-radius: 999px;
+        padding: 3px 11px 4px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        text-decoration: none !important;
+        box-shadow: 0 0 10px rgba(240, 185, 42, 0.28);
+        transition:
+          box-shadow 0.2s,
+          transform 0.15s;
+        white-space: nowrap;
+      }
+      .nav-premium:hover {
+        box-shadow: 0 0 20px rgba(240, 185, 42, 0.55) !important;
+        transform: translateY(-1px);
+        color: #1a0800 !important;
+      }
+      .nav-cta {
+        background: linear-gradient(135deg, var(--purple-dim), var(--blue));
+        color: #fff;
+        padding: 8px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 600;
+        transition: opacity 0.2s;
+      }
+      .nav-cta:hover {
+        opacity: 0.85;
+      }
+
+      /* ── HERO ── */
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+      }
+      #heroVid {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.18;
+        z-index: 0;
+      }
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse 80% 60% at 20% 50%,
+            rgba(124, 58, 237, 0.25) 0%,
+            transparent 70%
+          ),
+          radial-gradient(
+            ellipse 60% 50% at 80% 30%,
+            rgba(59, 130, 246, 0.15) 0%,
+            transparent 60%
+          ),
+          linear-gradient(
+            to bottom,
+            var(--bg) 0%,
+            transparent 20%,
+            transparent 80%,
+            var(--bg) 100%
+          );
+        z-index: 1;
+      }
+      .hero-inner {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 120px 48px 80px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: center;
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(168, 85, 247, 0.12);
+        border: 1px solid rgba(168, 85, 247, 0.3);
+        border-radius: 100px;
+        padding: 6px 16px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--purple);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+        animation: fadeUp 0.8s 0s var(--ease) both;
+      }
+      .hero-badge::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        background: var(--purple);
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.5);
+        }
+        50% {
+          box-shadow: 0 0 0 6px rgba(168, 85, 247, 0);
+        }
+      }
+      .hero-h1 {
+        font-family: var(--serif);
+        font-size: clamp(2.8rem, 5vw, 4.2rem);
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        margin-bottom: 20px;
+        animation: fadeUp 0.8s 0.1s var(--ease) both;
+      }
+      .hero-h1 em {
+        font-style: italic;
+        color: var(--purple);
+      }
+      .hero-sub {
+        font-size: 1.05rem;
+        color: var(--muted);
+        max-width: 460px;
+        margin-bottom: 36px;
+        line-height: 1.75;
+        animation: fadeUp 0.8s 0.2s var(--ease) both;
+      }
+      .hero-btns {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        animation: fadeUp 0.8s 0.3s var(--ease) both;
+      }
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(
+          135deg,
+          var(--purple-dim) 0%,
+          var(--blue) 100%
+        );
+        color: #fff;
+        padding: 13px 28px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition:
+          transform 0.2s var(--ease),
+          box-shadow 0.2s;
+        box-shadow: 0 0 30px rgba(124, 58, 237, 0.4);
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 50px rgba(124, 58, 237, 0.6);
+      }
+      .btn-outline {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: transparent;
+        border: 1px solid var(--glass-border);
+        color: var(--white);
+        padding: 13px 28px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+      }
+      .btn-outline:hover {
+        background: var(--glass);
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+      .hero-stats {
+        display: flex;
+        gap: 32px;
+        margin-top: 48px;
+        padding-top: 32px;
+        border-top: 1px solid var(--glass-border);
+        animation: fadeUp 0.8s 0.4s var(--ease) both;
+      }
+      .stat-val {
+        font-family: var(--serif);
+        font-size: 1.8rem;
+        font-weight: 400;
+        color: var(--white);
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+      .stat-val span {
+        color: var(--purple);
+      }
+      .stat-label {
+        font-size: 0.75rem;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      /* ── HERO RIGHT — PREVIEW CARD ── */
+      .hero-right {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: fadeUp 0.8s 0.2s var(--ease) both;
+      }
+      .preview-stack {
+        position: relative;
+        width: 340px;
+        height: 420px;
+      }
+      .preview-doc {
+        position: absolute;
+        background: linear-gradient(145deg, #1a1a2e, #16213e);
+        border: 1px solid rgba(168, 85, 247, 0.25);
+        border-radius: 16px;
+        padding: 28px;
+        box-shadow:
+          0 40px 80px rgba(0, 0, 0, 0.5),
+          0 0 0 1px rgba(255, 255, 255, 0.04);
+      }
+      .preview-doc.d1 {
+        width: 300px;
+        height: 380px;
+        top: 20px;
+        left: 20px;
+        z-index: 3;
+        animation: floatDoc 5s ease-in-out infinite;
+      }
+      .preview-doc.d2 {
+        width: 280px;
+        height: 360px;
+        top: 10px;
+        left: 50px;
+        z-index: 2;
+        opacity: 0.5;
+        transform: rotate(4deg);
+        animation: floatDoc2 5.5s ease-in-out infinite;
+      }
+      .preview-doc.d3 {
+        width: 270px;
+        height: 345px;
+        top: 4px;
+        left: 75px;
+        z-index: 1;
+        opacity: 0.25;
+        transform: rotate(8deg);
+      }
+      @keyframes floatDoc {
+        0%,
+        100% {
+          transform: translateY(0) rotate(-1deg);
+        }
+        50% {
+          transform: translateY(-12px) rotate(-1deg);
+        }
+      }
+      @keyframes floatDoc2 {
+        0%,
+        100% {
+          transform: translateY(0) rotate(4deg);
+        }
+        50% {
+          transform: translateY(-8px) rotate(4deg);
+        }
+      }
+      .doc-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 18px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .doc-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+      .doc-dot.r {
+        background: #ff5f57;
+      }
+      .doc-dot.y {
+        background: #ffbd2e;
+      }
+      .doc-dot.g {
+        background: #28c840;
+      }
+      .doc-title-bar {
+        flex: 1;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 4px;
+        height: 10px;
+        margin-left: 8px;
+      }
+      .doc-line {
+        height: 8px;
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.08);
+        margin-bottom: 10px;
+      }
+      .doc-line.l-purple {
+        background: rgba(168, 85, 247, 0.35);
+        width: 55%;
+      }
+      .doc-line.l-90 {
+        width: 90%;
+      }
+      .doc-line.l-80 {
+        width: 80%;
+      }
+      .doc-line.l-70 {
+        width: 70%;
+      }
+      .doc-line.l-60 {
+        width: 60%;
+      }
+      .doc-line.l-40 {
+        width: 40%;
+      }
+      .doc-section-gap {
+        margin-top: 16px;
+      }
+      .doc-code-block {
+        background: rgba(0, 0, 0, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 8px;
+        padding: 12px;
+        margin-top: 16px;
+      }
+      .doc-code-line {
+        height: 7px;
+        border-radius: 3px;
+        background: rgba(59, 130, 246, 0.3);
+        margin-bottom: 8px;
+      }
+      .doc-code-line.c-purple {
+        background: rgba(168, 85, 247, 0.4);
+      }
+      .doc-code-line.c-cyan {
+        background: rgba(6, 182, 212, 0.3);
+      }
+      .doc-code-line.c-80 {
+        width: 80%;
+      }
+      .doc-code-line.c-65 {
+        width: 65%;
+      }
+      .doc-code-line.c-50 {
+        width: 50%;
+      }
+
+      /* floating tags */
+      .float-tag {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 100px;
+        padding: 8px 16px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        white-space: nowrap;
+        z-index: 10;
+      }
+      .ft1 {
+        top: -18px;
+        left: -30px;
+        color: #a855f7;
+        border-color: rgba(168, 85, 247, 0.3);
+        background: rgba(168, 85, 247, 0.1);
+        animation: tagFloat1 4s ease-in-out infinite;
+      }
+      .ft2 {
+        bottom: 60px;
+        right: -40px;
+        color: #06b6d4;
+        border-color: rgba(6, 182, 212, 0.3);
+        background: rgba(6, 182, 212, 0.1);
+        animation: tagFloat2 4.5s ease-in-out infinite;
+      }
+      .ft3 {
+        bottom: -10px;
+        left: 0;
+        color: #34d399;
+        border-color: rgba(52, 211, 153, 0.3);
+        background: rgba(52, 211, 153, 0.1);
+        animation: tagFloat3 5s ease-in-out infinite;
+      }
+      @keyframes tagFloat1 {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      @keyframes tagFloat2 {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(8px);
+        }
+      }
+      @keyframes tagFloat3 {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-6px);
+        }
+      }
+
+      /* glow ring */
+      .glow-ring {
+        position: absolute;
+        width: 380px;
+        height: 380px;
+        border-radius: 50%;
+        border: 1px solid rgba(168, 85, 247, 0.12);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 0;
+      }
+      .glow-ring::after {
+        content: "";
+        position: absolute;
+        inset: 20px;
+        border-radius: 50%;
+        border: 1px solid rgba(59, 130, 246, 0.08);
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(28px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ── DP HERO ── */
+      .dp-hero {
+        position: relative; height: 100vh; min-height: 620px;
+        overflow: hidden; display: flex; flex-direction: column; background: #000;
+      }
+      .dp-vid {
+        position: absolute; inset: 0; width: 100%; height: 100%;
+        object-fit: cover; z-index: 0;
+      }
+      .dp-overlay {
+        position: absolute; inset: 0; z-index: 1;
+        background: linear-gradient(to bottom,
+          rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.6) 100%);
+      }
+      .dp-inner {
+        position: relative; z-index: 10;
+        max-width: 1400px; margin: 0 auto; width: 100%;
+        padding: 100px 52px 52px;
+        height: 100%; display: flex; flex-direction: column;
+        justify-content: space-between;
+      }
+      .dp-top {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+      }
+      .dp-top-left {
+        font-size: 0.9rem; color: rgba(255,255,255,0.75);
+        line-height: 1.65; font-weight: 400; max-width: 420px;
+      }
+      .dp-top-right {
+        text-align: right; font-size: 1rem; font-weight: 600;
+        color: rgba(255,255,255,0.85); align-self: start;
+      }
+      .dp-center {
+        display: flex; flex-direction: column; align-items: flex-start;
+        flex: 1; justify-content: center; padding: 32px 0 16px;
+      }
+      .dp-eyebrow {
+        font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em;
+        text-transform: uppercase; color: rgba(255,255,255,0.65);
+        margin-bottom: 20px;
+      }
+      .dp-h1 {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: clamp(54px, 8.5vw, 128px);
+        font-weight: 500; line-height: 0.87;
+        letter-spacing: -0.045em; margin-bottom: 44px;
+      }
+      .dp-h1-line1 { color: #ffffff; display: block; }
+      @keyframes dpShine {
+        0%   { background-position: -200% center; }
+        100% { background-position:  200% center; }
+      }
+      .dp-shiny {
+        display: block;
+        background: linear-gradient(100deg,
+          #64CEFB 0%, #64CEFB 35%, #ffffff 50%, #64CEFB 65%, #64CEFB 100%);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: dpShine 3s linear infinite;
+      }
+      .dp-cta {
+        display: inline-flex; align-items: center; gap: 12px;
+        background: #000; color: #fff;
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 0.95rem; font-weight: 500;
+        padding: 14px 30px; border-radius: 999px;
+        text-decoration: none;
+        border: 1px solid rgba(255,255,255,0.18);
+        transition: background 0.2s, transform 0.2s, gap 0.2s;
+      }
+      .dp-cta:hover { background: #1a1a1a; gap: 18px; }
+      .dp-cta-arrow { transition: transform 0.2s; }
+      .dp-cta:hover .dp-cta-arrow { transform: translateX(5px); }
+      @media (max-width: 768px) {
+        .dp-inner { padding: 80px 24px 36px; }
+        .dp-top { grid-template-columns: 1fr; gap: 10px; }
+        .dp-top-right { text-align: left; }
+        .dp-cta { padding: 12px 22px; font-size: 0.87rem; }
+      }
+
+      /* ── STRIP ── */
+      .strip {
+        border-top: 1px solid var(--glass-border);
+        border-bottom: 1px solid var(--glass-border);
+        padding: 20px 48px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.015);
+      }
+      .strip-inner {
+        display: flex;
+        gap: 48px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .strip-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.82rem;
+        color: var(--muted);
+        font-weight: 500;
+      }
+      .strip-icon {
+        font-size: 1rem;
+      }
+
+      /* ── SECTION LABEL ── */
+      .section-wrap {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 96px 48px;
+      }
+      .sec-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(168, 85, 247, 0.08);
+        border: 1px solid rgba(168, 85, 247, 0.2);
+        border-radius: 100px;
+        padding: 5px 14px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--purple);
+        margin-bottom: 20px;
+      }
+      .sec-h2 {
+        font-family: var(--serif);
+        font-size: clamp(2rem, 3.5vw, 3rem);
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+        margin-bottom: 14px;
+      }
+      .sec-h2 em {
+        font-style: italic;
+        color: var(--purple);
+      }
+      .sec-sub {
+        color: var(--muted);
+        font-size: 1rem;
+        max-width: 540px;
+      }
+
+      /* ── NOTES GRID ── */
+      .notes-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 24px;
+        margin-top: 56px;
+      }
+      .note-card {
+        background: var(--glass);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        padding: 28px;
+        position: relative;
+        overflow: hidden;
+        transition:
+          transform 0.3s var(--ease),
+          border-color 0.3s,
+          box-shadow 0.3s;
+        cursor: default;
+      }
+      .note-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(168, 85, 247, 0.3);
+        box-shadow:
+          0 20px 60px rgba(0, 0, 0, 0.4),
+          0 0 0 1px rgba(168, 85, 247, 0.1);
+      }
+      .note-card::before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        opacity: 0.04;
+        pointer-events: none;
+      }
+      .note-card[data-color="purple"]::before {
+        background: #a855f7;
+      }
+      .note-card[data-color="blue"]::before {
+        background: #3b82f6;
+      }
+      .note-card[data-color="cyan"]::before {
+        background: #06b6d4;
+      }
+      .note-card[data-color="green"]::before {
+        background: #22c55e;
+      }
+      .note-card[data-color="orange"]::before {
+        background: #f97316;
+      }
+      .note-card[data-color="pink"]::before {
+        background: #ec4899;
+      }
+
+      .note-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+      .note-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        flex-shrink: 0;
+      }
+      .note-card[data-color="purple"] .note-icon {
+        background: rgba(168, 85, 247, 0.12);
+      }
+      .note-card[data-color="blue"] .note-icon {
+        background: rgba(59, 130, 246, 0.12);
+      }
+      .note-card[data-color="cyan"] .note-icon {
+        background: rgba(6, 182, 212, 0.12);
+      }
+      .note-card[data-color="green"] .note-icon {
+        background: rgba(34, 197, 94, 0.12);
+      }
+      .note-card[data-color="orange"] .note-icon {
+        background: rgba(249, 115, 22, 0.12);
+      }
+      .note-card[data-color="pink"] .note-icon {
+        background: rgba(236, 72, 153, 0.12);
+      }
+
+      .note-level {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 4px 10px;
+        border-radius: 100px;
+      }
+      .level-beginner {
+        background: rgba(34, 197, 94, 0.1);
+        color: #22c55e;
+      }
+      .level-intermediate {
+        background: rgba(59, 130, 246, 0.1);
+        color: #3b82f6;
+      }
+      .level-advanced {
+        background: rgba(168, 85, 247, 0.1);
+        color: #a855f7;
+      }
+
+      .note-title {
+        font-family: var(--serif);
+        font-size: 1.3rem;
+        letter-spacing: -0.01em;
+        margin-bottom: 8px;
+      }
+      .note-desc {
+        font-size: 0.875rem;
+        color: var(--muted);
+        line-height: 1.65;
+        margin-bottom: 20px;
+      }
+      .note-meta {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+      .note-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.78rem;
+        color: var(--dim);
+      }
+      .note-meta-item svg {
+        opacity: 0.6;
+      }
+
+      .note-topics {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 24px;
+      }
+      .topic-chip {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 6px;
+        padding: 3px 10px;
+        font-size: 0.72rem;
+        color: var(--dim);
+        font-weight: 500;
+      }
+
+      .note-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 20px;
+        border-top: 1px solid var(--glass-border);
+      }
+      .note-price {
+        display: flex;
+        align-items: baseline;
+        gap: 4px;
+      }
+      .price-sym {
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+      .price-amt {
+        font-family: var(--serif);
+        font-size: 2rem;
+        line-height: 1;
+        color: var(--white);
+      }
+      .price-label {
+        font-size: 0.72rem;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+
+      .buy-btn {
+        background: linear-gradient(135deg, var(--purple-dim), var(--blue));
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 11px 22px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          opacity 0.2s,
+          transform 0.2s var(--ease),
+          box-shadow 0.2s;
+        box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
+        font-family: var(--sans);
+      }
+      .buy-btn:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+        box-shadow: 0 8px 30px rgba(124, 58, 237, 0.5);
+      }
+      .buy-btn:active {
+        transform: scale(0.97);
+      }
+      .dl-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: linear-gradient(135deg, #065f46, #047857);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 10px;
+        padding: 11px 22px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 4px 20px rgba(4, 120, 87, 0.35);
+        font-family: var(--sans);
+        width: 100%;
+        justify-content: center;
+      }
+      .dl-btn:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+        box-shadow: 0 8px 28px rgba(4, 120, 87, 0.5);
+      }
+      .dl-btn:active { transform: scale(0.97); }
+
+      /* ── HOW IT WORKS ── */
+      .how-section {
+        background: var(--bg2);
+        border-top: 1px solid var(--glass-border);
+        border-bottom: 1px solid var(--glass-border);
+      }
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        margin-top: 56px;
+      }
+      .step {
+        text-align: center;
+        padding: 32px 24px;
+        background: var(--glass);
+        border: 1px solid var(--glass-border);
+        border-radius: 16px;
+        transition: border-color 0.3s;
+      }
+      .step:hover {
+        border-color: rgba(168, 85, 247, 0.25);
+      }
+      .step-num {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(
+          135deg,
+          rgba(124, 58, 237, 0.3),
+          rgba(59, 130, 246, 0.3)
+        );
+        border: 1px solid rgba(168, 85, 247, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--serif);
+        font-size: 1.2rem;
+        color: var(--purple);
+        margin: 0 auto 16px;
+      }
+      .step h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      .step p {
+        font-size: 0.875rem;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      /* ── PAYMENT MODAL ── */
+      #pay-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        background: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(8px);
+        align-items: center;
+        justify-content: center;
+      }
+      #pay-modal.open {
+        display: flex;
+      }
+      .modal-box {
+        background: #12121f;
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        padding: 40px;
+        max-width: 440px;
+        width: 90%;
+        text-align: center;
+        position: relative;
+        animation: modalPop 0.35s var(--ease);
+      }
+      @keyframes modalPop {
+        from {
+          opacity: 0;
+          transform: scale(0.92) translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+      .modal-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--glass-border);
+        border-radius: 8px;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: var(--muted);
+        font-size: 1rem;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .modal-close:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+      }
+      .modal-icon {
+        font-size: 3rem;
+        margin-bottom: 16px;
+      }
+      .modal-title {
+        font-family: var(--serif);
+        font-size: 1.5rem;
+        margin-bottom: 12px;
+      }
+      .modal-sub {
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.7;
+        margin-bottom: 28px;
+      }
+      .modal-note-name {
+        color: var(--purple);
+        font-weight: 600;
+      }
+      .modal-price-display {
+        background: rgba(168, 85, 247, 0.08);
+        border: 1px solid rgba(168, 85, 247, 0.2);
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 24px;
+      }
+      .modal-price-display .big {
+        font-family: var(--serif);
+        font-size: 2.5rem;
+        color: var(--white);
+      }
+      .modal-price-display .sm {
+        font-size: 0.8rem;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+      .modal-coming {
+        background: linear-gradient(135deg, var(--purple-dim), var(--blue));
+        color: #fff;
+        padding: 14px 24px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        display: block;
+        margin-bottom: 12px;
+        cursor: default;
+        opacity: 0.7;
+      }
+      .modal-hint {
+        font-size: 0.78rem;
+        color: var(--dim);
+      }
+      .modal-hint a {
+        color: var(--purple);
+        text-decoration: none;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        border-top: 1px solid var(--glass-border);
+        padding: 40px 48px;
+        max-width: 1280px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .footer-brand {
+        font-family: var(--serif);
+        font-size: 1.1rem;
+        color: var(--muted);
+      }
+      .footer-brand span {
+        color: var(--purple);
+      }
+      .footer-links {
+        display: flex;
+        gap: 24px;
+      }
+      .footer-links a {
+        font-size: 0.82rem;
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-links a:hover {
+        color: var(--white);
+      }
+      .footer-copy {
+        font-size: 0.78rem;
+        color: var(--dim);
+      }
+
+      /* ── PANDAS & NUMPY CARD ── */
+      .pandas-numpy-card {
+        grid-column: 1 / -1;
+      }
+      .pn-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 8px;
+        margin: 16px 0 24px;
+      }
+      .pn-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 8px;
+        text-decoration: none;
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-family: var(--sans);
+        transition:
+          background 0.2s,
+          border-color 0.2s,
+          color 0.2s;
+      }
+      .pn-item.available {
+        border-color: rgba(59, 130, 246, 0.35);
+        color: var(--white);
+        cursor: pointer;
+      }
+      .pn-item.available:hover {
+        background: rgba(59, 130, 246, 0.1);
+        border-color: rgba(59, 130, 246, 0.6);
+        color: var(--white);
+      }
+      .pn-item.soon {
+        opacity: 0.45;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+      .pn-num {
+        font-size: 0.7rem;
+        color: var(--dim);
+        min-width: 22px;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .pn-name {
+        flex: 1;
+        font-weight: 500;
+        line-height: 1.35;
+      }
+      .pn-dl {
+        font-size: 0.8rem;
+        color: #3b82f6;
+        flex-shrink: 0;
+        opacity: 0.85;
+      }
+      .pn-soon-tag {
+        font-size: 0.65rem;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 4px;
+        padding: 2px 6px;
+        color: var(--dim);
+        flex-shrink: 0;
+      }
+
+      /* ── HAMBURGER BUTTON ── */
+      .nav-hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 40px;
+        height: 40px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+        z-index: 110;
+        flex-shrink: 0;
+      }
+      .nav-hamburger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: #FFD700;
+        border-radius: 2px;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+      .nav-hamburger.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .nav-hamburger.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .nav-hamburger.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      /* ── MOBILE DROPDOWN MENU ── */
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 105;
+        background: rgba(7, 7, 15, 0.97);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border-bottom: 1px solid var(--glass-border);
+        padding-top: 70px;
+        transform: translateY(-100%);
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .mobile-menu.open {
+        display: block;
+        transform: translateY(0);
+      }
+      .mobile-menu ul {
+        list-style: none;
+        padding: 8px 0 16px;
+      }
+      .mobile-menu ul li a {
+        display: block;
+        padding: 16px 24px;
+        color: #FFD700;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 500;
+        transition: background 0.2s;
+        border-bottom: 1px solid rgba(255,255,255,0.04);
+      }
+      .mobile-menu ul li:last-child a {
+        border-bottom: none;
+      }
+      .mobile-menu ul li a:hover {
+        background: rgba(255, 215, 0, 0.07);
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 1024px) {
+        .steps-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .hero-inner {
+          gap: 40px;
+        }
+      }
+
+      @media (max-width: 900px) {
+        nav {
+          padding: 16px 24px;
+        }
+        .nav-links {
+          display: none;
+        }
+        .hero-inner {
+          grid-template-columns: 1fr;
+          gap: 48px;
+          padding: 100px 24px 60px;
+        }
+        .hero-right {
+          order: -1;
+        }
+        .preview-stack {
+          width: 280px;
+          height: 340px;
+        }
+        .preview-doc.d1 {
+          width: 240px;
+          height: 300px;
+        }
+        .section-wrap {
+          padding: 64px 24px;
+        }
+        .notes-grid {
+          grid-template-columns: 1fr;
+        }
+        .steps-grid {
+          grid-template-columns: 1fr;
+        }
+        footer {
+          padding: 32px 24px;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .strip {
+          padding: 20px 24px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-hamburger {
+          display: flex;
+        }
+        .nav-cta {
+          display: none;
+        }
+        .hero-h1 {
+          font-size: clamp(1.8rem, 5vw, 3.5rem);
+        }
+        .sec-h2 {
+          font-size: clamp(1.4rem, 3.5vw, 2.5rem);
+        }
+        .hero-stats {
+          flex-wrap: wrap;
+          gap: 20px;
+        }
+        .btn-primary,
+        .btn-outline {
+          min-height: 44px;
+        }
+        .note-card {
+          padding: 20px 16px;
+        }
+        .step {
+          padding: 24px 16px;
+        }
+        img {
+          max-width: 100%;
+          height: auto;
+        }
+      }
+
+      @media (max-width: 480px) {
+        nav {
+          padding: 14px 20px;
+        }
+        .hero-inner {
+          padding: 90px 20px 48px;
+        }
+        .hero-h1 {
+          font-size: clamp(1.8rem, 5vw, 2.5rem);
+        }
+        .sec-h2 {
+          font-size: clamp(1.4rem, 3.5vw, 2rem);
+        }
+        body {
+          font-size: 16px;
+        }
+        .section-wrap {
+          padding: 48px 20px;
+        }
+        .strip {
+          padding: 16px 20px;
+        }
+        .strip-inner {
+          gap: 20px;
+          justify-content: flex-start;
+        }
+        .hero-btns {
+          flex-direction: column;
+        }
+        .btn-primary,
+        .btn-outline {
+          width: 100%;
+          justify-content: center;
+          min-height: 44px;
+        }
+        .note-card {
+          padding: 16px;
+        }
+        .pn-grid {
+          grid-template-columns: 1fr;
+        }
+        .note-footer {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+        .buy-btn,
+        .dl-btn {
+          min-height: 44px;
+          width: 100%;
+        }
+        footer {
+          padding: 24px 20px;
+        }
+        .footer-links {
+          flex-wrap: wrap;
+          gap: 12px;
+        }
+        .filter-nav {
+          gap: 6px;
+        }
+        .filter-btn {
+          font-size: 0.72rem;
+          padding: 6px 12px;
+        }
+      }
+
+      /* ── SECTION FILTER NAV ── */
+      .filter-nav-wrap {
+        position: sticky;
+        top: 0;
+        z-index: 90;
+        background: rgba(7,7,15,0.92);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        padding: 12px 24px;
+      }
+      .filter-nav {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+      }
+      .filter-btn {
+        font-family: var(--sans);
+        font-size: 0.78rem;
+        font-weight: 500;
+        color: rgba(255,255,255,0.45);
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 999px;
+        padding: 7px 16px;
+        cursor: pointer;
+        transition: all 0.2s;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .filter-btn:hover {
+        color: #fff;
+        background: rgba(255,255,255,0.09);
+        border-color: rgba(255,255,255,0.18);
+      }
+      .filter-btn.active {
+        color: #fff;
+        background: linear-gradient(135deg, var(--purple-dim), var(--blue));
+        border-color: transparent;
+        box-shadow: 0 0 16px rgba(124,58,237,0.35);
+      }
+      .pandas-numpy-card {
+        scroll-margin-top: 110px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav>
+      <a href="index.html" class="nav-logo">Afeef<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="LERN.html">Free Notes</a></li>
+        <li><a href="practice.html">Practice Lab</a></li>
+        <li><a href="about.html">About Me</a></li>
+        <li><a href="tum.html" style="background:linear-gradient(135deg,#0f0f23,#2d2d6b,#0f0f23);color:#a8b8ff;border-radius:999px;padding:3px 12px 4px;font-size:0.78rem;font-weight:700;letter-spacing:0.02em;text-decoration:none;white-space:nowrap;box-shadow:0 0 8px rgba(100,120,255,0.25);transition:box-shadow 0.2s,transform 0.15s;">⬡ Templates</a></li>
+        <li><a href="contact.html" style="background:linear-gradient(135deg,#0ea5e9,#1e5fad);color:#fff;border-radius:999px;padding:3px 11px 4px;font-size:0.78rem;font-weight:700;letter-spacing:0.02em;text-decoration:none;white-space:nowrap;box-shadow:0 0 10px rgba(14,165,233,0.35);transition:box-shadow 0.2s,transform 0.15s;">✦ Services</a></li>
+        <li><a href="paid.html" class="nav-premium">✦ Premium Notes</a></li>
+      </ul>
+      <a href="#notes" class="nav-cta">Browse Notes</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+        <li><a href="LERN.html" class="mobile-nav-link">Free Notes</a></li>
+        <li><a href="practice.html" class="mobile-nav-link">Practice Lab</a></li>
+        <li><a href="about.html" class="mobile-nav-link">About Me</a></li>
+        <li><a href="tum.html" class="mobile-nav-link">⬡ Templates</a></li>
+        <li><a href="contact.html" class="mobile-nav-link">✦ Services</a></li>
+        <li><a href="paid.html" class="mobile-nav-link">✦ Premium Notes</a></li>
+        <li><a href="#notes" class="mobile-nav-link">Browse Notes</a></li>
+      </ul>
+    </div>
+
+    <!-- HERO -->
+    <section class="dp-hero">
+      <video class="dp-vid" autoplay muted loop playsinline>
+        <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_105406_16f4600d-7a92-4292-b96e-b19156c7830a.mp4" type="video/mp4"/>
+      </video>
+      <div class="dp-overlay"></div>
+
+      <div class="dp-inner">
+        <!-- Top two-column text -->
+        <div class="dp-top">
+          <p class="dp-top-left">Structured, exam-ready notes crafted by a working data analyst. Every chapter, every concept — built for maximum clarity and real-world insight.</p>
+          <p class="dp-top-right">500+ Students Learning !</p>
+        </div>
+
+        <!-- Center hero content -->
+        <div class="dp-center">
+          <p class="dp-eyebrow">New Premium Note Packs Now Available</p>
+          <h1 class="dp-h1">
+            <span class="dp-h1-line1">Become a</span>
+            <span class="dp-shiny">Data Expert.</span>
+          </h1>
+          <a href="#notes" class="dp-cta">
+            Browse Premium Notes
+            <span class="dp-cta-arrow">&#8594;</span>
+          </a>
+        </div>
+
+        <!-- Bottom spacer for scroll hint -->
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;">
+          <a href="LERN.html" style="font-size:0.78rem;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.05em;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Free Notes &#8599;</a>
+          <span style="font-size:0.72rem;color:rgba(255,255,255,0.3);letter-spacing:0.12em;text-transform:uppercase;">Scroll to explore &#8595;</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- STRIP -->
+    <div class="strip">
+      <div class="strip-inner">
+        <div class="strip-item">
+          <span class="strip-icon">✓</span> Concise &amp; Structured
+        </div>
+        <div class="strip-item">
+          <span class="strip-icon">✓</span> Real-world Examples
+        </div>
+        <div class="strip-item">
+          <span class="strip-icon">✓</span> Instant PDF Download
+        </div>
+        <div class="strip-item">
+          <span class="strip-icon">✓</span> Lifetime Access
+        </div>
+        <div class="strip-item">
+          <span class="strip-icon">✓</span> Interview Prep Included
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ALL NOTE SETS HEADING -->
+    <div id="notes" class="section-wrap" style="padding-bottom:0;">
+      <div class="sec-label">All Note Sets</div>
+      <h2 class="sec-h2">Choose Your <em>Subject</em></h2>
+      <p class="sec-sub">
+        Each set covers the full syllabus — from basics to advanced, with code
+        examples, tips, and interview patterns.
+      </p>
+    </div>
+
+    <!-- FILTER NAV -->
+    <div class="filter-nav-wrap">
+      <div class="filter-nav">
+        <button class="filter-btn active" data-target="sec-pandas">📊 Pandas &amp; NumPy</button>
+        <button class="filter-btn" data-target="sec-datascience">🔬 Data Science</button>
+        <button class="filter-btn" data-target="sec-sql">🗄️ SQL Resources</button>
+        <button class="filter-btn" data-target="sec-ml">🤖 Machine Learning</button>
+        <button class="filter-btn" data-target="sec-python">🐍 Python Resources</button>
+        <button class="filter-btn" data-target="sec-excel">📈 Excel &amp; Power BI</button>
+        <button class="filter-btn" data-target="sec-interview">🎯 Interview Questions</button>
+      </div>
+    </div>
+
+        <!-- Pandas & NumPy -->
+        <div id="sec-pandas" class="note-card pandas-numpy-card" data-color="blue">
+          <div class="note-top">
+            <div class="note-icon">📊</div>
+            <span class="note-level level-intermediate">Intermediate</span>
+          </div>
+          <div class="note-title">Pandas &amp; NumPy</div>
+          <div class="note-desc">
+            21 resources covering NumPy fundamentals, Pandas basics to advanced,
+            cheatsheets, interview Q&amp;A, and visual guides. Click any
+            available file to download directly — no payment required.
+          </div>
+          <div class="note-meta">
+            <div class="note-meta-item">
+              <svg width="13" height="13" fill="none" viewBox="0 0 24 24">
+                <path
+                  stroke="currentColor"
+                  stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414A1 1 0 0120 9.414V19a2 2 0 01-2 2z"
+                />
+              </svg>
+              21 Files
+            </div>
+            <div class="note-meta-item">
+              <svg width="13" height="13" fill="none" viewBox="0 0 24 24">
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path stroke="currentColor" stroke-width="2" d="M12 6v6l4 2" />
+              </svg>
+              Data Analysis
+            </div>
+          </div>
+
+          <div class="pn-grid">
+            <!-- 1 — EXAMPLE: working download -->
+            <a
+              href="1. NUMPY - INTRODUCTION.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">01</span>
+              <span class="pn-name">NUMPY - INTRODUCTION</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+
+            <!-- 2–21 — upload files manually then change class to "available" and add href + download -->
+            <a
+              href="2. NUMPY - FUNDAMENTALS.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">02</span>
+              <span class="pn-name">NUMPY - FUNDAMENTALS</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="3. NUMPY - ATTRIBUTES.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">03</span>
+              <span class="pn-name">NUMPY - ATTRIBUTES</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="4. NUMPY - IMPORTANT METHODS.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">04</span>
+              <span class="pn-name">NUMPY - IMPORTANT METHODS</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="pandas Cheatsheet.pdf" download class="pn-item available">
+              <span class="pn-num">05</span>
+              <span class="pn-name">Pandas Cheatsheet</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="Pandas for Everyone (2023).pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">06</span>
+              <span class="pn-name">Pandas for Everyone (2023)</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="Python_NumPy_for_Beginners_NumPy_Specialization_for_Data_Sc.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">07</span>
+              <span class="pn-name"
+                >Python NumPy for Beginners — NumPy Specialization</span
+              >
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="Python Pandas.pdf" download class="pn-item available">
+              <span class="pn-num">08</span>
+              <span class="pn-name">Python Pandas</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="Pandas basics to advanced.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">09</span>
+              <span class="pn-name">Pandas Basics to Advanced</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="Infosys Python - Pandas Interview Q & A.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">09</span>
+              <span class="pn-name">Pandas Basics to Advanced</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="Python Pandas Interview Questions   Answers Cheatsheet.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">10</span>
+              <span class="pn-name"
+                >Infosys Python — Pandas Interview Q &amp; A</span
+              >
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="Pandas Introduction to Advanced.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">11</span>
+              <span class="pn-name"
+                >Python Pandas Interview Questions &amp; Answers
+                Cheatsheet</span
+              >
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="numpy_basics.pdf" download class="pn-item available">
+              <span class="pn-num">12</span>
+              <span class="pn-name">Pandas Introduction to Advanced</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="Pandas.pdf" download class="pn-item available">
+              <span class="pn-num">13</span>
+              <span class="pn-name">NumPy Basics</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="pandas Cheatsheet.pdf" download class="pn-item available">
+              <span class="pn-num">14</span>
+              <span class="pn-name">Pandas</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="Amazing NumPy Cheat Sheet.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">15</span>
+              <span class="pn-name">Pandas Basics</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="Pandas-Cheat-Sheet.pdf" download class="pn-item available">
+              <span class="pn-num">16</span>
+              <span class="pn-name">Pandas Cheatsheet (Vol. 2)</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="Mastering pandas%22.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">17</span>
+              <span class="pn-name">Amazing NumPy Cheat Sheet</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="Pandas_Visual_Resources.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">18</span>
+              <span class="pn-name">Pandas Cheat Sheet</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="Mastering pandas%22.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">19</span>
+              <span class="pn-name">Mastering Pandas</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="NumPy Cheat Sheet For Beginners.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">21</span>
+              <span class="pn-name">NumPy Cheat Sheet For Beginners</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+          </div>
+          <!-- /pn-grid -->
+        </div>
+        <!-- /pandas-numpy-card -->
+
+        <!-- Data Science -->
+        <div id="sec-datascience" class="note-card pandas-numpy-card" data-color="purple">
+          <div class="note-top">
+            <div class="note-icon">🔬</div>
+            <span class="note-level level-advanced">Advanced</span>
+          </div>
+          <div class="note-title">Data Science</div>
+          <div class="note-desc">
+            16 resources covering Matplotlib, mathematics &amp; statistics,
+            Bayesian statistics, data cleaning, FastAPI, visualization
+            cheatsheets, and more. Click any available file to download
+            directly.
+          </div>
+          <div class="note-meta">
+            <div class="note-meta-item">
+              <svg width="13" height="13" fill="none" viewBox="0 0 24 24">
+                <path
+                  stroke="currentColor"
+                  stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414A1 1 0 0120 9.414V19a2 2 0 01-2 2z"
+                />
+              </svg>
+              16 Files
+            </div>
+            <div class="note-meta-item">
+              <svg width="13" height="13" fill="none" viewBox="0 0 24 24">
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path stroke="currentColor" stroke-width="2" d="M12 6v6l4 2" />
+              </svg>
+              Data Science
+            </div>
+          </div>
+
+          <div class="pn-grid">
+            <!-- 1 — EXAMPLE: working download -->
+            <a href="pdf/Matplotlib.pdf" download class="pn-item available">
+              <span class="pn-num">01</span>
+              <span class="pn-name">Matplotlib</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+
+            <!-- 2–16 — upload files then change class to "available" -->
+            <a
+              href="pdf/Complete Maths Topics For Data Science.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">02</span>
+              <span class="pn-name"
+                >Complete Maths Topics For Data Science</span
+              >
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="pdf/Data Science Cheatsheet Compiled by Maverick Lin.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">03</span>
+              <span class="pn-name"
+                >Data Science Cheatsheet — Compiled by Maverick</span
+              >
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="pdf/DATA SCIENCE WORKSHOP (2023).pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">04</span>
+              <span class="pn-name">Data Science work shop</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+
+            <a
+              href="pdf/Building Data Science Applications with FastAPI (2023).pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">05</span>
+              <span class="pn-name"
+                >Building Data Science Applications with FastAPI</span
+              >
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="pdf/Hands on Matplotlib👍.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">06</span>
+              <span class="pn-name">Hands on Matplotlib</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="pdf/Bayesian_Statistics_The_Fun_Way_Understanding_Statistics_And_Probability.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">07</span>
+              <span class="pn-name">Bayesian Statistics — The Fun Way</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="pdf/Data Cleaning and Exploratio.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">08</span>
+              <span class="pn-name">Data Cleaning and Exploration</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="pdf/Essential Math for Data Science.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">09</span>
+              <span class="pn-name">Essential Math for Data Science</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="pdf/Visualization Cheat Sheet.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">10</span>
+              <span class="pn-name">Visualization Cheat Sheet</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="pdf/Matrix Theory and Linear Algebra, 2018.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">11</span>
+              <span class="pn-name">Matrix Theory and Linear Algebra</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="pdf/Statistical Methods for Data Science.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">12</span>
+              <span class="pn-name">Statistical Methods for Data Science</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="pdf/import_data.pdf" download class="pn-item available">
+              <span class="pn-num">13</span>
+              <span class="pn-name">Import Data</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="pdf/Statistics for Data Analyst .pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">14</span>
+              <span class="pn-name">Statistics for Data Analyst</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="pdf/Data Analysis Vocabulary.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">15</span>
+              <span class="pn-name">Data Analysis Vocabulary</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="pdf/Data Analysis Cheatsheet.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">16</span>
+              <span class="pn-name">Data Analysis Cheatsheet</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+          </div>
+          <!-- /pn-grid -->
+        </div>
+        <!-- /data-science-card -->
+
+        <!-- SQL Resources -->
+        <div id="sec-sql" class="note-card pandas-numpy-card" data-color="cyan">
+          <div class="note-top">
+            <div class="note-icon">🗃️</div>
+            <span class="note-level level-intermediate">Intermediate</span>
+          </div>
+          <div class="note-title">SQL Resources</div>
+          <div class="note-desc">
+            10 resources covering SQL interview prep, zero-to-hero guides, data
+            science SQL, cheatsheets, and challenging query sets. Click any file
+            to download directly.
+          </div>
+          <div class="note-meta">
+            <div class="note-meta-item">
+              <svg width="13" height="13" fill="none" viewBox="0 0 24 24">
+                <path
+                  stroke="currentColor"
+                  stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414A1 1 0 0120 9.414V19a2 2 0 01-2 2z"
+                />
+              </svg>
+              10 Files
+            </div>
+            <div class="note-meta-item">
+              <svg width="13" height="13" fill="none" viewBox="0 0 24 24">
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path stroke="currentColor" stroke-width="2" d="M12 6v6l4 2" />
+              </svg>
+              SQL & Databases
+            </div>
+          </div>
+
+          <div class="pn-grid">
+            <a
+              href="sql.pdf/SQL Interview Questions -2.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">01</span>
+              <span class="pn-name">SQL Interview Questions</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="sql.pdf/SQL Zero to Hero.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">02</span>
+              <span class="pn-name">SQL Zero to Hero</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="sql.pdf/SQL for Data Science.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">03</span>
+              <span class="pn-name">SQL for Data Science.pdf</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="sql.pdf/SQL for Data Science.pdf.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">04</span>
+              <span class="pn-name">SQL for Data Science</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="sql.pdf/SQL Guide with Free Resources.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">05</span>
+              <span class="pn-name">SQL Guide with Free Resources</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="sql.pdf/Challenging SQL queries-.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">06</span>
+              <span class="pn-name">Challenging SQL Queries</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="sql.pdf/SQL Queries .pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">07</span>
+              <span class="pn-name">SQL Queries</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="sql.pdf/sql_cheatsheet.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">08</span>
+              <span class="pn-name">SQL Cheatsheet</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="sql.pdf/50 SQL Interview Questions with Answers.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">09</span>
+              <span class="pn-name"
+                >50 SQL Interview Questions with Answers</span
+              >
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="sql.pdf/Important SQL concepts to master.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">10</span>
+              <span class="pn-name">Important SQL Concepts to Master</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+          </div>
+          <!-- /pn-grid -->
+        </div>
+        <!-- /sql-card -->
+
+        <!-- Machine Learning Resources -->
+        <div id="sec-ml" class="note-card pandas-numpy-card" data-color="pink">
+          <div class="note-top">
+            <div class="note-icon">🤖</div>
+            <span class="note-level level-advanced">Advanced</span>
+          </div>
+          <div class="note-title">Machine Learning</div>
+          <div class="note-desc">
+            28 resources covering ML fundamentals, deep learning, NLP, neural
+            networks, interview prep, and real-world projects. Click any file to
+            download directly.
+          </div>
+          <div class="note-meta">
+            <div class="note-meta-item">
+              <svg width="13" height="13" fill="none" viewBox="0 0 24 24">
+                <path
+                  stroke="currentColor"
+                  stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414A1 1 0 0120 9.414V19a2 2 0 01-2 2z"
+                />
+              </svg>
+              28 Files
+            </div>
+            <div class="note-meta-item">
+              <svg width="13" height="13" fill="none" viewBox="0 0 24 24">
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path stroke="currentColor" stroke-width="2" d="M12 6v6l4 2" />
+              </svg>
+              ML &amp; Deep Learning
+            </div>
+          </div>
+
+          <div class="pn-grid">
+            <a
+              href="m.pdf/Machine Learning with Decision Trees and Random Forest.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">01</span>
+              <span class="pn-name"
+                >Machine Learning with Decision Trees and Random Forest</span
+              >
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="m.pdf/Artificial Intelligence ( PDFDrive ).pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">02</span>
+              <span class="pn-name">Artificial Intelligence (PDFDrive)</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="m.pdf/Machine Learning Bookcamp  Build a portfolio of real-life pr.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">03</span>
+              <span class="pn-name"
+                >Machine Learning Bookcamp — Build a Portfolio of Real-Life
+                Projects</span
+              >
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="m.pdf/Machine Learning Interview Cheat sheets.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">04</span>
+              <span class="pn-name"
+                >Machine Learning Interview Cheat Sheets</span
+              >
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="m.pdf/100 Days of Machine Learning.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">05</span>
+              <span class="pn-name">100 Days of Machine Learning</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="m.pdf/Hands-On Machine Learning.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">06</span>
+              <span class="pn-name">Hands-On Machine Learning</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="m.pdf/Interpretability in Deep Learning.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">07</span>
+              <span class="pn-name">Interpretability in Deep Learning</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="m.pdf/Encyclopedia of Data Science & Machine Learning-J. Wang.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">08</span>
+              <span class="pn-name"
+                >Encyclopedia of Data Science &amp; Machine Learning
+              </span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="m.pdf/Deep Learning Foundations.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">09</span>
+              <span class="pn-name">Deep Learning Foundations</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="m.pdf/Deep Learning for Natural Language Processing (2022).pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">10</span>
+              <span class="pn-name"
+                >Deep Learning for Natural Language Processing
+              </span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="m.pdf/Machine Learning in Microservices.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">11</span>
+              <span class="pn-name">Machine Learning in Microservices</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="m.pdf/Machine Learning in Microservices - 2023.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">12</span>
+              <span class="pn-name">Machine Learning in Microservices </span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="m.pdf/Artificial Neural  Networks with Java - 2019.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">13</span>
+              <span class="pn-name">Artificial Neural Networks with Java </span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="m.pdf/Deep Learning Applications.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">14</span>
+              <span class="pn-name">Deep Learning Applications</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="m.pdf/Python Machine Learning.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">15</span>
+              <span class="pn-name">Python Machine Learning</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="m.pdf/Data_Science_Revealed_With_Feature_Engineering.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">16</span>
+              <span class="pn-name"
+                >Data Science Revealed with Feature Engineering</span
+              >
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="m.pdf/Artificial Neural Networks .pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">17</span>
+              <span class="pn-name">Artificial Neural Networks</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="m.pdf/MASTERING_PREDICTIVE_ANALYTICS_WITH_R @computer_books.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">18</span>
+              <span class="pn-name">Mastering Predictive Analytics with R</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="m.pdf/Machine Learning and... by K. G. Gayathri Devi ... (z-lib.or.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">19</span>
+              <span class="pn-name">Machine Learning</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="m.pdf/Advances in Deep Learning for Medical Image Analysis.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">20</span>
+              <span class="pn-name"
+                >Advances in Deep Learning for Medical Image Analysis</span
+              >
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="m.pdf/Machine Learning with Python for Everyone.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">21</span>
+              <span class="pn-name"
+                >Machine Learning with Python for Everyone</span
+              >
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="m.pdf/v-kishore-ayyadevara-yeshwanth-reddy-modern-computer-2020.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">22</span>
+              <span class="pn-name">Modern Computer</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="m.pdf/Elements of Statistical Learning .pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">23</span>
+              <span class="pn-name">Elements of Statistical Learning</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="m.pdf/Data mining.pdf" download class="pn-item available">
+              <span class="pn-num">24</span>
+              <span class="pn-name">Data Mining</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="m.pdf/Artificial Intelligence. Fundamentals and Applications.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">25</span>
+              <span class="pn-name"
+                >Artificial Intelligence: Fundamentals and Applications</span
+              >
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="m.pdf/Machine Learning Interview Questions.pdf.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">26</span>
+              <span class="pn-name">Machine Learning Interview Questions</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="m.pdf/Deep Learning By Andrew Ng.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">27</span>
+              <span class="pn-name">Deep Learning</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a
+              href="m.pdf/Lee R. S. T. - Natural Language Processing - 2024.pdf"
+              download
+              class="pn-item available"
+            >
+              <span class="pn-num">28</span>
+              <span class="pn-name">Natural Language Processing </span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+          </div>
+          <!-- /pn-grid -->
+        </div>
+        <!-- /ml-card -->
+
+        <!-- Python Resources -->
+        <div id="sec-python" class="note-card pandas-numpy-card" data-color="green">
+          <div class="note-top">
+            <div class="note-icon">🐍</div>
+            <span class="note-level level-intermediate">Intermediate</span>
+          </div>
+          <div class="note-title">Python Resources</div>
+          <div class="note-desc">49 resources covering Python basics to advanced, data science, cheatsheets, crash courses, EDA, visualization, finance, and interview prep. Click any file to download directly.</div>
+          <div class="note-meta">
+            <div class="note-meta-item">
+              <svg width="13" height="13" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414A1 1 0 0120 9.414V19a2 2 0 01-2 2z"/></svg>
+              49 Files
+            </div>
+            <div class="note-meta-item">
+              <svg width="13" height="13" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path stroke="currentColor" stroke-width="2" d="M12 6v6l4 2"/></svg>
+              Python &amp; Data Science
+            </div>
+          </div>
+
+          <div class="pn-grid">
+
+            <a href="p.pdf/Python Data Structures and Algorithms.pdf" download class="pn-item available">
+              <span class="pn-num">01</span>
+              <span class="pn-name">Python Data Structures and Algorithms</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/python_book_01.pdf" download class="pn-item available">
+              <span class="pn-num">02</span>
+              <span class="pn-name">Python Book 01</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Python Cheat Sheet (1).pdf" download class="pn-item available">
+              <span class="pn-num">03</span>
+              <span class="pn-name">Python Cheat Sheet (1)</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Python Cheat Sheet.pdf" download class="pn-item available">
+              <span class="pn-num">04</span>
+              <span class="pn-name">Python Cheat Sheet</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Data Science Essentials in Python.pdf" download class="pn-item available">
+              <span class="pn-num">05</span>
+              <span class="pn-name">Data Science Essentials in Python</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Python_for_Scientists_Second_Edition_EnglishOnlineClub_com_1.pdf" download class="pn-item available">
+              <span class="pn-num">06</span>
+              <span class="pn-name">Python for Scientists — Second Edition</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Python beginner guide for Data Science .pdf" download class="pn-item available">
+              <span class="pn-num">07</span>
+              <span class="pn-name">Python Beginner Guide for Data Science</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Data Science Bookcamp Ten Python projects.pdf" download class="pn-item available">
+              <span class="pn-num">08</span>
+              <span class="pn-name">Data Science Bookcamp — Ten Python Projects</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Python for Data Science For Dummies (2023).pdf" download class="pn-item available">
+              <span class="pn-num">09</span>
+              <span class="pn-name">Python for Data Science For Dummies (2023)</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Wiley_Artificial_Intelligence_Programming_with_Python_From_Zero.pdf" download class="pn-item available">
+              <span class="pn-num">10</span>
+              <span class="pn-name">AI Programming with Python from Zero — Wiley</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Python Handwritten Notes (2023).pdf" download class="pn-item available">
+              <span class="pn-num">11</span>
+              <span class="pn-name">Python Handwritten Notes (2023)</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Supercharged Python_ Take Your Code To The Next Level.epub" download class="pn-item available">
+              <span class="pn-num">12</span>
+              <span class="pn-name">Supercharged Python — Take Your Code to the Next Level</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Practical Data Science with Jupyter.pdf" download class="pn-item available">
+              <span class="pn-num">13</span>
+              <span class="pn-name">Practical Data Science with Jupyter</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Foundational Python for Data Science.pdf" download class="pn-item available">
+              <span class="pn-num">14</span>
+              <span class="pn-name">Foundational Python for Data Science</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Python for Beginners.pdf" download class="pn-item available">
+              <span class="pn-num">15</span>
+              <span class="pn-name">Python for Beginners</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Python_Programming_and_Numerical_Methods_A_Guide_for_Engineers_and.pdf" download class="pn-item available">
+              <span class="pn-num">16</span>
+              <span class="pn-name">Python Programming and Numerical Methods — Guide for Engineers</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Python__Tricks_And_Tips_-_4e.pdf" download class="pn-item available">
+              <span class="pn-num">17</span>
+              <span class="pn-name">Python Tricks and Tips — 4th Edition</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Practical Data Science with Jupyter.epub" download class="pn-item available">
+              <span class="pn-num">18</span>
+              <span class="pn-name">Practical Data Science with Jupyter (ePub)</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Data Analysis with Python and PySpark (Final Release).pdf" download class="pn-item available">
+              <span class="pn-num">19</span>
+              <span class="pn-name">Data Analysis with Python and PySpark (Final Release)</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Python Tools for Scientists (2023).pdf" download class="pn-item available">
+              <span class="pn-num">20</span>
+              <span class="pn-name">Python Tools for Scientists (2023)</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/StatisticsMachineLearningPython.pdf" download class="pn-item available">
+              <span class="pn-num">21</span>
+              <span class="pn-name">Statistics Machine Learning Python</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Ben_Auffarth_Machine_Learning_for_Time_Series_with_Python_Forecast.pdf" download class="pn-item available">
+              <span class="pn-num">22</span>
+              <span class="pn-name">Machine Learning for Time Series with Python — Ben Auffarth</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Python Advanced Programming.pdf" download class="pn-item available">
+              <span class="pn-num">23</span>
+              <span class="pn-name">Python Advanced Programming</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/For_Dummies_Beginning_Programming_with_Python_For_Dummies_3rd_Edition.pdf" download class="pn-item available">
+              <span class="pn-num">24</span>
+              <span class="pn-name">Beginning Programming with Python For Dummies — 3rd Edition</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Lewinson_E_Python_for_Finance_Cookbook_Second_Edition_2022.epub" download class="pn-item available">
+              <span class="pn-num">25</span>
+              <span class="pn-name">Python for Finance Cookbook — Second Edition 2022 (ePub)</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Python Cheat_Sheet -cheatography.pdf" download class="pn-item available">
+              <span class="pn-num">26</span>
+              <span class="pn-name">Python Cheat Sheet — Cheatography</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Statistics in Python.pdf" download class="pn-item available">
+              <span class="pn-num">27</span>
+              <span class="pn-name">Statistics in Python</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Intermediate Python.pdf" download class="pn-item available">
+              <span class="pn-num">28</span>
+              <span class="pn-name">Intermediate Python</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Head_First_Python,_3rd_Edition_Early_Release.epub" download class="pn-item available">
+              <span class="pn-num">29</span>
+              <span class="pn-name">Head First Python — 3rd Edition Early Release (ePub)</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/PythonCrashCourse.pdf" download class="pn-item available">
+              <span class="pn-num">30</span>
+              <span class="pn-name">Python Crash Course</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/50-useful-python-scripts-free-pdf (3).pdf" download class="pn-item available">
+              <span class="pn-num">31</span>
+              <span class="pn-name">50 Useful Python Scripts</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Python Quick Notes Part-1.pdf" download class="pn-item available">
+              <span class="pn-num">32</span>
+              <span class="pn-name">Python Quick Notes Part-1</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Python Cheat Sheet-1.pdf" download class="pn-item available">
+              <span class="pn-num">33</span>
+              <span class="pn-name">Python Cheat Sheet — Vol. 2</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/BASIC PYTHON PROGRAMS.pdf" download class="pn-item available">
+              <span class="pn-num">34</span>
+              <span class="pn-name">Basic Python Programs</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Python-13.pdf" download class="pn-item available">
+              <span class="pn-num">35</span>
+              <span class="pn-name">Python-13</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Python for Science & Engineering.pdf" download class="pn-item available">
+              <span class="pn-num">36</span>
+              <span class="pn-name">Python for Science &amp; Engineering</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/0802-python-tutorial.pdf" download class="pn-item available">
+              <span class="pn-num">37</span>
+              <span class="pn-name">Python Tutorial</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/jupyter.pdf" download class="pn-item available">
+              <span class="pn-num">38</span>
+              <span class="pn-name">Jupyter</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Profound Python Libraries.epub" download class="pn-item available">
+              <span class="pn-num">39</span>
+              <span class="pn-name">Profound Python Libraries (ePub)</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Python for Everybody.epub" download class="pn-item available">
+              <span class="pn-num">40</span>
+              <span class="pn-name">Python for Everybody (ePub)</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/20 Python Libraries You Aren't Using (But Should).pdf" download class="pn-item available">
+              <span class="pn-num">41</span>
+              <span class="pn-name">20 Python Libraries You Aren't Using (But Should)</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Top 40 Python Interview Questions & Answers.pdf" download class="pn-item available">
+              <span class="pn-num">42</span>
+              <span class="pn-name">Top 40 Python Interview Questions &amp; Answers</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/python_basics.pdf" download class="pn-item available">
+              <span class="pn-num">43</span>
+              <span class="pn-name">Python Basics</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Data Visualization with Python.pdf" download class="pn-item available">
+              <span class="pn-num">44</span>
+              <span class="pn-name">Data Visualization with Python</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Python notes.pdf" download class="pn-item available">
+              <span class="pn-num">45</span>
+              <span class="pn-name">Python Notes</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Draw Doraemon Using Python.pdf" download class="pn-item available">
+              <span class="pn-num">46</span>
+              <span class="pn-name">Draw Doraemon Using Python</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Python Exploratory Data Analysis(EDA).pdf" download class="pn-item available">
+              <span class="pn-num">47</span>
+              <span class="pn-name">Python Exploratory Data Analysis (EDA)</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Python for Data Analysts - Quick Summary (1).pdf" download class="pn-item available">
+              <span class="pn-num">48</span>
+              <span class="pn-name">Python for Data Analysts — Quick Summary</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="p.pdf/Data analysis with python .pdf" download class="pn-item available">
+              <span class="pn-num">49</span>
+              <span class="pn-name">Data Analysis with Python</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+
+          </div><!-- /pn-grid -->
+        </div><!-- /python-card -->
+
+        <!-- Excel & Power BI Resources -->
+        <div id="sec-excel" class="note-card pandas-numpy-card" data-color="orange">
+          <div class="note-top">
+            <div class="note-icon">📊</div>
+            <span class="note-level level-intermediate">Intermediate</span>
+          </div>
+          <div class="note-title">Excel &amp; Power BI</div>
+          <div class="note-desc">6 resources covering Excel shortcuts, date functions, Power BI DAX, 15-day Power BI mastery, interview prep, and more. Click any file to download directly.</div>
+          <div class="note-meta">
+            <div class="note-meta-item">
+              <svg width="13" height="13" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414A1 1 0 0120 9.414V19a2 2 0 01-2 2z"/></svg>
+              6 Files
+            </div>
+            <div class="note-meta-item">
+              <svg width="13" height="13" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path stroke="currentColor" stroke-width="2" d="M12 6v6l4 2"/></svg>
+              Excel &amp; BI Tools
+            </div>
+          </div>
+
+          <div class="pn-grid">
+
+            <a href="e.pdf/Power Bi DAX CheatSheet (1).pdf" download class="pn-item available">
+              <span class="pn-num">01</span>
+              <span class="pn-name">Power BI DAX CheatSheet</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="e.pdf/50 excel shortcuts that you should know in 2023 .pdf" download class="pn-item available">
+              <span class="pn-num">02</span>
+              <span class="pn-name">50 Excel Shortcuts You Should Know in 2023</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="e.pdf/Date_Function_in_MS_Excel.pdf" download class="pn-item available">
+              <span class="pn-num">03</span>
+              <span class="pn-name">Date Functions in MS Excel</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="e.pdf/Master PowerBI in 15 days.pdf" download class="pn-item available">
+              <span class="pn-num">04</span>
+              <span class="pn-name">Master Power BI in 15 Days</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="e.pdf/Power-bi interview questions and answers.pdf" download class="pn-item available">
+              <span class="pn-num">05</span>
+              <span class="pn-name">Power BI Interview Questions and Answers</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="e.pdf/Powerbi.pdf" download class="pn-item available">
+              <span class="pn-num">06</span>
+              <span class="pn-name">Power BI</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+
+          </div><!-- /pn-grid -->
+        </div><!-- /excel-powerbi-card -->
+
+        <!-- Interview Questions Resources -->
+        <div id="sec-interview" class="note-card pandas-numpy-card" data-color="purple">
+          <div class="note-top">
+            <div class="note-icon">🎯</div>
+            <span class="note-level level-intermediate">Intermediate</span>
+          </div>
+          <div class="note-title">Interview Questions</div>
+          <div class="note-desc">10 resources covering data analyst, Power BI, KPMG, PwC, HR, data engineering, statistics, Excel, and ChatGPT interview prep. Click any file to download directly.</div>
+          <div class="note-meta">
+            <div class="note-meta-item">
+              <svg width="13" height="13" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414A1 1 0 0120 9.414V19a2 2 0 01-2 2z"/></svg>
+              10 Files
+            </div>
+            <div class="note-meta-item">
+              <svg width="13" height="13" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path stroke="currentColor" stroke-width="2" d="M12 6v6l4 2"/></svg>
+              Interview Prep
+            </div>
+          </div>
+
+          <div class="pn-grid">
+
+            <a href="i.pdf/PWC_Data_Analyst_Interview_Questions_1765396771.pdf" download class="pn-item available">
+              <span class="pn-num">01</span>
+              <span class="pn-name">PwC Data Analyst Interview Questions</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="i.pdf/PowerBI_Interview_Kit.pdf" download class="pn-item available">
+              <span class="pn-num">02</span>
+              <span class="pn-name">Power BI Interview Kit</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="i.pdf/KPMG Data Analyst Interview Questions 🚀.pdf" download class="pn-item available">
+              <span class="pn-num">03</span>
+              <span class="pn-name">KPMG Data Analyst Interview Questions</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="i.pdf/HR interview Question and Answers .pdf" download class="pn-item available">
+              <span class="pn-num">04</span>
+              <span class="pn-name">HR Interview Questions and Answers</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="i.pdf/Data_Engineering_Interview_Question_and_Answers_1682785467_1.pdf" download class="pn-item available">
+              <span class="pn-num">05</span>
+              <span class="pn-name">Data Engineering Interview Questions and Answers</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="i.pdf/ChatGPT_for_Data_Science_Interview_Cheatsheet.pdf" download class="pn-item available">
+              <span class="pn-num">06</span>
+              <span class="pn-name">ChatGPT for Data Science Interview Cheatsheet</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="i.pdf/Data Analyst Interview Questions.pdf" download class="pn-item available">
+              <span class="pn-num">07</span>
+              <span class="pn-name">Data Analyst Interview Questions</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="i.pdf/Statistics Interview Q&A.pdf" download class="pn-item available">
+              <span class="pn-num">08</span>
+              <span class="pn-name">Statistics Interview Q&amp;A</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="i.pdf/Stats Interview Q&A Part-2.pdf" download class="pn-item available">
+              <span class="pn-num">09</span>
+              <span class="pn-name">Stats Interview Q&amp;A Part-2</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+            <a href="i.pdf/Excel Interview Q&A @excel_analyst.pdf" download class="pn-item available">
+              <span class="pn-num">10</span>
+              <span class="pn-name">Excel Interview Q&amp;A</span>
+              <span class="pn-dl">⬇ Download</span>
+            </a>
+
+          </div><!-- /pn-grid -->
+        </div><!-- /interview-card -->
+
+      </div>
+    </section>
+    
+
+        <!-- PAYMENT MODAL (Instamojo placeholder) -->
+    <div id="pay-modal" onclick="handleModalBg(event)">
+      <div class="modal-box">
+        <button class="modal-close" onclick="closePay()">✕</button>
+        <div class="modal-icon">📄</div>
+        <div class="modal-title">Ready to Purchase?</div>
+        <p class="modal-sub">
+          You're buying
+          <span class="modal-note-name" id="modal-note-title">SQL Notes</span
+          ><br />
+          for a one-time payment of ₹50.
+        </p>
+        <div class="modal-price-display">
+          <div class="big">₹50</div>
+          <div class="sm">One-time · Instant download · Lifetime access</div>
+        </div>
+        <!-- ╔═══════════════════════════════════════════╗
+             ║  INSTAMOJO PAYMENT LINK GOES HERE         ║
+             ║  Replace the div below with:              ║
+             ║  <a href="https://www.instamojo.com/...   ║
+             ║     class="buy-btn" style="display:block; ║
+             ║     text-align:center; text-decoration:   ║
+             ║     none;">Pay ₹50 via Instamojo</a>      ║
+             ╚═══════════════════════════════════════════╝ -->
+        <div class="modal-coming">Payment Setup in Progress</div>
+        <p class="modal-hint">
+          Instamojo payment will be live soon!<br />
+          To buy now, email
+          <a
+            href="mailto:afeefbinummer@gmail.com?subject=Buy%20Notes%20-%20%E2%82%B950&body=Hi%20Afeef%2C%20I%20want%20to%20purchase%20the%20study%20notes.%20Please%20share%20payment%20details."
+            >afeefbinummer@gmail.com</a
+          >
+        </p>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-brand">Afeef<span>.</span> Notes Store</div>
+      <div class="footer-links">
+        <a href="index.html">Portfolio</a>
+        <a href="LERN.html">Free Learning</a>
+        <a href="about.html">About</a>
+        <a href="mailto:afeefbinummer@gmail.com">Contact</a>
+      </div>
+      <div class="footer-copy">
+        © 2026 Afeef Ummer. All notes curated with care.
+      </div>
+    </footer>
+
+    <script>
+      function openPay(name) {
+        document.getElementById("modal-note-title").textContent = name;
+        document.getElementById("pay-modal").classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closePay() {
+        document.getElementById("pay-modal").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      function handleModalBg(e) {
+        if (e.target === document.getElementById("pay-modal")) closePay();
+      }
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closePay();
+      });
+
+      // Fade-in video gracefully
+      var heroVid = document.getElementById("heroVid");
+      if (heroVid) heroVid.addEventListener("canplay", function () {
+        this.style.transition = "opacity 1.5s ease";
+        this.style.opacity = "0.18";
+      });
+
+      // ── Hamburger menu ──
+      (function() {
+        var hamburger = document.getElementById('navHamburger');
+        var mobileMenu = document.getElementById('mobileMenu');
+        if (!hamburger || !mobileMenu) return;
+
+        function closeMobileMenu() {
+          hamburger.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+          mobileMenu.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+
+        hamburger.addEventListener('click', function() {
+          var isOpen = mobileMenu.classList.contains('open');
+          if (isOpen) {
+            closeMobileMenu();
+          } else {
+            hamburger.classList.add('open');
+            hamburger.setAttribute('aria-expanded', 'true');
+            mobileMenu.classList.add('open');
+            document.body.style.overflow = 'hidden';
+          }
+        });
+
+        document.querySelectorAll('.mobile-nav-link').forEach(function(link) {
+          link.addEventListener('click', closeMobileMenu);
+        });
+
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') closeMobileMenu();
+        });
+      })();
+    
+/* ── Filter nav: scroll + active highlight ── */
+(function() {
+  const btns = document.querySelectorAll('.filter-btn');
+  const sectionIds = ['sec-pandas','sec-datascience','sec-sql','sec-ml','sec-python','sec-excel','sec-interview'];
+
+  function getOffset() {
+    const mainNav   = document.querySelector('nav') ? document.querySelector('nav').offsetHeight : 68;
+    const filterNav = document.querySelector('.filter-nav-wrap') ? document.querySelector('.filter-nav-wrap').offsetHeight : 48;
+    return mainNav + filterNav + 12;
+  }
+
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var el = document.getElementById(btn.dataset.target);
+      if (!el) return;
+      var top = el.getBoundingClientRect().top + window.scrollY - getOffset();
+      window.scrollTo({ top: top, behavior: 'smooth' });
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+    });
+  });
+
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        btns.forEach(function(b) { b.classList.remove('active'); });
+        var active = document.querySelector('.filter-btn[data-target="' + e.target.id + '"]');
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-15% 0px -75% 0px', threshold: 0 });
+
+  sectionIds.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) obs.observe(el);
+  });
+})();
+
+</script>
+  </body>
+</html>

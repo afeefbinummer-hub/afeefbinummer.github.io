@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VEX — Liquid Glass Hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    background: #000;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .liquid-glass {
+    background: rgba(0,0,0,0.4);
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: none;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  .liquid-glass::before {
+    content: '';
+    position: absolute; inset: 0;
+    border-radius: inherit;
+    padding: 1.4px;
+    background: linear-gradient(180deg,
+      rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 20%,
+      rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
+      rgba(255,255,255,0.1) 80%, rgba(255,255,255,0.3) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .video-bg {
+    position: absolute;
+    inset: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  /* ── Navbar ── */
+  .nav {
+    position: relative;
+    z-index: 20;
+    padding: 1.5rem 4rem;
+  }
+  @media(max-width:768px){ .nav { padding: 1.5rem; } }
+  .nav-inner {
+    border-radius: 0.75rem;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    color: #fff;
+  }
+  .nav-links {
+    display: none;
+    gap: 2rem;
+    list-style: none;
+  }
+  @media(min-width:768px){ .nav-links { display: flex; } }
+  .nav-links a {
+    font-size: 0.875rem;
+    color: #9ca3af;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: #fff; }
+  .nav-cta {
+    background: #fff;
+    color: #000;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: #e5e7eb; }
+
+  /* ── Hero bottom content ── */
+  .hero-bottom {
+    position: relative;
+    z-index: 10;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 4rem 3rem;
+  }
+  @media(max-width:768px){ .hero-bottom { padding: 0 1.5rem 3rem; } }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: flex-end;
+  }
+  @media(min-width:1024px){
+    .hero-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ── Heading ── */
+  .hero-heading {
+    font-size: clamp(2rem, 7vw, 4.75rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.25rem;
+    opacity: 0;
+    animation: charSlide 0s both;
+  }
+  .hero-heading .char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateX(-18px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  .hero-heading .char.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .hero-heading .space { display: inline-block; width: 0.3em; }
+  .hero-heading .break { display: block; }
+
+  .hero-sub {
+    font-size: clamp(0.9rem, 2vw, 1.125rem);
+    color: #d1d5db;
+    line-height: 1.6;
+    max-width: 32rem;
+    margin-bottom: 1.25rem;
+    opacity: 0;
+    animation: fadeIn 1s 0.8s ease-out forwards;
+  }
+
+  .hero-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    opacity: 0;
+    animation: fadeIn 1s 1.2s ease-out forwards;
+  }
+
+  .btn-primary {
+    background: #fff;
+    color: #000;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.75rem 2rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: #e5e7eb; }
+
+  .btn-secondary {
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 0.75rem 2rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(4px);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .btn-secondary:hover { background: #fff; color: #000; }
+
+  /* ── Right tag ── */
+  .hero-tag {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    opacity: 0;
+    animation: fadeIn 1s 1.4s ease-out forwards;
+  }
+  .tag-card {
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 0.75rem 1.5rem;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    font-weight: 300;
+    color: #fff;
+    backdrop-filter: blur(4px);
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+  /* ── Mobile nav ── */
+  .hamburger-btn {
+    display: none;
+    flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; background: none; border: none; cursor: pointer;
+    padding: 4px; min-height: 44px; min-width: 44px;
+  }
+  @media(max-width:767px){ .hamburger-btn { display: flex; } }
+  @media(max-width:767px){ .nav-cta { display: none; } }
+  .hamburger-btn span {
+    display: block; width: 22px; height: 2px;
+    background: rgba(255,255,255,0.9); border-radius: 2px;
+  }
+  .mobile-nav {
+    display: none; position: fixed;
+    top: 0; left: 0; right: 0; z-index: 200;
+    background: rgba(0,0,0,0.97);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .mobile-nav.open { display: block; }
+  .mobile-nav-hdr {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1.25rem;
+  }
+  .mobile-nav-brand { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.04em; color: #fff; }
+  .mobile-nav-close {
+    background: none; border: none;
+    color: rgba(255,255,255,0.6); font-size: 1.4rem; cursor: pointer;
+  }
+  .mobile-nav-links { list-style: none; }
+  .mobile-nav-links a {
+    display: block; padding: 13px 0;
+    color: #9ca3af; text-decoration: none;
+    font-size: 0.9375rem; transition: color 0.2s;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .mobile-nav-links a:hover { color: #fff; }
+  .mobile-nav-links li:last-child a { border-bottom: none; }
+  img { max-width: 100%; height: auto; }
+</style>
+</head>
+<body>
+<a href="tum.html" style="position:fixed;top:14px;left:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:rgba(0,0,0,0.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.18);border-radius:999px;color:#fff;font-family:system-ui,sans-serif;font-size:0.75rem;font-weight:600;text-decoration:none;letter-spacing:0.02em;transition:background 0.2s;" onmouseover="this.style.background='rgba(0,0,0,0.85)'" onmouseout="this.style.background='rgba(0,0,0,0.6)'"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>Templates</a>
+<div class="hero">
+
+  <video class="video-bg" autoplay loop muted playsinline
+    src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260403_050628_c4e32401-fab4-4a27-b7a8-6e9291cd5959.mp4">
+  </video>
+
+  <nav class="nav">
+    <div class="nav-inner liquid-glass">
+      <span class="nav-logo">VEX</span>
+      <ul class="nav-links">
+        <li><a href="#">Story</a></li>
+        <li><a href="#">Investing</a></li>
+        <li><a href="#">Building</a></li>
+        <li><a href="#">Advisory</a></li>
+      </ul>
+      <button class="hamburger-btn" onclick="openMobileNav()" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <button class="nav-cta">Start a Chat</button>
+    </div>
+  </nav>
+
+  <div class="hero-bottom">
+    <div class="hero-grid">
+      <div>
+        <h1 class="hero-heading" id="heading">
+          Shaping tomorrow<span class="break"></span>with vision and action.
+        </h1>
+        <p class="hero-sub">We back visionaries and craft ventures that define what comes next.</p>
+        <div class="hero-btns">
+          <button class="btn-primary">Start a Chat</button>
+          <button class="btn-secondary">Explore Now</button>
+        </div>
+      </div>
+      <div class="hero-tag">
+        <div class="tag-card liquid-glass">Investing. Building. Advisory.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // ── Character-by-character animation ──
+  const heading = document.getElementById('heading');
+  const text1 = 'Shaping tomorrow';
+  const text2 = 'with vision and action.';
+  const CHAR_DELAY = 30;
+  const INIT_DELAY = 200;
+
+  heading.style.opacity = 1;
+  heading.innerHTML = '';
+
+  function buildLine(text, lineIndex, totalPrev) {
+    const frag = document.createDocumentFragment();
+    [...text].forEach((ch, i) => {
+      if (ch === ' ') {
+        const sp = document.createElement('span');
+        sp.className = 'space'; frag.appendChild(sp);
+      } else {
+        const sp = document.createElement('span');
+        sp.className = 'char';
+        sp.textContent = ch;
+        const delay = INIT_DELAY + (totalPrev + i) * CHAR_DELAY;
+        setTimeout(() => sp.classList.add('visible'), delay);
+        frag.appendChild(sp);
+      }
+    });
+    return frag;
+  }
+
+  const line1frag = buildLine(text1, 0, 0);
+  const br = document.createElement('br');
+  const line2frag = buildLine(text2, 1, text1.replace(/ /g,'').length);
+
+  heading.appendChild(line1frag);
+  heading.appendChild(br);
+  heading.appendChild(line2frag);
+</script>
+
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-hdr">
+    <span class="mobile-nav-brand">VEX</span>
+    <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
+  </div>
+  <ul class="mobile-nav-links">
+    <li><a href="#" onclick="closeMobileNav()">Story</a></li>
+    <li><a href="#" onclick="closeMobileNav()">Investing</a></li>
+    <li><a href="#" onclick="closeMobileNav()">Building</a></li>
+    <li><a href="#" onclick="closeMobileNav()">Advisory</a></li>
+  </ul>
+</div>
+<script>
+  function openMobileNav() { document.getElementById('mobileNav').classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); document.body.style.overflow=''; }
+</script>
+</body>
+</html>
