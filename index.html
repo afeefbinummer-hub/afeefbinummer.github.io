@@ -709,12 +709,111 @@
         text-decoration: underline;
       }
 
+      /* HAMBURGER + MOBILE DRAWER */
+      .nav-hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 6px;
+        z-index: 201;
+      }
+      .nav-hamburger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--black);
+        border-radius: 2px;
+        transition: 0.25s;
+      }
+      .nav-mobile-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.35);
+        z-index: 299;
+      }
+      .nav-mobile-overlay.open { display: block; }
+      .nav-mobile-drawer {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 75vw;
+        max-width: 300px;
+        height: 100dvh;
+        background: #fff;
+        z-index: 300;
+        padding: 24px 28px 32px;
+        box-shadow: -4px 0 32px rgba(0,0,0,0.12);
+        transform: translateX(110%);
+        transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+      }
+      .nav-mobile-drawer.open { transform: translateX(0); }
+      .nav-drawer-close {
+        align-self: flex-end;
+        background: none;
+        border: none;
+        font-size: 1.25rem;
+        cursor: pointer;
+        color: var(--gray);
+        margin-bottom: 28px;
+        padding: 4px 6px;
+      }
+      .nav-mobile-drawer ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .nav-mobile-drawer ul a {
+        display: block;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--black);
+        text-decoration: none;
+        padding: 10px 0;
+        border-bottom: 1px solid #f0f0f0;
+      }
+      .nav-mobile-drawer .drawer-services {
+        background: linear-gradient(135deg,#0ea5e9,#1e5fad);
+        color: #fff !important;
+        border-radius: 999px;
+        padding: 8px 18px !important;
+        border-bottom: none !important;
+        margin-top: 8px;
+        text-align: center;
+      }
+      .nav-mobile-drawer .drawer-premium {
+        background: linear-gradient(135deg,#c8951a,#f5c53a);
+        color: #1a0800 !important;
+        border-radius: 999px;
+        padding: 8px 18px !important;
+        border-bottom: none !important;
+        text-align: center;
+      }
+      .nav-mobile-drawer .drawer-templates {
+        background: linear-gradient(135deg,#0f0f23,#2d2d6b,#0f0f23);
+        color: #a8b8ff !important;
+        border-radius: 999px;
+        padding: 8px 18px !important;
+        border-bottom: none !important;
+        text-align: center;
+      }
+
       @media (max-width: 768px) {
         nav.bar {
           padding: 18px 20px;
         }
         .nav-links {
           display: none;
+        }
+        .nav-hamburger {
+          display: flex;
         }
         .hero-title {
           font-size: 2.75rem;
@@ -1000,8 +1099,22 @@
             <a href="tum.html" style="background:linear-gradient(135deg,#0f0f23,#2d2d6b,#0f0f23);color:#a8b8ff;border-radius:999px;padding:3px 12px 4px;font-size:0.78rem;font-weight:700;letter-spacing:0.02em;text-decoration:none;white-space:nowrap;box-shadow:0 0 8px rgba(100,120,255,0.25);transition:box-shadow 0.2s,transform 0.15s;">⬡ Templates</a>
           </li>
         </ul>
-        <br>
+        <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
       </nav>
+      <div class="nav-mobile-overlay" id="navOverlay"></div>
+      <div class="nav-mobile-drawer" id="navDrawer">
+        <button class="nav-drawer-close" id="navDrawerClose" aria-label="Close menu">✕</button>
+        <ul>
+          <li><a href="LERN.html">Free Notes</a></li>
+          <li><a href="practice.html">Practice Lab</a></li>
+          <li><a href="about.html">About Me</a></li>
+          <li><a href="contact.html" class="drawer-services">✦ Services</a></li>
+          <li><a href="paid.html" class="drawer-premium">✦ Premium Notes</a></li>
+          <li><a href="tum.html" class="drawer-templates">⬡ Templates</a></li>
+        </ul>
+      </div>
 
       <div class="hero-content">
         <h1 class="hero-title a1">
@@ -3000,6 +3113,20 @@
             wrap.appendChild(el);
           }
         });
+      })();
+    </script>
+    <script>
+      (function(){
+        var btn = document.getElementById('navHamburger');
+        var drawer = document.getElementById('navDrawer');
+        var overlay = document.getElementById('navOverlay');
+        var close = document.getElementById('navDrawerClose');
+        function openDrawer(){drawer.classList.add('open');overlay.classList.add('open');}
+        function closeDrawer(){drawer.classList.remove('open');overlay.classList.remove('open');}
+        btn.addEventListener('click', openDrawer);
+        close.addEventListener('click', closeDrawer);
+        overlay.addEventListener('click', closeDrawer);
+        drawer.querySelectorAll('a').forEach(function(a){a.addEventListener('click', closeDrawer);});
       })();
     </script>
   </body>
