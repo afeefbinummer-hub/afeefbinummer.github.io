@@ -493,6 +493,93 @@
       transition: transform 0.2s, box-shadow 0.2s;
     }
     .ls-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+
+    /* ── SPLIT VIEW ── */
+    .split-panes { display: flex; flex-direction: column; height: 100%; overflow: hidden; }
+    .split-pane { display: flex; flex-direction: column; flex: 1; min-height: 0; border-bottom: 1px solid var(--border); transition: flex 0.25s ease; }
+    .split-pane:last-child { border-bottom: none; }
+    .split-pane.collapsed { flex: 0 0 28px; overflow: hidden; }
+    .sp-label { display: flex; align-items: center; padding: 4px 14px; background: rgba(255,255,255,0.03); border-bottom: 1px solid var(--border); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); cursor: pointer; flex-shrink: 0; user-select: none; transition: color 0.15s; gap: 6px; }
+    .sp-label:hover { color: var(--text); }
+    .sp-label-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .sp-label-name { flex: 1; }
+    .sp-label-arrow { font-size: 0.6rem; transition: transform 0.2s; margin-left: auto; }
+    .split-pane.collapsed .sp-label-arrow { transform: rotate(-90deg); }
+    .sp-cm { flex: 1; min-height: 0; overflow: hidden; }
+    .split-pane.collapsed .sp-cm { visibility: hidden; height: 0; }
+
+    /* ── STATUS BAR ── */
+    .ed-status { display: flex; align-items: center; gap: 14px; padding: 3px 14px; background: rgba(255,255,255,0.02); border-top: 1px solid var(--border); font-size: 0.68rem; color: var(--dim); font-family: 'Fira Code','Courier New',monospace; flex-shrink: 0; white-space: nowrap; overflow: hidden; }
+
+    /* ── CONSOLE PANEL ── */
+    .console-panel { display: none; flex-direction: column; border-top: 1px solid var(--border); background: #08080f; max-height: 160px; min-height: 80px; flex-shrink: 0; }
+    .console-panel.open { display: flex; }
+    .console-hdr { display: flex; align-items: center; justify-content: space-between; padding: 4px 12px; background: rgba(255,255,255,0.025); border-bottom: 1px solid var(--border); flex-shrink: 0; }
+    .console-title { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--dim); }
+    .console-clear { background: none; border: 1px solid var(--border); color: var(--dim); font-size: 0.68rem; cursor: pointer; font-family: var(--sans); padding: 2px 8px; border-radius: 4px; transition: color 0.15s; }
+    .console-clear:hover { color: var(--text); }
+    .console-body { flex: 1; overflow-y: auto; padding: 5px 12px; font-family: 'Fira Code','Courier New',monospace; font-size: 0.75rem; line-height: 1.6; }
+    .con-row { display: flex; gap: 8px; padding: 1px 0; }
+    .con-log .con-msg { color: #e2e8f0; }
+    .con-warn .con-msg { color: #facc15; }
+    .con-err .con-msg { color: #f87171; }
+    .con-time { color: rgba(255,255,255,0.22); flex-shrink: 0; }
+    .console-toggle { background: transparent; border: 1px solid var(--border); border-radius: 5px; padding: 3px 9px; font-size: 0.72rem; cursor: pointer; color: var(--muted); transition: all 0.15s; font-family: var(--sans); }
+    .console-toggle:hover { background: var(--surface); color: var(--text); }
+    .console-toggle.active { background: rgba(255,255,255,0.05); color: var(--text); border-color: rgba(255,255,255,0.2); }
+
+    /* ── PROGRESS BAR ── */
+    .ch-progress-wrap { margin-bottom: 24px; }
+    .ch-progress-label { font-size: 0.78rem; color: var(--muted); margin-bottom: 7px; display: flex; align-items: center; justify-content: space-between; }
+    .ch-progress-label strong { color: var(--green); }
+    .ch-progress-track { height: 4px; background: rgba(255,255,255,0.07); border-radius: 99px; overflow: hidden; }
+    .ch-progress-fill { height: 100%; background: linear-gradient(90deg,#22c55e,#16a34a); border-radius: 99px; transition: width 0.4s var(--ease); width: 0%; }
+
+    /* ── FILTER BAR ── */
+    .ch-filter-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; align-items: center; }
+    .ch-filter-sep { width: 1px; height: 18px; background: var(--border); flex-shrink: 0; }
+    .fp { display: inline-flex; align-items: center; gap: 5px; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px; font-size: 0.74rem; font-weight: 600; color: var(--muted); cursor: pointer; font-family: var(--sans); transition: all 0.15s; }
+    .fp:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+    .fp.active { background: var(--surface2); color: var(--text); border-color: rgba(255,255,255,0.22); }
+    .fp .fp-dot { width: 7px; height: 7px; border-radius: 50%; }
+    .fp-html.active { border-color: rgba(249,115,22,0.55); color: #f97316; }
+    .fp-js.active   { border-color: rgba(250,204,21,0.55);  color: #facc15; }
+    .fp-sql.active  { border-color: rgba(168,85,247,0.55);  color: #a855f7; }
+    .fp-py.active   { border-color: rgba(34,197,94,0.55);   color: #22c55e; }
+    .fp-easy.active { border-color: rgba(34,197,94,0.55);   color: #22c55e; }
+    .fp-mid.active  { border-color: rgba(250,204,21,0.55);  color: #facc15; }
+    .fp-hard.active { border-color: rgba(249,115,22,0.55);  color: #f97316; }
+
+    /* ── SOLVED BADGE ── */
+    .ch-card { position: relative; }
+    .ch-solved-badge { position: absolute; top: -9px; right: -9px; width: 22px; height: 22px; border-radius: 50%; background: var(--green); color: #000; display: none; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; box-shadow: 0 2px 8px rgba(34,197,94,0.45); z-index: 2; }
+    .ch-card.solved .ch-solved-badge { display: flex; }
+    .ch-card.solved { border-color: rgba(34,197,94,0.28); }
+    .mark-solved-btn { background: transparent; border: 1px solid var(--border); color: var(--dim); border-radius: 7px; padding: 4px 10px; font-size: 0.71rem; font-weight: 600; cursor: pointer; font-family: var(--sans); transition: all 0.15s; white-space: nowrap; }
+    .mark-solved-btn:hover { border-color: rgba(34,197,94,0.4); color: var(--green); }
+    .ch-card.solved .mark-solved-btn { color: var(--green); border-color: rgba(34,197,94,0.4); background: rgba(34,197,94,0.07); }
+    .ch-card-hidden { opacity: 0; transform: scale(0.96); pointer-events: none; transition: opacity 0.2s, transform 0.2s; }
+
+    /* ── SHORTCUTS MODAL ── */
+    #shortcuts-modal { display: none; position: fixed; inset: 0; z-index: 9000; background: rgba(0,0,0,0.65); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); align-items: center; justify-content: center; }
+    #shortcuts-modal.open { display: flex; }
+    .shortcuts-box { background: #0a0a14; border-radius: 18px; padding: 26px 30px; max-width: 400px; width: 90%; position: relative; border: 1px solid rgba(255,255,255,0.1); box-shadow: inset 0 1px 1px rgba(255,255,255,0.07), 0 24px 64px rgba(0,0,0,0.65); }
+    .shortcuts-title { font-family: var(--serif); font-size: 1.25rem; margin-bottom: 18px; color: var(--text); }
+    .shortcuts-close { position: absolute; top: 14px; right: 14px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--muted); font-size: 0.75rem; transition: background 0.2s; }
+    .shortcuts-close:hover { background: rgba(255,255,255,0.14); color: var(--text); }
+    .shortcut-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); }
+    .shortcut-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .shortcut-keys { display: flex; gap: 4px; flex-shrink: 0; }
+    .kbd { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 5px; padding: 2px 7px; font-size: 0.7rem; color: var(--text); font-family: 'Fira Code','Courier New',monospace; }
+    .shortcut-desc { font-size: 0.8rem; color: var(--muted); padding-right: 12px; }
+
+    /* ── SPLIT ACTIVE BTN ── */
+    .tb-btn.split-active { background: var(--surface2); color: var(--text); border-color: rgba(255,255,255,0.2); }
+
+    @media (max-width: 900px) {
+      .ch-filter-sep { display: none; }
+      .console-panel { max-height: 120px; }
+    }
   </style>
 </head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.2/sql-wasm.js" crossorigin="anonymous"></script>
@@ -602,9 +689,13 @@
       </select>
       <div class="pg-divider"></div>
       <button class="run-btn" onclick="runCode()">&#9654;&nbsp; Run</button>
+      <button class="tb-btn" id="splitBtn" onclick="toggleSplitView()">&#9707; Split</button>
+      <button class="tb-btn" onclick="formatCode()">&#x2325; Format</button>
+      <button class="tb-btn" id="copyBtn" onclick="copyCode()">&#x2398; Copy</button>
       <button class="tb-btn" onclick="resetCode()">&#8635; Reset</button>
       <button class="tb-btn" onclick="clearAll()">&#10005; Clear</button>
-      <span class="pg-hint">Ctrl + Enter to run</span>
+      <button class="tb-btn" onclick="openShortcuts()">&#9000; Shortcuts</button>
+      <span class="pg-hint">Ctrl+Enter run &nbsp;·&nbsp; Ctrl+Shift+F format &nbsp;·&nbsp; Ctrl+S run</span>
     </div>
 
     <!-- SPLIT PANEL -->
@@ -613,15 +704,57 @@
       <div class="ed-side">
         <div class="ed-label" id="edLabel">editor — html</div>
         <div class="cm-wrap" id="cmWrap"></div>
+        <!-- SPLIT VIEW (hidden by default) -->
+        <div class="split-panes" id="splitPanes" style="display:none;flex:1;min-height:0;">
+          <div class="split-pane" id="sp-html">
+            <div class="sp-label" onclick="togglePane('html')">
+              <span class="sp-label-dot" style="background:#f97316"></span>
+              <span class="sp-label-name">HTML</span>
+              <span class="sp-label-arrow">▼</span>
+            </div>
+            <div class="sp-cm" id="sp-cm-html"></div>
+          </div>
+          <div class="split-pane" id="sp-css">
+            <div class="sp-label" onclick="togglePane('css')">
+              <span class="sp-label-dot" style="background:#3b82f6"></span>
+              <span class="sp-label-name">CSS</span>
+              <span class="sp-label-arrow">▼</span>
+            </div>
+            <div class="sp-cm" id="sp-cm-css"></div>
+          </div>
+          <div class="split-pane" id="sp-js">
+            <div class="sp-label" onclick="togglePane('js')">
+              <span class="sp-label-dot" style="background:#facc15"></span>
+              <span class="sp-label-name">JS</span>
+              <span class="sp-label-arrow">▼</span>
+            </div>
+            <div class="sp-cm" id="sp-cm-js"></div>
+          </div>
+        </div>
+        <div class="ed-status" id="edStatus">
+          <span id="st-pos">Ln 1 · Col 1</span>
+          <span id="st-lines">1 lines</span>
+          <span id="st-chars">0 chars</span>
+        </div>
       </div>
       <!-- OUTPUT / PREVIEW -->
       <div class="out-side" id="outSide">
         <div class="out-header">
           <span class="out-label"><span class="out-dot" id="outDot"></span><span id="outTitle">Live Preview</span></span>
-          <button class="full-btn" id="fullBtn" onclick="openFull()">&#9974; Fullscreen</button>
+          <div style="display:flex;gap:6px;align-items:center;">
+            <button class="console-toggle" id="consoleToggle" onclick="toggleConsole()" style="display:none;">&#9632; Console</button>
+            <button class="full-btn" id="fullBtn" onclick="openFull()">&#9974; Fullscreen</button>
+          </div>
         </div>
-        <iframe id="preview-frame" sandbox="allow-scripts allow-forms allow-modals" title="Preview"></iframe>
+        <iframe id="preview-frame" sandbox="allow-scripts allow-forms allow-modals allow-same-origin" title="Preview"></iframe>
         <div id="output-panel" class="output-panel"></div>
+        <div class="console-panel" id="consolePanel">
+          <div class="console-hdr">
+            <span class="console-title">&#9632; Console</span>
+            <button class="console-clear" onclick="clearConsole()">Clear</button>
+          </div>
+          <div class="console-body" id="consoleBody"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -636,10 +769,40 @@
       <p class="ch-sub">Click any challenge to load it instantly into the playground above.</p>
     </div>
 
+    <!-- PROGRESS BAR -->
+    <div class="ch-progress-wrap" id="chProgressWrap">
+      <div class="ch-progress-label">
+        <span>Progress</span>
+        <strong id="chProgressText">0 / 8 Solved</strong>
+      </div>
+      <div class="ch-progress-track">
+        <div class="ch-progress-fill" id="chProgressFill"></div>
+      </div>
+    </div>
+
+    <!-- FILTER BAR -->
+    <div class="ch-filter-bar">
+      <div style="display:flex;gap:5px;flex-wrap:wrap;">
+        <button class="fp active" data-flang="all" onclick="setLangFilter(this,'all')">All</button>
+        <button class="fp fp-html" data-flang="html" onclick="setLangFilter(this,'html')"><span class="fp-dot" style="background:#f97316"></span>HTML</button>
+        <button class="fp fp-js" data-flang="js" onclick="setLangFilter(this,'js')"><span class="fp-dot" style="background:#facc15"></span>JS</button>
+        <button class="fp fp-sql" data-flang="sql" onclick="setLangFilter(this,'sql')"><span class="fp-dot" style="background:#a855f7"></span>SQL</button>
+        <button class="fp fp-py" data-flang="python" onclick="setLangFilter(this,'python')"><span class="fp-dot" style="background:#22c55e"></span>Python</button>
+      </div>
+      <div class="ch-filter-sep"></div>
+      <div style="display:flex;gap:5px;flex-wrap:wrap;">
+        <button class="fp active" data-fdiff="all" onclick="setDiffFilter(this,'all')">All</button>
+        <button class="fp fp-easy" data-fdiff="easy" onclick="setDiffFilter(this,'easy')">Easy</button>
+        <button class="fp fp-mid" data-fdiff="mid" onclick="setDiffFilter(this,'mid')">Medium</button>
+        <button class="fp fp-hard" data-fdiff="hard" onclick="setDiffFilter(this,'hard')">Hard</button>
+      </div>
+    </div>
+
     <div class="ch-grid">
 
       <!-- HTML -->
-      <div class="ch-card" data-lang="html" onclick="loadChallenge('ch_card_html')">
+      <div class="ch-card" data-lang="html" data-diff="easy" data-key="ch_card_html" onclick="loadChallenge('ch_card_html')">
+        <div class="ch-solved-badge">✓</div>
         <div class="ch-top">
           <span class="ch-icon">🎨</span>
           <span class="diff-badge diff-easy">Easy</span>
@@ -648,11 +811,15 @@
         <p class="ch-desc">Build a stylish product card with image placeholder, title, price tag, and a "Buy Now" button. Use Flexbox for layout.</p>
         <div class="ch-footer">
           <span class="lang-tag tag-html">HTML/CSS</span>
-          <button class="solve-btn">Solve &#8594;</button>
+          <div style="display:flex;gap:6px;">
+            <button class="solve-btn">Solve &#8594;</button>
+            <button class="mark-solved-btn" onclick="event.stopPropagation();markSolved('ch_card_html',this)">✓ Solved</button>
+          </div>
         </div>
       </div>
 
-      <div class="ch-card" data-lang="html" onclick="loadChallenge('ch_spinner_html')">
+      <div class="ch-card" data-lang="html" data-diff="mid" data-key="ch_spinner_html" onclick="loadChallenge('ch_spinner_html')">
+        <div class="ch-solved-badge">✓</div>
         <div class="ch-top">
           <span class="ch-icon">⚙️</span>
           <span class="diff-badge diff-mid">Medium</span>
@@ -661,12 +828,16 @@
         <p class="ch-desc">Create an animated loading spinner using only CSS — no JavaScript. Use @keyframes and border trick.</p>
         <div class="ch-footer">
           <span class="lang-tag tag-html">CSS</span>
-          <button class="solve-btn">Solve &#8594;</button>
+          <div style="display:flex;gap:6px;">
+            <button class="solve-btn">Solve &#8594;</button>
+            <button class="mark-solved-btn" onclick="event.stopPropagation();markSolved('ch_spinner_html',this)">✓ Solved</button>
+          </div>
         </div>
       </div>
 
       <!-- JS -->
-      <div class="ch-card" data-lang="js" onclick="loadChallenge('ch_timer_js')">
+      <div class="ch-card" data-lang="js" data-diff="easy" data-key="ch_timer_js" onclick="loadChallenge('ch_timer_js')">
+        <div class="ch-solved-badge">✓</div>
         <div class="ch-top">
           <span class="ch-icon">⏱️</span>
           <span class="diff-badge diff-easy">Easy</span>
@@ -675,11 +846,15 @@
         <p class="ch-desc">Build a 60-second countdown timer with Start, Pause, and Reset buttons. Display MM:SS format.</p>
         <div class="ch-footer">
           <span class="lang-tag tag-js">JavaScript</span>
-          <button class="solve-btn">Solve &#8594;</button>
+          <div style="display:flex;gap:6px;">
+            <button class="solve-btn">Solve &#8594;</button>
+            <button class="mark-solved-btn" onclick="event.stopPropagation();markSolved('ch_timer_js',this)">✓ Solved</button>
+          </div>
         </div>
       </div>
 
-      <div class="ch-card" data-lang="js" onclick="loadChallenge('ch_dupes_js')">
+      <div class="ch-card" data-lang="js" data-diff="mid" data-key="ch_dupes_js" onclick="loadChallenge('ch_dupes_js')">
+        <div class="ch-solved-badge">✓</div>
         <div class="ch-top">
           <span class="ch-icon">🔍</span>
           <span class="diff-badge diff-mid">Medium</span>
@@ -688,12 +863,16 @@
         <p class="ch-desc">Write a function that takes an array and returns all duplicate values. Handle edge cases like empty arrays.</p>
         <div class="ch-footer">
           <span class="lang-tag tag-js">JavaScript</span>
-          <button class="solve-btn">Solve &#8594;</button>
+          <div style="display:flex;gap:6px;">
+            <button class="solve-btn">Solve &#8594;</button>
+            <button class="mark-solved-btn" onclick="event.stopPropagation();markSolved('ch_dupes_js',this)">✓ Solved</button>
+          </div>
         </div>
       </div>
 
       <!-- SQL -->
-      <div class="ch-card" data-lang="sql" onclick="loadChallenge('ch_sql_orders')">
+      <div class="ch-card" data-lang="sql" data-diff="easy" data-key="ch_sql_orders" onclick="loadChallenge('ch_sql_orders')">
+        <div class="ch-solved-badge">✓</div>
         <div class="ch-top">
           <span class="ch-icon">🗄️</span>
           <span class="diff-badge diff-easy">Easy</span>
@@ -702,11 +881,15 @@
         <p class="ch-desc">Write a SQL query to find all customers who placed more than 2 orders, sorted by order count descending.</p>
         <div class="ch-footer">
           <span class="lang-tag tag-sql">SQL</span>
-          <button class="solve-btn">Solve &#8594;</button>
+          <div style="display:flex;gap:6px;">
+            <button class="solve-btn">Solve &#8594;</button>
+            <button class="mark-solved-btn" onclick="event.stopPropagation();markSolved('ch_sql_orders',this)">✓ Solved</button>
+          </div>
         </div>
       </div>
 
-      <div class="ch-card" data-lang="sql" onclick="loadChallenge('ch_sql_growth')">
+      <div class="ch-card" data-lang="sql" data-diff="hard" data-key="ch_sql_growth" onclick="loadChallenge('ch_sql_growth')">
+        <div class="ch-solved-badge">✓</div>
         <div class="ch-top">
           <span class="ch-icon">📈</span>
           <span class="diff-badge diff-hard">Hard</span>
@@ -715,12 +898,16 @@
         <p class="ch-desc">Use window functions (LAG) to calculate month-over-month revenue growth percentage for a sales table.</p>
         <div class="ch-footer">
           <span class="lang-tag tag-sql">SQL</span>
-          <button class="solve-btn">Solve &#8594;</button>
+          <div style="display:flex;gap:6px;">
+            <button class="solve-btn">Solve &#8594;</button>
+            <button class="mark-solved-btn" onclick="event.stopPropagation();markSolved('ch_sql_growth',this)">✓ Solved</button>
+          </div>
         </div>
       </div>
 
       <!-- Python -->
-      <div class="ch-card" data-lang="python" onclick="loadChallenge('ch_py_wordcount')">
+      <div class="ch-card" data-lang="python" data-diff="easy" data-key="ch_py_wordcount" onclick="loadChallenge('ch_py_wordcount')">
+        <div class="ch-solved-badge">✓</div>
         <div class="ch-top">
           <span class="ch-icon">🐍</span>
           <span class="diff-badge diff-easy">Easy</span>
@@ -729,11 +916,15 @@
         <p class="ch-desc">Write a Python function that counts how many times each word appears in a string. Ignore case and punctuation.</p>
         <div class="ch-footer">
           <span class="lang-tag tag-py">Python</span>
-          <button class="solve-btn">Solve &#8594;</button>
+          <div style="display:flex;gap:6px;">
+            <button class="solve-btn">Solve &#8594;</button>
+            <button class="mark-solved-btn" onclick="event.stopPropagation();markSolved('ch_py_wordcount',this)">✓ Solved</button>
+          </div>
         </div>
       </div>
 
-      <div class="ch-card" data-lang="python" onclick="loadChallenge('ch_py_stats')">
+      <div class="ch-card" data-lang="python" data-diff="mid" data-key="ch_py_stats" onclick="loadChallenge('ch_py_stats')">
+        <div class="ch-solved-badge">✓</div>
         <div class="ch-top">
           <span class="ch-icon">📊</span>
           <span class="diff-badge diff-mid">Medium</span>
@@ -742,7 +933,10 @@
         <p class="ch-desc">Given a list of numbers, calculate mean, median, mode, and standard deviation without importing any libraries.</p>
         <div class="ch-footer">
           <span class="lang-tag tag-py">Python</span>
-          <button class="solve-btn">Solve &#8594;</button>
+          <div style="display:flex;gap:6px;">
+            <button class="solve-btn">Solve &#8594;</button>
+            <button class="mark-solved-btn" onclick="event.stopPropagation();markSolved('ch_py_stats',this)">✓ Solved</button>
+          </div>
         </div>
       </div>
 
@@ -770,6 +964,11 @@
 var _activeLang = 'html';
 var _SQL = null;
 var _store = { html: '', css: '', js: '', sql: '', python: '' };
+var _splitMode = false;
+var _edHTML = null, _edCSS = null, _edJS = null;
+var _autoRunTimer = null;
+var _filterLang = 'all', _filterDiff = 'all';
+var _solved = {};
 
 /* ── CODEMIRROR SETUP ── */
 var _editor = CodeMirror(document.getElementById('cmWrap'), {
@@ -785,6 +984,12 @@ var _editor = CodeMirror(document.getElementById('cmWrap'), {
   lineWrapping: false,
   extraKeys: {
     'Ctrl-Enter': function() { runCode(); },
+    'Ctrl-S':     function(cm) { runCode(); return false; },
+    'Ctrl-Shift-F': function() { formatCode(); },
+    'Ctrl-D': function(cm) {
+      var cursor = cm.getCursor(), line = cm.getLine(cursor.line);
+      cm.replaceRange('\n' + line, CodeMirror.Pos(cursor.line));
+    },
     'Tab': function(cm) {
       if (cm.somethingSelected()) { cm.indentSelection('add'); }
       else { cm.replaceSelection('  '); }
@@ -792,6 +997,18 @@ var _editor = CodeMirror(document.getElementById('cmWrap'), {
   }
 });
 _editor.setSize('100%', '100%');
+_editor.on('cursorActivity', updateStatus);
+_editor.on('change', updateStatus);
+
+/* ── STATUS BAR ── */
+function updateStatus() {
+  var cursor = _editor.getCursor();
+  var total  = _editor.lineCount();
+  var chars  = _editor.getValue().length;
+  document.getElementById('st-pos').textContent   = 'Ln ' + (cursor.line+1) + ' · Col ' + (cursor.ch+1);
+  document.getElementById('st-lines').textContent = total + ' line' + (total===1?'':'s');
+  document.getElementById('st-chars').textContent = chars + ' char' + (chars===1?'':'s');
+}
 
 /* ── INIT ── */
 window.addEventListener('load', function() {
@@ -801,6 +1018,10 @@ window.addEventListener('load', function() {
       .catch(function(){});
   }
   if (typeof starters !== 'undefined') { loadStarter('hello'); }
+  loadProgress();
+  window.addEventListener('message', function(e) {
+    if (e.data && e.data.type === 'pg_console') addConsoleEntry(e.data.level, e.data.args);
+  });
 });
 
 /* ── LANGUAGE SWITCH ── */
@@ -816,14 +1037,23 @@ function switchLang(lang, btn) {
   _editor.setOption('mode', _modes[lang]);
   document.getElementById('edLabel').textContent = _modeLabels[lang];
   var isCode = (lang === 'sql' || lang === 'python');
-  var outSide = document.getElementById('outSide');
+  var isHtmlMode = !isCode;
   document.getElementById('preview-frame').style.display = isCode ? 'none' : 'block';
   document.getElementById('output-panel').style.display = isCode ? 'block' : 'none';
   document.getElementById('fullBtn').style.display = isCode ? 'none' : '';
-  outSide.classList.toggle('dark-out', isCode);
+  document.getElementById('consoleToggle').style.display = isHtmlMode ? '' : 'none';
+  if (isCode) {
+    document.getElementById('consolePanel').classList.remove('open');
+    document.getElementById('consoleToggle').classList.remove('active');
+  }
+  document.getElementById('outSide').classList.toggle('dark-out', isCode);
   document.getElementById('outDot').style.background = isCode ? (lang === 'sql' ? '#a855f7' : '#22c55e') : '#22c55e';
   document.getElementById('outTitle').textContent = isCode ? (lang === 'sql' ? 'SQL Output' : 'Python Output') : 'Live Preview';
+  var splitBtn = document.getElementById('splitBtn');
+  if (isCode && _splitMode) { _splitMode = false; exitSplitView(); }
+  splitBtn.style.display = isCode ? 'none' : '';
   setTimeout(function(){ _editor.refresh(); }, 10);
+  updateStatus();
 }
 
 /* ── ESCAPE HELPER ── */
@@ -887,16 +1117,254 @@ function _runPython(code) {
 }
 
 /* ── RUN CODE ── */
+var _consoleInject = '(function(){' +
+  'var _o=console.log,_w=console.warn,_e=console.error;' +
+  'function _p(l,a){try{parent.postMessage({type:"pg_console",level:l,args:Array.prototype.slice.call(a).map(function(x){try{return typeof x==="object"?JSON.stringify(x):String(x);}catch(er){return String(x);}})}, "*");}catch(er){}}' +
+  'console.log=function(){_p("log",arguments);_o.apply(console,arguments);};' +
+  'console.warn=function(){_p("warn",arguments);_w.apply(console,arguments);};' +
+  'console.error=function(){_p("error",arguments);_e.apply(console,arguments);};' +
+  'window.onerror=function(m,s,l){_p("error",["Error: "+m+" (line "+l+")"]);};' +
+'})();';
+
 function runCode() {
-  _store[_activeLang] = _editor.getValue();
+  if (_splitMode) {
+    _store.html = _edHTML.getValue();
+    _store.css  = _edCSS.getValue();
+    _store.js   = _edJS.getValue();
+  } else {
+    _store[_activeLang] = _editor.getValue();
+  }
   if (_activeLang === 'sql')    { _runSQL(_store.sql); return; }
   if (_activeLang === 'python') { _runPython(_store.python); return; }
   var doc = '<!DOCTYPE html><html><head>' +
     '<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">' +
-    '<style>' + _store.css + '<\/style><\/head><body>' + _store.html +
-    '<scr' + 'ipt>' + _store.js + '<\/scr' + 'ipt><\/body><\/html>';
+    '<style>' + _store.css + '<\/style>' +
+    '<scr'+'ipt>' + _consoleInject + '<\/scr'+'ipt>' +
+    '<\/head><body>' + _store.html +
+    '<scr'+'ipt>' + _store.js + '<\/scr'+'ipt><\/body><\/html>';
   document.getElementById('preview-frame').srcdoc = doc;
 }
+
+/* ── SPLIT VIEW ── */
+function toggleSplitView() {
+  if (_activeLang === 'sql' || _activeLang === 'python') return;
+  _splitMode ? exitSplitView() : enterSplitView();
+}
+
+function enterSplitView() {
+  _store[_activeLang] = _editor.getValue();
+  _splitMode = true;
+  document.getElementById('splitBtn').classList.add('tb-btn', 'split-active');
+  document.getElementById('cmWrap').style.display = 'none';
+  document.getElementById('edLabel').style.display = 'none';
+  var sp = document.getElementById('splitPanes');
+  sp.style.display = 'flex';
+  if (!_edHTML) {
+    _edHTML = CodeMirror(document.getElementById('sp-cm-html'), { value: _store.html, mode: 'htmlmixed', theme: 'dracula', lineNumbers: true, tabSize: 2, indentWithTabs: false, lineWrapping: false });
+    _edHTML.setSize('100%','100%');
+    _edHTML.on('change', function(){ clearTimeout(_autoRunTimer); _autoRunTimer = setTimeout(runCode, 300); });
+    _edCSS = CodeMirror(document.getElementById('sp-cm-css'), { value: _store.css, mode: 'css', theme: 'dracula', lineNumbers: true, tabSize: 2, indentWithTabs: false, lineWrapping: false });
+    _edCSS.setSize('100%','100%');
+    _edCSS.on('change', function(){ clearTimeout(_autoRunTimer); _autoRunTimer = setTimeout(runCode, 300); });
+    _edJS = CodeMirror(document.getElementById('sp-cm-js'), { value: _store.js, mode: 'javascript', theme: 'dracula', lineNumbers: true, tabSize: 2, indentWithTabs: false, lineWrapping: false });
+    _edJS.setSize('100%','100%');
+    _edJS.on('change', function(){ clearTimeout(_autoRunTimer); _autoRunTimer = setTimeout(runCode, 300); });
+  } else {
+    _edHTML.setValue(_store.html);
+    _edCSS.setValue(_store.css);
+    _edJS.setValue(_store.js);
+    setTimeout(function(){ _edHTML.refresh(); _edCSS.refresh(); _edJS.refresh(); }, 20);
+  }
+  runCode();
+}
+
+function exitSplitView() {
+  if (_edHTML) {
+    _store.html = _edHTML.getValue();
+    _store.css  = _edCSS.getValue();
+    _store.js   = _edJS.getValue();
+  }
+  _splitMode = false;
+  document.getElementById('splitBtn').classList.remove('split-active');
+  document.getElementById('cmWrap').style.display = '';
+  document.getElementById('edLabel').style.display = '';
+  document.getElementById('splitPanes').style.display = 'none';
+  _editor.setValue(_store[_activeLang]);
+  setTimeout(function(){ _editor.refresh(); }, 20);
+}
+
+function togglePane(pane) {
+  var el = document.getElementById('sp-' + pane);
+  el.classList.toggle('collapsed');
+  var ed = pane === 'html' ? _edHTML : pane === 'css' ? _edCSS : _edJS;
+  if (ed) setTimeout(function(){ ed.refresh(); }, 260);
+}
+
+/* ── FORMAT CODE ── */
+function formatCode() {
+  var code = _splitMode ? null : _editor.getValue();
+  if (_activeLang === 'sql' || (!_splitMode && _activeLang === 'sql')) {
+    var kw = ['SELECT','FROM','WHERE','GROUP BY','ORDER BY','HAVING','JOIN','LEFT JOIN','RIGHT JOIN','INNER JOIN','OUTER JOIN','ON','AS','AND','OR','NOT','IN','BETWEEN','LIKE','LIMIT','OFFSET','INSERT INTO','VALUES','UPDATE','SET','DELETE FROM','CREATE TABLE','DROP TABLE','ALTER TABLE','DISTINCT','COUNT','SUM','AVG','MIN','MAX','CASE','WHEN','THEN','ELSE','END','WITH','UNION','EXCEPT','INTERSECT','PRIMARY KEY','FOREIGN KEY','REFERENCES','NULL','IS NULL','IS NOT NULL','ASC','DESC'];
+    var sorted = kw.slice().sort(function(a,b){ return b.length - a.length; });
+    var result = code;
+    sorted.forEach(function(kw){ result = result.replace(new RegExp('\\b' + kw.replace(/ /g,'\\s+') + '\\b','gi'), kw); });
+    _editor.setValue(result);
+    return;
+  }
+  if (_activeLang === 'python') {
+    _editor.setValue(code);
+    return;
+  }
+  if (_splitMode) {
+    _edHTML.setValue(_fmtHTML(_edHTML.getValue()));
+    _edCSS.setValue(_fmtCSS(_edCSS.getValue()));
+    _edJS.setValue(_edJS.getValue());
+    return;
+  }
+  if (_activeLang === 'html') { _editor.setValue(_fmtHTML(code)); }
+  else if (_activeLang === 'css') { _editor.setValue(_fmtCSS(code)); }
+}
+
+function _fmtHTML(html) {
+  var indent = 0;
+  var voids = /^(area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr)$/i;
+  var result = '';
+  var re = /(<[^>]+>|[^<]+)/g;
+  var match;
+  while ((match = re.exec(html)) !== null) {
+    var tok = match[0].trim();
+    if (!tok) continue;
+    if (tok.substring(0,4) === '<!' + '--') { result += '  '.repeat(indent) + tok + '\n'; continue; }
+    if (/^<\//.test(tok)) { indent = Math.max(0, indent - 1); result += '  '.repeat(indent) + tok + '\n'; }
+    else if (/^</.test(tok)) {
+      result += '  '.repeat(indent) + tok + '\n';
+      var tag = (tok.match(/^<(\w+)/) || [])[1] || '';
+      if (!voids.test(tag) && !tok.endsWith('/>')) indent++;
+    } else {
+      if (tok) result += '  '.repeat(indent) + tok + '\n';
+    }
+  }
+  return result.trimEnd();
+}
+
+function _fmtCSS(css) {
+  return css.replace(/\s*\{\s*/g, ' {\n  ').replace(/;\s*/g, ';\n  ').replace(/\s*\}\s*/g, '\n}\n').replace(/  \n}/g, '\n}').trim();
+}
+
+/* ── COPY CODE ── */
+function copyCode() {
+  var code = _splitMode
+    ? (_edHTML ? _edHTML.getValue() + '\n\n/* CSS */\n' + _edCSS.getValue() + '\n\n/* JS */\n' + _edJS.getValue() : '')
+    : _editor.getValue();
+  navigator.clipboard.writeText(code).then(function() {
+    var btn = document.getElementById('copyBtn');
+    var orig = btn.textContent;
+    btn.textContent = 'Copied!';
+    btn.style.color = '#22c55e';
+    setTimeout(function(){ btn.textContent = orig; btn.style.color = ''; }, 1500);
+  }).catch(function() {
+    var ta = document.createElement('textarea');
+    ta.value = code; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select(); document.execCommand('copy');
+    document.body.removeChild(ta);
+    var btn = document.getElementById('copyBtn');
+    btn.textContent = 'Copied!'; btn.style.color = '#22c55e';
+    setTimeout(function(){ btn.textContent = '⎘ Copy'; btn.style.color = ''; }, 1500);
+  });
+}
+
+/* ── CONSOLE ── */
+var _consoleLogs = [];
+function toggleConsole() {
+  var panel = document.getElementById('consolePanel');
+  var btn   = document.getElementById('consoleToggle');
+  panel.classList.toggle('open');
+  btn.classList.toggle('active');
+}
+function clearConsole() {
+  _consoleLogs = [];
+  document.getElementById('consoleBody').innerHTML = '';
+}
+function addConsoleEntry(level, args) {
+  _consoleLogs.push({level:level, args:args});
+  if (_consoleLogs.length > 100) { _consoleLogs.shift(); }
+  var body = document.getElementById('consoleBody');
+  var d = new Date();
+  var ts = ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2)+':'+('0'+d.getSeconds()).slice(-2);
+  var row = document.createElement('div');
+  row.className = 'con-row con-' + level;
+  row.innerHTML = '<span class="con-time">' + ts + '</span><span class="con-msg">' + _esc(args.join(' ')) + '</span>';
+  body.appendChild(row);
+  body.scrollTop = body.scrollHeight;
+  if (!document.getElementById('consolePanel').classList.contains('open')) {
+    var btn = document.getElementById('consoleToggle');
+    btn.textContent = '⬛ Console (' + _consoleLogs.length + ')';
+  }
+}
+
+/* ── CHALLENGE PROGRESS ── */
+function loadProgress() {
+  try { _solved = JSON.parse(localStorage.getItem('pg_solved_challenges') || '{}'); } catch(e) { _solved = {}; }
+  document.querySelectorAll('.ch-card[data-key]').forEach(function(card) {
+    var key = card.dataset.key;
+    if (_solved[key]) { card.classList.add('solved'); }
+  });
+  updateProgressBar();
+}
+function markSolved(key, btn) {
+  var card = document.querySelector('.ch-card[data-key="' + key + '"]');
+  if (!card) return;
+  if (card.classList.contains('solved')) {
+    card.classList.remove('solved');
+    delete _solved[key];
+  } else {
+    card.classList.add('solved');
+    _solved[key] = true;
+  }
+  try { localStorage.setItem('pg_solved_challenges', JSON.stringify(_solved)); } catch(e) {}
+  updateProgressBar();
+}
+function updateProgressBar() {
+  var total   = document.querySelectorAll('.ch-card[data-key]').length;
+  var count   = Object.keys(_solved).length;
+  var pct     = total ? (count / total * 100) : 0;
+  document.getElementById('chProgressFill').style.width = pct + '%';
+  document.getElementById('chProgressText').textContent = count + ' / ' + total + ' Solved';
+}
+
+/* ── CHALLENGE FILTERS ── */
+function setLangFilter(btn, lang) {
+  _filterLang = lang;
+  document.querySelectorAll('[data-flang]').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  applyFilters();
+}
+function setDiffFilter(btn, diff) {
+  _filterDiff = diff;
+  document.querySelectorAll('[data-fdiff]').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  applyFilters();
+}
+function applyFilters() {
+  document.querySelectorAll('.ch-card[data-key]').forEach(function(card) {
+    var matchLang = _filterLang === 'all' || card.dataset.lang === _filterLang;
+    var matchDiff = _filterDiff === 'all' || card.dataset.diff === _filterDiff;
+    card.classList.toggle('ch-card-hidden', !(matchLang && matchDiff));
+  });
+}
+
+/* ── SHORTCUTS MODAL ── */
+function openShortcuts() {
+  document.getElementById('shortcuts-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeShortcuts() {
+  document.getElementById('shortcuts-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') { closeShortcuts(); closeLangSlide && closeLangSlide(); }
+});
 
 /* ── LOAD STARTER ── */
 function loadStarter(key) {
@@ -936,9 +1404,13 @@ function resetCode() {
 function clearAll() {
   _store = { html:'', css:'', js:'', sql:'', python:'' };
   _editor.setValue('');
+  if (_splitMode && _edHTML) {
+    _edHTML.setValue(''); _edCSS.setValue(''); _edJS.setValue('');
+  }
   document.getElementById('preview-frame').srcdoc = 'about:blank';
   document.getElementById('output-panel').innerHTML = '';
   document.getElementById('starterSel').value = '';
+  clearConsole();
 }
 
 /* ── FULLSCREEN ── */
@@ -1019,6 +1491,34 @@ function loadChallenge(key) {
   document.getElementById('starterSel').value = '';
 }
 </script>
+
+<!-- SHORTCUTS MODAL -->
+<div id="shortcuts-modal" onclick="if(event.target===this)closeShortcuts()">
+  <div class="shortcuts-box">
+    <div class="shortcuts-title">Keyboard Shortcuts</div>
+    <button class="shortcuts-close" onclick="closeShortcuts()">&#10005;</button>
+    <div class="shortcut-row">
+      <span class="shortcut-desc">Run code</span>
+      <span class="shortcut-keys"><span class="kbd">Ctrl</span><span class="kbd">Enter</span></span>
+    </div>
+    <div class="shortcut-row">
+      <span class="shortcut-desc">Run (prevent browser save)</span>
+      <span class="shortcut-keys"><span class="kbd">Ctrl</span><span class="kbd">S</span></span>
+    </div>
+    <div class="shortcut-row">
+      <span class="shortcut-desc">Format code</span>
+      <span class="shortcut-keys"><span class="kbd">Ctrl</span><span class="kbd">Shift</span><span class="kbd">F</span></span>
+    </div>
+    <div class="shortcut-row">
+      <span class="shortcut-desc">Duplicate line</span>
+      <span class="shortcut-keys"><span class="kbd">Ctrl</span><span class="kbd">D</span></span>
+    </div>
+    <div class="shortcut-row">
+      <span class="shortcut-desc">Close modal / Cancel</span>
+      <span class="shortcut-keys"><span class="kbd">Esc</span></span>
+    </div>
+  </div>
+</div>
 
 <!-- LANG INFO SLIDE -->
 <div class="lang-overlay" id="lang-overlay" onclick="closeLangSlide()"></div>
