@@ -1157,27 +1157,11 @@
         align-items: center;
         gap: 10px;
         padding: 10px 14px;
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.07);
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(59,130,246,0.35);
         border-radius: 8px;
-        text-decoration: none;
-        color: var(--muted);
+        color: var(--white);
         font-size: 0.82rem;
-        font-family: var(--sans);
-        transition:
-          background 0.2s,
-          border-color 0.2s,
-          color 0.2s;
-      }
-      .pn-item.available {
-        border-color: rgba(59, 130, 246, 0.35);
-        color: var(--white);
-        cursor: pointer;
-      }
-      .pn-item.available:hover {
-        background: rgba(59, 130, 246, 0.1);
-        border-color: rgba(59, 130, 246, 0.6);
-        color: var(--white);
       }
       .pn-item.soon {
         opacity: 0.45;
@@ -1196,12 +1180,34 @@
         font-weight: 500;
         line-height: 1.35;
       }
-      .pn-dl {
-        font-size: 0.8rem;
-        color: #3b82f6;
+      .pn-actions {
+        display: flex;
+        gap: 6px;
         flex-shrink: 0;
-        opacity: 0.85;
+        margin-left: auto;
       }
+      .pn-view {
+        font-size: 0.75rem;
+        color: #a855f7;
+        text-decoration: none;
+        border: 1px solid rgba(168,85,247,0.35);
+        border-radius: 6px;
+        padding: 3px 8px;
+        transition: background 0.2s;
+        white-space: nowrap;
+      }
+      .pn-view:hover { background: rgba(168,85,247,0.15); }
+      .pn-dl {
+        font-size: 0.75rem;
+        color: #3b82f6;
+        text-decoration: none;
+        border: 1px solid rgba(59,130,246,0.35);
+        border-radius: 6px;
+        padding: 3px 8px;
+        transition: background 0.2s;
+        white-space: nowrap;
+      }
+      .pn-dl:hover { background: rgba(59,130,246,0.15); }
       .pn-soon-tag {
         font-size: 0.65rem;
         background: rgba(255, 255, 255, 0.06);
@@ -1644,181 +1650,24 @@
           </div>
 
           <div class="pn-grid">
-            <!-- 1 — EXAMPLE: working download -->
-            <a
-              href="1. NUMPY - INTRODUCTION.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">01</span>
-              <span class="pn-name">NUMPY - INTRODUCTION</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-
-            <!-- 2–21 — upload files manually then change class to "available" and add href + download -->
-            <a
-              href="2. NUMPY - FUNDAMENTALS.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">02</span>
-              <span class="pn-name">NUMPY - FUNDAMENTALS</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="3. NUMPY - ATTRIBUTES.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">03</span>
-              <span class="pn-name">NUMPY - ATTRIBUTES</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="4. NUMPY - IMPORTANT METHODS.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">04</span>
-              <span class="pn-name">NUMPY - IMPORTANT METHODS</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="pandas Cheatsheet.pdf" download class="pn-item available">
-              <span class="pn-num">05</span>
-              <span class="pn-name">Pandas Cheatsheet</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="Pandas for Everyone (2023).pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">06</span>
-              <span class="pn-name">Pandas for Everyone (2023)</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="Python_NumPy_for_Beginners_NumPy_Specialization_for_Data_Sc.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">07</span>
-              <span class="pn-name"
-                >Python NumPy for Beginners — NumPy Specialization</span
-              >
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="Python Pandas.pdf" download class="pn-item available">
-              <span class="pn-num">08</span>
-              <span class="pn-name">Python Pandas</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="Pandas basics to advanced.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">09</span>
-              <span class="pn-name">Pandas Basics to Advanced</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="Infosys Python - Pandas Interview Q & A.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">09</span>
-              <span class="pn-name">Pandas Basics to Advanced</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="Python Pandas Interview Questions   Answers Cheatsheet.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">10</span>
-              <span class="pn-name"
-                >Infosys Python — Pandas Interview Q &amp; A</span
-              >
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="Pandas Introduction to Advanced.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">11</span>
-              <span class="pn-name"
-                >Python Pandas Interview Questions &amp; Answers
-                Cheatsheet</span
-              >
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="numpy_basics.pdf" download class="pn-item available">
-              <span class="pn-num">12</span>
-              <span class="pn-name">Pandas Introduction to Advanced</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="Pandas.pdf" download class="pn-item available">
-              <span class="pn-num">13</span>
-              <span class="pn-name">NumPy Basics</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="pandas Cheatsheet.pdf" download class="pn-item available">
-              <span class="pn-num">14</span>
-              <span class="pn-name">Pandas</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="Amazing NumPy Cheat Sheet.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">15</span>
-              <span class="pn-name">Pandas Basics</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="Pandas-Cheat-Sheet.pdf" download class="pn-item available">
-              <span class="pn-num">16</span>
-              <span class="pn-name">Pandas Cheatsheet (Vol. 2)</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="Mastering pandas%22.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">17</span>
-              <span class="pn-name">Amazing NumPy Cheat Sheet</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="Pandas_Visual_Resources.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">18</span>
-              <span class="pn-name">Pandas Cheat Sheet</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="Mastering pandas%22.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">19</span>
-              <span class="pn-name">Mastering Pandas</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="NumPy Cheat Sheet For Beginners.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">21</span>
-              <span class="pn-name">NumPy Cheat Sheet For Beginners</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
+            <div class="pn-item available"><span class="pn-num">01</span><span class="pn-name">NUMPY - INTRODUCTION</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1SRpMoXDuDPL5hGpK9FlWCi6qzmNl0_bd/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1SRpMoXDuDPL5hGpK9FlWCi6qzmNl0_bd" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">02</span><span class="pn-name">NUMPY - FUNDAMENTALS</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1DftsCR2nUrnkT9UEaeVnWxZvGTF-Gsbe/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1DftsCR2nUrnkT9UEaeVnWxZvGTF-Gsbe" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">03</span><span class="pn-name">NUMPY - ATTRIBUTES</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1l-T3U4yI5Am1oz8ert2LQnj_B5Xgd1Xk/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1l-T3U4yI5Am1oz8ert2LQnj_B5Xgd1Xk" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">04</span><span class="pn-name">NUMPY - IMPORTANT METHODS</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1R2lU_whq65oWD1GU4uZz0emNoXGy4WJt/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1R2lU_whq65oWD1GU4uZz0emNoXGy4WJt" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">05</span><span class="pn-name">Pandas Cheatsheet</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1FCpyDfSdGbp4b3U5swVWMVGblQ5lcofH/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1FCpyDfSdGbp4b3U5swVWMVGblQ5lcofH" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">06</span><span class="pn-name">Pandas for Everyone (2023)</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1zezG9GqtOR-iVrN-CFa6CT0VlJbVtliw/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1zezG9GqtOR-iVrN-CFa6CT0VlJbVtliw" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">07</span><span class="pn-name">Python NumPy for Beginners — NumPy Specialization</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1RBmwLQQcVV8SBDbTLrAzubeWaT5uhvB2/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1RBmwLQQcVV8SBDbTLrAzubeWaT5uhvB2" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">08</span><span class="pn-name">Python Pandas</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1Af91eeRKKJWqaCK7cjGMqgm8VZgyC0GS/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1Af91eeRKKJWqaCK7cjGMqgm8VZgyC0GS" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">09</span><span class="pn-name">Pandas Basics to Advanced</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1Ga5diY89Cnx2uqYduK-_reJ4dRFq9NOZ/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1Ga5diY89Cnx2uqYduK-_reJ4dRFq9NOZ" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">10</span><span class="pn-name">Infosys Python — Pandas Interview Q &amp; A</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1Xm0MNPAlSjxafCJJ-BRFnKYn7pACvi_U/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1Xm0MNPAlSjxafCJJ-BRFnKYn7pACvi_U" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">11</span><span class="pn-name">Python Pandas Interview Questions &amp; Answers Cheatsheet</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1h37W5PHdI0LpXwiAOwZdCfI2dhYXILby/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1h37W5PHdI0LpXwiAOwZdCfI2dhYXILby" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">12</span><span class="pn-name">Pandas Introduction to Advanced</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1m3qwXqDCtb4MZ4wdUJbvscY0SCvlGj49/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1m3qwXqDCtb4MZ4wdUJbvscY0SCvlGj49" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">13</span><span class="pn-name">NumPy Basics</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1dtUphRTikD9O-OTDbLpR6V2zo6ZZnNDT/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1dtUphRTikD9O-OTDbLpR6V2zo6ZZnNDT" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">14</span><span class="pn-name">Pandas</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1HZilnPD7NMLNcio1CMEA2SxomCn2CWc6/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1HZilnPD7NMLNcio1CMEA2SxomCn2CWc6" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">15</span><span class="pn-name">Pandas Cheat Sheet</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1FCpyDfSdGbp4b3U5swVWMVGblQ5lcofH/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1FCpyDfSdGbp4b3U5swVWMVGblQ5lcofH" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">16</span><span class="pn-name">Mastering Pandas</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1NWCkwe2UDfSC5okrw_-VqHMKnLkVcSnZ/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1NWCkwe2UDfSC5okrw_-VqHMKnLkVcSnZ" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">17</span><span class="pn-name">NumPy Cheat Sheet For Beginners</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1xrb8oXNsVcABcIuflz6fh7wmgqozJcWS/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1xrb8oXNsVcABcIuflz6fh7wmgqozJcWS" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">18</span><span class="pn-name">Amazing NumPy Cheat Sheet</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1F4-xQAWNYBF_zTAncDuxlCy7Ue-6F007/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1F4-xQAWNYBF_zTAncDuxlCy7Ue-6F007" class="pn-dl">⬇ Download</a></div></div>
           </div>
           <!-- /pn-grid -->
         </div>
@@ -1864,152 +1713,22 @@
           </div>
 
           <div class="pn-grid">
-            <!-- 1 — EXAMPLE: working download -->
-            <a href="pdf/Matplotlib.pdf" download class="pn-item available">
-              <span class="pn-num">01</span>
-              <span class="pn-name">Matplotlib</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-
-            <!-- 2–16 — upload files then change class to "available" -->
-            <a
-              href="pdf/Complete Maths Topics For Data Science.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">02</span>
-              <span class="pn-name"
-                >Complete Maths Topics For Data Science</span
-              >
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="pdf/Data Science Cheatsheet Compiled by Maverick Lin.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">03</span>
-              <span class="pn-name"
-                >Data Science Cheatsheet — Compiled by Maverick</span
-              >
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="pdf/DATA SCIENCE WORKSHOP (2023).pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">04</span>
-              <span class="pn-name">Data Science work shop</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-
-            <a
-              href="pdf/Building Data Science Applications with FastAPI (2023).pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">05</span>
-              <span class="pn-name"
-                >Building Data Science Applications with FastAPI</span
-              >
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="pdf/Hands on Matplotlib👍.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">06</span>
-              <span class="pn-name">Hands on Matplotlib</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="pdf/Bayesian_Statistics_The_Fun_Way_Understanding_Statistics_And_Probability.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">07</span>
-              <span class="pn-name">Bayesian Statistics — The Fun Way</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="pdf/Data Cleaning and Exploratio.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">08</span>
-              <span class="pn-name">Data Cleaning and Exploration</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="pdf/Essential Math for Data Science.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">09</span>
-              <span class="pn-name">Essential Math for Data Science</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="pdf/Visualization Cheat Sheet.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">10</span>
-              <span class="pn-name">Visualization Cheat Sheet</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="pdf/Matrix Theory and Linear Algebra, 2018.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">11</span>
-              <span class="pn-name">Matrix Theory and Linear Algebra</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="pdf/Statistical Methods for Data Science.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">12</span>
-              <span class="pn-name">Statistical Methods for Data Science</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="pdf/import_data.pdf" download class="pn-item available">
-              <span class="pn-num">13</span>
-              <span class="pn-name">Import Data</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="pdf/Statistics for Data Analyst .pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">14</span>
-              <span class="pn-name">Statistics for Data Analyst</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="pdf/Data Analysis Vocabulary.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">15</span>
-              <span class="pn-name">Data Analysis Vocabulary</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="pdf/Data Analysis Cheatsheet.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">16</span>
-              <span class="pn-name">Data Analysis Cheatsheet</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
+            <div class="pn-item available"><span class="pn-num">01</span><span class="pn-name">Matplotlib</span><div class="pn-actions"><a href="https://drive.google.com/file/d/12e3tAqDU9pRlUsLVdXsnfEWr4od_TT5o/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=12e3tAqDU9pRlUsLVdXsnfEWr4od_TT5o" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">02</span><span class="pn-name">Complete Maths Topics For Data Science</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1rvBnpzaFfSMiUK3hKGHD4_9IIPr9_gl6/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1rvBnpzaFfSMiUK3hKGHD4_9IIPr9_gl6" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">03</span><span class="pn-name">Data Science Cheatsheet — Compiled by Maverick</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1s7sT6UEsN_46nXBTfMxznAeuRZXDAwZ5/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1s7sT6UEsN_46nXBTfMxznAeuRZXDAwZ5" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">04</span><span class="pn-name">Data Science Workshop (2023)</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1ymtS4gL3ZmNchycEBDqnXUSOFq9zpNG9/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1ymtS4gL3ZmNchycEBDqnXUSOFq9zpNG9" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">05</span><span class="pn-name">Building Data Science Applications with FastAPI</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1ckMGLHeZYgdFfypooluhMLRSCROGSJA_/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1ckMGLHeZYgdFfypooluhMLRSCROGSJA_" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">06</span><span class="pn-name">Hands on Matplotlib</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1tr_-pSNG5TFPEv8ZIz703iMFkJh7hkPF/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1tr_-pSNG5TFPEv8ZIz703iMFkJh7hkPF" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">07</span><span class="pn-name">Bayesian Statistics — The Fun Way</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1u9QeE5LPbjapAM_aLxuy9NWqMkgJFX8D/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1u9QeE5LPbjapAM_aLxuy9NWqMkgJFX8D" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">08</span><span class="pn-name">Data Cleaning and Exploration</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1iD5bYEpm8TleZAadMyhvWs9ylXi6Ed_z/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1iD5bYEpm8TleZAadMyhvWs9ylXi6Ed_z" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">09</span><span class="pn-name">Essential Math for Data Science</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1NebO8OuZ65JKmDz60_q5BjYeO1dxV7LP/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1NebO8OuZ65JKmDz60_q5BjYeO1dxV7LP" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">10</span><span class="pn-name">Visualization Cheat Sheet</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1xwqgqMKkU8LGN1K_XuG4HDr4TT-mJX91/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1xwqgqMKkU8LGN1K_XuG4HDr4TT-mJX91" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">11</span><span class="pn-name">Matrix Theory and Linear Algebra</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1vAAYGnvS3GlkRQEjVbIXRUBF8vp03QPQ/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1vAAYGnvS3GlkRQEjVbIXRUBF8vp03QPQ" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">12</span><span class="pn-name">Statistical Methods for Data Science</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1Sf66H6BEFhExWDBjf9mp3utliJ2AvPxe/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1Sf66H6BEFhExWDBjf9mp3utliJ2AvPxe" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">13</span><span class="pn-name">Import Data</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1EI2TlwSn3EeAUThBMXgnS20I5TCge4cK/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1EI2TlwSn3EeAUThBMXgnS20I5TCge4cK" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">14</span><span class="pn-name">Statistics for Data Analyst</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1ozce6z76XrjYCi54j6FSxsO8iWG8eemS/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1ozce6z76XrjYCi54j6FSxsO8iWG8eemS" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">15</span><span class="pn-name">Data Analysis Vocabulary</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1QQn4K-ISXZn04-XdJGvhxusYfd_SEaL1/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1QQn4K-ISXZn04-XdJGvhxusYfd_SEaL1" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">16</span><span class="pn-name">Data Analysis Cheatsheet</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1i8Kyc0yM3Bdgn2QJCA-teY4UFy68Z4h6/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1i8Kyc0yM3Bdgn2QJCA-teY4UFy68Z4h6" class="pn-dl">⬇ Download</a></div></div>
           </div>
           <!-- /pn-grid -->
         </div>
@@ -2054,98 +1773,16 @@
           </div>
 
           <div class="pn-grid">
-            <a
-              href="sql.pdf/SQL Interview Questions -2.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">01</span>
-              <span class="pn-name">SQL Interview Questions</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="sql.pdf/SQL Zero to Hero.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">02</span>
-              <span class="pn-name">SQL Zero to Hero</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="sql.pdf/SQL for Data Science.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">03</span>
-              <span class="pn-name">SQL for Data Science.pdf</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="sql.pdf/SQL for Data Science.pdf.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">04</span>
-              <span class="pn-name">SQL for Data Science</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="sql.pdf/SQL Guide with Free Resources.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">05</span>
-              <span class="pn-name">SQL Guide with Free Resources</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="sql.pdf/Challenging SQL queries-.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">06</span>
-              <span class="pn-name">Challenging SQL Queries</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="sql.pdf/SQL Queries .pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">07</span>
-              <span class="pn-name">SQL Queries</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="sql.pdf/sql_cheatsheet.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">08</span>
-              <span class="pn-name">SQL Cheatsheet</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="sql.pdf/50 SQL Interview Questions with Answers.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">09</span>
-              <span class="pn-name"
-                >50 SQL Interview Questions with Answers</span
-              >
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="sql.pdf/Important SQL concepts to master.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">10</span>
-              <span class="pn-name">Important SQL Concepts to Master</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
+            <div class="pn-item available"><span class="pn-num">01</span><span class="pn-name">SQL Interview Questions</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1Baok1kaXk9CWK1j2pzGZanvjyXQe0e-u/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1Baok1kaXk9CWK1j2pzGZanvjyXQe0e-u" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">02</span><span class="pn-name">SQL Zero to Hero</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1Q8BgfS_7LvBtM7MWK0onKzleNtH4XIRL/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1Q8BgfS_7LvBtM7MWK0onKzleNtH4XIRL" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">03</span><span class="pn-name">SQL for Data Science</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1kFBbWqf0irZIneB31jyhzcPyQRkGll0y/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1kFBbWqf0irZIneB31jyhzcPyQRkGll0y" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">04</span><span class="pn-name">SQL for Data Science Extended</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1_i55jCkpJBDP4DIXr-SrJ2zSzWVgIN4-/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1_i55jCkpJBDP4DIXr-SrJ2zSzWVgIN4-" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">05</span><span class="pn-name">SQL Guide with Free Resources</span><div class="pn-actions"><a href="https://drive.google.com/file/d/11c2iUYUQf7pga8OfCslD09-msZfOvtXE/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=11c2iUYUQf7pga8OfCslD09-msZfOvtXE" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">06</span><span class="pn-name">Challenging SQL Queries</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1TTMoO63u4H9L-qu-nNh-wqB3PmfpQ3MO/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1TTMoO63u4H9L-qu-nNh-wqB3PmfpQ3MO" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">07</span><span class="pn-name">SQL Queries</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1ROsX2kHQqR5Rprv3bWsqzWLmGDeDs53Q/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1ROsX2kHQqR5Rprv3bWsqzWLmGDeDs53Q" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">08</span><span class="pn-name">SQL Cheatsheet</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1bm5QfB3QKYryF1EJtdMRCRwOMxpsgpph/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1bm5QfB3QKYryF1EJtdMRCRwOMxpsgpph" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">09</span><span class="pn-name">50 SQL Interview Questions with Answers</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1jtPqcUtxm7ZxSR5ywwvtBF1_PbvRduJj/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1jtPqcUtxm7ZxSR5ywwvtBF1_PbvRduJj" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">10</span><span class="pn-name">Important SQL Concepts to Master</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1XxAh_5iD9t-FZ-LZW-z36ELpPFYvXZkE/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1XxAh_5iD9t-FZ-LZW-z36ELpPFYvXZkE" class="pn-dl">⬇ Download</a></div></div>
           </div>
           <!-- /pn-grid -->
         </div>
@@ -2190,273 +1827,33 @@
           </div>
 
           <div class="pn-grid">
-            <a
-              href="m.pdf/Machine Learning with Decision Trees and Random Forest.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">01</span>
-              <span class="pn-name"
-                >Machine Learning with Decision Trees and Random Forest</span
-              >
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="m.pdf/Artificial Intelligence ( PDFDrive ).pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">02</span>
-              <span class="pn-name">Artificial Intelligence (PDFDrive)</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="m.pdf/Machine Learning Bookcamp  Build a portfolio of real-life pr.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">03</span>
-              <span class="pn-name"
-                >Machine Learning Bookcamp — Build a Portfolio of Real-Life
-                Projects</span
-              >
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="m.pdf/Machine Learning Interview Cheat sheets.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">04</span>
-              <span class="pn-name"
-                >Machine Learning Interview Cheat Sheets</span
-              >
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="m.pdf/100 Days of Machine Learning.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">05</span>
-              <span class="pn-name">100 Days of Machine Learning</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="m.pdf/Hands-On Machine Learning.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">06</span>
-              <span class="pn-name">Hands-On Machine Learning</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="m.pdf/Interpretability in Deep Learning.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">07</span>
-              <span class="pn-name">Interpretability in Deep Learning</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="m.pdf/Encyclopedia of Data Science & Machine Learning-J. Wang.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">08</span>
-              <span class="pn-name"
-                >Encyclopedia of Data Science &amp; Machine Learning
-              </span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="m.pdf/Deep Learning Foundations.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">09</span>
-              <span class="pn-name">Deep Learning Foundations</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="m.pdf/Deep Learning for Natural Language Processing (2022).pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">10</span>
-              <span class="pn-name"
-                >Deep Learning for Natural Language Processing
-              </span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="m.pdf/Machine Learning in Microservices.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">11</span>
-              <span class="pn-name">Machine Learning in Microservices</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="m.pdf/Machine Learning in Microservices - 2023.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">12</span>
-              <span class="pn-name">Machine Learning in Microservices </span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="m.pdf/Artificial Neural  Networks with Java - 2019.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">13</span>
-              <span class="pn-name">Artificial Neural Networks with Java </span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="m.pdf/Deep Learning Applications.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">14</span>
-              <span class="pn-name">Deep Learning Applications</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="m.pdf/Python Machine Learning.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">15</span>
-              <span class="pn-name">Python Machine Learning</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="m.pdf/Data_Science_Revealed_With_Feature_Engineering.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">16</span>
-              <span class="pn-name"
-                >Data Science Revealed with Feature Engineering</span
-              >
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="m.pdf/Artificial Neural Networks .pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">17</span>
-              <span class="pn-name">Artificial Neural Networks</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="m.pdf/MASTERING_PREDICTIVE_ANALYTICS_WITH_R @computer_books.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">18</span>
-              <span class="pn-name">Mastering Predictive Analytics with R</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="m.pdf/Machine Learning and... by K. G. Gayathri Devi ... (z-lib.or.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">19</span>
-              <span class="pn-name">Machine Learning</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="m.pdf/Advances in Deep Learning for Medical Image Analysis.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">20</span>
-              <span class="pn-name"
-                >Advances in Deep Learning for Medical Image Analysis</span
-              >
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="m.pdf/Machine Learning with Python for Everyone.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">21</span>
-              <span class="pn-name"
-                >Machine Learning with Python for Everyone</span
-              >
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="m.pdf/v-kishore-ayyadevara-yeshwanth-reddy-modern-computer-2020.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">22</span>
-              <span class="pn-name">Modern Computer</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="m.pdf/Elements of Statistical Learning .pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">23</span>
-              <span class="pn-name">Elements of Statistical Learning</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="m.pdf/Data mining.pdf" download class="pn-item available">
-              <span class="pn-num">24</span>
-              <span class="pn-name">Data Mining</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="m.pdf/Artificial Intelligence. Fundamentals and Applications.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">25</span>
-              <span class="pn-name"
-                >Artificial Intelligence: Fundamentals and Applications</span
-              >
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="m.pdf/Machine Learning Interview Questions.pdf.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">26</span>
-              <span class="pn-name">Machine Learning Interview Questions</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="m.pdf/Deep Learning By Andrew Ng.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">27</span>
-              <span class="pn-name">Deep Learning</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a
-              href="m.pdf/Lee R. S. T. - Natural Language Processing - 2024.pdf"
-              download
-              class="pn-item available"
-            >
-              <span class="pn-num">28</span>
-              <span class="pn-name">Natural Language Processing </span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
+            <div class="pn-item available"><span class="pn-num">01</span><span class="pn-name">ML with Decision Trees and Random Forest</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1bYfBha0bZz5Es3bd8nZjk99Pbzf8dua9/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1bYfBha0bZz5Es3bd8nZjk99Pbzf8dua9" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">02</span><span class="pn-name">Artificial Intelligence (PDFDrive)</span><div class="pn-actions"><a href="https://drive.google.com/file/d/181z4P790r5wGUstro4EBtFdhYq3ncd8R/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=181z4P790r5wGUstro4EBtFdhYq3ncd8R" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">03</span><span class="pn-name">ML Bookcamp — Build a Portfolio of Real-Life Projects</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1k-SddRbwUOISNFM878_JWRXbaaHsMCgq/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1k-SddRbwUOISNFM878_JWRXbaaHsMCgq" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">04</span><span class="pn-name">Machine Learning Interview Cheat Sheets</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1RReYvrHOjSCyJQOSh2weWe6qEo4JGsvM/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1RReYvrHOjSCyJQOSh2weWe6qEo4JGsvM" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">05</span><span class="pn-name">100 Days of Machine Learning</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1hsBQ1Uh6WAw9Iwhc9U4yv1J58Bd3khy6/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1hsBQ1Uh6WAw9Iwhc9U4yv1J58Bd3khy6" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">06</span><span class="pn-name">Hands-On Machine Learning</span><div class="pn-actions"><a href="https://drive.google.com/file/d/17nECEjYuPB8w6WnKipjEwcyFxYuvR9EL/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=17nECEjYuPB8w6WnKipjEwcyFxYuvR9EL" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">07</span><span class="pn-name">Interpretability in Deep Learning</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1h7u61HbDBFKAtM3VhtbMPp2LZIs7Lj5_/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1h7u61HbDBFKAtM3VhtbMPp2LZIs7Lj5_" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">08</span><span class="pn-name">Encyclopedia of Data Science &amp; Machine Learning</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1zoToSIbZ9EZIfghND-ULjj6t91jIaSOO/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1zoToSIbZ9EZIfghND-ULjj6t91jIaSOO" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">09</span><span class="pn-name">Deep Learning Foundations</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1XbU3kcnNZUzT_ug6jSWmd1EYaUakjLyt/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1XbU3kcnNZUzT_ug6jSWmd1EYaUakjLyt" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">10</span><span class="pn-name">Deep Learning for Natural Language Processing</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1K4cfx6Z_EHZ-cKhNmPk1f7lNpjS2no9B/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1K4cfx6Z_EHZ-cKhNmPk1f7lNpjS2no9B" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">11</span><span class="pn-name">Machine Learning in Microservices</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1RuL2dol6R6BdtzsLzLkKaP2i13fZpd3n/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1RuL2dol6R6BdtzsLzLkKaP2i13fZpd3n" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">12</span><span class="pn-name">Artificial Neural Networks with Java</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1v_FS1CE-B4Iub0sPrZ0X7yFl3mMY0-yx/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1v_FS1CE-B4Iub0sPrZ0X7yFl3mMY0-yx" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">13</span><span class="pn-name">Deep Learning Applications</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1Yo2A7obU_m0l4dlvCWgrf2pNxad32GVw/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1Yo2A7obU_m0l4dlvCWgrf2pNxad32GVw" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">14</span><span class="pn-name">Python Machine Learning</span><div class="pn-actions"><a href="https://drive.google.com/file/d/14v7Dkg7ZnQ41xwRF6qLgt-ct9EDo1z2V/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=14v7Dkg7ZnQ41xwRF6qLgt-ct9EDo1z2V" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">15</span><span class="pn-name">Data Science Revealed with Feature Engineering</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1-z6hHhMA16r4-dHw_-YLCGw6skgWgGpt/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1-z6hHhMA16r4-dHw_-YLCGw6skgWgGpt" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">16</span><span class="pn-name">Artificial Neural Networks</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1R-RJFudjrQf91jIInIql-YmbyUVpQ3Gh/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1R-RJFudjrQf91jIInIql-YmbyUVpQ3Gh" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">17</span><span class="pn-name">Mastering Predictive Analytics with R</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1O3-yaLLvViqDELfmECqgAnVVJ9m1-EZx/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1O3-yaLLvViqDELfmECqgAnVVJ9m1-EZx" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">18</span><span class="pn-name">Machine Learning</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1QNKi1Pb6srF83wtNouZukQsFZbHwJjl6/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1QNKi1Pb6srF83wtNouZukQsFZbHwJjl6" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">19</span><span class="pn-name">Advances in Deep Learning for Medical Image Analysis</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1JjKg1hPTV8U00EfwVHd3HQkgRd5XX97Q/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1JjKg1hPTV8U00EfwVHd3HQkgRd5XX97Q" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">20</span><span class="pn-name">Modern Computer Vision</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1vBXtbW0UzmxWMP8SZMNhH3zdVrPu6Wjx/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1vBXtbW0UzmxWMP8SZMNhH3zdVrPu6Wjx" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">21</span><span class="pn-name">Data Mining</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1crnojv2yEJFuV0whilRFzdw3XJKrDEso/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1crnojv2yEJFuV0whilRFzdw3XJKrDEso" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">22</span><span class="pn-name">Machine Learning with Python for Everyone</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1eo_YfyKIzn21a_FZAlj1ghXk2rROzhIP/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1eo_YfyKIzn21a_FZAlj1ghXk2rROzhIP" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">23</span><span class="pn-name">Artificial Intelligence: Fundamentals and Applications</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1nT97r7Ejt8bhkrgGodM45IFc8V8VHZmp/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1nT97r7Ejt8bhkrgGodM45IFc8V8VHZmp" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">24</span><span class="pn-name">Elements of Statistical Learning</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1K5yVK9sj6zLaoACbDhvhAf71RwChXEgB/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1K5yVK9sj6zLaoACbDhvhAf71RwChXEgB" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">25</span><span class="pn-name">Machine Learning Interview Questions</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1Kr20Zu0S6bSW_RwumK5LxR0QZPZTow8h/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1Kr20Zu0S6bSW_RwumK5LxR0QZPZTow8h" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">26</span><span class="pn-name">Deep Learning</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1U8RKVTvhWUMIwPVu2lKl1-rK22DyOmiy/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1U8RKVTvhWUMIwPVu2lKl1-rK22DyOmiy" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">27</span><span class="pn-name">Natural Language Processing</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1bG3jNRHfwdfcVTHUMrKHdhE6-RMpl92Z/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1bG3jNRHfwdfcVTHUMrKHdhE6-RMpl92Z" class="pn-dl">⬇ Download</a></div></div>
           </div>
           <!-- /pn-grid -->
         </div>
@@ -2482,253 +1879,54 @@
           </div>
 
           <div class="pn-grid">
-
-            <a href="p.pdf/Python Data Structures and Algorithms.pdf" download class="pn-item available">
-              <span class="pn-num">01</span>
-              <span class="pn-name">Python Data Structures and Algorithms</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/python_book_01.pdf" download class="pn-item available">
-              <span class="pn-num">02</span>
-              <span class="pn-name">Python Book 01</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Python Cheat Sheet (1).pdf" download class="pn-item available">
-              <span class="pn-num">03</span>
-              <span class="pn-name">Python Cheat Sheet (1)</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Python Cheat Sheet.pdf" download class="pn-item available">
-              <span class="pn-num">04</span>
-              <span class="pn-name">Python Cheat Sheet</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Data Science Essentials in Python.pdf" download class="pn-item available">
-              <span class="pn-num">05</span>
-              <span class="pn-name">Data Science Essentials in Python</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Python_for_Scientists_Second_Edition_EnglishOnlineClub_com_1.pdf" download class="pn-item available">
-              <span class="pn-num">06</span>
-              <span class="pn-name">Python for Scientists — Second Edition</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Python beginner guide for Data Science .pdf" download class="pn-item available">
-              <span class="pn-num">07</span>
-              <span class="pn-name">Python Beginner Guide for Data Science</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Data Science Bookcamp Ten Python projects.pdf" download class="pn-item available">
-              <span class="pn-num">08</span>
-              <span class="pn-name">Data Science Bookcamp — Ten Python Projects</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Python for Data Science For Dummies (2023).pdf" download class="pn-item available">
-              <span class="pn-num">09</span>
-              <span class="pn-name">Python for Data Science For Dummies (2023)</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Wiley_Artificial_Intelligence_Programming_with_Python_From_Zero.pdf" download class="pn-item available">
-              <span class="pn-num">10</span>
-              <span class="pn-name">AI Programming with Python from Zero — Wiley</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Python Handwritten Notes (2023).pdf" download class="pn-item available">
-              <span class="pn-num">11</span>
-              <span class="pn-name">Python Handwritten Notes (2023)</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Supercharged Python_ Take Your Code To The Next Level.epub" download class="pn-item available">
-              <span class="pn-num">12</span>
-              <span class="pn-name">Supercharged Python — Take Your Code to the Next Level</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Practical Data Science with Jupyter.pdf" download class="pn-item available">
-              <span class="pn-num">13</span>
-              <span class="pn-name">Practical Data Science with Jupyter</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Foundational Python for Data Science.pdf" download class="pn-item available">
-              <span class="pn-num">14</span>
-              <span class="pn-name">Foundational Python for Data Science</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Python for Beginners.pdf" download class="pn-item available">
-              <span class="pn-num">15</span>
-              <span class="pn-name">Python for Beginners</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Python_Programming_and_Numerical_Methods_A_Guide_for_Engineers_and.pdf" download class="pn-item available">
-              <span class="pn-num">16</span>
-              <span class="pn-name">Python Programming and Numerical Methods — Guide for Engineers</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Python__Tricks_And_Tips_-_4e.pdf" download class="pn-item available">
-              <span class="pn-num">17</span>
-              <span class="pn-name">Python Tricks and Tips — 4th Edition</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Practical Data Science with Jupyter.epub" download class="pn-item available">
-              <span class="pn-num">18</span>
-              <span class="pn-name">Practical Data Science with Jupyter (ePub)</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Data Analysis with Python and PySpark (Final Release).pdf" download class="pn-item available">
-              <span class="pn-num">19</span>
-              <span class="pn-name">Data Analysis with Python and PySpark (Final Release)</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Python Tools for Scientists (2023).pdf" download class="pn-item available">
-              <span class="pn-num">20</span>
-              <span class="pn-name">Python Tools for Scientists (2023)</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/StatisticsMachineLearningPython.pdf" download class="pn-item available">
-              <span class="pn-num">21</span>
-              <span class="pn-name">Statistics Machine Learning Python</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Ben_Auffarth_Machine_Learning_for_Time_Series_with_Python_Forecast.pdf" download class="pn-item available">
-              <span class="pn-num">22</span>
-              <span class="pn-name">Machine Learning for Time Series with Python — Ben Auffarth</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Python Advanced Programming.pdf" download class="pn-item available">
-              <span class="pn-num">23</span>
-              <span class="pn-name">Python Advanced Programming</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/For_Dummies_Beginning_Programming_with_Python_For_Dummies_3rd_Edition.pdf" download class="pn-item available">
-              <span class="pn-num">24</span>
-              <span class="pn-name">Beginning Programming with Python For Dummies — 3rd Edition</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Lewinson_E_Python_for_Finance_Cookbook_Second_Edition_2022.epub" download class="pn-item available">
-              <span class="pn-num">25</span>
-              <span class="pn-name">Python for Finance Cookbook — Second Edition 2022 (ePub)</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Python Cheat_Sheet -cheatography.pdf" download class="pn-item available">
-              <span class="pn-num">26</span>
-              <span class="pn-name">Python Cheat Sheet — Cheatography</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Statistics in Python.pdf" download class="pn-item available">
-              <span class="pn-num">27</span>
-              <span class="pn-name">Statistics in Python</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Intermediate Python.pdf" download class="pn-item available">
-              <span class="pn-num">28</span>
-              <span class="pn-name">Intermediate Python</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Head_First_Python,_3rd_Edition_Early_Release.epub" download class="pn-item available">
-              <span class="pn-num">29</span>
-              <span class="pn-name">Head First Python — 3rd Edition Early Release (ePub)</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/PythonCrashCourse.pdf" download class="pn-item available">
-              <span class="pn-num">30</span>
-              <span class="pn-name">Python Crash Course</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/50-useful-python-scripts-free-pdf (3).pdf" download class="pn-item available">
-              <span class="pn-num">31</span>
-              <span class="pn-name">50 Useful Python Scripts</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Python Quick Notes Part-1.pdf" download class="pn-item available">
-              <span class="pn-num">32</span>
-              <span class="pn-name">Python Quick Notes Part-1</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Python Cheat Sheet-1.pdf" download class="pn-item available">
-              <span class="pn-num">33</span>
-              <span class="pn-name">Python Cheat Sheet — Vol. 2</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/BASIC PYTHON PROGRAMS.pdf" download class="pn-item available">
-              <span class="pn-num">34</span>
-              <span class="pn-name">Basic Python Programs</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Python-13.pdf" download class="pn-item available">
-              <span class="pn-num">35</span>
-              <span class="pn-name">Python-13</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Python for Science & Engineering.pdf" download class="pn-item available">
-              <span class="pn-num">36</span>
-              <span class="pn-name">Python for Science &amp; Engineering</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/0802-python-tutorial.pdf" download class="pn-item available">
-              <span class="pn-num">37</span>
-              <span class="pn-name">Python Tutorial</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/jupyter.pdf" download class="pn-item available">
-              <span class="pn-num">38</span>
-              <span class="pn-name">Jupyter</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Profound Python Libraries.epub" download class="pn-item available">
-              <span class="pn-num">39</span>
-              <span class="pn-name">Profound Python Libraries (ePub)</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Python for Everybody.epub" download class="pn-item available">
-              <span class="pn-num">40</span>
-              <span class="pn-name">Python for Everybody (ePub)</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/20 Python Libraries You Aren't Using (But Should).pdf" download class="pn-item available">
-              <span class="pn-num">41</span>
-              <span class="pn-name">20 Python Libraries You Aren't Using (But Should)</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Top 40 Python Interview Questions & Answers.pdf" download class="pn-item available">
-              <span class="pn-num">42</span>
-              <span class="pn-name">Top 40 Python Interview Questions &amp; Answers</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/python_basics.pdf" download class="pn-item available">
-              <span class="pn-num">43</span>
-              <span class="pn-name">Python Basics</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Data Visualization with Python.pdf" download class="pn-item available">
-              <span class="pn-num">44</span>
-              <span class="pn-name">Data Visualization with Python</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Python notes.pdf" download class="pn-item available">
-              <span class="pn-num">45</span>
-              <span class="pn-name">Python Notes</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Draw Doraemon Using Python.pdf" download class="pn-item available">
-              <span class="pn-num">46</span>
-              <span class="pn-name">Draw Doraemon Using Python</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Python Exploratory Data Analysis(EDA).pdf" download class="pn-item available">
-              <span class="pn-num">47</span>
-              <span class="pn-name">Python Exploratory Data Analysis (EDA)</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Python for Data Analysts - Quick Summary (1).pdf" download class="pn-item available">
-              <span class="pn-num">48</span>
-              <span class="pn-name">Python for Data Analysts — Quick Summary</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="p.pdf/Data analysis with python .pdf" download class="pn-item available">
-              <span class="pn-num">49</span>
-              <span class="pn-name">Data Analysis with Python</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-
+            <div class="pn-item available"><span class="pn-num">01</span><span class="pn-name">Python Data Structures and Algorithms</span><div class="pn-actions"><a href="https://drive.google.com/file/d/15VqZWAfjY-lSm6zc8A2xrvp9lOPTJwvd/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=15VqZWAfjY-lSm6zc8A2xrvp9lOPTJwvd" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">02</span><span class="pn-name">Python Book 01</span><div class="pn-actions"><a href="https://drive.google.com/file/d/190lqWCDUsfVBGvzvs2F1UByL6PTChR-D/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=190lqWCDUsfVBGvzvs2F1UByL6PTChR-D" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">03</span><span class="pn-name">Python Cheat Sheet Vol. 1</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1D61oRa4R5zSnMnVX5_BzzVL4McK930gL/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1D61oRa4R5zSnMnVX5_BzzVL4McK930gL" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">04</span><span class="pn-name">Python Cheat Sheet Vol. 2</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1cv6zbukK1cLMmfLdMLzBHqqpreumuGEk/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1cv6zbukK1cLMmfLdMLzBHqqpreumuGEk" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">05</span><span class="pn-name">Data Science Essentials in Python</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1wzNJDka4G-1vN57DMbLwN2wQxs7ghA2q/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1wzNJDka4G-1vN57DMbLwN2wQxs7ghA2q" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">06</span><span class="pn-name">Python for Scientists — 2nd Edition</span><div class="pn-actions"><a href="https://drive.google.com/file/d/10UsNLLA85IfHJT5AMj6JO2-fZEOqMmQ8/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=10UsNLLA85IfHJT5AMj6JO2-fZEOqMmQ8" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">07</span><span class="pn-name">Python Beginner Guide for Data Science</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1MQeGx2XwzuwGzbXRclIvCDj_nmRqTm1P/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1MQeGx2XwzuwGzbXRclIvCDj_nmRqTm1P" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">08</span><span class="pn-name">Data Science Bookcamp — Ten Python Projects</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1wTTWMVPC6PMrfIFgyCADaWr6xL9hqCT0/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1wTTWMVPC6PMrfIFgyCADaWr6xL9hqCT0" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">09</span><span class="pn-name">Python for Data Science For Dummies (2023)</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1YXHCC6p1tuPHoC_mg7K-gYTfjknq1Ltg/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1YXHCC6p1tuPHoC_mg7K-gYTfjknq1Ltg" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item soon"><span class="pn-num">10</span><span class="pn-name">AI Programming with Python from Zero — Wiley</span><span class="pn-soon-tag">Soon</span></div>
+            <div class="pn-item available"><span class="pn-num">11</span><span class="pn-name">Python Handwritten Notes (2023)</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1IzMExXt54wDMaHO1jfL096hNdMPmH8Ef/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1IzMExXt54wDMaHO1jfL096hNdMPmH8Ef" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item soon"><span class="pn-num">12</span><span class="pn-name">Supercharged Python</span><span class="pn-soon-tag">Soon</span></div>
+            <div class="pn-item available"><span class="pn-num">13</span><span class="pn-name">Practical Data Science with Jupyter</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1ahJFP68CnpRAU9dRInnXTeD3nRg3bECH/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1ahJFP68CnpRAU9dRInnXTeD3nRg3bECH" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">14</span><span class="pn-name">Foundational Python for Data Science</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1WpkCQjRqWRWyOfABgdgHf_pwLSDuDqZx/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1WpkCQjRqWRWyOfABgdgHf_pwLSDuDqZx" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">15</span><span class="pn-name">Python for Beginners</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1LsRBE5v7RdLWapmQesCrBIoU-_CApjBr/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1LsRBE5v7RdLWapmQesCrBIoU-_CApjBr" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">16</span><span class="pn-name">Python Programming and Numerical Methods</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1-z3_cuFmvhC2hDNEJWgHzAOM-XF88zHh/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1-z3_cuFmvhC2hDNEJWgHzAOM-XF88zHh" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">17</span><span class="pn-name">Python Tricks and Tips — 4th Edition</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1mwl_fy56p0g-cdqFWH3CbzHKmR7bijOR/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1mwl_fy56p0g-cdqFWH3CbzHKmR7bijOR" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">18</span><span class="pn-name">Practical Data Science with Jupyter (ePub)</span><div class="pn-actions"><a href="https://drive.google.com/file/d/19THA0ilJxXiIoLjGBG7OZImCwFcNsEKy/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=19THA0ilJxXiIoLjGBG7OZImCwFcNsEKy" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">19</span><span class="pn-name">Data Analysis with Python and PySpark</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1NEkCsPDq_YLaBHCr4zCTzn17mcgk1iP7/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1NEkCsPDq_YLaBHCr4zCTzn17mcgk1iP7" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">20</span><span class="pn-name">Python Tools for Scientists (2023)</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1luiyr3but16Q8OxhzTk4oraUMp8uwqHM/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1luiyr3but16Q8OxhzTk4oraUMp8uwqHM" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">21</span><span class="pn-name">Statistics Machine Learning Python</span><div class="pn-actions"><a href="https://drive.google.com/file/d/19sLq-3Y4LUWIKsmb-ZdiYxzXLgsqVRg4/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=19sLq-3Y4LUWIKsmb-ZdiYxzXLgsqVRg4" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">22</span><span class="pn-name">ML for Time Series with Python — Ben Auffarth</span><div class="pn-actions"><a href="https://drive.google.com/file/d/19MbbqeR9dz8qTsU5liuZY60FIH96svjx/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=19MbbqeR9dz8qTsU5liuZY60FIH96svjx" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">23</span><span class="pn-name">Python Advanced Programming</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1RUhw286smQkaIPCr7B2zid7BV9s36xVu/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1RUhw286smQkaIPCr7B2zid7BV9s36xVu" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item soon"><span class="pn-num">24</span><span class="pn-name">Beginning Programming with Python For Dummies</span><span class="pn-soon-tag">Soon</span></div>
+            <div class="pn-item available"><span class="pn-num">25</span><span class="pn-name">Python for Finance Cookbook — 2nd Edition (ePub)</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1UO0OuMtOCWHHeIIGhSS2kPUbKFbvfy0O/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1UO0OuMtOCWHHeIIGhSS2kPUbKFbvfy0O" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">26</span><span class="pn-name">Python Cheat Sheet — Cheatography</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1amWLwvHT9W9jLkNpsfFSGJXdhKD10W6Q/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1amWLwvHT9W9jLkNpsfFSGJXdhKD10W6Q" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">27</span><span class="pn-name">Statistics in Python</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1LWPTzCDl1ivKyJD5nyL2ZrJ5eoAlZbpC/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1LWPTzCDl1ivKyJD5nyL2ZrJ5eoAlZbpC" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">28</span><span class="pn-name">Intermediate Python</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1CoPIpsQnEb4ad-ju4PtTvuWPPRg1k1c_/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1CoPIpsQnEb4ad-ju4PtTvuWPPRg1k1c_" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">29</span><span class="pn-name">Head First Python — 3rd Edition (ePub)</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1vfTPqkadruaF4nZsa4ba-nQK1pzntAt_/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1vfTPqkadruaF4nZsa4ba-nQK1pzntAt_" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">30</span><span class="pn-name">Python Crash Course</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1LFVsQjju-I8bXnex6EJlJ2Y6PejTEcFi/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1LFVsQjju-I8bXnex6EJlJ2Y6PejTEcFi" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">31</span><span class="pn-name">50 Useful Python Scripts</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1Bn61Xv_3iceJrrjJof_hswLrZzVpZ8YX/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1Bn61Xv_3iceJrrjJof_hswLrZzVpZ8YX" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">32</span><span class="pn-name">Python Quick Notes Part-1</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1hXsCB6Z1HPUvSuRkkeczvpsspetvk8hg/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1hXsCB6Z1HPUvSuRkkeczvpsspetvk8hg" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">33</span><span class="pn-name">Python Cheat Sheet Vol. 3</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1DO255XJRQfu4z89mGD6Tmhwo_HbrcmVd/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1DO255XJRQfu4z89mGD6Tmhwo_HbrcmVd" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">34</span><span class="pn-name">Basic Python Programs</span><div class="pn-actions"><a href="https://drive.google.com/file/d/15kkUpnnjJYzP0CepJxTJPyJInutS63FG/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=15kkUpnnjJYzP0CepJxTJPyJInutS63FG" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">35</span><span class="pn-name">Python Tutorial</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1TjfK0W46OdYdl1TKnrbU4eX-LEW6fWr8/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1TjfK0W46OdYdl1TKnrbU4eX-LEW6fWr8" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">36</span><span class="pn-name">Jupyter</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1dt92z69M55yMxFIyN1eabIHjNQ5H0ere/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1dt92z69M55yMxFIyN1eabIHjNQ5H0ere" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">37</span><span class="pn-name">Profound Python Libraries (ePub)</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1onypCxjjAFK0n42Hpir1ucNsWFg6uwcX/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1onypCxjjAFK0n42Hpir1ucNsWFg6uwcX" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">38</span><span class="pn-name">Python for Science &amp; Engineering</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1PpRfCq8mw7VfmivoNXEZocI2KtblMYx9/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1PpRfCq8mw7VfmivoNXEZocI2KtblMYx9" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">39</span><span class="pn-name">Python for Everybody (ePub)</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1KBOCFYVRPrfUokEqNrJF2lagjaUgAlh-/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1KBOCFYVRPrfUokEqNrJF2lagjaUgAlh-" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">40</span><span class="pn-name">20 Python Libraries You Aren't Using (But Should)</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1J6ab5sDjCo-We-5OX22Tchb8Z620OY_g/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1J6ab5sDjCo-We-5OX22Tchb8Z620OY_g" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">41</span><span class="pn-name">Top 40 Python Interview Questions &amp; Answers</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1_SeoU3WOqIUsJ7-Qo9PWxS8heEoPAUTj/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1_SeoU3WOqIUsJ7-Qo9PWxS8heEoPAUTj" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">42</span><span class="pn-name">Python Basics</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1Kz03DvGAm6vLHzc8EVsUJpNmYGTEJkvV/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1Kz03DvGAm6vLHzc8EVsUJpNmYGTEJkvV" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">43</span><span class="pn-name">Data Visualization with Python</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1TgC4kQNb04AuLGlpDvjdo5y14L2K2hck/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1TgC4kQNb04AuLGlpDvjdo5y14L2K2hck" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">44</span><span class="pn-name">Python Notes</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1VzpFoTU6ddrqc8cx6EeMu_WzwuZmI29t/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1VzpFoTU6ddrqc8cx6EeMu_WzwuZmI29t" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">45</span><span class="pn-name">Draw Doraemon Using Python</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1GSBJyxr_Zlkdl9eJhBj37gUZhthiOT20/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1GSBJyxr_Zlkdl9eJhBj37gUZhthiOT20" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">46</span><span class="pn-name">Python Exploratory Data Analysis (EDA)</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1fFQe4m0iHyAbEVXzLgVwGWUR6d5iGZrN/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1fFQe4m0iHyAbEVXzLgVwGWUR6d5iGZrN" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">47</span><span class="pn-name">Python for Data Analysts — Quick Summary</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1uV6dSmmYI9d767ux80_pGU4JN_OjijOm/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1uV6dSmmYI9d767ux80_pGU4JN_OjijOm" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">48</span><span class="pn-name">Data Analysis with Python</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1tMz-PairsYyooFBMJW4FBpFQQ4NX3zqx/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1tMz-PairsYyooFBMJW4FBpFQQ4NX3zqx" class="pn-dl">⬇ Download</a></div></div>
           </div><!-- /pn-grid -->
         </div><!-- /python-card -->
 
@@ -2752,38 +1950,12 @@
           </div>
 
           <div class="pn-grid">
-
-            <a href="e.pdf/Power Bi DAX CheatSheet (1).pdf" download class="pn-item available">
-              <span class="pn-num">01</span>
-              <span class="pn-name">Power BI DAX CheatSheet</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="e.pdf/50 excel shortcuts that you should know in 2023 .pdf" download class="pn-item available">
-              <span class="pn-num">02</span>
-              <span class="pn-name">50 Excel Shortcuts You Should Know in 2023</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="e.pdf/Date_Function_in_MS_Excel.pdf" download class="pn-item available">
-              <span class="pn-num">03</span>
-              <span class="pn-name">Date Functions in MS Excel</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="e.pdf/Master PowerBI in 15 days.pdf" download class="pn-item available">
-              <span class="pn-num">04</span>
-              <span class="pn-name">Master Power BI in 15 Days</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="e.pdf/Power-bi interview questions and answers.pdf" download class="pn-item available">
-              <span class="pn-num">05</span>
-              <span class="pn-name">Power BI Interview Questions and Answers</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="e.pdf/Powerbi.pdf" download class="pn-item available">
-              <span class="pn-num">06</span>
-              <span class="pn-name">Power BI</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-
+            <div class="pn-item available"><span class="pn-num">01</span><span class="pn-name">Power BI DAX CheatSheet</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1BBU4tmzNZz0lcJ0a6m8pa5SYBCAluTtT/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1BBU4tmzNZz0lcJ0a6m8pa5SYBCAluTtT" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">02</span><span class="pn-name">50 Excel Shortcuts You Should Know in 2023</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1sHFmHgfn4d9FmyiKdOWGwkmaX0dBlPzE/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1sHFmHgfn4d9FmyiKdOWGwkmaX0dBlPzE" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">03</span><span class="pn-name">Date Functions in MS Excel</span><div class="pn-actions"><a href="https://drive.google.com/file/d/17fhUbElVlONss0aU1utxLLg9-96d976H/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=17fhUbElVlONss0aU1utxLLg9-96d976H" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">04</span><span class="pn-name">Master Power BI in 15 Days</span><div class="pn-actions"><a href="https://drive.google.com/file/d/184o-x3wCmjedWMZ0FTStS8AAGAfnuajg/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=184o-x3wCmjedWMZ0FTStS8AAGAfnuajg" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">05</span><span class="pn-name">Power BI Interview Questions and Answers</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1Q06JBLl1GOV6vQzbVXSm1shxpuzBpifR/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1Q06JBLl1GOV6vQzbVXSm1shxpuzBpifR" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">06</span><span class="pn-name">Power BI</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1jOeIu-ajqzK4sPZIRsOM3EpMbO3VrQKc/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1jOeIu-ajqzK4sPZIRsOM3EpMbO3VrQKc" class="pn-dl">⬇ Download</a></div></div>
           </div><!-- /pn-grid -->
         </div><!-- /excel-powerbi-card -->
 
@@ -2807,58 +1979,16 @@
           </div>
 
           <div class="pn-grid">
-
-            <a href="i.pdf/PWC_Data_Analyst_Interview_Questions_1765396771.pdf" download class="pn-item available">
-              <span class="pn-num">01</span>
-              <span class="pn-name">PwC Data Analyst Interview Questions</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="i.pdf/PowerBI_Interview_Kit.pdf" download class="pn-item available">
-              <span class="pn-num">02</span>
-              <span class="pn-name">Power BI Interview Kit</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="i.pdf/KPMG Data Analyst Interview Questions 🚀.pdf" download class="pn-item available">
-              <span class="pn-num">03</span>
-              <span class="pn-name">KPMG Data Analyst Interview Questions</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="i.pdf/HR interview Question and Answers .pdf" download class="pn-item available">
-              <span class="pn-num">04</span>
-              <span class="pn-name">HR Interview Questions and Answers</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="i.pdf/Data_Engineering_Interview_Question_and_Answers_1682785467_1.pdf" download class="pn-item available">
-              <span class="pn-num">05</span>
-              <span class="pn-name">Data Engineering Interview Questions and Answers</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="i.pdf/ChatGPT_for_Data_Science_Interview_Cheatsheet.pdf" download class="pn-item available">
-              <span class="pn-num">06</span>
-              <span class="pn-name">ChatGPT for Data Science Interview Cheatsheet</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="i.pdf/Data Analyst Interview Questions.pdf" download class="pn-item available">
-              <span class="pn-num">07</span>
-              <span class="pn-name">Data Analyst Interview Questions</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="i.pdf/Statistics Interview Q&A.pdf" download class="pn-item available">
-              <span class="pn-num">08</span>
-              <span class="pn-name">Statistics Interview Q&amp;A</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="i.pdf/Stats Interview Q&A Part-2.pdf" download class="pn-item available">
-              <span class="pn-num">09</span>
-              <span class="pn-name">Stats Interview Q&amp;A Part-2</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-            <a href="i.pdf/Excel Interview Q&A @excel_analyst.pdf" download class="pn-item available">
-              <span class="pn-num">10</span>
-              <span class="pn-name">Excel Interview Q&amp;A</span>
-              <span class="pn-dl">⬇ Download</span>
-            </a>
-
+            <div class="pn-item available"><span class="pn-num">01</span><span class="pn-name">PwC Data Analyst Interview Questions</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1_diLojNNaD4bv0NPBUnfl9tVIsIVZKHb/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1_diLojNNaD4bv0NPBUnfl9tVIsIVZKHb" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">02</span><span class="pn-name">Power BI Interview Kit</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1-5YMWkN-56OsUvVzLqXB61XcvMj9kpNS/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1-5YMWkN-56OsUvVzLqXB61XcvMj9kpNS" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">03</span><span class="pn-name">KPMG Data Analyst Interview Questions</span><div class="pn-actions"><a href="https://drive.google.com/file/d/11yBJFEv-dmSsPs1_oBTVupc90FQSsKsf/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=11yBJFEv-dmSsPs1_oBTVupc90FQSsKsf" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">04</span><span class="pn-name">HR Interview Questions and Answers</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1v2LXpkvfZUJTo1a6MX20RjncvEhufldi/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1v2LXpkvfZUJTo1a6MX20RjncvEhufldi" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">05</span><span class="pn-name">Data Engineering Interview Questions and Answers</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1gRcRA_9n3XJAWuNKg1f6qhvugim6E4De/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1gRcRA_9n3XJAWuNKg1f6qhvugim6E4De" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">06</span><span class="pn-name">ChatGPT for Data Science Interview Cheatsheet</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1d0RD70U2D-fVmh2WWveyr3TRpx65g9El/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1d0RD70U2D-fVmh2WWveyr3TRpx65g9El" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">07</span><span class="pn-name">Data Analyst Interview Questions</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1ygwIzJPczSRfQkrZ-nsLR14k63o1d9A0/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1ygwIzJPczSRfQkrZ-nsLR14k63o1d9A0" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">08</span><span class="pn-name">Statistics Interview Q&amp;A</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1i-l9SeML7rAtRBr9umZ4S3Iyf_uTyTuG/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1i-l9SeML7rAtRBr9umZ4S3Iyf_uTyTuG" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">09</span><span class="pn-name">Stats Interview Q&amp;A Part-2</span><div class="pn-actions"><a href="https://drive.google.com/file/d/193TsiPF-jcCc9mGxl9jIOpA9xYX9MTcf/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=193TsiPF-jcCc9mGxl9jIOpA9xYX9MTcf" class="pn-dl">⬇ Download</a></div></div>
+            <div class="pn-item available"><span class="pn-num">10</span><span class="pn-name">Excel Interview Q&amp;A</span><div class="pn-actions"><a href="https://drive.google.com/file/d/1max8hqUq4s6TlABxJ2FUU73JVBQC-7pE/preview" target="_blank" class="pn-view">👁 View</a><a href="https://drive.google.com/uc?export=download&id=1max8hqUq4s6TlABxJ2FUU73JVBQC-7pE" class="pn-dl">⬇ Download</a></div></div>
           </div><!-- /pn-grid -->
         </div><!-- /interview-card -->
 
