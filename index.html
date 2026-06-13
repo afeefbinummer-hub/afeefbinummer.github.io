@@ -2481,7 +2481,7 @@ Keep responses concise and friendly. Use emojis occasionally. Format code in pla
         msgs.scrollTop = msgs.scrollHeight;
       }
 
-      async function send() {
+      function send() {
         const inp = document.getElementById("userInput");
         const msgs = document.getElementById("chatMsgs");
         const txt = inp.value.trim();
@@ -2494,54 +2494,16 @@ Keep responses concise and friendly. Use emojis occasionally. Format code in pla
         msgs.appendChild(um);
         inp.value = "";
         msgs.scrollTop = msgs.scrollHeight;
-        chatHistory.push({ role: "user", content: txt });
-        const typing = document.createElement("div");
-        typing.className = "bot-msg";
-        typing.id = "typingIndicator";
-        typing.innerText = "...";
-        msgs.appendChild(typing);
-        msgs.scrollTop = msgs.scrollHeight;
-        try {
-          const res = await fetch("https://api.anthropic.com/v1/messages", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "x-api-key": ANTHROPIC_API_KEY,
-              "anthropic-version": "2023-06-01",
-              "anthropic-dangerous-direct-browser-access": "true"
-            },
-            body: JSON.stringify({
-              model: "claude-sonnet-4-6",
-              max_tokens: 1024,
-              system: SYSTEM_PROMPT,
-              messages: chatHistory
-            })
-          });
-          const data = await res.json();
-          if (!res.ok) {
-            const errMsg = (data.error && data.error.message) ? data.error.message : ("API error " + res.status);
-            throw new Error(errMsg);
-          }
-          const reply = data.content && data.content[0] ? data.content[0].text : "Sorry, I couldn't get a response.";
-          chatHistory.push({ role: "assistant", content: reply });
-          typing.remove();
+        setTimeout(function() {
+          const reply = getResponse(txt);
           const bm = document.createElement("div");
           bm.className = "bot-msg";
           bm.innerText = reply;
           msgs.appendChild(bm);
           msgs.scrollTop = msgs.scrollHeight;
-        } catch (e) {
-          typing.remove();
-          const bm = document.createElement("div");
-          bm.className = "bot-msg";
-          bm.innerText = "⚠️ " + (e.message || "Could not reach the AI. Please try again.");
-          msgs.appendChild(bm);
-          msgs.scrollTop = msgs.scrollHeight;
-        }
+        }, 300);
       }
-
-      // DEAD CODE BELOW — replaced by AI fetch above — kept as reference
-      function getResponse_UNUSED(t) {
+      function getResponse(t) {
         const kb = [
           // ── PORTFOLIO / ABOUT ──────────────────────────────
           {
