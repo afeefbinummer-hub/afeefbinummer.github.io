@@ -2415,7 +2415,7 @@
       });
 
       /* CHATBOT */
-      const ANTHROPIC_API_KEY = "sk-ant-api03-" + "H_yENJsAB-7bGGyI8XadxqjtRL7XwXEdx6jtYwY1fJ6M4md_8ziZwXvELlvhsRPuY4KztpEgtFz2lysVPo8Hmw-PramowAA";
+      const ANTHROPIC_API_KEY = "sk-ant-api03-" + "E1xTOoukRpyQW-_SvWQXs7BndxyOCUwxANOmXl-Ok8zs5Pv_MtfOfbU38yV3nHJfEF4Ayixd1PvZ-Q1HUFB3kw-L-Rx8gAA";
       const SYSTEM_PROMPT = `You are an expert Data Analytics & Data Science mentor embedded in Afeef Ummer's portfolio website. You teach Python, Pandas, NumPy, SQL, Power BI, Excel, Machine Learning, Data Engineering, and Data Science concepts. You provide:
 - Step-by-step explanations at beginner/intermediate/advanced level
 - Real code examples
@@ -2518,6 +2518,10 @@ Keep responses concise and friendly. Use emojis occasionally. Format code in pla
             })
           });
           const data = await res.json();
+          if (!res.ok) {
+            const errMsg = (data.error && data.error.message) ? data.error.message : ("API error " + res.status);
+            throw new Error(errMsg);
+          }
           const reply = data.content && data.content[0] ? data.content[0].text : "Sorry, I couldn't get a response.";
           chatHistory.push({ role: "assistant", content: reply });
           typing.remove();
@@ -2530,7 +2534,7 @@ Keep responses concise and friendly. Use emojis occasionally. Format code in pla
           typing.remove();
           const bm = document.createElement("div");
           bm.className = "bot-msg";
-          bm.innerText = "⚠️ Could not reach the AI. Please check the API key or try again.";
+          bm.innerText = "⚠️ " + (e.message || "Could not reach the AI. Please try again.");
           msgs.appendChild(bm);
           msgs.scrollTop = msgs.scrollHeight;
         }
