@@ -810,10 +810,26 @@
         background: rgba(255, 255, 255, 0.14);
         color: var(--text);
       }
+      .cert-iframe-wrap {
+        flex: 1;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
       #cert-iframe {
         flex: 1;
         border: none;
         width: 100%;
+        height: 100%;
+        display: block;
+      }
+      .cert-no-dl {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        background: transparent;
+        cursor: default;
       }
 
       /* ── PERSONAL ── */
@@ -2206,7 +2222,7 @@
                   class="cert-view-btn"
                   onclick="
                     openCert(
-                      'DataAnalyticsCertifiedUser_Badge20260516-32-67wzga.pdf',
+                      'certificates/DataAnalyticsCertifiedUser_Badge20260516-32-67wzga.pdf',
                       'Data Analytics Certified User — Illinois Institute of Technology',
                     )
                   "
@@ -2263,7 +2279,7 @@
                   class="cert-view-btn"
                   onclick="
                     openCert(
-                      'NSDC_3791554_CAN_40363554__2_.pdf',
+                      'certificates/NSDC_3791554_CAN_40363554_2.pdf',
                       'Program in Data Analytics — ENTRI / Skill India / NSDC',
                     )
                   "
@@ -2299,7 +2315,7 @@
                   class="cert-view-btn"
                   onclick="
                     openCert(
-                      'BOZJGHO-JHOLM.pdf',
+                      'certificates/BOZJGHO-JHOLM.pdf',
                       'AI Driven Data Analytics — ENTRI / Customer Shopping Behaviour Analysis',
                     )
                   "
@@ -2402,7 +2418,10 @@
             &#10005;
           </button>
         </div>
-        <iframe id="cert-iframe" title="Certificate viewer"></iframe>
+        <div class="cert-iframe-wrap">
+          <iframe id="cert-iframe" title="Certificate viewer"></iframe>
+          <div class="cert-no-dl" oncontextmenu="return false;"></div>
+        </div>
       </div>
     </div>
 
@@ -2865,7 +2884,7 @@
       /* CERTIFICATE MODAL */
       function openCert(src, title) {
         document.getElementById("cert-modal-title").textContent = title;
-        document.getElementById("cert-iframe").src = src;
+        document.getElementById("cert-iframe").src = src + "#toolbar=0&navpanes=0&scrollbar=0";
         document.getElementById("cert-modal").classList.add("open");
         document.body.style.overflow = "hidden";
       }
