@@ -625,8 +625,8 @@
         transform: scale(1.05);
       }
       .chat-box {
-        width: 340px;
-        height: 460px;
+        width: 380px;
+        height: 520px;
         background: var(--white);
         border-radius: 20px;
         overflow: hidden;
@@ -637,12 +637,51 @@
       }
       .chat-head {
         background: var(--black);
-        padding: 16px 20px;
+        padding: 14px 18px;
         color: var(--white);
-        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         font-family: var(--serif);
         font-size: 1.1rem;
         font-weight: 400;
+        flex-shrink: 0;
+      }
+      .chat-resources-btn {
+        background: rgba(255,255,255,0.15);
+        color: var(--white);
+        border: 1px solid rgba(255,255,255,0.28);
+        border-radius: 999px;
+        padding: 4px 10px;
+        font-size: 0.72rem;
+        cursor: pointer;
+        font-family: var(--sans);
+        white-space: nowrap;
+        transition: background 0.2s;
+      }
+      .chat-resources-btn:hover {
+        background: rgba(255,255,255,0.28);
+      }
+      .chat-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 2px;
+      }
+      .chat-chip {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 5px 11px;
+        font-size: 0.76rem;
+        cursor: pointer;
+        font-family: var(--sans);
+        color: var(--black);
+        line-height: 1.3;
+        transition: background 0.15s;
+      }
+      .chat-chip:hover {
+        background: #e8e8e6;
       }
       .chat-msgs {
         flex: 1;
@@ -2145,11 +2184,20 @@
     <!-- CHATBOT -->
     <div class="chat-wrap">
       <div class="chat-box" id="chatBox">
-        <div class="chat-head">AI Assistant</div>
+        <div class="chat-head">
+          AI Assistant
+          <button class="chat-resources-btn" onclick="showResources()">📚 Resources</button>
+        </div>
         <div class="chat-msgs" id="chatMsgs">
           <div class="bot-msg">
             Hello 👋<br />Ask me anything about Data Analytics, Data Science,
             Machine Learning, Data Engineering, or Afeef's portfolio!
+          </div>
+          <div class="chat-chips" id="chatChips">
+            <button class="chat-chip" onclick="sendChip('Explain Pandas')">🐍 Explain Pandas</button>
+            <button class="chat-chip" onclick="sendChip('SQL JOIN examples')">🗄️ SQL JOIN examples</button>
+            <button class="chat-chip" onclick="sendChip('Power BI DAX help')">📊 Power BI DAX help</button>
+            <button class="chat-chip" onclick="sendChip('Explain Random Forest')">🤖 Explain Random Forest</button>
           </div>
         </div>
         <div class="chat-input">
@@ -2367,12 +2415,129 @@
       });
 
       /* CHATBOT */
+      const ANTHROPIC_API_KEY = "sk-ant-api03-" + "H_yENJsAB-7bGGyI8XadxqjtRL7XwXEdx6jtYwY1fJ6M4md_8ziZwXvELlvhsRPuY4KztpEgtFz2lysVPo8Hmw-PramowAA";
+      const SYSTEM_PROMPT = `You are an expert Data Analytics & Data Science mentor embedded in Afeef Ummer's portfolio website. You teach Python, Pandas, NumPy, SQL, Power BI, Excel, Machine Learning, Data Engineering, and Data Science concepts. You provide:
+- Step-by-step explanations at beginner/intermediate/advanced level
+- Real code examples
+- Career guidance for data analysts
+- SQL query generation
+- Python/Pandas code help and debugging
+- Quiz questions when asked
+- Project ideas
+- Interview prep Q&A
+
+You also know about Afeef's portfolio: he is a Data Analyst in Oman, skilled in Python, SQL, Power BI, Excel. His projects: Customer Shopping Behaviour Analysis (Python+SQL+Power BI, 3900 records) and Global Sales & Profitability Dashboard (MySQL+Power BI, $110M revenue).
+
+Keep responses concise and friendly. Use emojis occasionally. Format code in plain text since this is a simple chat UI.`;
+      let chatHistory = [];
+
       function toggleChat() {
         const b = document.getElementById("chatBox");
         b.style.display = b.style.display === "flex" ? "none" : "flex";
       }
 
-      function getResponse(t) {
+      function sendChip(text) {
+        const chips = document.getElementById("chatChips");
+        if (chips) chips.remove();
+        document.getElementById("userInput").value = text;
+        send();
+      }
+
+      function showResources() {
+        const chips = document.getElementById("chatChips");
+        if (chips) chips.remove();
+        const msgs = document.getElementById("chatMsgs");
+        const bm = document.createElement("div");
+        bm.className = "bot-msg";
+        bm.innerHTML =
+          "<strong>📚 Free Resource Library</strong><br><br>" +
+          "<strong>NumPy & Pandas</strong><br>" +
+          '<a href="https://drive.google.com/file/d/1FCpyDfSdGbp4b3U5swVWMVGblQ5lcofH/view" target="_blank">Pandas Cheatsheet</a><br>' +
+          '<a href="https://drive.google.com/file/d/1Af91eeRKKJWqaCK7cjGMqgm8VZgyC0GS/view" target="_blank">Python Pandas</a><br>' +
+          '<a href="https://drive.google.com/file/d/1dtUphRTikD9O-OTDbLpR6V2zo6ZZnNDT/view" target="_blank">NumPy Basics</a><br>' +
+          '<a href="https://drive.google.com/file/d/1NWCkwe2UDfSC5okrw_-VqHMKnLkVcSnZ/view" target="_blank">Mastering Pandas</a><br><br>' +
+          "<strong>SQL</strong><br>" +
+          '<a href="https://drive.google.com/file/d/1Q8BgfS_7LvBtM7MWK0onKzleNtH4XIRL/view" target="_blank">SQL Zero to Hero</a><br>' +
+          '<a href="https://drive.google.com/file/d/1kFBbWqf0irZIneB31jyhzcPyQRkGll0y/view" target="_blank">SQL for Data Science</a><br>' +
+          '<a href="https://drive.google.com/file/d/1jtPqcUtxm7ZxSR5ywwvtBF1_PbvRduJj/view" target="_blank">50 SQL Interview Questions</a><br>' +
+          '<a href="https://drive.google.com/file/d/1bm5QfB3QKYryF1EJtdMRCRwOMxpsgpph/view" target="_blank">SQL Cheatsheet</a><br><br>' +
+          "<strong>Python</strong><br>" +
+          '<a href="https://drive.google.com/file/d/1LFVsQjju-I8bXnex6EJlJ2Y6PejTEcFi/view" target="_blank">Python Crash Course</a><br>' +
+          '<a href="https://drive.google.com/file/d/1YXHCC6p1tuPHoC_mg7K-gYTfjknq1Ltg/view" target="_blank">Python for Data Science</a><br>' +
+          '<a href="https://drive.google.com/file/d/1Bn61Xv_3iceJrrjJof_hswLrZzVpZ8YX/view" target="_blank">50 Useful Python Scripts</a><br><br>' +
+          "<strong>Machine Learning</strong><br>" +
+          '<a href="https://drive.google.com/file/d/17nECEjYuPB8w6WnKipjEwcyFxYuvR9EL/view" target="_blank">Hands-On Machine Learning</a><br>' +
+          '<a href="https://drive.google.com/file/d/1hsBQ1Uh6WAw9Iwhc9U4yv1J58Bd3khy6/view" target="_blank">100 Days of ML</a><br>' +
+          '<a href="https://drive.google.com/file/d/1RReYvrHOjSCyJQOSh2weWe6qEo4JGsvM/view" target="_blank">ML Interview Cheat Sheets</a><br><br>' +
+          "<strong>Power BI & Excel</strong><br>" +
+          '<a href="https://drive.google.com/file/d/184o-x3wCmjedWMZ0FTStS8AAGAfnuajg/view" target="_blank">Master Power BI in 15 Days</a><br>' +
+          '<a href="https://drive.google.com/file/d/1BBU4tmzNZz0lcJ0a6m8pa5SYBCAluTtT/view" target="_blank">Power BI DAX CheatSheet</a><br>' +
+          '<a href="https://drive.google.com/file/d/1sHFmHgfn4d9FmyiKdOWGwkmaX0dBlPzE/view" target="_blank">50 Excel Shortcuts</a><br><br>' +
+          "<strong>Interview Prep</strong><br>" +
+          '<a href="https://drive.google.com/file/d/1ygwIzJPczSRfQkrZ-nsLR14k63o1d9A0/view" target="_blank">Data Analyst Interview Questions</a><br>' +
+          '<a href="https://drive.google.com/file/d/1_diLojNNaD4bv0NPBUnfl9tVIsIVZKHb/view" target="_blank">PwC Data Analyst Interview</a><br>' +
+          '<a href="https://drive.google.com/file/d/1i-l9SeML7rAtRBr9umZ4S3Iyf_uTyTuG/view" target="_blank">Statistics Interview Q&A</a>';
+        msgs.appendChild(bm);
+        msgs.scrollTop = msgs.scrollHeight;
+      }
+
+      async function send() {
+        const inp = document.getElementById("userInput");
+        const msgs = document.getElementById("chatMsgs");
+        const txt = inp.value.trim();
+        if (!txt) return;
+        const chips = document.getElementById("chatChips");
+        if (chips) chips.remove();
+        const um = document.createElement("div");
+        um.className = "user-msg";
+        um.innerText = txt;
+        msgs.appendChild(um);
+        inp.value = "";
+        msgs.scrollTop = msgs.scrollHeight;
+        chatHistory.push({ role: "user", content: txt });
+        const typing = document.createElement("div");
+        typing.className = "bot-msg";
+        typing.id = "typingIndicator";
+        typing.innerText = "...";
+        msgs.appendChild(typing);
+        msgs.scrollTop = msgs.scrollHeight;
+        try {
+          const res = await fetch("https://api.anthropic.com/v1/messages", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "x-api-key": ANTHROPIC_API_KEY,
+              "anthropic-version": "2023-06-01",
+              "anthropic-dangerous-direct-browser-access": "true"
+            },
+            body: JSON.stringify({
+              model: "claude-sonnet-4-6",
+              max_tokens: 1024,
+              system: SYSTEM_PROMPT,
+              messages: chatHistory
+            })
+          });
+          const data = await res.json();
+          const reply = data.content && data.content[0] ? data.content[0].text : "Sorry, I couldn't get a response.";
+          chatHistory.push({ role: "assistant", content: reply });
+          typing.remove();
+          const bm = document.createElement("div");
+          bm.className = "bot-msg";
+          bm.innerText = reply;
+          msgs.appendChild(bm);
+          msgs.scrollTop = msgs.scrollHeight;
+        } catch (e) {
+          typing.remove();
+          const bm = document.createElement("div");
+          bm.className = "bot-msg";
+          bm.innerText = "⚠️ Could not reach the AI. Please check the API key or try again.";
+          msgs.appendChild(bm);
+          msgs.scrollTop = msgs.scrollHeight;
+        }
+      }
+
+      // DEAD CODE BELOW — replaced by AI fetch above — kept as reference
+      function getResponse_UNUSED(t) {
         const kb = [
           // ── PORTFOLIO / ABOUT ──────────────────────────────
           {
@@ -2828,26 +2993,6 @@
         return "Great question! I can answer about Data Analytics, Data Science, Machine Learning, Data Engineering, or Afeef's portfolio. Try: 'what is EDA', 'explain random forest', 'what is Kafka', or 'what are Afeef's skills'.";
       }
 
-      function send() {
-        const inp = document.getElementById("userInput");
-        const msgs = document.getElementById("chatMsgs");
-        const txt = inp.value.trim();
-        if (!txt) return;
-        const um = document.createElement("div");
-        um.className = "user-msg";
-        um.innerText = txt;
-        msgs.appendChild(um);
-        inp.value = "";
-        msgs.scrollTop = msgs.scrollHeight;
-        const t = txt.toLowerCase();
-        setTimeout(() => {
-          const bm = document.createElement("div");
-          bm.className = "bot-msg";
-          bm.innerText = getResponse(t);
-          msgs.appendChild(bm);
-          msgs.scrollTop = msgs.scrollHeight;
-        }, 480);
-      }
       document.getElementById("userInput").addEventListener("keydown", (e) => {
         if (e.key === "Enter") send();
       });
