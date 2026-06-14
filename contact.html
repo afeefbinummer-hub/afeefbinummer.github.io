@@ -2024,6 +2024,129 @@
           grid-template-columns: 1fr;
         }
       }
+
+      /* ── SAMPLE WORK CARDS ── */
+      .work-scroll {
+        display: flex;
+        gap: 16px;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      .work-scroll::-webkit-scrollbar { display: none; }
+      .work-card {
+        min-width: 260px;
+        border-radius: 16px;
+        padding: 24px;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        flex-shrink: 0;
+      }
+      .wc-icon { font-size: 1.75rem; }
+      .wc-label {
+        font-family: "Fraunces", serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+      .wc-tag {
+        display: inline-block;
+        background: rgba(255,255,255,0.15);
+        border-radius: 999px;
+        padding: 3px 10px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        width: fit-content;
+      }
+      .wc-desc { font-size: 0.82rem; color: rgba(255,255,255,0.72); line-height: 1.5; flex: 1; }
+      .wc-btn {
+        display: inline-block;
+        background: transparent;
+        border: 1.5px solid rgba(255,255,255,0.45);
+        color: #fff;
+        border-radius: 8px;
+        padding: 7px 14px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: "DM Sans", sans-serif;
+        transition: background 0.2s, border-color 0.2s;
+        text-align: center;
+        width: fit-content;
+      }
+      .wc-btn:hover { background: rgba(255,255,255,0.15); border-color: #fff; }
+
+      /* ── PRICE CALCULATOR BAR ── */
+      .price-bar {
+        background: linear-gradient(135deg, #0b1f3a, #1e5fad);
+        color: #fff;
+        padding: 12px 20px;
+        border-radius: 10px;
+        margin-top: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+      .price-bar-left { display: flex; flex-direction: column; gap: 2px; }
+      .price-bar-label { font-size: 0.72rem; opacity: 0.65; }
+      .price-bar-amount {
+        font-family: "Fraunces", serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        line-height: 1;
+        display: inline-block;
+        transition: transform 0.2s ease;
+      }
+      .price-bar-amount.pop { transform: scale(1.15); }
+      .price-rush-note {
+        font-size: 0.72rem;
+        color: #fde68a;
+        margin-top: 2px;
+        display: none;
+      }
+      .price-rush-note.show { display: block; }
+      .price-bar-right { font-size: 0.68rem; opacity: 0.5; text-align: right; max-width: 120px; line-height: 1.4; }
+
+      /* ── TESTIMONIALS ── */
+      .reviews-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+      }
+      @media (max-width: 900px) {
+        .reviews-grid { grid-template-columns: 1fr; }
+      }
+      .review-card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: var(--shadow);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .review-stars { color: #f59e0b; font-size: 1rem; letter-spacing: 1px; }
+      .review-quote {
+        font-size: 0.9rem;
+        color: var(--text-soft);
+        font-style: italic;
+        line-height: 1.7;
+        flex: 1;
+      }
+      .review-name { font-size: 0.83rem; font-weight: 700; color: var(--navy); margin-top: 4px; }
+
+      /* ── DELIVERY BADGE in modal hdr ── */
+      .cv-modal-delivery {
+        font-size: 0.72rem;
+        color: rgba(255,255,255,0.55);
+        margin-top: 6px;
+      }
     </style>
   </head>
   <body>
@@ -2137,6 +2260,40 @@
         </div>
       </div>
     </div>
+
+    <!-- SAMPLE WORK PREVIEW -->
+    <section style="padding: 3rem 0 1rem;">
+      <div class="section" style="padding-top:0; padding-bottom:1.5rem;">
+        <div class="section-header reveal" style="margin-bottom:1.5rem;">
+          <span class="section-tag">Portfolio</span>
+          <h2 class="section-title">Recent Work</h2>
+          <p class="section-sub">A look at what you'll get when you order.</p>
+        </div>
+        <div class="work-scroll">
+          <div class="work-card" style="background:linear-gradient(135deg,#0b1f3a,#1e5fad);">
+            <div class="wc-icon">📄</div>
+            <div class="wc-label">CV Design</div>
+            <span class="wc-tag">Basic · 5 OMR</span>
+            <p class="wc-desc">ATS-friendly, modern layout, PDF delivery</p>
+            <button class="wc-btn" onclick="openPkgPopup('basic')">View Package →</button>
+          </div>
+          <div class="work-card" style="background:linear-gradient(135deg,#0f0a1e,#2d1b69);">
+            <div class="wc-icon">🌐</div>
+            <div class="wc-label">Portfolio Website</div>
+            <span class="wc-tag">Premium · 10 OMR</span>
+            <p class="wc-desc">Multi-page, responsive, with contact form</p>
+            <button class="wc-btn" onclick="openPkgPopup('premium')">View Package →</button>
+          </div>
+          <div class="work-card" style="background:linear-gradient(135deg,#1a0a00,#c49a2e);">
+            <div class="wc-icon">📊</div>
+            <div class="wc-label">Presentation Design</div>
+            <span class="wc-tag">From 2 OMR</span>
+            <p class="wc-desc">Canva-based, branded, PDF + editable file</p>
+            <button class="wc-btn" onclick="openSvcModal('pres')">View Package →</button>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- SERVICE NAV TABS -->
     <div class="svc-nav" id="svcNav">
@@ -2359,6 +2516,7 @@
                 <div class="cv-modal-eyebrow">CV &amp; Website Service</div>
                 <div class="cv-modal-title">Send a Request</div>
                 <div class="cv-modal-subtitle">I'll reply within a few hours.</div>
+                <div class="cv-modal-delivery" id="cvDeliveryBadge"></div>
               </div>
               <button class="cv-modal-close" onclick="closeCvModal()">✕</button>
             </div>
@@ -2481,6 +2639,16 @@
                 >
                   📦 What's included in each package? Click to explore →
                 </button>
+
+                <!-- 💰 PRICE CALCULATOR BAR -->
+                <div class="price-bar" id="priceBar">
+                  <div class="price-bar-left">
+                    <span class="price-bar-label">Estimated total</span>
+                    <span class="price-bar-amount" id="priceDisplay">5 OMR</span>
+                    <span class="price-rush-note" id="priceRushNote">+ 2 OMR rush fee</span>
+                  </div>
+                  <span class="price-bar-right">Final price confirmed after review</span>
+                </div>
               </div>
 
               <div class="form-section">
@@ -2822,6 +2990,34 @@
       </div>
     </section>
 
+    <!-- TESTIMONIALS -->
+    <section style="padding: 4rem 0;">
+      <div class="section" style="padding-top:0; padding-bottom:0;">
+        <div class="section-header reveal" style="margin-bottom:2rem;">
+          <span class="section-tag">Reviews</span>
+          <h2 class="section-title">What clients say</h2>
+          <p class="section-sub">Real feedback from people I've worked with.</p>
+        </div>
+        <div class="reviews-grid">
+          <div class="review-card reveal" style="transition-delay:0s;">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">"Got my CV and landing page in under 24 hours. Clean, professional, exactly what I needed for my job applications in Oman."</p>
+            <div class="review-name">— Ahmed R., Finance Professional</div>
+          </div>
+          <div class="review-card reveal" style="transition-delay:0.15s;">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">"The website looks amazing on mobile and desktop. Afeef understood exactly what I wanted and delivered fast."</p>
+            <div class="review-name">— Sarah M., Freelance Designer</div>
+          </div>
+          <div class="review-card reveal" style="transition-delay:0.3s;">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">"Presentation was ready in a day. My professor was impressed with the design quality. Will definitely order again."</p>
+            <div class="review-name">— Khalid A., University Student</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="final-cta">
       <h2>Ready to start your project?</h2>
       <p>A professional website or CV is one message away.</p>
@@ -3080,6 +3276,7 @@
           svcBtns.forEach((b) => b.classList.remove("active"));
           btn.classList.add("active");
           svcInput.value = btn.dataset.val;
+          updatePrice();
         });
       });
 
@@ -3108,6 +3305,7 @@
       function toggleRow(el, inputId) {
         const isOn = el.classList.toggle("on");
         document.getElementById(inputId).value = isOn ? "Yes" : "No";
+        if (inputId === "inp-rush") updatePrice();
       }
       document.getElementById("inp-date").min = new Date()
         .toISOString()
@@ -3179,13 +3377,12 @@
             message: document.getElementById("inp-msg").value.trim(),
           };
           try {
+            const formData = new FormData();
+            Object.keys(payload).forEach(function(key) { formData.append(key, payload[key]); });
             await fetch("https://formspree.io/f/xbdbezwy", {
               method: "POST",
-              headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(payload),
+              body: formData,
+              headers: { "Accept": "application/json" }
             });
           } catch (err) {
             console.warn(err);
@@ -3194,11 +3391,28 @@
           document.getElementById("contactForm").style.display = "none";
           document.getElementById("formSuccess").style.display = "flex";
           btn.disabled = false;
+          btn.textContent = "✉ Send Request";
           setTimeout(function () {
             closeCvModal();
             document.getElementById("contactForm").style.display = "";
             document.getElementById("formSuccess").style.display = "none";
-          }, 3500);
+            /* reset form fields */
+            document.getElementById("contactForm").reset();
+            svcBtns.forEach(function(b, i) { b.classList.toggle("active", i === 0); });
+            svcInput.value = "Basic Package";
+            document.querySelectorAll(".sel-pill[data-group='career']").forEach(function(b,i){ b.classList.toggle("active",i===0); });
+            document.getElementById("inp-career").value = "Fresh graduate";
+            document.querySelectorAll(".sel-pill[data-group='industry']").forEach(function(b,i){ b.classList.toggle("active",i===0); });
+            document.getElementById("inp-industry").value = "Tech";
+            document.querySelectorAll(".src-btn").forEach(function(b){ b.classList.remove("active"); });
+            document.getElementById("inp-source").value = "";
+            ["toggle-rush","toggle-cv","toggle-li","toggle-ph"].forEach(function(id){ document.getElementById(id).classList.remove("on"); });
+            document.getElementById("inp-rush").value = "No";
+            document.getElementById("inp-has-cv").value = "No";
+            document.getElementById("inp-has-li").value = "No";
+            document.getElementById("inp-has-ph").value = "No";
+            updatePrice();
+          }, 4000);
         });
 
       /* ── SERVICE TAB NAV ── */
@@ -3271,6 +3485,25 @@
       });
 
       /* ── CV/WEB MODAL ── */
+      /* ── PRICE CALCULATOR ── */
+      var PRICES = { "Basic Package": 5, "Premium Package": 10, "Diamond Package": 15, "Not sure yet": null };
+      function updatePrice() {
+        var svc = document.getElementById("inp-service").value;
+        var rush = document.getElementById("inp-rush").value === "Yes";
+        var display = document.getElementById("priceDisplay");
+        var rushNote = document.getElementById("priceRushNote");
+        if (!display) return;
+        var base = PRICES[svc];
+        var label = base !== null ? base + " OMR" : "TBD";
+        if (rush && base !== null) { label = (base) + " OMR"; rushNote.classList.add("show"); }
+        else { rushNote.classList.remove("show"); }
+        if (display.textContent !== label) {
+          display.textContent = label;
+          display.classList.add("pop");
+          setTimeout(function() { display.classList.remove("pop"); }, 220);
+        }
+      }
+
       function openCvModal() {
         var overlay = document.getElementById("cvModalOverlay");
         var card = document.getElementById("cvFormCard");
@@ -3283,6 +3516,17 @@
         document.body.style.overflow = "hidden";
         var dateEl = document.getElementById("inp-date");
         if (dateEl) dateEl.min = new Date().toISOString().split("T")[0];
+
+        /* Delivery dates */
+        var badge = document.getElementById("cvDeliveryBadge");
+        if (badge) {
+          var days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+          var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+          var std = new Date(); std.setDate(std.getDate() + 3);
+          var rush = new Date(); rush.setDate(rush.getDate() + 1);
+          badge.textContent = "⚡ Standard: " + days[std.getDay()] + ", " + std.getDate() + " " + months[std.getMonth()] + " · Rush: " + days[rush.getDay()] + ", " + rush.getDate() + " " + months[rush.getMonth()];
+        }
+        updatePrice();
       }
       function closeCvModal() {
         var overlay = document.getElementById("cvModalOverlay");
@@ -3293,24 +3537,17 @@
       }
 
       /* ── SHARED FORMSPREE ── */
-      async function submitSvcForm(
-        payload,
-        btnId,
-        formId,
-        successId,
-        emailElId,
-      ) {
+      async function submitSvcForm(payload, btnId, formId, successId, emailElId) {
         var btn = document.getElementById(btnId);
         btn.disabled = true;
         btn.textContent = "Sending…";
         try {
+          var formData = new FormData();
+          Object.keys(payload).forEach(function(key) { formData.append(key, payload[key]); });
           await fetch("https://formspree.io/f/xbdbezwy", {
             method: "POST",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payload),
+            body: formData,
+            headers: { "Accept": "application/json" }
           });
         } catch (e) {
           console.warn(e);
@@ -3319,6 +3556,17 @@
         document.getElementById(formId).style.display = "none";
         document.getElementById(successId).style.display = "flex";
         btn.disabled = false;
+        btn.textContent = "Send Request →";
+        setTimeout(function() {
+          var modal = document.getElementById(successId).closest(".svc-modal-overlay");
+          if (modal) {
+            var type = modal.id.replace("modal-","");
+            closeSvcModal(type);
+          }
+          document.getElementById(formId).style.display = "";
+          document.getElementById(successId).style.display = "none";
+          document.getElementById(formId).reset();
+        }, 4000);
       }
       if (document.getElementById("videoForm"))
       document

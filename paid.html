@@ -1494,6 +1494,132 @@
       .pandas-numpy-card {
         scroll-margin-top: 110px;
       }
+
+      /* ── SEARCH BAR ── */
+      .search-wrap {
+        position: relative;
+        max-width: 480px;
+        margin: 10px auto 0;
+      }
+      .search-icon {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: rgba(255,255,255,0.3);
+        font-size: 0.85rem;
+        pointer-events: none;
+        line-height: 1;
+      }
+      #notes-search {
+        width: 100%;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 999px;
+        padding: 10px 18px 10px 42px;
+        color: #fff;
+        font-size: 0.85rem;
+        font-family: var(--sans);
+        outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+      #notes-search::placeholder { color: rgba(255,255,255,0.3); }
+      #notes-search:focus {
+        border-color: rgba(168,85,247,0.5);
+        box-shadow: 0 0 0 3px rgba(168,85,247,0.12);
+      }
+      .search-count {
+        font-size: 0.72rem;
+        color: rgba(255,255,255,0.35);
+        text-align: center;
+        margin-top: 6px;
+        display: none;
+        padding-bottom: 4px;
+      }
+      .no-results-card {
+        background: var(--glass);
+        border: 1px solid var(--glass-border);
+        border-radius: 16px;
+        padding: 40px 32px;
+        text-align: center;
+        margin: 40px auto;
+        max-width: 400px;
+        font-size: 0.95rem;
+        color: var(--muted);
+        display: none;
+      }
+
+      /* ── PDF PREVIEW MODAL ── */
+      #preview-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 9000;
+        background: rgba(0,0,0,0.88);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      #preview-modal.open { display: flex; }
+      .preview-modal-box {
+        width: 100%;
+        max-width: 900px;
+        height: 88vh;
+        background: #0d0d1a;
+        border: 1px solid rgba(168,85,247,0.2);
+        border-radius: 18px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+        animation: modalPop 0.3s var(--ease) both;
+      }
+      .preview-modal-hdr {
+        padding: 12px 18px;
+        background: rgba(255,255,255,0.03);
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-shrink: 0;
+      }
+      #preview-modal-title {
+        font-size: 0.82rem;
+        color: rgba(255,255,255,0.6);
+        max-width: 60%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .preview-ext-btn {
+        font-size: 0.75rem;
+        color: var(--purple);
+        border: 1px solid rgba(168,85,247,0.3);
+        border-radius: 6px;
+        padding: 4px 10px;
+        text-decoration: none;
+        transition: background 0.2s;
+      }
+      .preview-ext-btn:hover { background: rgba(168,85,247,0.12); }
+      .preview-close-btn {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.07);
+        border: none;
+        color: rgba(255,255,255,0.6);
+        cursor: pointer;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s, color 0.2s;
+      }
+      .preview-close-btn:hover { background: rgba(255,255,255,0.14); color: #fff; }
+      .preview-modal-body { flex: 1; overflow: hidden; position: relative; }
+      #preview-iframe { width: 100%; height: 100%; border: none; display: block; }
     </style>
   </head>
   <body>
@@ -1609,6 +1735,11 @@
         <button class="filter-btn" data-target="sec-excel">📈 Excel &amp; Power BI</button>
         <button class="filter-btn" data-target="sec-interview">🎯 Interview Questions</button>
       </div>
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="search" id="notes-search" placeholder="Search across all 140+ resources..." autocomplete="off" />
+      </div>
+      <div class="search-count" id="search-count"></div>
     </div>
 
         <!-- Pandas & NumPy -->
@@ -1992,6 +2123,11 @@
           </div><!-- /pn-grid -->
         </div><!-- /interview-card -->
 
+        <div class="no-results-card" id="no-results-card">
+          <div style="font-size:2.5rem;margin-bottom:16px;">🔍</div>
+          <div id="no-results-text">No resources found</div>
+        </div>
+
       </div>
     </section>
     
@@ -2029,6 +2165,22 @@
             >afeefbinummer@gmail.com</a
           >
         </p>
+      </div>
+    </div>
+
+    <!-- PDF PREVIEW MODAL -->
+    <div id="preview-modal" onclick="if(event.target===this)closePreview()">
+      <div class="preview-modal-box">
+        <div class="preview-modal-hdr">
+          <span id="preview-modal-title">Loading...</span>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <a id="preview-open-link" href="#" target="_blank" class="preview-ext-btn">↗ Open in Drive</a>
+            <button onclick="closePreview()" class="preview-close-btn">✕</button>
+          </div>
+        </div>
+        <div class="preview-modal-body">
+          <iframe id="preview-iframe" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
       </div>
     </div>
 
@@ -2139,6 +2291,113 @@
   sectionIds.forEach(function(id) {
     var el = document.getElementById(id);
     if (el) obs.observe(el);
+  });
+})();
+
+/* ── LIVE SEARCH ── */
+(function () {
+  var inp          = document.getElementById('notes-search');
+  var countEl      = document.getElementById('search-count');
+  var noResultsEl  = document.getElementById('no-results-card');
+  var noResultsTxt = document.getElementById('no-results-text');
+  var allCards     = document.querySelectorAll('.note-card');
+  var filterBtns   = document.querySelectorAll('.filter-btn');
+  var timer;
+
+  function doSearch(raw) {
+    var q = raw.trim().toLowerCase();
+
+    if (!q) {
+      allCards.forEach(function (card) {
+        card.style.display = '';
+        card.querySelectorAll('.pn-item').forEach(function (it) { it.style.display = ''; });
+      });
+      countEl.style.display    = 'none';
+      noResultsEl.style.display = 'none';
+      return;
+    }
+
+    filterBtns.forEach(function (b) { b.classList.remove('active'); });
+
+    var totalMatches = 0;
+    var sectMatches  = 0;
+
+    allCards.forEach(function (card) {
+      var items = card.querySelectorAll('.pn-item');
+      var hit = 0;
+      items.forEach(function (item) {
+        var nameEl = item.querySelector('.pn-name');
+        var name   = nameEl ? nameEl.textContent.toLowerCase() : '';
+        if (name.indexOf(q) !== -1) {
+          item.style.display = '';
+          hit++;
+          totalMatches++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+      if (hit === 0) {
+        card.style.display = 'none';
+      } else {
+        card.style.display = '';
+        sectMatches++;
+      }
+    });
+
+    countEl.textContent  = totalMatches + ' result' + (totalMatches !== 1 ? 's' : '') +
+      ' found across ' + sectMatches + ' section' + (sectMatches !== 1 ? 's' : '');
+    countEl.style.display = 'block';
+
+    if (totalMatches === 0) {
+      noResultsEl.style.display = 'block';
+      noResultsTxt.textContent  = 'No resources found for “' + raw.trim() + '”';
+    } else {
+      noResultsEl.style.display = 'none';
+    }
+  }
+
+  if (inp) {
+    inp.addEventListener('input', function () {
+      clearTimeout(timer);
+      var val = inp.value;
+      timer = setTimeout(function () { doSearch(val); }, 120);
+    });
+  }
+})();
+
+/* ── PDF PREVIEW MODAL ── */
+(function () {
+  var modal    = document.getElementById('preview-modal');
+  var titleEl  = document.getElementById('preview-modal-title');
+  var iframeEl = document.getElementById('preview-iframe');
+  var openLink = document.getElementById('preview-open-link');
+
+  window.closePreview = function () {
+    modal.classList.remove('open');
+    iframeEl.src = '';
+    document.body.style.overflow = '';
+  };
+
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('.pn-view');
+    if (!link) return;
+    e.preventDefault();
+    var src    = link.getAttribute('href');
+    var name   = '';
+    var item   = link.closest('.pn-item');
+    if (item) {
+      var nameEl = item.querySelector('.pn-name');
+      if (nameEl) name = nameEl.textContent;
+    }
+    titleEl.textContent = name;
+    iframeEl.src        = src;
+    openLink.href       = src.replace('/preview', '/view');
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closePreview();
   });
 })();
 
