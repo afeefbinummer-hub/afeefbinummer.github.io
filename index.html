@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=Fraunces:ital,wght@0,300;0,600;0,700;1,300&family=DM+Sans:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
 
@@ -1331,15 +1331,15 @@
       <nav class="bar">
         <a href="#" class="logo">Afeef <sup>®</sup></a>
         <div class="nav-links-wrap">
-          <ul class="nav-links">
+          <ul class="nav-links" style="white-space:nowrap;">
             <li>
-              <a href="LERN.html" style="color:var(--black);font-weight:600;border-bottom:1.5px solid var(--black);padding-bottom:1px;">Free Notes</a>
+              <a href="LERN.html" style="color:var(--gray);font-weight:500;letter-spacing:0.01em;transition:color 0.18s;">Free Notes</a>
             </li>
             <li>
-              <a href="practice.html" style="color:var(--black);font-weight:600;border-bottom:1.5px solid var(--black);padding-bottom:1px;">Practice Lab</a>
+              <a href="practice.html" style="color:var(--gray);font-weight:500;letter-spacing:0.01em;transition:color 0.18s;">Practice Lab</a>
             </li>
             <li>
-              <a href="about.html" style="color:var(--black);font-weight:600;border-bottom:1.5px solid var(--black);padding-bottom:1px;">About Me</a>
+              <a href="about.html" style="color:var(--gray);font-weight:500;letter-spacing:0.01em;transition:color 0.18s;">About Me</a>
             </li>
             <li>
               <a href="contact.html" style="background:linear-gradient(135deg,#0ea5e9,#1e5fad);color:#fff;border-radius:999px;padding:3px 11px 4px;font-size:0.78rem;font-weight:700;letter-spacing:0.02em;text-decoration:none;white-space:nowrap;box-shadow:0 0 10px rgba(14,165,233,0.35);transition:box-shadow 0.2s,transform 0.15s;">✦ Services</a>
@@ -1349,6 +1349,9 @@
             </li>
             <li>
               <a href="tum.html" style="background:linear-gradient(135deg,#0f0f23,#2d2d6b,#0f0f23);color:#a8b8ff;border-radius:999px;padding:3px 12px 4px;font-size:0.78rem;font-weight:700;letter-spacing:0.02em;text-decoration:none;white-space:nowrap;box-shadow:0 0 8px rgba(100,120,255,0.25);transition:box-shadow 0.2s,transform 0.15s;">⬡ Templates</a>
+            </li>
+            <li>
+              <a href="tools.html" style="background:linear-gradient(135deg,#083344,#0e7490,#083344);color:#67e8f9;border-radius:999px;padding:3px 12px 4px;font-size:0.78rem;font-weight:700;letter-spacing:0.02em;text-decoration:none;white-space:nowrap;box-shadow:0 0 8px rgba(6,182,212,0.3);transition:box-shadow 0.2s,transform 0.15s;">🔧 Tools</a>
             </li>
           </ul>
         </div>
@@ -1367,6 +1370,7 @@
           <li><a href="contact.html" class="drawer-services">✦ Services</a></li>
           <li><a href="paid.html" class="drawer-premium">✦ Premium Notes</a></li>
           <li><a href="tum.html" class="drawer-templates">⬡ Templates</a></li>
+          <li><a href="tools.html">🔧 Tools</a></li>
         </ul>
       </div>
 
@@ -1381,7 +1385,7 @@
         
         
         <div class="hero-btns a3">
-<a class="btn" href="contact.html#contact" style="background:linear-gradient(135deg,#0a0a0a,#1a1a2e,#16213e);color:#e0e0ff;box-shadow:0 0 16px rgba(80,80,255,0.18);border:1px solid rgba(255,255,255,0.08);letter-spacing:0.02em;">ORDER CV OR Websites</a>          <a class="btn" href="paid.html" style="background:linear-gradient(135deg,#1a0a00,#2e1a00,#3d2200);color:#ffd580;box-shadow:0 0 16px rgba(255,180,0,0.18);border:1px solid rgba(255,200,80,0.15);letter-spacing:0.02em;">📚 Premium Notes</a>
+<button class="btn" onclick="openOrderModal()" style="background:linear-gradient(135deg,#0a0a0a,#1a1a2e,#16213e);color:#e0e0ff;box-shadow:0 0 16px rgba(80,80,255,0.18);border:1px solid rgba(255,255,255,0.08);letter-spacing:0.02em;cursor:pointer;font-family:inherit;font-size:inherit;">ORDER CV OR Websites</button>          <a class="btn" href="paid.html" style="background:linear-gradient(135deg,#1a0a00,#2e1a00,#3d2200);color:#ffd580;box-shadow:0 0 16px rgba(255,180,0,0.18);border:1px solid rgba(255,200,80,0.15);letter-spacing:0.02em;">📚 Premium Notes</a>
           <a class="btn" href="about.html">About Me</a>
           <a class="btn" href="tum.html" style="background:linear-gradient(135deg,#0f0f23,#2d2d6b,#0f0f23);color:#a8b8ff;box-shadow:0 0 12px rgba(100,120,255,0.2);">⬡ Templates</a>
         </div>
@@ -3601,8 +3605,532 @@ Keep responses concise and friendly. Use emojis occasionally. Format code in pla
             el.classList.remove('open');
           });
           document.body.style.overflow = '';
+          closeOrderModal();
         }
       });
+    </script>
+
+    <!-- CV & WEBSITE ORDER MODAL -->
+    <div id="idxCvOverlay" onclick="if(event.target===this)closeCvModal();"
+         style="display:none;position:fixed;inset:0;z-index:9200;
+                background:rgba(8,18,38,0.75);backdrop-filter:blur(14px);
+                -webkit-backdrop-filter:blur(14px);align-items:center;
+                justify-content:center;padding:16px;">
+      <div id="idxCvModal">
+        <div id="idxCvHdr">
+          <div>
+            <div class="idx-cv-eyebrow">CV &amp; Website Service</div>
+            <div class="idx-cv-title">Send a Request</div>
+            <div class="idx-cv-subtitle">I'll reply within a few hours.</div>
+            <div class="idx-cv-delivery" id="idxCvDelivery"></div>
+          </div>
+          <button class="idx-cv-close" onclick="closeCvModal()">✕</button>
+        </div>
+        <div id="idxCvBody">
+          <form id="idxCvForm" novalidate>
+            <div class="idx-section-label">Contact Info</div>
+            <div class="idx-form-row">
+              <div class="idx-field" id="idx-f-name">
+                <label for="inp-name">Full name</label>
+                <input type="text" id="inp-name" name="name" placeholder="Your name" autocomplete="name">
+                <span class="idx-field-error">Please enter your name.</span>
+              </div>
+              <div class="idx-field" id="idx-f-phone">
+                <label for="inp-phone">WhatsApp / Phone</label>
+                <input type="tel" id="inp-phone" name="phone" placeholder="+968 ..." autocomplete="tel">
+                <span class="idx-field-error">Please enter your phone number.</span>
+              </div>
+            </div>
+            <div class="idx-form-row">
+              <div class="idx-field" id="idx-f-email">
+                <label for="inp-email">Email address</label>
+                <input type="email" id="inp-email" name="email" placeholder="you@email.com" autocomplete="email">
+                <span class="idx-field-error">Please enter a valid email.</span>
+              </div>
+              <div class="idx-field">
+                <label for="inp-contact">Preferred contact</label>
+                <select id="inp-contact" name="contact_method">
+                  <option>WhatsApp</option><option>Email</option><option>Phone call</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Service Needed -->
+            <div class="idx-section">
+              <div class="idx-section-label">Service Needed</div>
+              <div class="idx-svc-btns">
+                <button type="button" class="idx-svc-btn idx-svc-active" data-val="Basic Package">
+                  <span class="idx-si">🥉</span>Basic<small>CV + Landing Page · 5 OMR</small>
+                </button>
+                <button type="button" class="idx-svc-btn" data-val="Premium Package">
+                  <span class="idx-si">🥈</span>Premium<small>CV + Multi-Page · 10 OMR</small>
+                </button>
+                <button type="button" class="idx-svc-btn" data-val="Diamond Package">
+                  <span class="idx-si">💎</span>Diamond<small>Executive · Full Build · 15 OMR</small>
+                </button>
+                <button type="button" class="idx-svc-btn" data-val="Not sure yet">
+                  <span class="idx-si">🤔</span>Not sure yet<small>Let's figure it out together</small>
+                </button>
+              </div>
+              <input type="hidden" id="inp-service" name="service" value="Basic Package">
+              <button type="button" class="idx-pkg-info-btn" id="idxPkgInfoBtn" onclick="openPkgPopup('basic')">
+                📦 What's included in each package? Click to explore →
+              </button>
+              <div class="idx-price-bar">
+                <div>
+                  <div class="idx-price-label">Estimated total</div>
+                  <div class="idx-price-amount" id="idxPriceDisplay">5 OMR</div>
+                  <div class="idx-price-rush" id="idxPriceRush">+ 2 OMR rush fee</div>
+                </div>
+                <span class="idx-price-note">Final price confirmed after review</span>
+              </div>
+            </div>
+
+            <!-- Background -->
+            <div class="idx-section">
+              <div class="idx-section-label">Your Background <span class="idx-new">New</span></div>
+              <div class="idx-field">
+                <label>Career level</label>
+                <div class="idx-pill-group">
+                  <button type="button" class="idx-pill idx-pill-on" data-group="career" data-val="Fresh graduate">Fresh graduate</button>
+                  <button type="button" class="idx-pill" data-group="career" data-val="Mid-level">Mid-level</button>
+                  <button type="button" class="idx-pill" data-group="career" data-val="Senior / Executive">Senior / Executive</button>
+                  <button type="button" class="idx-pill" data-group="career" data-val="Career change">Career change</button>
+                </div>
+                <input type="hidden" id="inp-career" name="career_level" value="Fresh graduate">
+              </div>
+              <div class="idx-field">
+                <label>Industry / field</label>
+                <div class="idx-pill-group">
+                  <button type="button" class="idx-pill idx-pill-on" data-group="industry" data-val="Tech">Tech</button>
+                  <button type="button" class="idx-pill" data-group="industry" data-val="Healthcare">Healthcare</button>
+                  <button type="button" class="idx-pill" data-group="industry" data-val="Finance">Finance</button>
+                  <button type="button" class="idx-pill" data-group="industry" data-val="Education">Education</button>
+                  <button type="button" class="idx-pill" data-group="industry" data-val="Creative">Creative</button>
+                  <button type="button" class="idx-pill" data-group="industry" data-val="Engineering">Engineering</button>
+                  <button type="button" class="idx-pill" data-group="industry" data-val="Other">Other</button>
+                </div>
+                <input type="hidden" id="inp-industry" name="industry" value="Tech">
+              </div>
+            </div>
+
+            <!-- Budget & Timing -->
+            <div class="idx-section">
+              <div class="idx-section-label">Budget &amp; Timing <span class="idx-new">New</span></div>
+              <div class="idx-form-row">
+                <div class="idx-field">
+                  <label for="inp-budget">Budget range</label>
+                  <select id="inp-budget" name="budget">
+                    <option>Under 30 OMR</option>
+                    <option>15 OMR</option>
+                    <option>10 OMR</option>
+                    <option>7 OMR</option>
+                    <option>5 OMR</option>
+                  </select>
+                </div>
+                <div class="idx-field">
+                  <label for="inp-date">Date needed by</label>
+                  <input type="date" id="inp-date" name="date">
+                </div>
+              </div>
+              <div class="idx-toggle" id="idx-toggle-rush" onclick="idxToggleRow(this,'inp-rush')">
+                <span class="idx-toggle-label">⚡ Rush order (within 24 hrs)</span>
+                <div class="idx-toggle-sw"></div>
+              </div>
+              <input type="hidden" id="inp-rush" name="rush_order" value="No">
+            </div>
+
+            <!-- Existing Content -->
+            <div class="idx-section">
+              <div class="idx-section-label">Existing Content <span class="idx-new">New</span></div>
+              <div class="idx-toggle" id="idx-toggle-cv" onclick="idxToggleRow(this,'inp-has-cv')">
+                <span class="idx-toggle-label">I have an old CV to update</span>
+                <div class="idx-toggle-sw"></div>
+              </div>
+              <input type="hidden" id="inp-has-cv" name="has_cv" value="No">
+              <div class="idx-toggle" id="idx-toggle-li" onclick="idxToggleRow(this,'inp-has-li')">
+                <span class="idx-toggle-label">I have a LinkedIn profile</span>
+                <div class="idx-toggle-sw"></div>
+              </div>
+              <input type="hidden" id="inp-has-li" name="has_linkedin" value="No">
+              <div class="idx-toggle" id="idx-toggle-ph" onclick="idxToggleRow(this,'inp-has-ph')">
+                <span class="idx-toggle-label">I have photos / logo ready</span>
+                <div class="idx-toggle-sw"></div>
+              </div>
+              <input type="hidden" id="inp-has-ph" name="has_photos" value="No">
+            </div>
+
+            <!-- How did you find us -->
+            <div class="idx-section">
+              <div class="idx-section-label">How did you find us? <span class="idx-new">New</span></div>
+              <div class="idx-src-grid">
+                <button type="button" class="idx-src-btn" data-val="Instagram">📸 Instagram</button>
+                <button type="button" class="idx-src-btn" data-val="Google">🔍 Google</button>
+                <button type="button" class="idx-src-btn" data-val="Referral">🤝 Referral</button>
+                <button type="button" class="idx-src-btn" data-val="TikTok">🎵 TikTok</button>
+                <button type="button" class="idx-src-btn" data-val="Twitter / X">𝕏 Twitter / X</button>
+                <button type="button" class="idx-src-btn" data-val="Other">💬 Other</button>
+              </div>
+              <input type="hidden" id="inp-source" name="source" value="">
+            </div>
+
+            <!-- Message -->
+            <div class="idx-section">
+              <div class="idx-section-label">Details &amp; Message</div>
+              <div class="idx-field">
+                <label for="inp-msg">Tell me about your goals or anything specific you need</label>
+                <textarea id="inp-msg" name="message" rows="4" placeholder="e.g. I want a modern one-page CV for tech jobs, and a personal portfolio website with a dark theme..."></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="idx-submit-btn" id="idxSubmitBtn">✉ Send Request</button>
+          </form>
+          <div id="idxFormSuccess" style="display:none;flex-direction:column;align-items:center;text-align:center;padding:2.5rem 1.75rem;gap:0.9rem;">
+            <div class="idx-success-icon">✓</div>
+            <h3 style="font-family:'Fraunces',serif;font-size:1.25rem;font-weight:700;color:#0b1f3a;margin:0;">Request sent!</h3>
+            <p style="font-size:0.85rem;color:#4a5568;line-height:1.7;margin:0;">Thank you! I'll reply to <strong id="idxSuccessEmail"></strong> very soon.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PACKAGE POPUP (What's Included) -->
+    <div id="idxPkgOverlay" onclick="if(event.target===this)closePkgPopup();"
+         style="display:none;position:fixed;inset:0;z-index:9999;
+                background:rgba(11,31,58,0.6);backdrop-filter:blur(8px);
+                -webkit-backdrop-filter:blur(8px);align-items:center;
+                justify-content:center;padding:16px;">
+      <div class="idx-pkg-popup">
+        <div class="idx-pkg-hdr">
+          <div>
+            <h3 style="font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#0b1f3a;margin:0;">📦 What's Included</h3>
+            <p style="font-size:0.72rem;color:#8a9ab0;margin-top:1px;">Tap a package to see exactly what you get</p>
+          </div>
+          <button class="idx-pkg-close" onclick="closePkgPopup()">✕</button>
+        </div>
+        <div class="idx-pkg-tabs">
+          <button class="idx-pkg-tab idx-pkg-tab-basic" id="ptab-basic" onclick="showPkgTab('basic')">🥉 Basic<br><span style="font-size:0.68rem;font-weight:400;color:#8a9ab0;">5 OMR</span></button>
+          <button class="idx-pkg-tab" id="ptab-premium" onclick="showPkgTab('premium')">🥈 Premium<br><span style="font-size:0.68rem;font-weight:400;color:#8a9ab0;">10 OMR</span></button>
+          <button class="idx-pkg-tab" id="ptab-diamond" onclick="showPkgTab('diamond')">💎 Diamond<br><span style="font-size:0.68rem;font-weight:400;color:#8a9ab0;">15 OMR</span></button>
+        </div>
+        <div class="idx-pkg-body" id="idxPkgBody"></div>
+      </div>
+    </div>
+
+    <style>
+      /* ── CV ORDER MODAL ── */
+      @keyframes idxCvIn {
+        from { opacity:0; transform:translateY(28px) scale(0.96); }
+        to   { opacity:1; transform:none; }
+      }
+      #idxCvModal {
+        --navy:#0b1f3a; --blue:#1e5fad; --blue-light:#e8f0fb;
+        --text-soft:#4a5568; --text-muted:#8a9ab0;
+        --off:#f7f9fc; --cv-border:#e2e8f0; --r-sm:8px; --gold:#c49a2e;
+        background:#fff; border-radius:24px; width:100%; max-width:620px;
+        max-height:92vh; overflow:hidden; display:flex; flex-direction:column;
+        box-shadow:0 40px 120px rgba(11,31,58,0.32);
+        animation:idxCvIn 0.32s cubic-bezier(0.16,1,0.3,1) both;
+        font-family:"DM Sans",sans-serif;
+      }
+      #idxCvHdr {
+        background:linear-gradient(135deg,#0b1f3a 0%,#163a72 100%);
+        padding:1.5rem 1.75rem; display:flex; align-items:flex-start;
+        justify-content:space-between; flex-shrink:0; position:relative; overflow:hidden;
+      }
+      #idxCvHdr::after {
+        content:""; position:absolute; top:-50px; right:-50px; width:180px; height:180px;
+        border-radius:50%; background:radial-gradient(circle,rgba(30,95,173,0.4) 0%,transparent 70%);
+        pointer-events:none;
+      }
+      .idx-cv-eyebrow { font-size:0.67rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-bottom:0.28rem; position:relative; z-index:1; }
+      .idx-cv-title { font-family:"Fraunces",serif; font-size:1.45rem; font-weight:700; color:#fff; letter-spacing:-0.3px; line-height:1.2; position:relative; z-index:1; }
+      .idx-cv-subtitle { font-size:0.78rem; color:rgba(255,255,255,0.48); margin-top:0.2rem; position:relative; z-index:1; }
+      .idx-cv-delivery { font-size:0.72rem; color:rgba(255,255,255,0.55); margin-top:6px; position:relative; z-index:1; }
+      .idx-cv-close { width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.14); cursor:pointer; font-size:0.82rem; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.65); transition:background 0.2s; flex-shrink:0; position:relative; z-index:1; }
+      .idx-cv-close:hover { background:rgba(255,255,255,0.2); color:#fff; }
+      #idxCvBody { flex:1; overflow-y:auto; padding:1.4rem 1.75rem 1.75rem; scrollbar-width:thin; scrollbar-color:#e2e8f0 transparent; }
+      #idxCvBody::-webkit-scrollbar { width:4px; }
+      #idxCvBody::-webkit-scrollbar-thumb { background:#e2e8f0; border-radius:2px; }
+      #idxCvForm { display:flex; flex-direction:column; gap:0.8rem; }
+      .idx-section-label { font-size:0.68rem; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:#8a9ab0; display:flex; align-items:center; gap:0.5rem; }
+      .idx-new { font-size:0.6rem; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; background:#dbeafe; color:#1e5fad; padding:2px 7px; border-radius:100px; }
+      .idx-section { border-top:1px solid #e2e8f0; padding-top:0.9rem; margin-top:0.2rem; display:flex; flex-direction:column; gap:0.6rem; }
+      .idx-form-row { display:grid; grid-template-columns:1fr 1fr; gap:0.85rem; }
+      .idx-field { display:flex; flex-direction:column; gap:0.3rem; }
+      .idx-field label { font-size:0.7rem; font-weight:700; color:#4a5568; letter-spacing:0.5px; text-transform:uppercase; }
+      .idx-field input,.idx-field select,.idx-field textarea { background:#f7f9fc; border:1.5px solid #e2e8f0; border-radius:8px; color:#0b1f3a; font-family:"DM Sans",sans-serif; font-size:0.88rem; padding:0.68rem 0.88rem; outline:none; transition:border-color 0.2s,box-shadow 0.2s; width:100%; box-sizing:border-box; }
+      .idx-field input::placeholder,.idx-field textarea::placeholder { color:#8a9ab0; }
+      .idx-field input:focus,.idx-field select:focus,.idx-field textarea:focus { border-color:#1e5fad; background:#fff; box-shadow:0 0 0 3px rgba(30,95,173,0.08); }
+      .idx-field select { appearance:none; cursor:pointer; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238a9ab0' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 0.88rem center; background-color:#f7f9fc; }
+      .idx-field textarea { resize:vertical; min-height:88px; }
+      .idx-field-error { font-size:0.73rem; color:#dc2626; margin-top:2px; display:none; }
+      .idx-field.err input,.idx-field.err select,.idx-field.err textarea { border-color:#dc2626; }
+      .idx-field.err .idx-field-error { display:block; }
+      .idx-svc-btns { display:grid; grid-template-columns:1fr 1fr; gap:0.45rem; }
+      .idx-svc-btn { background:#f7f9fc; border:1.5px solid #e2e8f0; border-radius:8px; padding:0.6rem 0.5rem; font-family:"DM Sans",sans-serif; font-size:0.8rem; font-weight:600; color:#4a5568; cursor:pointer; transition:all 0.2s; display:flex; flex-direction:column; align-items:center; gap:3px; }
+      .idx-svc-btn small { color:#8a9ab0; font-weight:400; font-size:0.7rem; }
+      .idx-si { font-size:1rem; }
+      .idx-svc-btn:hover { border-color:#1e5fad; color:#1e5fad; }
+      .idx-svc-btn.idx-svc-active { border-color:#1e5fad; background:#e8f0fb; color:#1e5fad; }
+      .idx-pkg-info-btn { display:flex; align-items:center; justify-content:center; gap:0.5rem; width:100%; background:linear-gradient(135deg,#f0f7ff,#e8f0fb); border:1.5px solid rgba(30,95,173,0.25); border-radius:8px; padding:0.6rem; font-family:"DM Sans",sans-serif; font-size:0.8rem; font-weight:700; color:#1e5fad; cursor:pointer; transition:all 0.2s; }
+      .idx-pkg-info-btn:hover { border-color:#1e5fad; transform:translateY(-1px); box-shadow:0 3px 12px rgba(30,95,173,0.15); }
+      .idx-price-bar { background:linear-gradient(135deg,#0b1f3a,#1e5fad); color:#fff; padding:12px 20px; border-radius:10px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+      .idx-price-label { font-size:0.72rem; opacity:0.65; margin-bottom:2px; }
+      .idx-price-amount { font-family:"Fraunces",serif; font-size:1.4rem; font-weight:700; line-height:1; transition:transform 0.2s; display:inline-block; }
+      .idx-price-amount.pop { transform:scale(1.15); }
+      .idx-price-rush { font-size:0.72rem; color:#fde68a; margin-top:2px; display:none; }
+      .idx-price-rush.show { display:block; }
+      .idx-price-note { font-size:0.68rem; opacity:0.5; text-align:right; max-width:120px; line-height:1.4; }
+      .idx-pill-group { display:flex; flex-wrap:wrap; gap:0.4rem; }
+      .idx-pill { background:#f7f9fc; border:1.5px solid #e2e8f0; border-radius:100px; padding:0.38rem 0.9rem; font-family:"DM Sans",sans-serif; font-size:0.78rem; font-weight:500; color:#4a5568; cursor:pointer; transition:all 0.2s; }
+      .idx-pill:hover { border-color:#1e5fad; color:#1e5fad; }
+      .idx-pill.idx-pill-on { border-color:#1e5fad; background:#e8f0fb; color:#1e5fad; font-weight:600; }
+      .idx-toggle { display:flex; align-items:center; justify-content:space-between; padding:0.55rem 0.75rem; background:#f7f9fc; border:1.5px solid #e2e8f0; border-radius:8px; cursor:pointer; transition:border-color 0.2s; }
+      .idx-toggle:hover { border-color:#c7d8f0; }
+      .idx-toggle-label { font-size:0.83rem; color:#4a5568; }
+      .idx-toggle-sw { width:36px; height:20px; border-radius:100px; background:#e2e8f0; position:relative; transition:background 0.2s; flex-shrink:0; }
+      .idx-toggle-sw::after { content:""; position:absolute; top:3px; left:3px; width:14px; height:14px; border-radius:50%; background:#fff; transition:transform 0.2s; box-shadow:0 1px 3px rgba(0,0,0,0.2); }
+      .idx-toggle.on .idx-toggle-sw { background:#1e5fad; }
+      .idx-toggle.on .idx-toggle-sw::after { transform:translateX(16px); }
+      .idx-src-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0.4rem; }
+      .idx-src-btn { background:#f7f9fc; border:1.5px solid #e2e8f0; border-radius:8px; padding:0.55rem 0.4rem; font-family:"DM Sans",sans-serif; font-size:0.78rem; font-weight:500; color:#4a5568; cursor:pointer; transition:all 0.2s; text-align:center; }
+      .idx-src-btn:hover { border-color:#1e5fad; color:#1e5fad; }
+      .idx-src-btn.idx-src-on { border-color:#1e5fad; background:#e8f0fb; color:#1e5fad; font-weight:600; }
+      .idx-submit-btn { width:100%; background:linear-gradient(135deg,#0b1f3a,#1e5fad); color:#fff; border:none; border-radius:10px; font-family:"DM Sans",sans-serif; font-size:0.92rem; font-weight:700; padding:0.9rem; cursor:pointer; transition:all 0.2s; letter-spacing:0.2px; display:flex; align-items:center; justify-content:center; gap:0.4rem; margin-top:0.4rem; }
+      .idx-submit-btn:hover { transform:translateY(-1px); box-shadow:0 8px 28px rgba(30,95,173,0.38); }
+      .idx-submit-btn:disabled { opacity:0.5; cursor:not-allowed; transform:none; box-shadow:none; }
+      .idx-success-icon { width:60px; height:60px; background:#dcfce7; border:1px solid #86efac; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.75rem; }
+
+      /* ── PACKAGE POPUP ── */
+      @keyframes idxPkgIn { from { opacity:0; transform:translateY(20px) scale(0.96); } to { opacity:1; transform:none; } }
+      .idx-pkg-popup { background:#fff; border-radius:20px; width:100%; max-width:520px; max-height:88vh; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 24px 80px rgba(11,31,58,0.22); animation:idxPkgIn 0.3s cubic-bezier(0.16,1,0.3,1) both; font-family:"DM Sans",sans-serif; }
+      .idx-pkg-hdr { display:flex; align-items:center; justify-content:space-between; padding:1.1rem 1.4rem; border-bottom:1px solid #e2e8f0; flex-shrink:0; }
+      .idx-pkg-close { width:30px; height:30px; border-radius:50%; background:#f7f9fc; border:none; cursor:pointer; font-size:0.95rem; display:flex; align-items:center; justify-content:center; color:#8a9ab0; transition:background 0.2s; }
+      .idx-pkg-close:hover { background:#e2e8f0; color:#0b1f3a; }
+      .idx-pkg-tabs { display:flex; border-bottom:2px solid #e2e8f0; flex-shrink:0; background:#fafbfd; }
+      .idx-pkg-tab { flex:1; padding:0.7rem 0.4rem; border:none; background:none; font-family:"DM Sans",sans-serif; font-size:0.8rem; font-weight:700; cursor:pointer; border-bottom:2.5px solid transparent; margin-bottom:-2px; transition:color 0.2s,border-color 0.2s; text-align:center; line-height:1.3; color:#8a9ab0; }
+      .idx-pkg-tab-basic { color:#0b1f3a !important; border-bottom-color:#0b1f3a !important; }
+      .idx-pkg-tab-premium { color:#1e5fad !important; border-bottom-color:#1e5fad !important; }
+      .idx-pkg-tab-diamond { color:#c49a2e !important; border-bottom-color:#c49a2e !important; }
+      .idx-pkg-body { flex:1; overflow-y:auto; padding:1.2rem 1.4rem; display:flex; flex-direction:column; gap:0.75rem; }
+      .idx-pkg-hero { display:flex; align-items:center; gap:0.85rem; padding-bottom:0.85rem; border-bottom:1px solid #e2e8f0; }
+      .idx-pkg-ebox { width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.5rem; flex-shrink:0; }
+      .idx-pkg-name { font-family:"Fraunces",serif; font-size:1rem; font-weight:700; color:#0b1f3a; }
+      .idx-pkg-tag { font-size:0.72rem; color:#8a9ab0; margin-top:1px; }
+      .idx-pkg-price { margin-left:auto; font-family:"Fraunces",serif; font-size:1.7rem; font-weight:700; line-height:1; }
+      .idx-pkg-price small { font-family:"DM Sans",sans-serif; font-size:0.7rem; font-weight:400; color:#8a9ab0; display:block; margin-top:2px; text-align:right; }
+      .idx-pkg-group-label { font-size:0.65rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#8a9ab0; display:flex; align-items:center; gap:0.4rem; }
+      .idx-pkg-group-label::after { content:""; flex:1; height:1px; background:#e2e8f0; }
+      .idx-pkg-items { display:flex; flex-direction:column; gap:0.32rem; }
+      .idx-pkg-item { display:flex; align-items:flex-start; gap:0.5rem; padding:0.38rem 0.55rem; border-radius:7px; font-size:0.81rem; }
+      .idx-pkg-item.yes { background:#f0fdf4; border:1px solid #bbf7d0; color:#166534; }
+      .idx-pkg-item.no { background:#fff5f5; border:1px solid #fecaca; color:#9ca3af; }
+      .idx-pkg-tick { font-size:0.72rem; font-weight:900; flex-shrink:0; margin-top:0.1rem; }
+      .idx-pkg-item.yes .idx-pkg-tick { color:#16a34a; }
+      .idx-pkg-item.no .idx-pkg-tick { color:#dc2626; }
+      .idx-pkg-text { line-height:1.35; flex:1; }
+      .idx-pkg-item.no .idx-pkg-text { text-decoration:line-through; opacity:0.6; }
+      .idx-no-badge { font-size:0.62rem; font-weight:700; background:#fee2e2; color:#dc2626; padding:1px 6px; border-radius:100px; margin-left:4px; white-space:nowrap; text-decoration:none !important; }
+      .idx-pkg-best { background:#f7f9fc; border:1px solid #e2e8f0; border-radius:8px; padding:0.55rem 0.8rem; font-size:0.77rem; font-weight:600; }
+      .idx-pkg-cta { width:100%; padding:0.78rem; border:none; border-radius:10px; font-family:"DM Sans",sans-serif; font-size:0.88rem; font-weight:700; cursor:pointer; color:#fff; transition:all 0.2s; flex-shrink:0; }
+      .idx-pkg-cta:hover { opacity:0.88; transform:translateY(-1px); }
+
+      @media (max-width:540px) {
+        #idxCvModal { border-radius:16px; max-height:96vh; }
+        .idx-form-row { grid-template-columns:1fr; }
+        .idx-src-grid { grid-template-columns:repeat(2,1fr); }
+        #idxCvHdr { padding:1.1rem 1.25rem; }
+        #idxCvBody { padding:1rem 1.25rem 1.25rem; }
+      }
+    </style>
+
+    <script>
+      /* ── CV ORDER MODAL ── */
+      function openCvModal() {
+        var overlay = document.getElementById('idxCvOverlay');
+        overlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        var dateEl = document.getElementById('inp-date');
+        if (dateEl) dateEl.min = new Date().toISOString().split('T')[0];
+        var badge = document.getElementById('idxCvDelivery');
+        if (badge) {
+          var days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+          var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+          var std=new Date(); std.setDate(std.getDate()+3);
+          var rush=new Date(); rush.setDate(rush.getDate()+1);
+          badge.textContent='⚡ Standard: '+days[std.getDay()]+', '+std.getDate()+' '+months[std.getMonth()]+' · Rush: '+days[rush.getDay()]+', '+rush.getDate()+' '+months[rush.getMonth()];
+        }
+        idxUpdatePrice();
+      }
+      function openOrderModal() { openCvModal(); }
+      function closeCvModal() {
+        document.getElementById('idxCvOverlay').style.display = 'none';
+        document.body.style.overflow = '';
+      }
+      function idxUpdatePrice() {
+        var PRICES = {'Basic Package':5,'Premium Package':10,'Diamond Package':15,'Not sure yet':null};
+        var svc = document.getElementById('inp-service').value;
+        var rush = document.getElementById('inp-rush').value === 'Yes';
+        var display = document.getElementById('idxPriceDisplay');
+        var rushNote = document.getElementById('idxPriceRush');
+        if (!display) return;
+        var base = PRICES[svc];
+        var label = base !== null ? base+' OMR' : 'TBD';
+        if (rush && base !== null) { rushNote.classList.add('show'); } else { rushNote.classList.remove('show'); }
+        if (display.textContent !== label) {
+          display.textContent = label;
+          display.classList.add('pop');
+          setTimeout(function() { display.classList.remove('pop'); }, 220);
+        }
+      }
+      function idxToggleRow(el, inputId) {
+        var isOn = el.classList.toggle('on');
+        document.getElementById(inputId).value = isOn ? 'Yes' : 'No';
+        if (inputId === 'inp-rush') idxUpdatePrice();
+      }
+
+      /* Service buttons */
+      document.querySelectorAll('.idx-svc-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.idx-svc-btn').forEach(function(b) { b.classList.remove('idx-svc-active'); });
+          btn.classList.add('idx-svc-active');
+          document.getElementById('inp-service').value = btn.dataset.val;
+          idxUpdatePrice();
+          var pkgMap = {'Basic Package':'basic','Premium Package':'premium','Diamond Package':'diamond','Not sure yet':'basic'};
+          var pkgBtn = document.getElementById('idxPkgInfoBtn');
+          if (pkgBtn) pkgBtn.onclick = function() { openPkgPopup(pkgMap[btn.dataset.val]||'basic'); };
+        });
+      });
+
+      /* Pill selectors */
+      document.querySelectorAll('.idx-pill').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var g = btn.dataset.group;
+          document.querySelectorAll('.idx-pill[data-group="'+g+'"]').forEach(function(b) { b.classList.remove('idx-pill-on'); });
+          btn.classList.add('idx-pill-on');
+          document.getElementById('inp-'+g).value = btn.dataset.val;
+        });
+      });
+
+      /* Source buttons */
+      document.querySelectorAll('.idx-src-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.idx-src-btn').forEach(function(b) { b.classList.remove('idx-src-on'); });
+          btn.classList.add('idx-src-on');
+          document.getElementById('inp-source').value = btn.dataset.val;
+        });
+      });
+
+      /* Form submit */
+      document.getElementById('idxCvForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        document.querySelectorAll('.idx-field.err').forEach(function(el) { el.classList.remove('err'); });
+        var name  = document.getElementById('inp-name').value.trim();
+        var phone = document.getElementById('inp-phone').value.trim();
+        var email = document.getElementById('inp-email').value.trim();
+        var ok = true;
+        if (!name)  { document.getElementById('idx-f-name').classList.add('err');  ok=false; }
+        if (!phone) { document.getElementById('idx-f-phone').classList.add('err'); ok=false; }
+        if (!email || !email.includes('@')) { document.getElementById('idx-f-email').classList.add('err'); ok=false; }
+        if (!ok) return;
+        var btn = document.getElementById('idxSubmitBtn');
+        btn.disabled = true; btn.textContent = 'Sending…';
+        var payload = {
+          name:name, phone:phone, email:email,
+          contact_method: document.getElementById('inp-contact').value,
+          service:        document.getElementById('inp-service').value,
+          career_level:   document.getElementById('inp-career').value,
+          industry:       document.getElementById('inp-industry').value,
+          budget:         document.getElementById('inp-budget').value,
+          date:           document.getElementById('inp-date').value || 'Not specified',
+          rush_order:     document.getElementById('inp-rush').value,
+          has_cv:         document.getElementById('inp-has-cv').value,
+          has_linkedin:   document.getElementById('inp-has-li').value,
+          has_photos:     document.getElementById('inp-has-ph').value,
+          source:         document.getElementById('inp-source').value || 'Not specified',
+          message:        document.getElementById('inp-msg').value.trim()
+        };
+        try {
+          var fd = new FormData();
+          Object.keys(payload).forEach(function(k) { fd.append(k, payload[k]); });
+          await fetch('https://formspree.io/f/xbdbezwy', { method:'POST', body:fd, headers:{'Accept':'application/json'} });
+        } catch(err) { console.warn(err); }
+        document.getElementById('idxSuccessEmail').textContent = email;
+        document.getElementById('idxCvForm').style.display = 'none';
+        var suc = document.getElementById('idxFormSuccess');
+        suc.style.display = 'flex';
+        btn.disabled = false; btn.textContent = '✉ Send Request';
+        setTimeout(function() {
+          closeCvModal();
+          suc.style.display = 'none';
+          document.getElementById('idxCvForm').style.display = '';
+          document.getElementById('idxCvForm').reset();
+          document.querySelectorAll('.idx-svc-btn').forEach(function(b,i){ b.classList.toggle('idx-svc-active',i===0); });
+          document.getElementById('inp-service').value = 'Basic Package';
+          document.querySelectorAll('.idx-pill[data-group="career"]').forEach(function(b,i){ b.classList.toggle('idx-pill-on',i===0); });
+          document.getElementById('inp-career').value = 'Fresh graduate';
+          document.querySelectorAll('.idx-pill[data-group="industry"]').forEach(function(b,i){ b.classList.toggle('idx-pill-on',i===0); });
+          document.getElementById('inp-industry').value = 'Tech';
+          document.querySelectorAll('.idx-src-btn').forEach(function(b){ b.classList.remove('idx-src-on'); });
+          document.getElementById('inp-source').value = '';
+          ['idx-toggle-rush','idx-toggle-cv','idx-toggle-li','idx-toggle-ph'].forEach(function(id){ var el=document.getElementById(id); if(el) el.classList.remove('on'); });
+          ['inp-rush','inp-has-cv','inp-has-li','inp-has-ph'].forEach(function(id){ document.getElementById(id).value='No'; });
+          idxUpdatePrice();
+        }, 4000);
+      });
+
+      /* Escape key */
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          if (document.getElementById('idxPkgOverlay').style.display==='flex') { closePkgPopup(); }
+          else { closeCvModal(); }
+        }
+      });
+
+      /* ── PACKAGE POPUP ── */
+      var IDX_PKG = {
+        basic:   { emoji:'🥉', bg:'#f1f5f9', name:'Basic Package',   tag:'Clean, modern CV + single landing page',  price:'5',  color:'#0b1f3a', best:'👤 Best for: Students, fresh graduates, job seekers',
+          cv:  [{y:1,t:'Professional CV Design'},{y:1,t:'ATS-Friendly Resume'},{y:1,t:'Delivered as PDF'},{y:1,t:'1 Revision included'},{y:0,t:'Cover Letter'},{y:0,t:'LinkedIn Optimization'}],
+          web: [{y:1,t:'Single Landing Page'},{y:1,t:'Mobile Responsive Design'},{y:1,t:'Contact Form'},{y:1,t:'Basic SEO'},{y:0,t:'Multi-Page Website'},{y:0,t:'Gallery / Portfolio Section'},{y:0,t:'Database / Login / Payments'}] },
+        premium: { emoji:'🥈', bg:'#e8f0fb', name:'Premium Package',  tag:'Advanced CV + multi-page website',         price:'10', color:'#1e5fad', best:'👤 Best for: Professionals, freelancers, small businesses',
+          cv:  [{y:1,t:'Modern Premium CV Design'},{y:1,t:'ATS Optimization'},{y:1,t:'Cover Letter included'},{y:1,t:'LinkedIn Optimization'},{y:1,t:'GitHub Profile Optimization'},{y:1,t:'3 Revisions included'}],
+          web: [{y:1,t:'Multi-Page Website (3–5 Pages)'},{y:1,t:'Responsive Design'},{y:1,t:'Contact Form'},{y:1,t:'Gallery / Portfolio Section'},{y:1,t:'Standard SEO'},{y:1,t:'Social Media Integration'},{y:0,t:'Database / Login / Payments'}] },
+        diamond: { emoji:'💎', bg:'#fdf6e3', name:'Diamond Package',  tag:'Executive CV + full custom website',       price:'15', color:'#c49a2e', best:'👤 Best for: Businesses, entrepreneurs, premium clients',
+          cv:  [{y:1,t:'Executive-Level CV Design'},{y:1,t:'ATS Optimization'},{y:1,t:'Cover Letter included'},{y:1,t:'LinkedIn Optimization'},{y:1,t:'GitHub Profile Optimization'},{y:1,t:'Personal Portfolio Website'},{y:1,t:'2 Portfolio Projects included'},{y:1,t:'Unlimited Revisions'}],
+          web: [{y:1,t:'Custom Website Design'},{y:1,t:'Admin Dashboard'},{y:1,t:'Database Integration'},{y:1,t:'User Login System'},{y:1,t:'Payment Gateway Integration'},{y:1,t:'Advanced SEO'},{y:1,t:'Performance Optimization'},{y:1,t:'Priority Support'}] }
+      };
+      function buildPkgHtml(key) {
+        var p=IDX_PKG[key], h='';
+        h+='<div class="idx-pkg-hero"><div class="idx-pkg-ebox" style="background:'+p.bg+'">'+p.emoji+'</div>';
+        h+='<div><div class="idx-pkg-name">'+p.name+'</div><div class="idx-pkg-tag">'+p.tag+'</div></div>';
+        h+='<div class="idx-pkg-price" style="color:'+p.color+'"><sup style="font-size:.9rem;vertical-align:top;margin-top:.3rem">OMR </sup>'+p.price+'<small>one-time payment</small></div></div>';
+        function items(list) {
+          var s='<div class="idx-pkg-items">';
+          list.forEach(function(i){ s+='<div class="idx-pkg-item '+(i.y?'yes':'no')+'"><span class="idx-pkg-tick">'+(i.y?'✓':'✗')+'</span><span class="idx-pkg-text">'+i.t+(i.y?'':'<span class="idx-no-badge">Not included</span>')+'</span></div>'; });
+          return s+'</div>';
+        }
+        h+='<div class="idx-pkg-group-label">📄 CV Services</div>'+items(p.cv);
+        h+='<div class="idx-pkg-group-label">🌐 Website Services</div>'+items(p.web);
+        h+='<div class="idx-pkg-best" style="color:'+p.color+'">'+p.best+'</div>';
+        h+='<button class="idx-pkg-cta" style="background:'+p.color+'" onclick="closePkgPopup()">✓ Got it — Select '+p.emoji+' '+p.name.split(' ')[0]+' Package</button>';
+        return h;
+      }
+      function showPkgTab(key) {
+        ['basic','premium','diamond'].forEach(function(t){ var tab=document.getElementById('ptab-'+t); tab.className='idx-pkg-tab'; if(t===key) tab.classList.add('idx-pkg-tab-'+t); });
+        document.getElementById('idxPkgBody').innerHTML = buildPkgHtml(key);
+      }
+      function openPkgPopup(key) {
+        document.getElementById('idxPkgOverlay').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        showPkgTab(key || 'basic');
+      }
+      function closePkgPopup() {
+        document.getElementById('idxPkgOverlay').style.display = 'none';
+        if (document.getElementById('idxCvOverlay').style.display !== 'flex') {
+          document.body.style.overflow = '';
+        }
+      }
     </script>
   </body>
 </html>

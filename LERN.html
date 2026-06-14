@@ -2295,6 +2295,329 @@
           margin-bottom: 24px;
         }
       }
+
+      /* ══════════════════════════════════════
+         LIVE SEARCH BAR
+      ══════════════════════════════════════ */
+      .lrn-search-bar {
+        position: sticky;
+        top: 0;
+        z-index: 80;
+        background: rgba(248,250,252,0.95);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid #e2e8f0;
+        padding: 12px 24px;
+      }
+      .lrn-search-inner {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      .lrn-search-field {
+        position: relative;
+        display: flex;
+        align-items: center;
+        background: #fff;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 0 14px;
+        gap: 10px;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+      .lrn-search-field:focus-within {
+        border-color: #1d4ed8;
+        box-shadow: 0 0 0 3px rgba(29,78,216,0.08);
+      }
+      .lrn-search-icon {
+        color: #94a3b8;
+        font-size: 0.9rem;
+        flex-shrink: 0;
+      }
+      .lrn-search-field input {
+        flex: 1;
+        padding: 11px 0;
+        border: none;
+        outline: none;
+        font-size: 0.9rem;
+        color: #0f172a;
+        background: transparent;
+        font-family: var(--sans);
+      }
+      .lrn-search-field input::placeholder {
+        color: #94a3b8;
+      }
+      .lrn-search-clear {
+        background: none;
+        border: none;
+        color: #94a3b8;
+        cursor: pointer;
+        font-size: 0.8rem;
+        padding: 4px;
+        display: none;
+        line-height: 1;
+      }
+      .lrn-search-results {
+        margin-top: 10px;
+        display: none;
+      }
+      .lrn-result {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.15s;
+        margin-bottom: 4px;
+      }
+      .lrn-result:hover {
+        background: #eff6ff;
+        border-color: #1d4ed8;
+      }
+      .lrn-result-icon {
+        font-size: 1.1rem;
+        flex-shrink: 0;
+      }
+      .lrn-result-text {
+        flex: 1;
+        min-width: 0;
+      }
+      .lrn-result-title {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #0f172a;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .lrn-result-sub {
+        font-size: 0.73rem;
+        color: #64748b;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .lrn-result-tag {
+        font-size: 0.65rem;
+        font-weight: 600;
+        background: #f1f5f9;
+        color: #64748b;
+        border-radius: 999px;
+        padding: 2px 8px;
+        flex-shrink: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      /* ══════════════════════════════════════
+         STREAK TRACKER
+      ══════════════════════════════════════ */
+      .streak-wrap {
+        margin-bottom: 48px;
+      }
+      .streak-card {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 20px;
+        padding: 20px 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      }
+      .streak-left {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .streak-fire {
+        font-size: 2rem;
+        line-height: 1;
+      }
+      .streak-num {
+        font-size: 2rem;
+        font-weight: 700;
+        background: linear-gradient(135deg,#f97316,#ef4444);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1;
+      }
+      .streak-num.purple {
+        background: linear-gradient(135deg,#7c3aed,#a855f7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .streak-label {
+        font-size: 0.72rem;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-weight: 600;
+        margin-top: 2px;
+      }
+      .streak-days {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+      .streak-day {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.65rem;
+        font-weight: 700;
+        color: #94a3b8;
+        background: #f8fafc;
+        border: 1.5px solid #e2e8f0;
+        flex-shrink: 0;
+      }
+      .streak-day.active {
+        background: linear-gradient(135deg,#f97316,#ef4444);
+        color: #fff;
+        border-color: transparent;
+      }
+      .streak-day.today {
+        box-shadow: 0 0 0 3px rgba(249,115,22,0.25);
+      }
+      .streak-right {
+        text-align: center;
+      }
+      .streak-stat-num {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #1d4ed8;
+      }
+      .streak-stat-label {
+        font-size: 0.7rem;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-weight: 600;
+      }
+
+      /* ══════════════════════════════════════
+         RECENTLY VIEWED
+      ══════════════════════════════════════ */
+      .recent-heading {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #94a3b8;
+        margin-bottom: 12px;
+      }
+      .recent-row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .recent-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 10px 16px;
+        cursor: pointer;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #0f172a;
+        transition: all 0.2s;
+      }
+      .recent-chip:hover {
+        border-color: #1d4ed8;
+        background: #eff6ff;
+        color: #1d4ed8;
+      }
+      .recent-chip-pct {
+        font-weight: 400;
+        color: #94a3b8;
+        font-size: 0.78rem;
+      }
+
+      /* ══════════════════════════════════════
+         VISITED BADGE
+      ══════════════════════════════════════ */
+      .visited-badge {
+        font-size: 0.62rem;
+        background: #f0fdf4;
+        color: #16a34a;
+        border: 1px solid #bbf7d0;
+        border-radius: 999px;
+        padding: 2px 7px;
+        font-weight: 700;
+        margin-left: 6px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      /* ══════════════════════════════════════
+         CONFETTI & TOAST
+      ══════════════════════════════════════ */
+      @keyframes confettiFly {
+        0%   { opacity: 1; transform: translate(0,0) scale(1) rotate(0deg); }
+        100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0.5) rotate(var(--rot)); }
+      }
+      .confetti-piece {
+        position: fixed;
+        z-index: 9999;
+        pointer-events: none;
+        border-radius: 50%;
+        animation: confettiFly 0.8s ease-out forwards;
+      }
+      .confetti-piece.rect {
+        border-radius: 2px;
+      }
+      @keyframes toastIn {
+        from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+        to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+      }
+      @keyframes toastOut {
+        from { opacity: 1; transform: translateX(-50%) translateY(0); }
+        to   { opacity: 0; transform: translateX(-50%) translateY(20px); }
+      }
+      .completion-toast {
+        position: fixed;
+        bottom: 28px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(135deg,#1d4ed8,#7c3aed);
+        color: #fff;
+        padding: 14px 28px;
+        border-radius: 999px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        box-shadow: 0 8px 32px rgba(29,78,216,0.35);
+        z-index: 9999;
+        pointer-events: none;
+        animation: toastIn 0.35s ease forwards;
+      }
+      .completion-toast.out {
+        animation: toastOut 0.35s ease forwards;
+      }
+
+      @media (max-width: 640px) {
+        .streak-card {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .streak-days {
+          flex-wrap: wrap;
+        }
+        .lrn-search-bar {
+          padding: 10px 16px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -2314,6 +2637,7 @@
             <li><a href="LERN.html" class="lgh-active">Free Notes</a></li>
             <li><a href="practice.html">Practice Lab</a></li>
             <li><a href="about.html">About</a></li>
+            <li><a href="tools.html" style="background:linear-gradient(135deg,#083344,#0e7490,#083344);color:#67e8f9;border-radius:999px;padding:3px 10px 4px;font-size:0.75rem;font-weight:700;text-decoration:none;white-space:nowrap;box-shadow:0 0 8px rgba(6,182,212,0.3);">🔧 Tools</a></li>
           </ul>
           <a href="paid.html" class="lgh-nav-signup">Premium &#8599;</a>
           <!-- Hamburger — mobile only -->
@@ -2329,6 +2653,7 @@
               <li><a href="LERN.html" class="lgh-active" onclick="closeMobileNav()">Free Notes</a></li>
               <li><a href="practice.html" onclick="closeMobileNav()">Practice Lab</a></li>
               <li><a href="about.html" onclick="closeMobileNav()">About</a></li>
+              <li><a href="tools.html" onclick="closeMobileNav()">🔧 Tools</a></li>
               <li><a href="paid.html" onclick="closeMobileNav()">Premium &#8599;</a></li>
             </ul>
           </div>
@@ -2424,6 +2749,20 @@
       </div>
     </div>
 
+    <!-- LIVE TOPIC SEARCH BAR -->
+    <div class="lrn-search-bar" id="lrn-search-bar">
+      <div class="lrn-search-inner">
+        <div class="lrn-search-field">
+          <span class="lrn-search-icon">🔍</span>
+          <input type="text" id="lrn-search-input"
+                 placeholder="Search topics, chapters, resources..."
+                 autocomplete="off" />
+          <button class="lrn-search-clear" id="lrn-search-clear">✕</button>
+        </div>
+        <div class="lrn-search-results" id="lrn-search-results"></div>
+      </div>
+    </div>
+
     <!-- MAIN CONTENT -->
     <div class="content-area">
       <div class="container" style="padding-top: 56px">
@@ -2445,6 +2784,32 @@
             <div class="lrn-stat-num">PDF</div>
             <div class="lrn-stat-lbl">Downloads</div>
           </div>
+        </div>
+
+        <!-- STREAK TRACKER -->
+        <div class="streak-wrap lrn-reveal" id="streak-wrap">
+          <div class="streak-card">
+            <div class="streak-left">
+              <div class="streak-fire" id="streak-fire">🔥</div>
+              <div>
+                <div class="streak-num" id="streak-num">0</div>
+                <div class="streak-label">day streak</div>
+              </div>
+            </div>
+            <div class="streak-days" id="streak-days">
+              <!-- 7 day circles generated by JS -->
+            </div>
+            <div class="streak-right">
+              <div class="streak-stat-num" id="streak-total">0</div>
+              <div class="streak-stat-label">chapters read</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RECENTLY VIEWED -->
+        <div id="recent-area" style="display:none; margin-bottom:32px;">
+          <h3 class="recent-heading">Continue Learning</h3>
+          <div class="recent-row" id="recent-row"></div>
         </div>
 
         <!-- NOTE CARDS -->
@@ -5239,6 +5604,14 @@
         } catch (e) {}
       }
 
+      /* FORMAT MINUTES */
+      function _fmtMin(mins) {
+        if (mins >= 60) {
+          return Math.floor(mins / 60) + 'h ' + (mins % 60) + 'min';
+        }
+        return mins + 'min';
+      }
+
       /* RENDER CARDS */
       function renderCards(cards) {
         cards = cards || _noteCards;
@@ -5247,9 +5620,14 @@
         grid.innerHTML = cards
           .map(function (c) {
             var prog = _getProg(c.id);
-            var pct = c.chapters.length
-              ? Math.round(((prog.done || 0) / c.chapters.length) * 100)
-              : 0;
+            var done = prog.done || 0;
+            var total = c.chapters.length;
+            var pct = total ? Math.round((done / total) * 100) : 0;
+            var totalTime = _fmtMin(total * 12);
+            var remaining = (total - done) * 12;
+            var remainLine = (done > 0 && remaining > 0)
+              ? '<span style="color:#64748b">~' + _fmtMin(remaining) + ' remaining</span>'
+              : '';
             return (
               '<div class="note-card" onclick="openProgressModal(\'' +
               c.id +
@@ -5277,10 +5655,11 @@
               c.sub +
               "</div></div>" +
               '<div class="nc-meta"><span>📚 ' +
-              c.chapters.length +
+              total +
               " chapters</span><span>⏱ ~" +
-              c.chapters.length * 8 +
-              " min</span></div>" +
+              totalTime +
+              "</span></div>" +
+              (remainLine ? '<div class="nc-meta" style="margin-top:-6px;">' + remainLine + '</div>' : '') +
               '<div><div class="nc-prog-label"><span>Progress</span><span>' +
               pct +
               "%</span></div>" +
@@ -5327,6 +5706,16 @@
         });
         if (!card) return;
         _activePmCard = id;
+
+        /* track recently viewed */
+        try {
+          var rec = JSON.parse(localStorage.getItem('lrn_recent') || '[]');
+          rec = rec.filter(function(r){ return r !== id; });
+          rec.unshift(id);
+          rec = rec.slice(0, 3);
+          localStorage.setItem('lrn_recent', JSON.stringify(rec));
+          _renderRecent();
+        } catch(e) {}
         var prog = _getProg(id);
         document.getElementById("pm-icon").textContent = card.icon;
         document.getElementById("pm-title").textContent = card.title;
@@ -5421,24 +5810,353 @@
         if (!prog.chapters) prog.chapters = [];
         while (prog.chapters.length < card.chapters.length)
           prog.chapters.push(false);
+        var wasDone = !!prog.chapters[idx];
         prog.chapters[idx] = !prog.chapters[idx];
         prog.done = prog.chapters.filter(Boolean).length;
         _saveProg(id, prog);
         var items = document.querySelectorAll(".pm-ch");
         if (items[idx]) {
           items[idx].classList.toggle("done", !!prog.chapters[idx]);
-          items[idx].querySelector(".pm-ch-check").textContent = prog.chapters[
-            idx
-          ]
-            ? "✓"
-            : "";
+          items[idx].querySelector(".pm-ch-check").textContent = prog.chapters[idx] ? "✓" : "";
         }
         updateProgressModal(id);
         renderCards();
+
+        /* marking AS done */
+        if (!wasDone && prog.chapters[idx]) {
+          /* increment streak total */
+          try {
+            var t = parseInt(localStorage.getItem('study_total_chapters') || '0', 10) + 1;
+            localStorage.setItem('study_total_chapters', t);
+            var el = document.getElementById('streak-total');
+            if (el) el.textContent = t;
+          } catch(e) {}
+
+          _launchConfetti();
+
+          /* all chapters done → toast */
+          if (prog.done === card.chapters.length) {
+            _showToast('🎉 Track Complete!');
+          }
+        }
+      }
+
+      /* ─── CONFETTI ─── */
+      function _launchConfetti() {
+        var colors = ['#1d4ed8','#7c3aed','#16a34a','#f97316','#ec4899','#06b6d4'];
+        var cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+        for (var i = 0; i < 12; i++) {
+          (function(i) {
+            var el = document.createElement('div');
+            el.className = 'confetti-piece' + (i % 3 === 0 ? ' rect' : '');
+            var isRect = i % 3 === 0;
+            el.style.cssText = [
+              'width:' + (isRect ? '6px' : '8px'),
+              'height:' + (isRect ? '12px' : '8px'),
+              'background:' + colors[i % colors.length],
+              'left:' + cx + 'px',
+              'top:' + cy + 'px',
+              '--tx:' + (Math.random() * 300 - 150) + 'px',
+              '--ty:' + (-(Math.random() * 150 + 50)) + 'px',
+              '--rot:' + (Math.random() * 360) + 'deg',
+              'animation-delay:' + (i * 0.04) + 's'
+            ].join(';');
+            document.body.appendChild(el);
+            setTimeout(function(){ el.remove(); }, 1200);
+          })(i);
+        }
+      }
+
+      /* ─── TOAST ─── */
+      function _showToast(msg) {
+        var t = document.createElement('div');
+        t.className = 'completion-toast';
+        t.textContent = msg;
+        document.body.appendChild(t);
+        setTimeout(function() {
+          t.classList.add('out');
+          setTimeout(function(){ t.remove(); }, 400);
+        }, 3000);
+      }
+
+      /* ─── RECENTLY VIEWED ─── */
+      function _renderRecent() {
+        try {
+          var rec = JSON.parse(localStorage.getItem('lrn_recent') || '[]');
+          var area = document.getElementById('recent-area');
+          var row  = document.getElementById('recent-row');
+          if (!area || !row) return;
+          if (!rec.length) { area.style.display = 'none'; return; }
+          area.style.display = '';
+          row.innerHTML = rec.map(function(id) {
+            var card = _noteCards.find(function(c){ return c.id === id; });
+            if (!card) return '';
+            var prog = _getProg(id);
+            var pct = card.chapters.length ? Math.round(((prog.done||0)/card.chapters.length)*100) : 0;
+            return '<div class="recent-chip" onclick="openProgressModal(\'' + id + '\')">' +
+              '<span>' + card.icon + '</span>' +
+              '<span>' + card.title + '</span>' +
+              '<span class="recent-chip-pct">(' + pct + '%)</span>' +
+              '</div>';
+          }).join('');
+        } catch(e) {}
+      }
+
+      /* ─── STREAK ─── */
+      function _initStreak() {
+        try {
+          var today = new Date();
+          var pad = function(n){ return n < 10 ? '0'+n : ''+n; };
+          var todayStr = today.getFullYear() + '-' + pad(today.getMonth()+1) + '-' + pad(today.getDate());
+
+          var last    = localStorage.getItem('study_streak_last') || '';
+          var count   = parseInt(localStorage.getItem('study_streak_count') || '0', 10);
+          var total   = parseInt(localStorage.getItem('study_total_chapters') || '0', 10);
+
+          /* compute yesterday */
+          var yest = new Date(today); yest.setDate(yest.getDate()-1);
+          var yestStr = yest.getFullYear() + '-' + pad(yest.getMonth()+1) + '-' + pad(yest.getDate());
+
+          if (last === todayStr) {
+            /* already visited today, just display */
+          } else if (last === yestStr) {
+            /* continuing streak */
+            count += 1;
+            localStorage.setItem('study_streak_count', count);
+            localStorage.setItem('study_streak_last', todayStr);
+          } else if (last === '') {
+            /* first ever visit */
+            count = 1;
+            localStorage.setItem('study_streak_count', count);
+            localStorage.setItem('study_streak_last', todayStr);
+          } else {
+            /* streak broken */
+            count = 1;
+            localStorage.setItem('study_streak_count', count);
+            localStorage.setItem('study_streak_last', todayStr);
+          }
+
+          /* track visited days */
+          try {
+            var visited = JSON.parse(localStorage.getItem('study_visited_days') || '[]');
+            if (visited.indexOf(todayStr) === -1) {
+              visited.push(todayStr);
+              if (visited.length > 30) visited = visited.slice(-30);
+              localStorage.setItem('study_visited_days', JSON.stringify(visited));
+            }
+          } catch(e) {}
+
+          /* update UI */
+          var fireEl   = document.getElementById('streak-fire');
+          var numEl    = document.getElementById('streak-num');
+          var totalEl  = document.getElementById('streak-total');
+          var daysEl   = document.getElementById('streak-days');
+
+          if (fireEl) {
+            fireEl.textContent = count === 0 ? '💤' : count >= 30 ? '⚡' : '🔥';
+          }
+          if (numEl) {
+            numEl.textContent = count;
+            if (count >= 30) numEl.classList.add('purple');
+          }
+          if (totalEl) totalEl.textContent = total;
+
+          /* 7-day circles */
+          if (daysEl) {
+            var days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+            var dow = today.getDay(); /* 0=Sun */
+            /* find Monday of current week */
+            var monday = new Date(today);
+            var diff = dow === 0 ? -6 : 1 - dow;
+            monday.setDate(today.getDate() + diff);
+
+            try {
+              var visitedArr = JSON.parse(localStorage.getItem('study_visited_days') || '[]');
+              daysEl.innerHTML = days.map(function(d, i) {
+                var dt = new Date(monday);
+                dt.setDate(monday.getDate() + i);
+                var ds = dt.getFullYear() + '-' + pad(dt.getMonth()+1) + '-' + pad(dt.getDate());
+                var isActive = visitedArr.indexOf(ds) > -1;
+                var isToday  = ds === todayStr;
+                return '<div class="streak-day' + (isActive?' active':'') + (isToday?' today':'') + '">' + d + '</div>';
+              }).join('');
+            } catch(e) {}
+          }
+        } catch(e) {}
+      }
+
+      /* ─── RESOURCE LINK TRACKER ─── */
+      function _initResourceTracker() {
+        try {
+          var visited = JSON.parse(localStorage.getItem('lrn_clicked_resources') || '[]');
+          var hrefs = visited.map(function(v){ return v.href; });
+
+          /* mark already visited */
+          document.querySelectorAll('.res-link').forEach(function(link) {
+            var h = link.getAttribute('href');
+            if (hrefs.indexOf(h) > -1) {
+              var nameEl = link.closest('.res-card') && link.closest('.res-card').querySelector('.res-name');
+              if (nameEl && !nameEl.querySelector('.visited-badge')) {
+                var badge = document.createElement('span');
+                badge.className = 'visited-badge';
+                badge.textContent = '✓ Visited';
+                nameEl.appendChild(badge);
+              }
+            }
+            /* log clicks */
+            link.addEventListener('click', function() {
+              try {
+                var v2 = JSON.parse(localStorage.getItem('lrn_clicked_resources') || '[]');
+                var nameEl2 = this.closest('.res-card') && this.closest('.res-card').querySelector('.res-name');
+                var title = nameEl2 ? nameEl2.textContent.replace('✓ Visited','').trim() : '';
+                v2 = v2.filter(function(x){ return x.href !== link.getAttribute('href'); });
+                v2.unshift({ href: link.getAttribute('href'), title: title, date: new Date().toISOString() });
+                if (v2.length > 20) v2 = v2.slice(0, 20);
+                localStorage.setItem('lrn_clicked_resources', JSON.stringify(v2));
+                /* add badge */
+                if (nameEl2 && !nameEl2.querySelector('.visited-badge')) {
+                  var badge2 = document.createElement('span');
+                  badge2.className = 'visited-badge';
+                  badge2.textContent = '✓ Visited';
+                  nameEl2.appendChild(badge2);
+                }
+              } catch(e) {}
+            });
+          });
+        } catch(e) {}
+      }
+
+      /* ─── LIVE SEARCH ─── */
+      function _initSearch() {
+        var input   = document.getElementById('lrn-search-input');
+        var clearBtn= document.getElementById('lrn-search-clear');
+        var results = document.getElementById('lrn-search-results');
+        if (!input || !results) return;
+
+        /* build index */
+        var index = [];
+
+        _noteCards.forEach(function(c) {
+          index.push({ icon: c.icon, title: c.title, sub: c.sub, id: c.id, type: 'notecard', track: c.track });
+          c.chapters.forEach(function(ch) {
+            index.push({ icon: '📄', title: ch, sub: c.title, parentId: c.id, type: 'chapter', track: c.track });
+          });
+        });
+
+        document.querySelectorAll('.res-card').forEach(function(card) {
+          var nameEl = card.querySelector('.res-name');
+          var platEl = card.querySelector('.res-plat');
+          var link   = card.querySelector('.res-link');
+          if (nameEl && link) {
+            index.push({
+              icon: '🔗',
+              title: nameEl.textContent.replace('✓ Visited','').trim(),
+              sub: platEl ? platEl.textContent.trim() : '',
+              href: link.getAttribute('href'),
+              type: 'resource',
+              track: 'resource'
+            });
+          }
+        });
+
+        document.querySelectorAll('.track-section').forEach(function(ts) {
+          var trackName = ts.querySelector('.track-title') ? ts.querySelector('.track-title').textContent.trim() : '';
+          ts.querySelectorAll('.topic-card').forEach(function(tc) {
+            var h3 = tc.querySelector('h3');
+            if (h3) {
+              index.push({ icon: '📌', title: h3.textContent.trim(), sub: trackName, type: 'topic', trackId: ts.id.replace('track-',''), track: trackName });
+            }
+            tc.querySelectorAll('.tlist li').forEach(function(li) {
+              index.push({ icon: '·', title: li.textContent.trim(), sub: trackName, type: 'topic', trackId: ts.id.replace('track-',''), track: trackName });
+            });
+          });
+        });
+
+        var timer = null;
+        function doSearch(q) {
+          q = q.trim().toLowerCase();
+          if (!q) {
+            results.style.display = 'none';
+            results.innerHTML = '';
+            if (clearBtn) clearBtn.style.display = 'none';
+            return;
+          }
+          if (clearBtn) clearBtn.style.display = '';
+          var matches = index.filter(function(it) {
+            return (it.title + ' ' + (it.sub||'')).toLowerCase().indexOf(q) > -1;
+          }).slice(0, 6);
+
+          if (!matches.length) {
+            results.innerHTML = '<div class="lrn-result"><span class="lrn-result-icon">🔍</span><div class="lrn-result-text"><div class="lrn-result-title">No results found</div></div></div>';
+            results.style.display = '';
+            return;
+          }
+
+          results.innerHTML = matches.map(function(it) {
+            var tag = it.type === 'notecard' ? 'Card' : it.type === 'chapter' ? 'Chapter' : it.type === 'resource' ? 'Resource' : 'Topic';
+            return '<div class="lrn-result" data-type="' + it.type + '" data-id="' + (it.id||it.parentId||'') + '" data-href="' + (it.href||'') + '" data-trackid="' + (it.trackId||'') + '">' +
+              '<span class="lrn-result-icon">' + it.icon + '</span>' +
+              '<div class="lrn-result-text"><div class="lrn-result-title">' + it.title + '</div><div class="lrn-result-sub">' + (it.sub||'') + '</div></div>' +
+              '<span class="lrn-result-tag">' + tag + '</span>' +
+              '</div>';
+          }).join('');
+          results.style.display = '';
+        }
+
+        input.addEventListener('input', function() {
+          clearTimeout(timer);
+          timer = setTimeout(function(){ doSearch(input.value); }, 150);
+        });
+
+        results.addEventListener('click', function(e) {
+          var item = e.target.closest('.lrn-result');
+          if (!item) return;
+          var type = item.dataset.type;
+          var id   = item.dataset.id;
+          var href = item.dataset.href;
+          var tid  = item.dataset.trackid;
+          if (type === 'notecard' && id) {
+            openProgressModal(id);
+          } else if (type === 'chapter' && id) {
+            openProgressModal(id);
+          } else if (type === 'resource' && href) {
+            window.open(href, '_blank');
+          } else if (type === 'topic' && tid) {
+            var btn = document.querySelector('[data-track="' + tid + '"]');
+            if (btn) { goTrack(tid); }
+          }
+          results.style.display = 'none';
+          results.innerHTML = '';
+          input.value = '';
+          if (clearBtn) clearBtn.style.display = 'none';
+        });
+
+        if (clearBtn) {
+          clearBtn.addEventListener('click', function() {
+            input.value = '';
+            results.innerHTML = '';
+            results.style.display = 'none';
+            clearBtn.style.display = 'none';
+            input.focus();
+          });
+        }
+
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && input.value) {
+            input.value = '';
+            results.innerHTML = '';
+            results.style.display = 'none';
+            if (clearBtn) clearBtn.style.display = 'none';
+          }
+        });
       }
 
       document.addEventListener("DOMContentLoaded", function () {
         renderCards();
+        _initStreak();
+        _renderRecent();
+        _initResourceTracker();
+        _initSearch();
       });
     </script>
     <script>

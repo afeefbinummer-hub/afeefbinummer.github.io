@@ -1076,6 +1076,121 @@
     }
     .modal-btn-dismiss:hover { background: rgba(255,255,255,0.06); color: var(--text); }
 
+    /* ── SEARCH BAR ── */
+    .tum-search-row {
+      max-width: 700px;
+      margin: 10px auto 0;
+      width: 100%;
+    }
+    .tum-search-field {
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 0 14px;
+      gap: 10px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .tum-search-field:focus-within {
+      border-color: rgba(168,184,255,0.5);
+      box-shadow: 0 0 0 3px rgba(168,184,255,0.1);
+    }
+    .tum-search-ico {
+      color: rgba(255,255,255,0.3);
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+    .tum-search-field input {
+      flex: 1;
+      padding: 11px 0;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: #f4f4f5;
+      font-size: 0.85rem;
+      font-family: var(--sans);
+    }
+    .tum-search-field input::placeholder {
+      color: rgba(255,255,255,0.25);
+    }
+    .tum-search-clear {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.3);
+      cursor: pointer;
+      font-size: 0.8rem;
+      padding: 4px;
+      display: none;
+      line-height: 1;
+    }
+    .tum-search-meta {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+      margin-top: 6px;
+      height: 16px;
+    }
+    #tumNoResults {
+      text-align: center;
+      padding: 60px 20px;
+      color: rgba(244,244,245,0.35);
+      font-size: 0.9rem;
+      display: none;
+    }
+    #tumNoResults .tum-nores-ico {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+    #tumNoResults .tum-nores-hint {
+      font-size: 0.78rem;
+      color: rgba(244,244,245,0.2);
+      margin-top: 8px;
+    }
+    @media (max-width: 480px) {
+      .tum-search-row { margin-top: 8px; }
+    }
+
+    /* ── FAVORITES ── */
+    .tpl-fav-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 10;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(9,9,11,0.7);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.4);
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s, transform 0.15s;
+      line-height: 1;
+    }
+    .tpl-fav-btn:hover {
+      background: rgba(255,255,255,0.1);
+      color: #f97316;
+      transform: scale(1.12);
+    }
+    .tpl-fav-btn.saved {
+      color: #f97316;
+      border-color: rgba(249,115,22,0.4);
+      background: rgba(249,115,22,0.12);
+    }
+    .tpl-fav-btn.pop {
+      animation: favPop 0.25s var(--ease);
+    }
+    @keyframes favPop {
+      0%   { transform: scale(1); }
+      50%  { transform: scale(1.35); }
+      100% { transform: scale(1); }
+    }
+
     /* ── SECTION FILTER NAV ── */
     .tum-filter-wrap {
       position: sticky; top: 0; z-index: 150;
@@ -1143,6 +1258,7 @@
       <li><a href="LERN.html">Free Notes</a></li>
       <li><a href="practice.html">Practice Lab</a></li>
       <li><a href="about.html">About Me</a></li>
+      <li><a href="tools.html" style="background:linear-gradient(135deg,#083344,#0e7490,#083344);color:#67e8f9;border-radius:999px;padding:3px 12px 4px;font-size:0.78rem;font-weight:700;letter-spacing:0.02em;text-decoration:none;white-space:nowrap;box-shadow:0 0 8px rgba(6,182,212,0.3);transition:box-shadow 0.2s,transform 0.15s;">🔧 Tools</a></li>
       <li><a href="paid.html" class="nav-premium">✦ Premium Notes</a></li>
     </ul>
   </div>
@@ -1161,6 +1277,7 @@
     <li><a href="LERN.html" class="tum-mobile-link">Free Notes</a></li>
     <li><a href="practice.html" class="tum-mobile-link">Practice Lab</a></li>
     <li><a href="about.html" class="tum-mobile-link">About Me</a></li>
+    <li><a href="tools.html" class="tum-mobile-link">🔧 Tools</a></li>
     <li><a href="paid.html" class="tum-mobile-link">✦ Premium Notes</a></li>
   </ul>
 </div>
@@ -1192,6 +1309,16 @@
   <div class="tum-filter-inner">
     <button class="tum-fbtn active" data-target="live-demos">🎬 Live Demos</button>
     <button class="tum-fbtn" data-target="templates">🎨 All Templates</button>
+  </div>
+  <div class="tum-search-row">
+    <div class="tum-search-field">
+      <span class="tum-search-ico">🔍</span>
+      <input type="text" id="tumSearch"
+             placeholder="Search 57 templates — try 'glass', 'footer', 'light'..."
+             autocomplete="off" />
+      <button class="tum-search-clear" id="tumSearchClear">✕</button>
+    </div>
+    <div class="tum-search-meta" id="tumSearchMeta"></div>
   </div>
 </div>
 
@@ -1435,10 +1562,16 @@
       <a class="filter-tab" onclick="tplFilter(this,'Light')">Light</a>
       <a class="filter-tab" onclick="tplFilter(this,'SaaS')">SaaS</a>
       <a class="filter-tab" onclick="tplFilter(this,'Free')">Free</a>
+      <a class="filter-tab" onclick="tplFilter(this,'Saved')">♥ Saved</a>
     </div>
   </div>
 
-  <div class="templates-grid">
+  <div class="templates-grid" id="templatesGrid">
+    <div id="tumNoResults">
+      <div class="tum-nores-ico">🔍</div>
+      <div id="tumNoResultsText">No templates match ""</div>
+      <div class="tum-nores-hint">Try 'dark', 'glass', 'footer', 'light', 'SaaS', 'video'</div>
+    </div>
 
     <!-- 01 — Space Voyage (FEATURED) -->
     <div class="tpl-card featured" data-free="true">
@@ -3882,6 +4015,19 @@ function tplFilter(btn, filter) {
   document.querySelectorAll('.filter-tab').forEach(function(t) { t.classList.remove('active'); });
   btn.classList.add('active');
 
+  /* clear search when a filter tab is used */
+  var si = document.getElementById('tumSearch');
+  var sm = document.getElementById('tumSearchMeta');
+  var sc = document.getElementById('tumSearchClear');
+  if (si) si.value = '';
+  if (sm) sm.textContent = '';
+  if (sc) sc.style.display = 'none';
+  var nr = document.getElementById('tumNoResults');
+  if (nr) nr.style.display = 'none';
+
+  var favs = [];
+  try { favs = JSON.parse(localStorage.getItem('tum_favorites') || '[]'); } catch(e) {}
+
   document.querySelectorAll('.tpl-card').forEach(function(card) {
     if (filter === 'All') {
       card.classList.remove('tpl-hidden');
@@ -3889,6 +4035,11 @@ function tplFilter(btn, filter) {
     }
     if (filter === 'Free') {
       card.classList.toggle('tpl-hidden', card.getAttribute('data-free') !== 'true');
+      return;
+    }
+    if (filter === 'Saved') {
+      var name = (card.querySelector('.tpl-name') || {}).textContent || '';
+      card.classList.toggle('tpl-hidden', favs.indexOf(name.trim()) === -1);
       return;
     }
     var tags = Array.from(card.querySelectorAll('.tpl-tag')).map(function(t) {
@@ -3986,6 +4137,144 @@ document.querySelectorAll('.tpl-card').forEach(function(card) {
 
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeMobileMenu();
+  });
+})();
+</script>
+
+<script>
+/* ── LIVE SEARCH ── */
+(function() {
+  var input   = document.getElementById('tumSearch');
+  var clearBtn= document.getElementById('tumSearchClear');
+  var meta    = document.getElementById('tumSearchMeta');
+  var noRes   = document.getElementById('tumNoResults');
+  var noResT  = document.getElementById('tumNoResultsText');
+  if (!input) return;
+
+  var timer = null;
+
+  function resetSearch() {
+    document.querySelectorAll('.tpl-card').forEach(function(c) { c.classList.remove('tpl-hidden'); });
+    if (noRes) noRes.style.display = 'none';
+    if (meta) meta.textContent = '';
+    if (clearBtn) clearBtn.style.display = 'none';
+    input.value = '';
+  }
+
+  function doSearch(q) {
+    q = q.trim();
+    if (!q) { resetSearch(); return; }
+
+    if (clearBtn) clearBtn.style.display = '';
+
+    /* deactivate filter tabs */
+    document.querySelectorAll('.filter-tab').forEach(function(t) { t.classList.remove('active'); });
+
+    var cards = document.querySelectorAll('.tpl-card');
+    var count = 0;
+    var ql = q.toLowerCase();
+
+    cards.forEach(function(card) {
+      var text = [
+        card.querySelector('.tpl-name')  ? card.querySelector('.tpl-name').textContent  : '',
+        card.querySelector('.tpl-desc')  ? card.querySelector('.tpl-desc').textContent  : '',
+        Array.from(card.querySelectorAll('.tpl-tag')).map(function(t){ return t.textContent; }).join(' '),
+        Array.from(card.querySelectorAll('.tpl-badge')).map(function(b){ return b.textContent; }).join(' ')
+      ].join(' ').toLowerCase();
+
+      var match = text.indexOf(ql) > -1;
+      card.classList.toggle('tpl-hidden', !match);
+      if (match) count++;
+    });
+
+    if (meta) meta.textContent = count + ' template' + (count !== 1 ? 's' : '') + ' found';
+
+    if (noRes && noResT) {
+      if (count === 0) {
+        noResT.textContent = 'No templates match “' + q + '”';
+        noRes.style.display = '';
+      } else {
+        noRes.style.display = 'none';
+      }
+    }
+
+    /* scroll to templates section */
+    var tplSec = document.getElementById('templates');
+    if (tplSec) {
+      var navH = (document.querySelector('.tum-filter-wrap') ? document.querySelector('.tum-filter-wrap').offsetHeight : 60) +
+                 (document.querySelector('.nav') ? document.querySelector('.nav').offsetHeight : 0);
+      var top = tplSec.getBoundingClientRect().top + window.scrollY - navH - 16;
+      if (window.scrollY < top - 100) window.scrollTo({ top: top, behavior: 'smooth' });
+    }
+  }
+
+  input.addEventListener('input', function() {
+    clearTimeout(timer);
+    timer = setTimeout(function() { doSearch(input.value); }, 150);
+  });
+
+  if (clearBtn) {
+    clearBtn.addEventListener('click', function() { resetSearch(); input.focus(); });
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && input.value) { resetSearch(); }
+  });
+
+  /* Shorten placeholder on mobile */
+  if (window.innerWidth <= 480) {
+    input.placeholder = 'Search templates...';
+  }
+})();
+
+/* ── FAVORITES ── */
+(function() {
+  var FAV_KEY = 'tum_favorites';
+
+  function getFavs() {
+    try { return JSON.parse(localStorage.getItem(FAV_KEY) || '[]'); } catch(e) { return []; }
+  }
+  function saveFavs(arr) {
+    try { localStorage.setItem(FAV_KEY, JSON.stringify(arr)); } catch(e) {}
+  }
+
+  /* inject heart button on each card's .tpl-preview */
+  document.querySelectorAll('.tpl-card').forEach(function(card) {
+    var preview = card.querySelector('.tpl-preview');
+    if (!preview || preview.querySelector('.tpl-fav-btn')) return;
+
+    var name = (card.querySelector('.tpl-name') || {}).textContent || '';
+    name = name.trim();
+
+    var btn = document.createElement('button');
+    btn.className = 'tpl-fav-btn';
+    btn.setAttribute('aria-label', 'Save to favorites');
+    btn.dataset.name = name;
+
+    var favs = getFavs();
+    btn.textContent = favs.indexOf(name) > -1 ? '♥' : '♡';
+    if (favs.indexOf(name) > -1) btn.classList.add('saved');
+
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var f = getFavs();
+      var idx = f.indexOf(name);
+      if (idx > -1) {
+        f.splice(idx, 1);
+        btn.textContent = '♡';
+        btn.classList.remove('saved');
+      } else {
+        f.push(name);
+        btn.textContent = '♥';
+        btn.classList.add('saved');
+      }
+      saveFavs(f);
+      btn.classList.remove('pop');
+      void btn.offsetWidth; /* reflow to restart animation */
+      btn.classList.add('pop');
+    });
+
+    preview.appendChild(btn);
   });
 })();
 </script>
