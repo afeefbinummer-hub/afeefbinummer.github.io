@@ -1222,6 +1222,7 @@
       box-shadow: 0 0 14px rgba(196,154,46,0.3);
     }
   </style>
+<script src="tracker.js"></script>
 </head>
 <body>
 
@@ -3982,10 +3983,12 @@ function _tplClip(text, btn) {
 }
 function tplCopyPrompt(btn) {
   var name = btn.closest('.tpl-card').querySelector('.tpl-name').textContent.trim();
+  trackTemplate(name, 'copy');
   _tplClip(window.TPL_PROMPTS[name] || name, btn);
 }
 /* ── LIVE DEMO MODAL ── */
 function openDemo(file, title) {
+  trackTemplate(title, 'demo');
   var modal = document.getElementById('demoModal');
   var frame = document.getElementById('demoFrame');
   var label = document.getElementById('demoModalTitle');

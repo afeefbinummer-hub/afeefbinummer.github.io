@@ -871,6 +871,7 @@
       }
     }
   </style>
+<script src="tracker.js"></script>
 </head>
 <body>
 
@@ -1743,6 +1744,7 @@
     }
 
     function doFormatSQL() {
+      trackTool('SQL Formatter');
       const input = document.getElementById('sqlInput').value;
       if (!input.trim()) return;
       document.getElementById('sqlOutput').value = formatSQL(input);
@@ -1829,6 +1831,7 @@
     }
 
     function doConvertCSV() {
+      trackTool('CSV to JSON');
       const input = document.getElementById('csvInput').value;
       const headersOn = document.getElementById('csvHeaders').checked;
       const emptyNull = document.getElementById('csvEmptyNull').checked;
@@ -1893,6 +1896,7 @@
     }
 
     function doFormatJSON() {
+      trackTool('JSON Formatter');
       const val = document.getElementById('jsonInput').value;
       try {
         const parsed = JSON.parse(val);
@@ -1942,6 +1946,7 @@
     }
 
     function runRegex() {
+      trackTool('Regex Tester');
       const pattern = document.getElementById('regexInput').value;
       const testStr = document.getElementById('regexTest').value;
       const errEl = document.getElementById('regexError');
@@ -2070,6 +2075,7 @@
     }
 
     function generatePaletteFromPicker() {
+      trackTool('Color Palette');
       const hex = document.getElementById('colorPicker').value;
       const pal = generatePalette(hex);
       const out = document.getElementById('paletteOutput');
@@ -2195,6 +2201,7 @@
     }
 
     function updateMDPreview() {
+      trackTool('Markdown Preview');
       const src = document.getElementById('mdEditor').value;
       document.getElementById('mdPreview').innerHTML = parseMarkdown(src);
       const words = src.match(/\b\w+\b/g) || [];
@@ -2265,6 +2272,7 @@
     }
 
     function doB64Encode() {
+      trackTool('Base64 Encoder');
       const input = document.getElementById('b64TextInput').value;
       try { document.getElementById('b64TextOutput').value = btoa(unescape(encodeURIComponent(input))); }
       catch(e) { document.getElementById('b64TextOutput').value = 'Error: ' + e.message; }
@@ -2359,6 +2367,7 @@
     }
 
     function analyzeText() {
+      trackTool('Text Analyzer');
       const text = document.getElementById('textAnalyzerInput').value;
       const words = (text.match(/\b\w+\b/g) || []);
       const wordCount = words.length;
@@ -2425,6 +2434,7 @@
     // TOOL 9: NUMBER BASE CONVERTER
     // ============================================================
     function syncBases(source) {
+      trackTool('Base Converter');
       const bases = {dec:10, bin:2, oct:8, hex:16};
       const inputId = source+'Input';
       const val = document.getElementById(inputId).value.trim();
@@ -2529,6 +2539,7 @@
     };
 
     function runPyFormatter() {
+      trackTool('Python Formatter');
       const mode = document.getElementById('pyMode').value;
       const input = document.getElementById('pyInput').value;
       if (!input.trim()) { document.getElementById('pyOutput').value=''; return; }
